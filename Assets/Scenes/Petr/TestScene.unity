@@ -437,8 +437,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1434793614}
   - component: {fileID: 1434793615}
+  - component: {fileID: 1434793616}
   m_Layer: 0
-  m_Name: Idle_R_0 (1)
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 1434793613}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.492, y: 1.122, z: 0}
   m_LocalScale: {x: 0.4721, y: 0.4721, z: 0.4721}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,17 +504,39 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4911586157178747342, guid: 54e2abaa48c2a3c4c8ea154304981279, type: 3}
+  m_Sprite: {fileID: -4806363156194297603, guid: 6dd18018db0a2dd4db092fe2b47bd25f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.65625, y: 1.6875}
+  m_Size: {x: 2.0625, y: 2.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1434793616
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434793613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f1f78af9a6532c4bb30978eef1a9361, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1851628977
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +674,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 81e4f7f2a9176e147823727df17144ab, type: 2}
+  <AnimationData>k__BackingField:
+    groundedParameterName: Grounded
+    movingParameterName: Moving
+    idleParameterName: isIdling
+    runParameterName: isRunning
   PlayerAnimator: {fileID: 0}
 --- !u!114 &2040324663
 MonoBehaviour:

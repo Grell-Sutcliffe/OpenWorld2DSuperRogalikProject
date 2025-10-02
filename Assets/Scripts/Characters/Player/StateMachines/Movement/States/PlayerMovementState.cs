@@ -18,15 +18,12 @@ public class PlayerMovementState : IState
     #region IState Methods
     public virtual void Enter()
     {
-        // §¶§å§ß§Ü§è§Ú§ñ §Õ§Ý§ñ §Õ§à§Ò§Ñ§Ó§Ý§Ö§ß§Ú§ñ §Ü§à§Ý§Ò§ï§Ü§à§Ó §ß§Ñ §Õ§Ö§Û§ã§ä§Ó§Ú§ñ §Ó§Ó§à§Õ§Ñ
-        // §¯§Ñ§á§â§Ú§Þ§Ö§â §à§ä§Þ§Ö§ß§Ñ §Õ§Ó§Ú§Ø§Ö§ß§Ú§ñ, §é§ä§à§Ò§í §á§Ö§â§Ö§Û§ä§Ú §Ó §ã§à§ã§ä§à§ñ§ß§Ú§Ö Idling
         AddInputActionsCallbacks();
     }
 
     public virtual void Exit()
     {
-        // §¶§å§ß§Ü§è§Ú§ñ §Õ§Ý§ñ §å§Õ§Ñ§Ý§Ö§ß§Ú§ñ §Ü§à§Ý§Ò§ï§Ü§à§Ó §ß§Ñ §Õ§Ö§Û§ã§ä§Ó§Ú§ñ §Ó§Ó§à§Õ§Ñ
-         RemoveInputActionsCallbacks();
+        RemoveInputActionsCallbacks();
     }
 
     public virtual void HandleInput()
@@ -60,15 +57,17 @@ public class PlayerMovementState : IState
         float movementSpeed = movementData.BaseSpeed * stateMachine.ReusableMovementData.MovementSpeedModifier;
         Vector2 movementVelocity = movementDirection * movementSpeed;
         stateMachine.Player.Rigidbody2D.linearVelocity = movementVelocity;
+
+        SetAnimationMovingDirection(movementDirection);
     }
 
     private void HandleFlip()
     {
-        if (stateMachine.ReusableMovementData.MovementInput.x < 0)
+        if (stateMachine.ReusableMovementData.MovementInput.x < 0 && !stateMachine.Player.SpriteRenderer.flipX)
         {
             stateMachine.Player.SpriteRenderer.flipX = true;
         }
-        else if (stateMachine.ReusableMovementData.MovementInput.x > 0)
+        else if (stateMachine.ReusableMovementData.MovementInput.x > 0 && stateMachine.Player.SpriteRenderer.flipX)
         {
             stateMachine.Player.SpriteRenderer.flipX = false;
         }
@@ -77,13 +76,6 @@ public class PlayerMovementState : IState
     private Vector2 GetMovementDirection()
     {
         return new Vector2(stateMachine.ReusableMovementData.MovementInput.x, stateMachine.ReusableMovementData.MovementInput.y);
-    }
-
-    private void Rotate(Vector2 movementDirection)
-    {
-        // §´§å§ä §á§à§Ü§Ñ §ß§Ö §à§é§Ö§ß§î §Ü§â§Ñ§ã§Ú§Ó§à
-        float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg - 90;
-        stateMachine.Player.transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     #endregion
@@ -111,6 +103,26 @@ public class PlayerMovementState : IState
     {
         stateMachine.ChangeState(stateMachine.IdlingState);
     }
+    #endregion
+
+    #region Reusable Methods
+
+    protected void StartAnimation(int animationHash)
+    {
+        stateMachine.Player.PlayerAnimator.SetBool(animationHash, true);
+    }
+
+    protected void StopAnimation(int animationHash)
+    {
+        stateMachine.Player.PlayerAnimator.SetBool(animationHash, false);
+    }
+
+    private void SetAnimationMovingDirection(Vector2 movementInput)
+    {
+        stateMachine.Player.PlayerAnimator.SetFloat(stateMachine.Player.AnimationData.MoveXParameterHash, Math.Abs(movementInput.x));
+        stateMachine.Player.PlayerAnimator.SetFloat(stateMachine.Player.AnimationData.MoveYParameterHash, movementInput.y);
+    }
+
     #endregion
 
 

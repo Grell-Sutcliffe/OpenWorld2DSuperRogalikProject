@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerIdlingState : PlayerMovementState
+public class PlayerIdlingState : PlayerGroundedState
 {
     public PlayerIdlingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
@@ -12,8 +12,18 @@ public class PlayerIdlingState : PlayerMovementState
     {
         Debug.Log("Enter Idling State");
         base.Enter();
+
+        StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
+
         stateMachine.ReusableMovementData.MovementSpeedModifier = 0f;
         ResetVelocity();
+    }
+
+    override public void Exit()
+    {
+        base.Exit();
+        
+        StopAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
     }
 
     public override void Update()
