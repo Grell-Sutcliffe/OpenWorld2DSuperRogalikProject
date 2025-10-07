@@ -4,7 +4,10 @@ public class DedusDialogScript : MonoBehaviour
 {
     public string npc_name = "Дедус";
 
-    string text_hello = "Здравствуй, путешественник!";
+    string[] text_hello = { 
+        "Здравствуй, путешественник!",
+        "Пожалуй, расскажу тебе историю из своей жизни..."
+    };
 
     MainController mainController;
 

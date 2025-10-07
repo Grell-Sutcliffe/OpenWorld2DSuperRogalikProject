@@ -10,8 +10,11 @@ public class DialogPanelScript : MonoBehaviour
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI speachText;
 
+    public GameObject iconNextLine;
+
     public float text_speed = 0.05f;
 
+    bool is_line_finished;
     private int index = 0;
     string[] lines;
 
@@ -40,15 +43,23 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        iconNextLine.SetActive(false);
+        is_line_finished = false;
+
         foreach (char c in lines[index].ToCharArray())
         {
             speachText.text += c;
             yield return new WaitForSeconds(text_speed);
         }
+
+        is_line_finished = true;
+        iconNextLine.SetActive(true);
     }
 
     public void NextLine()
     {
+        if (!is_line_finished) return;
+
         if (index < lines.Length - 1)
         {
             index++;
