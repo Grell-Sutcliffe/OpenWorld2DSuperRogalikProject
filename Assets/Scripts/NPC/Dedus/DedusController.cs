@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class DedusController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject iconTask_1;
+    public GameObject iconTask_7;
+    public GameObject iconDialog;
+
     void Start()
     {
-        
+        StuffSetActiveFalse();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void StuffSetActiveFalse()
     {
-        
+        iconTask_1.SetActive(false);
+        iconTask_7.SetActive(false);
+        iconDialog.SetActive(false);
     }
 }

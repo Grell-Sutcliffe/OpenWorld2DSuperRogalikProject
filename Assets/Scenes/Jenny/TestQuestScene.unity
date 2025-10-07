@@ -218,10 +218,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3675455199803781339, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 6404843828197707954, guid: 6dd18018db0a2dd4db092fe2b47bd25f, type: 3}
     - target: {fileID: 4101229763699107761, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -627,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerText: {fileID: 1015537700}
   speachText: {fileID: 2143299058}
+  text_speed: 0.05
 --- !u!114 &1454043791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +729,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1454043790}
         m_TargetAssemblyTypeName: DialogPanelScript, Assembly-CSharp
-        m_MethodName: CloseDialogPanel
+        m_MethodName: NextLine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -937,6 +934,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7325920805469944903, guid: ad6091e7f44de46429539cff47f029d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2502027513774678655, guid: ad6091e7f44de46429539cff47f029d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ad6091e7f44de46429539cff47f029d8, type: 3}

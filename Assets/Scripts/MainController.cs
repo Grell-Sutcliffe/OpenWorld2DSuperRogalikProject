@@ -41,6 +41,11 @@ public class MainController : MonoBehaviour
         dialogPanelScript.StartDialog(speaker_text, speach_text);
     }
 
+    public void StartDialog(string speaker_text, string[] speach_text)
+    {
+        dialogPanelScript.StartDialog(speaker_text, speach_text);
+    }
+
     void StuffSetActiveFalse()
     {
         dialogPanel.SetActive(false);

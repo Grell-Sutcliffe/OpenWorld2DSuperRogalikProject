@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class DialogPanelScript : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class DialogPanelScript : MonoBehaviour
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI speachText;
 
+    public float text_speed = 0.05f;
+
+    private int index = 0;
+    string[] lines;
+
     void Start()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -16,13 +22,53 @@ public class DialogPanelScript : MonoBehaviour
 
     public void StartDialog(string speaker_text, string speach_text)
     {
+        string[] new_speach_text = { speach_text };
+
+        StartDialog(speaker_text, new_speach_text);
+    }
+
+    public void StartDialog(string speaker_text, string[] speach_text)
+    {
+        index = 0;
+        lines = speach_text;
+
         OpenDialogPanel();
-        ChangeDialogPanel(speaker_text, speach_text);
+        ChangeDialogPanel(speaker_text, string.Empty);
+
+        StartCoroutine(TypeLine());
+    }
+
+    IEnumerator TypeLine()
+    {
+        foreach (char c in lines[index].ToCharArray())
+        {
+            speachText.text += c;
+            yield return new WaitForSeconds(text_speed);
+        }
+    }
+
+    public void NextLine()
+    {
+        if (index < lines.Length - 1)
+        {
+            index++;
+            ChangeDialogPanel(string.Empty);
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            CloseDialogPanel();
+        }
     }
 
     public void ChangeDialogPanel(string speaker_text, string speach_text)
     {
         speakerText.text = speaker_text;
+        speachText.text = speach_text;
+    }
+
+    public void ChangeDialogPanel(string speach_text)
+    {
         speachText.text = speach_text;
     }
 
