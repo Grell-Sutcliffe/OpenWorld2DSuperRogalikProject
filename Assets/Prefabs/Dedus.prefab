@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 6919665102555822853}
   - component: {fileID: 8561175246847649286}
   - component: {fileID: 8383028288996551628}
+  - component: {fileID: 1438748877184405176}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -188,7 +189,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &8383028288996551628
 Animator:
   serializedVersion: 7
@@ -211,6 +212,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1438748877184405176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624198654835066542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100
 --- !u!1 &4464271140763523045
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,8 +237,8 @@ GameObject:
   - component: {fileID: 8450240551158324448}
   - component: {fileID: 1020523022278242033}
   - component: {fileID: 3082932922216176318}
-  - component: {fileID: 4136202526372238062}
   - component: {fileID: 3113666325723193542}
+  - component: {fileID: 4136202526372238062}
   m_Layer: 0
   m_Name: Dedus
   m_TagString: NPC
@@ -321,19 +336,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &4136202526372238062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464271140763523045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ff1f4709acc545a47d064f36c854d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactIcon: {fileID: 1261833713436180136}
 --- !u!114 &3113666325723193542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +349,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc_name: "\u0414\u0435\u0434\u0443\u0441"
+--- !u!114 &4136202526372238062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464271140763523045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ff1f4709acc545a47d064f36c854d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactIcon: {fileID: 1261833713436180136}
 --- !u!1 &7325920805469944903
 GameObject:
   m_ObjectHideFlags: 0

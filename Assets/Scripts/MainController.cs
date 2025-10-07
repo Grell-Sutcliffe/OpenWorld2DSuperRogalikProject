@@ -4,12 +4,15 @@ public class MainController : MonoBehaviour
 {
     public GameObject dialogPanel;
     public GameObject Dedus;
+    public GameObject GrandsonEugene;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
     DedusDialogScript dedusDialogScript;
+    GrandsonEugeneDialogScript grandsonEugeneDialogScript;
 
     bool dedus_F;
+    bool grandsonEugene_F;
 
     void Start()
     {
@@ -18,6 +21,7 @@ public class MainController : MonoBehaviour
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
         dedusDialogScript = Dedus.GetComponent<DedusDialogScript>();
+        grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
     }
 
     public void PressF()
@@ -25,6 +29,10 @@ public class MainController : MonoBehaviour
         if (dedus_F)
         {
             dedusDialogScript.StartDialog();
+        }
+        else if (grandsonEugene_F)
+        {
+            grandsonEugeneDialogScript.StartDialog();
         }
     }
 
@@ -38,6 +46,7 @@ public class MainController : MonoBehaviour
         dialogPanel.SetActive(false);
 
         dedus_F = false;
+        grandsonEugene_F = false;
     }
 
     public void DedusOn()
@@ -48,5 +57,15 @@ public class MainController : MonoBehaviour
     public void DedusOff()
     {
         dedus_F = false;
+    }
+
+    public void GrandsonEugeneOn()
+    {
+        grandsonEugene_F = true;
+    }
+
+    public void GrandsonEugeneOff()
+    {
+        grandsonEugene_F = false;
     }
 }
