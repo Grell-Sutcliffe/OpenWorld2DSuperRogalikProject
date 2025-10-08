@@ -9,7 +9,7 @@ public class PlayerRunningState : PlayerMovingState
     #region IState Methods
     public override void Enter()
     {
-        Debug.Log("Enter Running State");
+        //Debug.Log("Enter Running State");
         base.Enter();
 
         StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);

@@ -10,7 +10,7 @@ public class PlayerIdlingState : PlayerGroundedState
     #region IState Methods
     public override void Enter()
     {
-        Debug.Log("Enter Idling State");
+        //Debug.Log("Enter Idling State");
         base.Enter();
 
         StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
