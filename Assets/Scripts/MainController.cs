@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MainController : MonoBehaviour
 {
+    public GameObject playerPanel;
     public GameObject dialogPanel;
     public GameObject Dedus;
     public GameObject GrandsonEugene;
@@ -52,6 +53,16 @@ public class MainController : MonoBehaviour
 
         dedus_F = false;
         grandsonEugene_F = false;
+    }
+
+    public void ShowPlayerPanel()
+    {
+        playerPanel.SetActive(true);
+    }
+
+    public void HidePlayerPanel()
+    {
+        playerPanel.SetActive(false);
     }
 
     public void DedusOn()

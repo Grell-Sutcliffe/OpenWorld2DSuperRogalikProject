@@ -86,10 +86,18 @@ public class DialogPanelScript : MonoBehaviour
     public void OpenDialogPanel()
     {
         gameObject.SetActive(true);
+
+        if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
+
+        mainController.HidePlayerPanel();
     }
 
     public void CloseDialogPanel()
     {
         gameObject.SetActive(false);
+
+        if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
+
+        mainController.ShowPlayerPanel();
     }
 }
