@@ -15,6 +15,6 @@ public class GrandsonEugeneDialogScript : MonoBehaviour
 
     public void StartDialog()
     {
-        mainController.StartDialog(npc_name, text_hello);
+        //mainController.StartDialog(npc_name, text_hello);
     }
 }
