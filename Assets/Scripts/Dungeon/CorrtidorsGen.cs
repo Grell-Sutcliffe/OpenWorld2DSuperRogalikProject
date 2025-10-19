@@ -6,10 +6,10 @@ using UnityEngine;
 public class CorrtidorsGen : SimpleWalkGenerator
 {
     [SerializeField]
-    int corLen = 14, corrCount = 5;
-    [SerializeField]
-    [Range(0.1f, 1)]
-    float roomPercent = 0.8f;
+    int corLen = 14, corW = 1, corrCount = 5;
+
+    [Range(0f, 1)]
+    [SerializeField] float roomPercent = 0f;
 
 
 
@@ -90,10 +90,22 @@ public class CorrtidorsGen : SimpleWalkGenerator
     {
         var currPos = startPos;
         potentialRoomPos.Add(currPos);
+        var bibi = new List<Vector2Int>() { currPos+ new Vector2Int (0,3),
+        currPos+ new Vector2Int (3,0),
+        currPos+ new Vector2Int (0,-3),
+        currPos+ new Vector2Int (-3,0),};
+        floorPos.UnionWith(bibi);
         for (int i = 0; i < corrCount; i++)
         {
-            var corr = ProcedurGenerationAlg.RandWalkCorr(currPos, corLen);
+            var corr = ProcedurGenerationAlg.RandWalkCorr(currPos, corLen, corW);
             currPos = corr[corr.Count - 1];
+
+            bibi = new List<Vector2Int>() { currPos+ new Vector2Int (0,3),
+                                            currPos+ new Vector2Int (3,0),
+                                            currPos+ new Vector2Int (0,-3),
+                                            currPos+ new Vector2Int (-3,0),};
+            floorPos.UnionWith(bibi);
+
             potentialRoomPos.Add(currPos);
             floorPos.UnionWith(corr);
 

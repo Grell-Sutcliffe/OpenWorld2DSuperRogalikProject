@@ -22,17 +22,41 @@ public class ProcedurGenerationAlg
     }
 
 
-    public static List<Vector2Int> RandWalkCorr(Vector2Int startPos, int corrLen)
+    public static List<Vector2Int> RandWalkCorr(Vector2Int startPos, int corrLen, int corrW = 1)
     {
         List<Vector2Int> corr = new List<Vector2Int>();
         var dir = Direction2D.GetRandCardDir();
         var currPos = startPos;
         corr.Add(currPos);
+        var dop = new Vector2Int(0, 0);
+        var corner = new Vector2Int(0, 0);
+        if (dir[0] == -1 || dir[1] == -1){
+            dop = new Vector2Int(-1, -1);
+        }
+        else
+        {
+            dop = new Vector2Int(1, 1);
+        }
 
         for (int i = 0; i < corrLen; i++)
         {
+            /*
+            if (i == 0)
+            {   corner = dop + (-1 * dir);
+                corr.Add(corner);
+            }else if (i == corrLen - 1)
+            {
+
+            }
+            */
+            if (corrW == 2)
+            {
+                corr.Add(currPos + dop + (-1 * dir));
+                if (i == corrLen - 1) corr.Add(currPos + dop + (-1 * dir) + dir);
+            }
+            corr.Add(currPos + dir);
+            
             currPos += dir;
-            corr.Add(currPos);
 
         }
 
@@ -120,6 +144,28 @@ public static class Direction2D
         new Vector2Int(0,-1), // DOWN
         new Vector2Int(-1,0)  // LEFT
     };
+
+    public static List<Vector2Int> diagonalDirectionsList = new List<Vector2Int>
+    {
+        new Vector2Int(1,1), //UP-RIGHT
+        new Vector2Int(1,-1), //RIGHT-DOWN
+        new Vector2Int(-1, -1), // DOWN-LEFT
+        new Vector2Int(-1, 1) //LEFT-UP
+    };
+
+    public static List<Vector2Int> eightDirectionsList = new List<Vector2Int>
+    {
+        new Vector2Int(0,1), //UP
+        new Vector2Int(1,1), //UP-RIGHT
+        new Vector2Int(1,0), //RIGHT
+        new Vector2Int(1,-1), //RIGHT-DOWN
+        new Vector2Int(0, -1), // DOWN
+        new Vector2Int(-1, -1), // DOWN-LEFT
+        new Vector2Int(-1, 0), //LEFT
+        new Vector2Int(-1, 1) //LEFT-UP
+
+    };
+
 
     public static Vector2Int GetRandCardDir()
     {
