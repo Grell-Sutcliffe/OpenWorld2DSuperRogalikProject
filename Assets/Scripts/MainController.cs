@@ -7,6 +7,7 @@ public class MainController : MonoBehaviour
 {
     public GameObject playerPanel;
     public GameObject dialogPanel;
+    public GameObject questPanel;
 
     public GameObject taskShower;
 
@@ -60,6 +61,7 @@ public class MainController : MonoBehaviour
     void StuffSetActiveFalse()
     {
         dialogPanel.SetActive(false);
+        questPanel.SetActive(false);
 
         dedus_F = false;
         grandsonEugene_F = false;

@@ -185,13 +185,12 @@ public class DialogPanelScript : MonoBehaviour
         if (speach_tree == null) return;
 
         if (questsController == null) questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
-        string temp_npc = speach_tree.npc_name;
+        //string temp_npc = speach_tree.npc_name;
+
         string temp_quest = speach_tree.quest_title;
-        foreach (Quest quest in questsController.dict_npc_to_list_of_quests[temp_npc])
-        {
-            quest.is_quest_accepted = true;
-            is_quest_accepted = true;
-        }
+        is_quest_accepted = true;
+
+        questsController.AcceptQuest(temp_quest);
     }
 
     public void SelectAnswer(SpeachNode new_next_node)

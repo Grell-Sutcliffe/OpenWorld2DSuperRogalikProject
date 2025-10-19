@@ -7,6 +7,10 @@ public class QuestsController : MonoBehaviour
     MainController mainController;
 
     public GameObject taskShower;
+    //public GameObject questPanel;
+    public GameObject questPanelContent;
+
+    public GameObject questInfoPrefab;
 
     TaskShowerScript taskShowerScript;
 
@@ -85,8 +89,11 @@ public class QuestsController : MonoBehaviour
         }
     }
 
-    public Dictionary<string, List<Quest>> dict_npc_to_list_of_quests = new Dictionary<string, List<Quest>>();
+    public Dictionary<string, Quest> dict_quest_name_to_quest = new Dictionary<string, Quest>();
+    public Dictionary<string, List<string>> dict_npc_to_list_of_quests_names = new Dictionary<string, List<string>>();
     public Dictionary<string, GameObject> dict_npc_name_to_npc_GO = new Dictionary<string, GameObject>();
+
+    public List<string> accepted_quests = new List<string>();
 
     void Start()
     {
@@ -98,18 +105,27 @@ public class QuestsController : MonoBehaviour
         MakeQuests();
     }
 
+    public void AcceptQuest(string new_quest)
+    {
+        accepted_quests.Add(new_quest);
+
+        GameObject new_prefab = Instantiate(questInfoPrefab, questPanelContent.transform);
+        QuestInfoScript questInfoScript = new_prefab.GetComponent<QuestInfoScript>();
+        questInfoScript.SetNewQuestTitle(new_quest);
+    }
+
     public void ShowNewTask(string new_task)
     {
         taskShowerScript.ShowNewTask(new_task);
     }
 
-    public Quest GetIncompletedQuestOfNPC(string name)
+    public string GetIncompletedQuestOfNPC(string npc_name)
     {
-        foreach (Quest quest in dict_npc_to_list_of_quests[name]) 
+        foreach (string quest_name in dict_npc_to_list_of_quests_names[npc_name]) 
         {
-            if (!quest.is_quest_completed)
+            if (!dict_quest_name_to_quest[quest_name].is_quest_completed)
             {
-                return quest;
+                return quest_name;
             }
         }
         return null;
@@ -117,7 +133,7 @@ public class QuestsController : MonoBehaviour
 
     void MakeQuests()
     {
-        dict_npc_to_list_of_quests[dedus] = new List<Quest>();  // Dedus
+        dict_npc_to_list_of_quests_names[dedus] = new List<string>();  // Dedus
 
         Quest new_quest = new Quest();  // Dedus - find grandson
 
@@ -139,7 +155,8 @@ public class QuestsController : MonoBehaviour
         new_task.description = "Покажи мальчику дорогу до его дедушки.";
         new_quest.tasks.Add(new_task);
 
-        dict_npc_to_list_of_quests[dedus].Add(new_quest);
+        dict_quest_name_to_quest[new_quest.title] = new_quest;
+        dict_npc_to_list_of_quests_names[dedus].Add(new_quest.title);
     }
 
     void MakeDictOfNPC()

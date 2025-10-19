@@ -18,7 +18,7 @@ public class TaskShowerScript : MonoBehaviour
 
     public void ShowNewTask(string task_name)
     {
-        Invoke("HideTaskShower", 1f);
+        Invoke("ShowTaskShower", 1f);
         taskShowerText.text = task_name;
 
         Invoke("HideTaskShower", 10f);
