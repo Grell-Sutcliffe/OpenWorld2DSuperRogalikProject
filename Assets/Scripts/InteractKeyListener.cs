@@ -29,6 +29,9 @@ public class InteractKeyListener : MonoBehaviour
     private void OnInteract(InputAction.CallbackContext ctx)
     {
         //Debug.Log("Нажата F");
-        mainController.PressF();
+        if (mainController.is_keyboard_active)
+        {
+            mainController.PressF();
+        }
     }
 }

@@ -20,6 +20,8 @@ public class MainController : MonoBehaviour
     public DedusDialogScript dedusDialogScript;
     public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
 
+    public bool is_keyboard_active = true;
+
     bool dedus_F;
     bool grandsonEugene_F;
 
@@ -32,6 +34,8 @@ public class MainController : MonoBehaviour
 
         SetDedusDialogScript();
         SetGrandsonEugeneDialogScript();
+
+        is_keyboard_active = true;
     }
 
     public void PressF()
@@ -107,5 +111,15 @@ public class MainController : MonoBehaviour
     {
         if (GrandsonEugene == null) GrandsonEugene = GameObject.Find("GrandsonEugine");
         if (GrandsonEugene != null) grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
+    }
+
+    public void TurnOnKeyboard()
+    {
+        is_keyboard_active = true;
+    }
+
+    public void TurnOffKeyboard()
+    {
+        is_keyboard_active = false;
     }
 }

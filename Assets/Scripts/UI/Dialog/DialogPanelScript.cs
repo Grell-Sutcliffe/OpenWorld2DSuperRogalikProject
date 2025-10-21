@@ -273,6 +273,7 @@ public class DialogPanelScript : MonoBehaviour
     public void OpenDialogPanel()
     {
         gameObject.SetActive(true);
+        mainController.TurnOffKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
@@ -282,6 +283,7 @@ public class DialogPanelScript : MonoBehaviour
     public void CloseDialogPanel()
     {
         gameObject.SetActive(false);
+        mainController.TurnOnKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
