@@ -8,6 +8,7 @@ public class MainController : MonoBehaviour
     public GameObject playerPanel;
     public GameObject dialogPanel;
     public GameObject questPanel;
+    public GameObject wishPanel;
 
     public GameObject taskShower;
 
@@ -111,6 +112,30 @@ public class MainController : MonoBehaviour
     {
         if (GrandsonEugene == null) GrandsonEugene = GameObject.Find("GrandsonEugine");
         if (GrandsonEugene != null) grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
+    }
+
+    public void OpenQuestPanel()
+    {
+        questPanel.SetActive(true);
+        TurnOffKeyboard();
+    }
+
+    public void CloseQuestPanel()
+    {
+        questPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenWishPanel()
+    {
+        wishPanel.SetActive(true);
+        TurnOffKeyboard();
+    }
+
+    public void CloseWishPanel()
+    {
+        wishPanel.SetActive(false);
+        TurnOnKeyboard();
     }
 
     public void TurnOnKeyboard()
