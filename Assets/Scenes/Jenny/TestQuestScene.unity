@@ -3361,6 +3361,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124554562}
   m_CullTransparentMesh: 1
+--- !u!4 &1145379578 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8543522866138125519, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
+  m_PrefabInstance: {fileID: 821005258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1187830158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6513,6 +6518,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5355484792274263402, guid: 988dd90dac008a44fbeb2d1154e76e3e, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355484792274263402, guid: 988dd90dac008a44fbeb2d1154e76e3e, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1145379578}
+    - target: {fileID: 5355484792274263402, guid: 988dd90dac008a44fbeb2d1154e76e3e, type: 3}
+      propertyPath: stopDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8241749803378144908, guid: 988dd90dac008a44fbeb2d1154e76e3e, type: 3}
       propertyPath: m_Name
       value: GrandsonEugene
