@@ -27,7 +27,10 @@ public class DedusInteractionScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        OffInteraction();
+        if (other.CompareTag("Player"))
+        {
+            OffInteraction();
+        }
     }
 
     void OnInteraction()

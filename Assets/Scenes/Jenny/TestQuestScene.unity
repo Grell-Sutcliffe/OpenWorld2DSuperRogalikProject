@@ -1996,6 +1996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688393784}
   - component: {fileID: 688393783}
+  - component: {fileID: 688393785}
   m_Layer: 0
   m_Name: MainController
   m_TagString: Untagged
@@ -2025,6 +2026,8 @@ MonoBehaviour:
   dedusDialogScript: {fileID: 0}
   grandsonEugeneDialogScript: {fileID: 0}
   is_keyboard_active: 1
+  list_of_interactable_GO: []
+  list_of_interactable_objects_names: []
 --- !u!4 &688393784
 Transform:
   m_ObjectHideFlags: 0
@@ -2040,6 +2043,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &688393785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688393782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda630941e4e6ed40a7054650c408fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollY:
+    m_Name: Scroll Y
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6db06dc8-5e53-45aa-bd5d-b4d9e59184ba
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d9ce0c01-9ff6-45f4-8bae-74cfe44a987b
+      m_Path: <Mouse>/scroll/y
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Scroll Y
+      m_Flags: 0
+    m_Flags: 0
+  current_index: 0
 --- !u!1 &740291772
 GameObject:
   m_ObjectHideFlags: 0
