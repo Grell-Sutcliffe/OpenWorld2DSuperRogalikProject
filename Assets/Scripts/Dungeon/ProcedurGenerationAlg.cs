@@ -21,11 +21,45 @@ public class ProcedurGenerationAlg
 
     }
 
-
-    public static List<Vector2Int> RandWalkCorr(Vector2Int startPos, int corrLen, int corrW = 1)
+    // new Vector2Int(0,1), 
+    //  new Vector2Int(1,0), 
+    //  new Vector2Int(0,-1),
+    //   new Vector2Int(-1,0)  
+    public static List<Vector2Int> RandWalkCorr(Vector2Int startPos, int corrLen, ref int last_dir, int corrW = 1)
     {
         List<Vector2Int> corr = new List<Vector2Int>();
         var dir = Direction2D.GetRandCardDir();
+        var now_dir = 0;
+        var new_dir = 0;
+        do
+        {
+            dir = Direction2D.GetRandCardDir();
+            if (dir == new Vector2Int(0, 1))
+            {
+                now_dir = 3;
+                new_dir = 1;
+            }
+            else if (dir == new Vector2Int(1, 0))
+            {
+                now_dir = 4;
+                new_dir = 2;
+            }
+            else if (dir == new Vector2Int(0, -1))
+            {
+                now_dir = 1;
+                new_dir = 3;
+            }
+            else if (dir == new Vector2Int(-1, 0))
+            {
+                now_dir = 2;
+                new_dir = 4;
+            }
+        } while (now_dir == last_dir);
+        Debug.Log("nowdir");
+        Debug.Log(now_dir);
+        Debug.Log("lastdir");
+        Debug.Log(last_dir);
+        last_dir = new_dir;
         var currPos = startPos;
         corr.Add(currPos);
         var dop = new Vector2Int(0, 0);
