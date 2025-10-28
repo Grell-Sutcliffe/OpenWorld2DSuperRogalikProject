@@ -156,11 +156,13 @@ public class MainController : MonoBehaviour
     public void ShowEnterDangeonPanel()
     {
         enterDangeonPanel.SetActive(true);
+        TurnOffKeyboard();
     }
 
     public void HideEnterDangeonPanel()
     {
         enterDangeonPanel.SetActive(false);
+        TurnOnKeyboard();
     }
 
     public void DedusOn()
@@ -227,7 +229,11 @@ public class MainController : MonoBehaviour
 
     void SetDangeonScripts()
     {
-        dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
+        if (Dangeon == null) Dangeon = GameObject.Find("Dangeon");
+        if (Dangeon != null)
+        {
+            dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
+        }
     }
 
     public void OpenQuestPanel()
