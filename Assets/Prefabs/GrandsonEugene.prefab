@@ -411,8 +411,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8360364308878236873}
+  - component: {fileID: 5355484792274263402}
   - component: {fileID: 6673703419500185713}
   - component: {fileID: 3798113700941339387}
+  - component: {fileID: 2094560978002749733}
   - component: {fileID: 4684534522962451054}
   - component: {fileID: 7547296994368346027}
   - component: {fileID: 4462846648084986565}
@@ -440,6 +442,20 @@ Transform:
   - {fileID: 7358981752127560707}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5355484792274263402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241749803378144908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6176cfa2633f74244b29677e8b360149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactIcon: {fileID: 7351132768339436588}
+  interactIconSR: {fileID: 0}
 --- !u!114 &6673703419500185713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +482,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIcon: {fileID: 7351132768339436588}
+--- !u!114 &2094560978002749733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241749803378144908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d06c0bbde0304428b7203fa1f03d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  root: {fileID: 1947644971697795609}
+  speed: 1
+  stop_distance: 2
+  rotate_towards: 0
 --- !u!50 &4684534522962451054
 Rigidbody2D:
   serializedVersion: 5
@@ -480,8 +513,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_AngularDamping: 5
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -492,7 +525,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7547296994368346027
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -23,11 +23,15 @@ public class GrandsonEugeneInteractionScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        OffInteraction();
+        if (other.CompareTag("Player"))
+        {
+            OffInteraction();
+        }
     }
 
     void OnInteraction()

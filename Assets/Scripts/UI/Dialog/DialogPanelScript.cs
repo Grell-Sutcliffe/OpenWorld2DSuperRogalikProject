@@ -273,10 +273,10 @@ public class DialogPanelScript : MonoBehaviour
     public void OpenDialogPanel()
     {
         gameObject.SetActive(true);
-        mainController.TurnOffKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
+        mainController.TurnOffKeyboard();
         mainController.HidePlayerPanel();
     }
 

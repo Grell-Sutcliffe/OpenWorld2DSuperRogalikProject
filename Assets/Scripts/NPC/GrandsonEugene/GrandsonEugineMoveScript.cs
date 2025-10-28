@@ -11,8 +11,6 @@ public class GrandsonEugineMoveScript : MonoBehaviour
     public float stop_distance = 2f;
     public bool rotate_towards = false;
 
-    public bool need_to_pursue_player = false;
-
     private Animator animator;
 
     Rigidbody2D rb;
@@ -43,7 +41,6 @@ public class GrandsonEugineMoveScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!need_to_pursue_player) return;
         if (!target) return;
 
         Vector2 toTarget = (Vector2)target.position - rb.position;
@@ -162,15 +159,5 @@ public class GrandsonEugineMoveScript : MonoBehaviour
         animator.SetBool("is_R", false);
         animator.SetBool("is_RB", false);
         animator.SetBool("is_B", false);
-    }
-
-    public void StartPursuingPlayer()
-    {
-        need_to_pursue_player = true;
-    }
-
-    public void StopPursuingPlayer()
-    {
-        need_to_pursue_player = false;
     }
 }
