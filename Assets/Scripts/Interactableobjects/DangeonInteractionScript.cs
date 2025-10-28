@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DangeonInteractionScript : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class DangeonInteractionScript : MonoBehaviour
 
     public void EnterDangeon()
     {
-
+        SceneManager.LoadScene(2);
     }
 
     void OnInteraction()

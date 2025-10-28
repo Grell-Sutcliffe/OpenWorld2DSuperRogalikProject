@@ -29,6 +29,10 @@ public class CorrtidorsGen : SimpleWalkGenerator
         CorrFirstGen();
     }
 
+    public void fake()
+    {
+        RunProcGen();
+    }
     private void CorrFirstGen()
     {
         

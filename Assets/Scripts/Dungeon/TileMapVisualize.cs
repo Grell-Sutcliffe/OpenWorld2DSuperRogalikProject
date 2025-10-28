@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class TileMapVisualize : MonoBehaviour
 {
     [SerializeField]
-    private Tilemap floorTilemap, wallTilemap;
+    public Tilemap floorTilemap, wallTilemap;
 
     [SerializeField]
     private RuleTile wallRuleTile;
@@ -50,6 +50,7 @@ public class TileMapVisualize : MonoBehaviour
 
     internal void PaintWall(Vector2Int wall, string binType)
     {
+        
         int typeAsInt = Convert.ToInt32(binType, 2);
         TileBase tile = null;
         if (WallHelper.wallTop.Contains(typeAsInt))
