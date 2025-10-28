@@ -45,7 +45,7 @@ public class ScrollInteractionScript : MonoBehaviour
 
     private void OnScroll(InputAction.CallbackContext ctx)
     {
-        mainController.ShowInteraction();
+        //mainController.ShowInteraction();
 
         float y = ctx.ReadValue<float>();
         if (y > 0.01f) SelectPrev();
@@ -54,23 +54,23 @@ public class ScrollInteractionScript : MonoBehaviour
 
     void SelectNext()
     {
-        if (mainController.list_of_interactable_GO.Count == 0) return;
-        current_index = (current_index + 1) % mainController.list_of_interactable_GO.Count;
+        if (mainController.list_of_interactable_SR.Count == 0) return;
+        current_index = (current_index + 1) % mainController.list_of_interactable_SR.Count;
         ApplyAllColors();
     }
 
     void SelectPrev()
     {
-        if (mainController.list_of_interactable_GO.Count == 0) return;
-        current_index = (current_index - 1 + mainController.list_of_interactable_GO.Count) % mainController.list_of_interactable_GO.Count;
+        if (mainController.list_of_interactable_SR.Count == 0) return;
+        current_index = (current_index - 1 + mainController.list_of_interactable_SR.Count) % mainController.list_of_interactable_SR.Count;
         ApplyAllColors();
     }
 
     public void ApplyAllColors()
     {
-        for (int i = 0; i < mainController.list_of_interactable_GO.Count; i++)
+        for (int i = 0; i < mainController.list_of_interactable_SR.Count; i++)
         {
-            var r = mainController.list_of_interactable_GO[i];
+            var r = mainController.list_of_interactable_SR[i];
             if (!r) continue;
             SetRendererColor(r, i == current_index ? active : deactive);
         }

@@ -11,11 +11,13 @@ public class MainController : MonoBehaviour
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
+    public GameObject enterDangeonPanel;
 
     public GameObject taskShower;
 
     public GameObject Dedus;
     public GameObject GrandsonEugene;
+    public GameObject Dangeon;
 
     ScrollInteractionScript scrollInteractionScript;
 
@@ -28,15 +30,18 @@ public class MainController : MonoBehaviour
     DedusController dedusController;
     GrandsonEugeneController grandsonEugeneController;
 
+    DangeonInteractionScript dangeonInteractionScript;
+
     public bool is_keyboard_active = true;
 
     SpriteRenderer current_interaction_SR;
 
-    public List<SpriteRenderer> list_of_interactable_GO = new List<SpriteRenderer>();
+    public List<SpriteRenderer> list_of_interactable_SR = new List<SpriteRenderer>();
     public List<string> list_of_interactable_objects_names = new List<string>();
 
     bool dedus_F;
     bool grandsonEugene_F;
+    bool dangeon_F;
 
     void Start()
     {
@@ -49,35 +54,51 @@ public class MainController : MonoBehaviour
 
         SetDedusScripts();
         SetGrandsonEugeneScripts();
+        SetDangeonScripts();
 
         is_keyboard_active = true;
     }
 
     public void ShowInteraction()
     {
+        Debug.Log("SHOW INTERACTION");
+
         current_interaction_SR = null;
 
-        list_of_interactable_GO.Clear();
+        list_of_interactable_SR.Clear();
         list_of_interactable_objects_names.Clear();
 
         if (dedus_F)
         {
-            list_of_interactable_GO.Add(dedusController.interactIconSR);
+            list_of_interactable_SR.Add(dedusController.interactIconSR);
             list_of_interactable_objects_names.Add(Dedus.name);
         }
         if (grandsonEugene_F)
         {
-            list_of_interactable_GO.Add(grandsonEugeneController.interactIconSR);
+            list_of_interactable_SR.Add(grandsonEugeneController.interactIconSR);
             list_of_interactable_objects_names.Add(GrandsonEugene.name);
+        }
+        if (dangeon_F)
+        {
+            list_of_interactable_SR.Add(dangeonInteractionScript.interactIconSR);
+            list_of_interactable_objects_names.Add(Dangeon.name);
         }
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
 
+        if (scrollInteractionScript.current_index >= list_of_interactable_objects_names.Count)
+        {
+            scrollInteractionScript.current_index = 0;
+        }
         scrollInteractionScript.ApplyAllColors();
     }
 
     public void PressF()
     {
+        if (list_of_interactable_objects_names.Count == 0) return;
+
+        //Debug.Log($"list.Count = {list_of_interactable_objects_names.Count}, dangeon_F = {dangeon_F}, dangeon.name = {Dangeon.name}, list_names[cur_ind] = {list_of_interactable_objects_names[scrollInteractionScript.current_index]}");
+
         if (dedus_F && Dedus.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (dedusDialogScript == null) SetDedusScripts();
@@ -87,6 +108,11 @@ public class MainController : MonoBehaviour
         {
             if (grandsonEugeneDialogScript == null) SetGrandsonEugeneScripts();
             grandsonEugeneDialogScript.StartDialog();
+        }
+        else if (dangeon_F && Dangeon.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
+        {
+            if (dangeonInteractionScript == null) SetDangeonScripts();
+            ShowEnterDangeonPanel();
         }
     }
 
@@ -104,9 +130,17 @@ public class MainController : MonoBehaviour
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
+        enterDangeonPanel.SetActive(false);
 
         dedus_F = false;
         grandsonEugene_F = false;
+        dangeon_F = false;
+    }
+
+    public void EnterDangeon()
+    {
+        Debug.Log("ENTER DANGEON");
+        dangeonInteractionScript.EnterDangeon();
     }
 
     public void ShowPlayerPanel()
@@ -119,28 +153,56 @@ public class MainController : MonoBehaviour
         playerPanel.SetActive(false);
     }
 
+    public void ShowEnterDangeonPanel()
+    {
+        enterDangeonPanel.SetActive(true);
+    }
+
+    public void HideEnterDangeonPanel()
+    {
+        enterDangeonPanel.SetActive(false);
+    }
+
     public void DedusOn()
     {
         dedus_F = true;
         ShowInteraction();
+        Debug.Log("Dedus on");
     }
 
     public void DedusOff()
     {
         dedus_F = false;
         ShowInteraction();
+        Debug.Log("Dedus off");
     }
 
     public void GrandsonEugeneOn()
     {
         grandsonEugene_F = true;
         ShowInteraction();
+        Debug.Log("Grandson on");
     }
 
     public void GrandsonEugeneOff()
     {
         grandsonEugene_F = false;
         ShowInteraction();
+        Debug.Log("Grandson off");
+    }
+
+    public void DangeonOn()
+    {
+        dangeon_F = true;
+        ShowInteraction();
+        Debug.Log("Dangeon on");
+    }
+
+    public void DangeonOff()
+    {
+        dangeon_F = false;
+        ShowInteraction();
+        Debug.Log("Dangeon off");
     }
 
     void SetDedusScripts()
@@ -161,6 +223,11 @@ public class MainController : MonoBehaviour
             grandsonEugeneController = GrandsonEugene.GetComponent<GrandsonEugeneController>();
             grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
         }
+    }
+
+    void SetDangeonScripts()
+    {
+        dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
     }
 
     public void OpenQuestPanel()
