@@ -11,6 +11,7 @@ public class MainController : MonoBehaviour
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
+    public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
 
     public GameObject taskShower;
@@ -18,8 +19,10 @@ public class MainController : MonoBehaviour
     public GameObject Dedus;
     public GameObject GrandsonEugene;
     public GameObject Dangeon;
+    public GameObject Book;
 
     ScrollInteractionScript scrollInteractionScript;
+    BackPackController backpackController;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -31,6 +34,7 @@ public class MainController : MonoBehaviour
     GrandsonEugeneController grandsonEugeneController;
 
     DangeonInteractionScript dangeonInteractionScript;
+    BookInteractionScript bookInteractionScript;
 
     public bool is_keyboard_active = true;
 
@@ -42,12 +46,14 @@ public class MainController : MonoBehaviour
     bool dedus_F;
     bool grandsonEugene_F;
     bool dangeon_F;
+    bool book_F;
 
     void Start()
     {
         StuffSetActiveFalse();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
+        backpackController = backpackPanel.GetComponent<BackPackController>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -55,6 +61,7 @@ public class MainController : MonoBehaviour
         SetDedusScripts();
         SetGrandsonEugeneScripts();
         SetDangeonScripts();
+        SetBookScripts();
 
         is_keyboard_active = true;
     }
@@ -82,6 +89,11 @@ public class MainController : MonoBehaviour
         {
             list_of_interactable_SR.Add(dangeonInteractionScript.interactIconSR);
             list_of_interactable_objects_names.Add(Dangeon.name);
+        }
+        if (book_F)
+        {
+            list_of_interactable_SR.Add(bookInteractionScript.interactIconSR);
+            list_of_interactable_objects_names.Add(Book.name);
         }
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
@@ -114,6 +126,11 @@ public class MainController : MonoBehaviour
             if (dangeonInteractionScript == null) SetDangeonScripts();
             ShowEnterDangeonPanel();
         }
+        else if (book_F && Book.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
+        {
+            if (bookInteractionScript == null) SetBookScripts();
+            TakeBook();
+        }
     }
 
     public void StartDialog(string speaker_text, SpeachNode speach_node)
@@ -135,6 +152,13 @@ public class MainController : MonoBehaviour
         dedus_F = false;
         grandsonEugene_F = false;
         dangeon_F = false;
+    }
+
+    public void TakeBook()
+    {
+        // Debug.Log("Take book!");
+        bookInteractionScript.TakeBook();
+        backpackController.TakeByName(backpackController.book_name);
     }
 
     public void EnterDangeon()
@@ -207,6 +231,20 @@ public class MainController : MonoBehaviour
         Debug.Log("Dangeon off");
     }
 
+    public void BookOn()
+    {
+        book_F = true;
+        ShowInteraction();
+        Debug.Log("Book on");
+    }
+
+    public void BookOff()
+    {
+        book_F = false;
+        ShowInteraction();
+        Debug.Log("Book off");
+    }
+
     void SetDedusScripts()
     {
         if (Dedus == null) Dedus = GameObject.Find("Dedus");
@@ -236,6 +274,15 @@ public class MainController : MonoBehaviour
         }
     }
 
+    void SetBookScripts()
+    {
+        if (Book == null) Book = GameObject.Find("Book");
+        if (Book != null)
+        {
+            bookInteractionScript = Book.GetComponent<BookInteractionScript>();
+        }
+    }
+
     public void OpenQuestPanel()
     {
         questPanel.SetActive(true);
@@ -257,6 +304,18 @@ public class MainController : MonoBehaviour
     public void CloseWishPanel()
     {
         wishPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenBackpackPanel()
+    {
+        backpackController.OpenBackpackPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseBackpackPanel()
+    {
+        backpackPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
