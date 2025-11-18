@@ -7,6 +7,8 @@ using static DialogPanelScript;
 
 public class MainController : MonoBehaviour
 {
+    QuestsController questsController;
+
     public GameObject playerPanel;
     public GameObject dialogPanel;
     public GameObject questPanel;
@@ -51,6 +53,8 @@ public class MainController : MonoBehaviour
     void Start()
     {
         StuffSetActiveFalse();
+
+        questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         backpackController = backpackPanel.GetComponent<BackPackController>();
@@ -286,6 +290,7 @@ public class MainController : MonoBehaviour
     public void OpenQuestPanel()
     {
         questPanel.SetActive(true);
+        questsController.OpenQuestPanel();
         TurnOffKeyboard();
     }
 

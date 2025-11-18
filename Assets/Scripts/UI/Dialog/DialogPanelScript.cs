@@ -77,23 +77,27 @@ public class DialogPanelScript : MonoBehaviour
         public SpeachNode root;
         public string npc_name;
         public string quest_title;
+        public bool repeatable;
 
         public SpeachTree()
         {
             root = new SpeachNode();
             quest_title = string.Empty;
+            repeatable = false;
         }
 
         public SpeachTree(SpeachNode root_)
         {
             root = root_;
             quest_title = string.Empty;
+            repeatable = false;
         }
 
         public SpeachTree(string text_)
         {
             root = new SpeachNode(text_);
             quest_title = string.Empty;
+            repeatable = false;
         }
     }
 
