@@ -11,6 +11,8 @@ public class GrandsonEugineMoveScript : MonoBehaviour
     public float stop_distance = 2f;
     public bool rotate_towards = false;
 
+    public bool need_to_move = false;
+
     private Animator animator;
 
     Rigidbody2D rb;
@@ -41,7 +43,7 @@ public class GrandsonEugineMoveScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!target) return;
+        if (!target || !need_to_move) return;
 
         Vector2 toTarget = (Vector2)target.position - rb.position;
         float dist = toTarget.magnitude;
@@ -60,6 +62,21 @@ public class GrandsonEugineMoveScript : MonoBehaviour
         rb.MovePosition(rb.position + step);
 
         //if (rotate_towards && step.sqrMagnitude > 0f) rb.rotation = Mathf.Atan2(step.y, step.x) * Mathf.Rad2Deg;
+    }
+
+    public void SetMoveToPlayer(bool new_bool)
+    {
+        need_to_move = new_bool;
+    }
+
+    public void StartMoveToPlayer()
+    {
+        need_to_move = true;
+    }
+
+    public void StopMoveToPlayer()
+    {
+        need_to_move = false;
     }
 
     void SetDirection(Vector2 vector)

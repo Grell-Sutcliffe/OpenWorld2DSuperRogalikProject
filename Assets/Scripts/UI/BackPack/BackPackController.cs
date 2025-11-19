@@ -59,6 +59,8 @@ public class BackPackController : MonoBehaviour
         MakeDictionary();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
+
+        UpdateBackpack();
     }
 
     void MakeDictionary()
@@ -102,7 +104,7 @@ public class BackPackController : MonoBehaviour
 
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log($"current id = {id}");
+            Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].count}");
             if (dict_id_to_item[id].count > 0)
             {
                 item_counter++;
@@ -114,6 +116,7 @@ public class BackPackController : MonoBehaviour
     {
         foreach (Transform child in content_GO.transform)
         {
+            Debug.Log($"delete item");
             Destroy(child.gameObject);
         }
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
@@ -127,7 +130,10 @@ public class BackPackController : MonoBehaviour
 
         foreach (int id in dict_id_to_item.Keys)
         {
-            SpawnBackpackIconPrefab(id);
+            if (dict_id_to_item[id].count > 0)
+            {
+                SpawnBackpackIconPrefab(id);
+            }
         }
     }
 

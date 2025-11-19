@@ -9,17 +9,50 @@ public class DedusQuestScript : MonoBehaviour
 {
     QuestsController questsController;
 
+    DedusController dedusController;
     DedusDialogScript dedusDialogScript;
 
     public List<string> quests = new List<string>();
 
     int current_quest_index = 0;
 
+    public bool is_waiting_for_help = false;
+    public bool is_quest_ongoing = false;
+
     void Start()
     {
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
         dedusDialogScript = gameObject.GetComponent<DedusDialogScript>();
+        dedusController = gameObject.GetComponent<DedusController>();
+
+        UpdateInfo();
+    }
+
+    public void completeCurrentQuest()
+    {
+        questsController.CompleteQuest(quests[current_quest_index]);
+    }
+
+    public void UpdateInfo()
+    {
+        foreach (string quest in quests)
+        {
+            Debug.Log(quest);
+            if (!questsController.dict_quest_name_to_quest[quest].is_quest_completed)
+            {
+                is_waiting_for_help = true;
+            }
+            if (questsController.dict_quest_name_to_quest[quest].is_quest_accepted)
+            {
+                is_quest_ongoing = true;
+            }
+        }
+
+        Debug.Log($"HEEEY {is_quest_ongoing}, {is_waiting_for_help}");
+        if (is_quest_ongoing) dedusController.ShowExclamationPointIcon();
+        else if (is_waiting_for_help) dedusController.ShowQuestionIcon();
+        else dedusController.ShowDialogIcon();
     }
 
     public SpeachTree GetCurrentSpeachTree()
@@ -27,22 +60,36 @@ public class DedusQuestScript : MonoBehaviour
         quests = questsController.dict_npc_to_list_of_quests_names[questsController.dedus];
 
         if (dedusDialogScript == null) dedusDialogScript = gameObject.GetComponent<DedusDialogScript>();
-        SpeachTree temp_speach_tree = dedusDialogScript.text_hello;
+        SpeachTree result_speach_tree = dedusDialogScript.text_hello;
 
         int temp_task_index = questsController.dict_quest_name_to_quest[quests[current_quest_index]].current_task_index;
         Quest temp_quest = questsController.dict_quest_name_to_quest[quests[current_quest_index]];
         Task temp_task = temp_quest.tasks[temp_task_index];
-        if (temp_task != null)
+        SpeachTree temp_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
+
+        if (temp_speach_tree.is_finished)
         {
-            Debug.Log($"{temp_task.NPC} == {questsController.dedus}, {temp_task.title}, {temp_task_index}");
+            Debug.Log($"{temp_task.NPC} == {questsController.dedus}, next speach");
+            temp_task.current_speach_tree_index++;
         }
+
+        int temp_tasks_amount = temp_quest.tasks.Count;
+        int temp_task_speach_trees_amout = temp_task.speach_trees.Count;
+        if (temp_task.current_speach_tree_index >= temp_task_speach_trees_amout) questsController.dict_quest_name_to_quest[quests[current_quest_index]].current_task_index++;
+
+        temp_task_index = questsController.dict_quest_name_to_quest[quests[current_quest_index]].current_task_index;
+        if (temp_task_index >= temp_tasks_amount) return null;
+        temp_quest = questsController.dict_quest_name_to_quest[quests[current_quest_index]];
+        temp_task = temp_quest.tasks[temp_task_index];
+
+        temp_task_speach_trees_amout = temp_task.speach_trees.Count;
+        if (temp_task.current_speach_tree_index >= temp_task_speach_trees_amout) return null;
+
         if (temp_task.NPC == questsController.dedus)
         {
-            temp_speach_tree = temp_task.speach_trees[temp_task.current_speach_index];
+            result_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
         }
 
-        if (!temp_speach_tree.repeatable) temp_task.current_speach_index++;
-
-        return temp_speach_tree;
+        return result_speach_tree;
     }
 }

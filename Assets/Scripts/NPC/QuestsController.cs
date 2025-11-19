@@ -16,8 +16,8 @@ public class QuestsController : MonoBehaviour
 
     TaskShowerScript taskShowerScript;
 
-    DedusQuestScript dedusQuestScript;
-    DedusDialogScript dedusDialogScript;
+    public DedusQuestScript dedusQuestScript;
+    public DedusDialogScript dedusDialogScript;
 
     public int accepted_quests_amout = 0;
 
@@ -52,7 +52,7 @@ public class QuestsController : MonoBehaviour
         public bool is_task_completed;
         public List<Reward> rewards;
         public List<SpeachTree> speach_trees;
-        public int current_speach_index;
+        public int current_speach_tree_index;
 
         public Task()
         {
@@ -61,7 +61,7 @@ public class QuestsController : MonoBehaviour
             is_task_completed = false;
             rewards = new List<Reward>();
             speach_trees = new List<SpeachTree>();
-            current_speach_index = 0;
+            current_speach_tree_index = 0;
         }
 
         public Task(string title_, string description_)
@@ -71,7 +71,7 @@ public class QuestsController : MonoBehaviour
             is_task_completed = false;
             rewards = new List<Reward>();
             speach_trees = new List<SpeachTree>();
-            current_speach_index = 0;
+            current_speach_tree_index = 0;
         }
     }
 
@@ -125,6 +125,7 @@ public class QuestsController : MonoBehaviour
         MakeDictOfNPC();
         FindNPC();
         MakeQuests();
+        UpdateNPC();
     }
 
     void FindNPC()
@@ -133,8 +134,15 @@ public class QuestsController : MonoBehaviour
         dedusDialogScript = dict_npc_name_to_npc_GO[dedus].GetComponent<DedusDialogScript>();
     }
 
+    public void UpdateNPC()
+    {
+        dedusQuestScript.quests = dict_npc_to_list_of_quests_names[dedus];
+        dedusQuestScript.UpdateInfo();
+    }
+
     public void AcceptQuest(string new_quest)
     {
+        dict_quest_name_to_quest[new_quest].is_quest_accepted = true;
         accepted_quests.Add(new_quest);
         accepted_quests_amout++;
     }

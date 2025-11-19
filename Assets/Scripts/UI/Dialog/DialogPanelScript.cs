@@ -23,6 +23,8 @@ public class DialogPanelScript : MonoBehaviour
 
     public int no_answer_key_zero = 0;
 
+    Coroutine coroutine;
+
     public class SpeachNode
     {
         public string current_text;
@@ -31,6 +33,7 @@ public class DialogPanelScript : MonoBehaviour
         public bool is_accepting_quest;
         public Dictionary<int, SpeachNode> next_node;
         public string answer_text;
+        public bool is_ending;
 
         public SpeachNode()
         {
@@ -39,6 +42,7 @@ public class DialogPanelScript : MonoBehaviour
             next_node = null;
             is_answering = false;
             is_accepting_quest = false;
+            is_ending = false;
         }
 
         public SpeachNode(string text_)
@@ -48,6 +52,7 @@ public class DialogPanelScript : MonoBehaviour
             next_node = null;
             is_answering = false;
             is_accepting_quest = false;
+            is_ending = false;
         }
 
         public void AddNextNode(SpeachNode new_node)
@@ -77,27 +82,27 @@ public class DialogPanelScript : MonoBehaviour
         public SpeachNode root;
         public string npc_name;
         public string quest_title;
-        public bool repeatable;
+        public bool is_finished;
 
         public SpeachTree()
         {
             root = new SpeachNode();
             quest_title = string.Empty;
-            repeatable = false;
+            is_finished = false;
         }
 
         public SpeachTree(SpeachNode root_)
         {
             root = root_;
             quest_title = string.Empty;
-            repeatable = false;
+            is_finished = false;
         }
 
         public SpeachTree(string text_)
         {
             root = new SpeachNode(text_);
             quest_title = string.Empty;
-            repeatable = false;
+            is_finished = false;
         }
     }
 
@@ -131,7 +136,7 @@ public class DialogPanelScript : MonoBehaviour
         OpenDialogPanel();
         ChangeDialogPanel(speaker_text, string.Empty);
 
-        StartCoroutine(TypeLine());
+        coroutine = StartCoroutine(TypeLine());
     }
 
     public void StartDialog(string speaker_text, SpeachNode speach_node)
@@ -142,11 +147,13 @@ public class DialogPanelScript : MonoBehaviour
         OpenDialogPanel();
         ChangeDialogPanel(speaker_text, string.Empty);
 
-        StartCoroutine(TypeLine());
+        coroutine = StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
     {
+        if (current_node.is_ending) speach_tree.is_finished = true;
+
         if (current_node.is_accepting_quest)
         {
             AcceptQuest();
@@ -162,6 +169,36 @@ public class DialogPanelScript : MonoBehaviour
             speachText.text += c;
             yield return new WaitForSeconds(text_speed);
         }
+
+        iconNextLine.SetActive(true);
+
+        if (current_node.is_answering)
+        {
+            answerPanel.SetActive(true);
+            ChangeAnswerPanelHeight();
+        }
+        else
+        {
+            if (current_node.next_node != null)
+            {
+                next_node = current_node.next_node[no_answer_key_zero];
+            }
+            else
+            {
+                next_node = null;
+            }
+            is_line_finished = true;
+        }
+    }
+
+    void PrintAllLine()
+    {
+        ClearAnswerPanel();
+        answerPanel.SetActive(false);
+        iconNextLine.SetActive(false);
+        is_line_finished = false;
+
+        speachText.text = current_node.current_text;
 
         iconNextLine.SetActive(true);
 
@@ -206,14 +243,24 @@ public class DialogPanelScript : MonoBehaviour
 
     public void NextLine()
     {
-        if (!is_line_finished) return;
+        if (!is_line_finished)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+
+            PrintAllLine();
+            return;
+        }
 
         if (current_node.next_node != null)
         {
             current_node = next_node;
             next_node = null;
             ChangeDialogPanel(string.Empty);
-            StartCoroutine(TypeLine());
+            coroutine = StartCoroutine(TypeLine());
         }
         else
         {
@@ -292,5 +339,7 @@ public class DialogPanelScript : MonoBehaviour
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
         mainController.ShowPlayerPanel();
+
+        questsController.UpdateNPC();
     }
 }
