@@ -62,6 +62,8 @@ public class MainController : MonoBehaviour
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
 
+        backpackController.MakeDictionary();
+
         SetDedusScripts();
         SetGrandsonEugeneScripts();
         SetDangeonScripts();

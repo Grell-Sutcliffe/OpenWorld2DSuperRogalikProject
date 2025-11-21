@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class BackPackController : MonoBehaviour
     RectTransform content_rect_transform;
 
     public int item_counter = 0;
+    public int current_selected_id;  // !!!
 
     public int item_height = 400;
     public int space_between_items = 50;
@@ -19,36 +21,9 @@ public class BackPackController : MonoBehaviour
 
     public string book_name = "Книга";
 
-    public class Item
-    {
-        public string name;
-        public string description;
-        public int count;
-
-        public Sprite sprite;
-
-        public Item()
-        {
-            name = "";
-            description = "";
-            count = 0;
-        }
-
-        public Item(string name_)
-        {
-            name = name_;
-            description = "";
-            count = 0;
-        }
-
-        public Item(string name_, string description_, Sprite sprite_)
-        {
-            name = name_;
-            description = description_;
-            count = 0;
-            sprite = sprite_;
-        }
-    }
+    public Image selectedItemImage;
+    public TextMeshProUGUI nameTMP;
+    public TextMeshProUGUI descriptionTMP;
 
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
@@ -56,32 +31,51 @@ public class BackPackController : MonoBehaviour
 
     void Start()
     {
-        MakeDictionary();
+        // MakeDictionary();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         UpdateBackpack();
     }
 
-    void MakeDictionary()
+    public void MakeDictionary()
     {
         int ind = 1;
-
         // book
-        Item book = new Item(book_name, "Вы можете прочитать эту книгу.", book_sprite);
+        Item book = new ConsumableItem(book_name, "Вы можете прочитать эту книгу.", book_sprite);
         dict_id_to_item[ind] = book;
+        Debug.Log("AAAAAAAAAAA");
+        Debug.Log(dict_id_to_item[ind].name);
+        Debug.Log(ind);
+
         ind++;
+    }
+
+    public void UpdateShowerPanel(int new_id)
+    {
+        current_selected_id = new_id;  // !!!
+
+        selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
+        nameTMP.text = dict_id_to_item[new_id].name;
+        descriptionTMP.text = dict_id_to_item[new_id].description;
     }
 
     public void TakeByName(string name)
     {
         foreach (int id in dict_id_to_item.Keys)
         {
+            Debug.Log("BBBBBBBBBBBB");
+
+            Debug.Log(dict_id_to_item[id].name);
+            Debug.Log(name);
             if (dict_id_to_item[id].name == name)
             {
                 // Debug.Log("Book found");
+                Debug.Log("BABABBABA BEBEBEBEB");
 
                 dict_id_to_item[id].count++;
+                Debug.Log(dict_id_to_item[id].count);
+
                 break;
             }
         }

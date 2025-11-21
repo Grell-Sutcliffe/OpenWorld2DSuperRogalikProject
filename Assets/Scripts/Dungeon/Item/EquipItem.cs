@@ -3,7 +3,7 @@ using UnityEngine;
 public class EquipItem : Item
 {
     public EquipData equipData;
-    public override void OnPickup(GameObject player)
+    public virtual void OnPickup(GameObject player)
     {
         Debug.Log($"Подобрана экипировка: {equipData.equipmentName}");
 

@@ -30,4 +30,9 @@ public class BackpackIconScript : MonoBehaviour
         item_image_TMP.sprite = sprite;
         item_counter_TMP.text = count.ToString();
     }
+
+    public void ItemOnClick()
+    {
+        backpackController.UpdateShowerPanel(id);
+    }
 }
