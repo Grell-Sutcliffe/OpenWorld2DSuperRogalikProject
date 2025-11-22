@@ -34,6 +34,7 @@ public class DialogPanelScript : MonoBehaviour
         public Dictionary<int, SpeachNode> next_node;
         public string answer_text;
         public bool is_ending;
+        public bool is_text_action;
 
         public SpeachNode()
         {
@@ -43,6 +44,7 @@ public class DialogPanelScript : MonoBehaviour
             is_answering = false;
             is_accepting_quest = false;
             is_ending = false;
+            is_text_action = false;
         }
 
         public SpeachNode(string text_)
@@ -53,6 +55,7 @@ public class DialogPanelScript : MonoBehaviour
             is_answering = false;
             is_accepting_quest = false;
             is_ending = false;
+            is_text_action = false;
         }
 
         public void AddNextNode(SpeachNode new_node)
@@ -152,6 +155,12 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        speachText.alignment = TextAlignmentOptions.TopLeft;
+        if (current_node.is_text_action)
+        {
+            speachText.alignment = TextAlignmentOptions.Top;
+        }
+
         if (current_node.is_ending) speach_tree.is_finished = true;
 
         if (current_node.is_accepting_quest)

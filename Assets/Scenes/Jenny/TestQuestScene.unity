@@ -2526,9 +2526,11 @@ MonoBehaviour:
   Dedus: {fileID: 866991966}
   GrandsonEugene: {fileID: 4464271140589338697}
   Dangeon: {fileID: 4541486695108053037}
+  Doggy: {fileID: 745428067}
   Book: {fileID: 0}
   dedusDialogScript: {fileID: 0}
   grandsonEugeneDialogScript: {fileID: 0}
+  doggyDialogScript: {fileID: 0}
   is_keyboard_active: 1
   list_of_interactable_SR: []
   list_of_interactable_objects_names: []
@@ -2788,6 +2790,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740291772}
   m_CullTransparentMesh: 1
+--- !u!1 &745428067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 49548215088306887, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+  m_PrefabInstance: {fileID: 6349350596614383173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &779218599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8826,7 +8833,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4102323723314135580, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
 --- !u!1001 &6794578092316046038
 PrefabInstance:

@@ -21,6 +21,7 @@ public class MainController : MonoBehaviour
     public GameObject Dedus;
     public GameObject GrandsonEugene;
     public GameObject Dangeon;
+    public GameObject Doggy;
     public GameObject Book;
 
     ScrollInteractionScript scrollInteractionScript;
@@ -31,10 +32,12 @@ public class MainController : MonoBehaviour
     
     public DedusDialogScript dedusDialogScript;
     public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
+    public DoggyDialogScript doggyDialogScript;
 
     DedusController dedusController;
     GrandsonEugeneController grandsonEugeneController;
 
+    DoggyInteractionScript doggyInteractionScript;
     DangeonInteractionScript dangeonInteractionScript;
     BookInteractionScript bookInteractionScript;
 
@@ -48,6 +51,7 @@ public class MainController : MonoBehaviour
     bool dedus_F;
     bool grandsonEugene_F;
     bool dangeon_F;
+    bool doggy_F;
     bool book_F;
 
     void Start()
@@ -67,6 +71,7 @@ public class MainController : MonoBehaviour
         SetDedusScripts();
         SetGrandsonEugeneScripts();
         SetDangeonScripts();
+        SetDoggyScripts();
         SetBookScripts();
 
         is_keyboard_active = true;
@@ -95,6 +100,11 @@ public class MainController : MonoBehaviour
         {
             list_of_interactable_SR.Add(dangeonInteractionScript.interactIconSR);
             list_of_interactable_objects_names.Add(Dangeon.name);
+        }
+        if (doggy_F)
+        {
+            list_of_interactable_SR.Add(doggyInteractionScript.interactIconSR);
+            list_of_interactable_objects_names.Add(Doggy.name);
         }
         if (book_F)
         {
@@ -131,6 +141,11 @@ public class MainController : MonoBehaviour
         {
             if (dangeonInteractionScript == null) SetDangeonScripts();
             ShowEnterDangeonPanel();
+        }
+        else if (doggy_F && Doggy.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
+        {
+            if (dangeonInteractionScript == null) SetDoggyScripts();
+            doggyDialogScript.StartDialog();
         }
         else if (book_F && Book.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
@@ -237,6 +252,20 @@ public class MainController : MonoBehaviour
         Debug.Log("Dangeon off");
     }
 
+    public void DoggyOn()
+    {
+        doggy_F = true;
+        ShowInteraction();
+        Debug.Log("Doggy on");
+    }
+
+    public void DoggyOff()
+    {
+        doggy_F = false;
+        ShowInteraction();
+        Debug.Log("Doggy off");
+    }
+
     public void BookOn()
     {
         book_F = true;
@@ -268,6 +297,16 @@ public class MainController : MonoBehaviour
         {
             grandsonEugeneController = GrandsonEugene.GetComponent<GrandsonEugeneController>();
             grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
+        }
+    }
+
+    void SetDoggyScripts()
+    {
+        if (Doggy == null) GrandsonEugene = GameObject.Find("Doggy");
+        if (Doggy != null)
+        {
+            doggyInteractionScript = Doggy.GetComponent<DoggyInteractionScript>();
+            doggyDialogScript = Doggy.GetComponent<DoggyDialogScript>();
         }
     }
 
