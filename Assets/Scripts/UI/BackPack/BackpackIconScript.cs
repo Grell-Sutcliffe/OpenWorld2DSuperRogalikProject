@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class BackpackIconScript : MonoBehaviour
     Sprite sprite;
     int count;
 
+    Item item; // new
     void Start()
     {
         backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
@@ -29,10 +31,19 @@ public class BackpackIconScript : MonoBehaviour
 
         item_image_TMP.sprite = sprite;
         item_counter_TMP.text = count.ToString();
+
+
+        item = backpackController.dict_id_to_item[id]; // new
     }
 
     public void ItemOnClick()
     {
         backpackController.UpdateShowerPanel(id);
+
+
+        backpackController.itemStalker = item; // new
+        backpackController.isStalking = true; // new  сейчас он сбросится только при отпускании на кнопке, что неверно
+        backpackController.imageStalker.sprite = item.sprite; // new
+
     }
 }

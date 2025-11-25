@@ -25,7 +25,14 @@ public class BackPackController : MonoBehaviour
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI descriptionTMP;
 
+    
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
+
+    public Item itemStalker;
+    public Image imageStalker;
+    public Image pustoe; // ahahahah
+    public GameObject Staleker;
+    public bool isStalking;
 
     // public List<int> player_items_id;
 
@@ -36,6 +43,16 @@ public class BackPackController : MonoBehaviour
         content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         UpdateBackpack();
+    }
+    private void Update() // new
+    {
+        MouseStalker();
+    }
+
+    public void MouseStalker() // new
+    {
+        Staleker.transform.position = Input.mousePosition;
+        
     }
 
     public void MakeDictionary()
@@ -64,17 +81,17 @@ public class BackPackController : MonoBehaviour
     {
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log("BBBBBBBBBBBB");
+            //Debug.Log("BBBBBBBBBBBB");
 
-            Debug.Log(dict_id_to_item[id].name);
-            Debug.Log(name);
+           // Debug.Log(dict_id_to_item[id].name);
+           // Debug.Log(name);
             if (dict_id_to_item[id].name == name)
             {
                 // Debug.Log("Book found");
-                Debug.Log("BABABBABA BEBEBEBEB");
+                //Debug.Log("BABABBABA BEBEBEBEB");
 
                 dict_id_to_item[id].count++;
-                Debug.Log(dict_id_to_item[id].count);
+                //Debug.Log(dict_id_to_item[id].count);
 
                 break;
             }

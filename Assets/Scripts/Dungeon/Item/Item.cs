@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using System.Threading;
 using UnityEngine.U2D;
+using UnityEngine.UI;
+
 
 public abstract class Item : MonoBehaviour
 {
@@ -23,6 +25,10 @@ public abstract class Item : MonoBehaviour
     public Guid uniqueID;
     public float radius = 0.5f;
     public int count;
+
+
+    public Image image;
+    public int id;
     // add UI 
 
     [Header("Флаги состояния")]
