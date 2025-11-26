@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 5355484792274263402}
   - component: {fileID: 6673703419500185713}
   - component: {fileID: 3798113700941339387}
+  - component: {fileID: 2886347283893536134}
   - component: {fileID: 2094560978002749733}
   - component: {fileID: 4684534522962451054}
   - component: {fileID: 7547296994368346027}
@@ -482,6 +483,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIcon: {fileID: 7351132768339436588}
+--- !u!114 &2886347283893536134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241749803378144908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8cb17ec0a643e43a42a5a9d1bf09b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests: []
+  is_waiting_for_help: 0
+  is_quest_ongoing: 0
 --- !u!114 &2094560978002749733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +515,7 @@ MonoBehaviour:
   speed: 1
   stop_distance: 2
   rotate_towards: 0
+  need_to_move: 0
 --- !u!50 &4684534522962451054
 Rigidbody2D:
   serializedVersion: 5

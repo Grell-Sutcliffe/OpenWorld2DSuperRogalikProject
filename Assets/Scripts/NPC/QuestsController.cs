@@ -22,6 +22,9 @@ public class QuestsController : MonoBehaviour
     public DoggyQuestScript doggyQuestScript;
     public DoggyDialogScript doggyDialogScript;
 
+    public GrandsonEugineQuestScript grandsonEugineQuestScript;
+    public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
+
     public int accepted_quests_amout = 0;
 
     public int item_height = 250;
@@ -136,12 +139,24 @@ public class QuestsController : MonoBehaviour
     {
         dedusQuestScript = dict_npc_name_to_npc_GO[dedus].GetComponent<DedusQuestScript>();
         dedusDialogScript = dict_npc_name_to_npc_GO[dedus].GetComponent<DedusDialogScript>();
+
+        doggyQuestScript = dict_npc_name_to_npc_GO[doggy].GetComponent<DoggyQuestScript>();
+        doggyDialogScript = dict_npc_name_to_npc_GO[doggy].GetComponent<DoggyDialogScript>();
+
+        grandsonEugineQuestScript = dict_npc_name_to_npc_GO[grandsonEugene].GetComponent<GrandsonEugineQuestScript>();
+        grandsonEugeneDialogScript = dict_npc_name_to_npc_GO[grandsonEugene].GetComponent<GrandsonEugeneDialogScript>();
     }
 
     public void UpdateNPC()
     {
         dedusQuestScript.quests = dict_npc_to_list_of_quests_names[dedus];
         dedusQuestScript.UpdateInfo();
+
+        doggyQuestScript.quests = dict_npc_to_list_of_quests_names[doggy];
+        doggyQuestScript.UpdateInfo();
+
+        grandsonEugineQuestScript.quests = dict_npc_to_list_of_quests_names[grandsonEugene];
+        grandsonEugineQuestScript.UpdateInfo();
     }
 
     public void AcceptQuest(string new_quest)
@@ -200,6 +215,7 @@ public class QuestsController : MonoBehaviour
     {
         dict_npc_to_list_of_quests_names[dedus] = new List<string>();  // Dedus
         dict_npc_to_list_of_quests_names[doggy] = new List<string>();  // Doggy
+        dict_npc_to_list_of_quests_names[grandsonEugene] = new List<string>();  // grandson Eugene
 
         MakeGrandsonQuest();
     }
@@ -236,23 +252,33 @@ public class QuestsController : MonoBehaviour
         new_quest.tasks.Add(new_task);
         */
 
-        Task new_task_3 = new Task();
+        Task new_task_3 = new Task();  // BOY
 
-        new_task_3.title = tasks_TheLostGrandson[2];
+        new_task_3.title = "Найди мальчика.";
         new_task_3.NPC = grandsonEugene;
-        new_task_3.description = "Покажи мальчику дорогу до его дедушки.";
+        if (grandsonEugeneDialogScript == null) grandsonEugeneDialogScript = GameObject.Find("GrandsonEugene").GetComponent<GrandsonEugeneDialogScript>();
+        new_task_3.speach_trees.Add(grandsonEugeneDialogScript.TheLostGrandson_ask_for_help_1);
         new_quest.tasks.Add(new_task_3);
+
+        Task new_task_4 = new Task();
+
+        new_task_4.title = "Помоги мальчику найти дорогу до его дедушки.";
+        new_task_4.NPC = grandsonEugene;
+        new_task_4.description = "Покажи мальчику дорогу до его дедушки.";
+        new_quest.tasks.Add(new_task_4);
 
         dict_quest_name_to_quest[new_quest.title] = new_quest;
 
         dict_npc_to_list_of_quests_names[dedus].Add(new_quest.title);
         dict_npc_to_list_of_quests_names[doggy].Add(new_quest.title);
+        dict_npc_to_list_of_quests_names[grandsonEugene].Add(new_quest.title);
     }
 
     void MakeDictOfNPC()
     {
         dict_npc_name_to_npc_GO[dedus] = mainController.Dedus;
         dict_npc_name_to_npc_GO[grandsonEugene] = mainController.GrandsonEugene;
+        dict_npc_name_to_npc_GO[doggy] = mainController.Doggy;
     }
 
     public void OpenQuestPanel()

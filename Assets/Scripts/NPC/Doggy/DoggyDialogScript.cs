@@ -74,7 +74,7 @@ public class DoggyDialogScript : MonoBehaviour
         SpeachNode hi_node_1 = new SpeachNode("*радостно вил€ет хвостиком*");
         hi_node_1.is_text_action = true;
         hi_node_1.answer_text = "ƒжек?";
-        hi_node_1.is_ending = true;
+        hi_node_1.is_finishing_task = true;
         root.AddNextNode(hi_node_1);
 
         SpeachNode hi_node_2 = new SpeachNode("*грустно скулит*");
