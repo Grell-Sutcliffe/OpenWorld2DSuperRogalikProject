@@ -65,8 +65,15 @@ public class DedusQuestScript : MonoBehaviour
         int temp_task_index = questsController.dict_quest_name_to_quest[quests[current_quest_index]].current_task_index;
         Quest temp_quest = questsController.dict_quest_name_to_quest[quests[current_quest_index]];
         Task temp_task = temp_quest.tasks[temp_task_index];
-        SpeachTree temp_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
 
+        /*
+        if (temp_task.current_speach_tree_index < temp_task.speach_trees.Count)
+        {
+            SpeachTree temp_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
+        }
+        */
+
+        /*
         if (temp_speach_tree.is_finished)
         {
             Debug.Log($"{temp_task.NPC} == {questsController.dedus}, next speach");
@@ -84,8 +91,9 @@ public class DedusQuestScript : MonoBehaviour
 
         temp_task_speach_trees_amout = temp_task.speach_trees.Count;
         if (temp_task.current_speach_tree_index >= temp_task_speach_trees_amout) return null;
+        */
 
-        if (temp_task.NPC == questsController.dedus)
+        if (temp_task.NPC == questsController.dedus && temp_task.current_speach_tree_index < temp_task.speach_trees.Count)
         {
             result_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
         }

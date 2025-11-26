@@ -211,15 +211,24 @@ public class QuestsController : MonoBehaviour
         new_quest.title = quest_TheLostGrandson;
         new_quest.description = "Помоги Дедусу отыскать внука.";
 
-        Task new_task_1 = new Task();
+        Task new_task_1 = new Task();  // DEDUS
 
-        new_task_1.title = tasks_TheLostGrandson[0];
+        new_task_1.title = "Узнай у Дедуса подробности.";
         new_task_1.NPC = dedus;
         new_task_1.description = "Попробуй поискать его около деревни.";
         if (dedusDialogScript == null) dedusDialogScript = GameObject.Find("Dedus").GetComponent<DedusDialogScript>();
         new_task_1.speach_trees.Add(dedusDialogScript.TheLostGrandson_ask_for_search_grandson_1);
         new_task_1.speach_trees.Add(dedusDialogScript.TheLostGrandson_ask_for_search_grandson_2);
         new_quest.tasks.Add(new_task_1);
+
+        Task new_task_2 = new Task();  // DOGGY
+
+        new_task_2.title = "Отыщи Джека, возвомжно, он что-то знает.";
+        new_task_2.NPC = doggy;
+        new_task_2.description = "Отыщи Джека.";
+        if (doggyDialogScript == null) doggyDialogScript = GameObject.Find("Doggy").GetComponent<DoggyDialogScript>();
+        new_task_2.speach_trees.Add(doggyDialogScript.TheLostGrandson_ask_for_help_1);
+        new_quest.tasks.Add(new_task_2);
 
         /*
         new_task.title = tasks_TheLostGrandson[1];
@@ -235,7 +244,9 @@ public class QuestsController : MonoBehaviour
         new_quest.tasks.Add(new_task_3);
 
         dict_quest_name_to_quest[new_quest.title] = new_quest;
+
         dict_npc_to_list_of_quests_names[dedus].Add(new_quest.title);
+        dict_npc_to_list_of_quests_names[doggy].Add(new_quest.title);
     }
 
     void MakeDictOfNPC()

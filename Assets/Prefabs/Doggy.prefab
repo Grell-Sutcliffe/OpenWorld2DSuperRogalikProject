@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8997074071852808611}
+  - component: {fileID: 3459586632515414221}
   - component: {fileID: 1849189408359552386}
   - component: {fileID: 5473084871219992325}
+  - component: {fileID: 7094540973153116730}
   - component: {fileID: 2785410501232260070}
   - component: {fileID: 5435303484002111383}
   - component: {fileID: 4214349661786877018}
@@ -38,6 +40,18 @@ Transform:
   - {fileID: 1839714922228011886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3459586632515414221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49548215088306887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971c430b501e4894ea86b27e1f17cdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1849189408359552386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +79,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIcon: {fileID: 2481885345222012766}
   interactIconSR: {fileID: 0}
+--- !u!114 &7094540973153116730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49548215088306887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9127f42fa98190341bf60ac627b4f7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests: []
+  is_waiting_for_help: 0
+  is_quest_ongoing: 0
 --- !u!50 &2785410501232260070
 Rigidbody2D:
   serializedVersion: 5

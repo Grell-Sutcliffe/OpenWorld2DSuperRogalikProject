@@ -136,15 +136,17 @@ public class DedusDialogScript : MonoBehaviour
         //                                                                                                                     |
         SpeachNode answer_node_11_21_1 = new SpeachNode("Это наш пёс. Он очень дружелюбный и умный."); //                      |
         answer_node_11_21_1.answer_text = "Кто такой Джек?"; // <--------------------------------------------------------------+
+        answer_node_11_21_1.is_finishing_task = true; //                                                                       |
         answer_node_21.AddNextNode(answer_node_11_21_1); //                                                                    |       
         answer_node_11.AddNextNode(answer_node_11_21_1); //                                                                    |        
         //                                                                                                                     |
         SpeachNode answer_node_11_21_2 = new SpeachNode("Удачи в поисках, добрый путник!"); //                                 |
+        // answer_node_11_21_2.is_ending = true; //                                                                            |
         answer_node_11_21_2.answer_text = "Понятно, спасибо."; // <------------------------------------------------------------+
         answer_node_21.AddNextNode(answer_node_11_21_2); //                                                                            
         answer_node_11.AddNextNode(answer_node_11_21_2); //                                                                            
 
-        TheLostGrandson_ask_for_search_grandson_2.is_finished = true;
+        // TheLostGrandson_ask_for_search_grandson_2.is_finished = true;
         TheLostGrandson_ask_for_search_grandson_2.root = root;
     }
 }

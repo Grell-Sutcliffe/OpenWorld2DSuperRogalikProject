@@ -31,6 +31,7 @@ public class DialogPanelScript : MonoBehaviour
         public SpeachNode prev_node;
         public bool is_answering;
         public bool is_accepting_quest;
+        public bool is_finishing_task;
         public Dictionary<int, SpeachNode> next_node;
         public string answer_text;
         public bool is_ending;
@@ -43,6 +44,7 @@ public class DialogPanelScript : MonoBehaviour
             next_node = null;
             is_answering = false;
             is_accepting_quest = false;
+            is_finishing_task = false;
             is_ending = false;
             is_text_action = false;
         }
@@ -54,6 +56,7 @@ public class DialogPanelScript : MonoBehaviour
             next_node = null;
             is_answering = false;
             is_accepting_quest = false;
+            is_finishing_task = false;
             is_ending = false;
             is_text_action = false;
         }
@@ -161,7 +164,18 @@ public class DialogPanelScript : MonoBehaviour
             speachText.alignment = TextAlignmentOptions.Top;
         }
 
-        if (current_node.is_ending) speach_tree.is_finished = true;
+        if (current_node.is_ending)
+        {
+            speach_tree.is_finished = true;
+
+            int temp_task_index = questsController.dict_quest_name_to_quest[speach_tree.quest_title].current_task_index;
+            questsController.dict_quest_name_to_quest[speach_tree.quest_title].tasks[temp_task_index].current_speach_tree_index++;
+        }
+
+        if (current_node.is_finishing_task)
+        {
+            questsController.dict_quest_name_to_quest[speach_tree.quest_title].current_task_index++;
+        }
 
         if (current_node.is_accepting_quest)
         {
@@ -232,6 +246,7 @@ public class DialogPanelScript : MonoBehaviour
 
     void AcceptQuest()
     {
+        if (is_quest_accepted) return;
         if (speach_tree == null) return;
 
         if (questsController == null) questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
@@ -333,6 +348,8 @@ public class DialogPanelScript : MonoBehaviour
     public void OpenDialogPanel()
     {
         gameObject.SetActive(true);
+
+        is_quest_accepted = false;
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
