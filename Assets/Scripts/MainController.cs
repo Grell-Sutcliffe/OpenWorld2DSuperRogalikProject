@@ -13,6 +13,7 @@ public class MainController : MonoBehaviour
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
+    public GameObject characterPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
 
@@ -168,6 +169,8 @@ public class MainController : MonoBehaviour
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
+        wishPanel.SetActive(false);
+        characterPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
 
         dedus_F = false;
@@ -350,6 +353,18 @@ public class MainController : MonoBehaviour
     public void CloseWishPanel()
     {
         wishPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenCharacterPanel()
+    {
+        characterPanel.SetActive(true);
+        TurnOffKeyboard();
+    }
+
+    public void CloseCharacterPanel()
+    {
+        characterPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
