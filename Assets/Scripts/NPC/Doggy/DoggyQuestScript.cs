@@ -1,16 +1,14 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using static DialogPanelScript;
 using static QuestsController;
 
-
-public class DedusQuestScript : MonoBehaviour
+public class DoggyQuestScript : MonoBehaviour
 {
     QuestsController questsController;
 
-    DedusController dedusController;
-    DedusDialogScript dedusDialogScript;
+    DoggyController doggyController;
+    DoggyDialogScript doggyDialogScript;
 
     public List<string> quests = new List<string>();
 
@@ -23,8 +21,8 @@ public class DedusQuestScript : MonoBehaviour
     {
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
-        dedusDialogScript = gameObject.GetComponent<DedusDialogScript>();
-        dedusController = gameObject.GetComponent<DedusController>();
+        doggyDialogScript = gameObject.GetComponent<DoggyDialogScript>();
+        doggyController = gameObject.GetComponent<DoggyController>();
 
         UpdateInfo();
     }
@@ -50,17 +48,20 @@ public class DedusQuestScript : MonoBehaviour
         }
 
         Debug.Log($"HEEEY {is_quest_ongoing}, {is_waiting_for_help}");
-        if (is_quest_ongoing) dedusController.ShowExclamationPointIcon();
-        else if (is_waiting_for_help) dedusController.ShowQuestionIcon();
-        else dedusController.ShowDialogIcon();
+
+        /*
+        if (is_quest_ongoing) doggyController.ShowExclamationPointIcon();
+        else if (is_waiting_for_help) doggyController.ShowQuestionIcon();
+        else doggyController.ShowDialogIcon();
+        */
     }
 
     public SpeachTree GetCurrentSpeachTree()
     {
-        quests = questsController.dict_npc_to_list_of_quests_names[questsController.dedus];
+        quests = questsController.dict_npc_to_list_of_quests_names[questsController.doggy];
 
-        if (dedusDialogScript == null) dedusDialogScript = gameObject.GetComponent<DedusDialogScript>();
-        SpeachTree result_speach_tree = dedusDialogScript.text_hello;
+        if (doggyDialogScript == null) doggyDialogScript = gameObject.GetComponent<DoggyDialogScript>();
+        SpeachTree result_speach_tree = doggyDialogScript.text_hello;
 
         int temp_task_index = questsController.dict_quest_name_to_quest[quests[current_quest_index]].current_task_index;
         Quest temp_quest = questsController.dict_quest_name_to_quest[quests[current_quest_index]];
@@ -69,7 +70,7 @@ public class DedusQuestScript : MonoBehaviour
 
         if (temp_speach_tree.is_finished)
         {
-            Debug.Log($"{temp_task.NPC} == {questsController.dedus}, next speach");
+            Debug.Log($"{temp_task.NPC} == {questsController.doggy}, next speach");
             temp_task.current_speach_tree_index++;
         }
 
@@ -85,7 +86,7 @@ public class DedusQuestScript : MonoBehaviour
         temp_task_speach_trees_amout = temp_task.speach_trees.Count;
         if (temp_task.current_speach_tree_index >= temp_task_speach_trees_amout) return null;
 
-        if (temp_task.NPC == questsController.dedus)
+        if (temp_task.NPC == questsController.doggy)
         {
             result_speach_tree = temp_task.speach_trees[temp_task.current_speach_tree_index];
         }

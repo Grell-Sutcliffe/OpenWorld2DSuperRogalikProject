@@ -38,7 +38,7 @@ public class DoggyDialogScript : MonoBehaviour
     void CreateSpeach_Hello()
     {
         text_hello = new SpeachTree();
-        text_hello.npc_name = questsController.dedus;
+        text_hello.npc_name = questsController.doggy;
         text_hello.quest_title = questsController.none_quest_name;
 
         SpeachNode root = new SpeachNode("√ав-гав!");

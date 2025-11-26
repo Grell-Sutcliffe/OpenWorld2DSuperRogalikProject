@@ -19,6 +19,9 @@ public class QuestsController : MonoBehaviour
     public DedusQuestScript dedusQuestScript;
     public DedusDialogScript dedusDialogScript;
 
+    public DoggyQuestScript doggyQuestScript;
+    public DoggyDialogScript doggyDialogScript;
+
     public int accepted_quests_amout = 0;
 
     public int item_height = 250;
@@ -29,6 +32,7 @@ public class QuestsController : MonoBehaviour
 
     public string dedus = "Dedus";
     public string grandsonEugene = "GrandsonEugene";
+    public string doggy = "Doggy";
 
     public string quest_TheLostGrandson = "Потерянный внук";
 
@@ -164,7 +168,11 @@ public class QuestsController : MonoBehaviour
         {
             GameObject new_prefab = Instantiate(questInfoPrefab, questPanelContent.transform);
             QuestInfoScript questInfoScript = new_prefab.GetComponent<QuestInfoScript>();
-            questInfoScript.SetNewQuestTitle(quest);
+
+            Quest temp_quest = dict_quest_name_to_quest[quest];
+            string current_quest_description = temp_quest.tasks[temp_quest.current_task_index].title;
+
+            questInfoScript.SetNewQuestTitle(quest, current_quest_description);
         }
 
         int new_height = accepted_quests_amout * item_height + (accepted_quests_amout + 1) * space_between_items;
@@ -191,8 +199,14 @@ public class QuestsController : MonoBehaviour
     void MakeQuests()
     {
         dict_npc_to_list_of_quests_names[dedus] = new List<string>();  // Dedus
+        dict_npc_to_list_of_quests_names[doggy] = new List<string>();  // Doggy
 
-        Quest new_quest = new Quest();  // Dedus - find grandson
+        MakeGrandsonQuest();
+    }
+
+    void MakeGrandsonQuest()
+    {
+        Quest new_quest = new Quest();
 
         new_quest.title = quest_TheLostGrandson;
         new_quest.description = "Помоги Дедусу отыскать внука.";
