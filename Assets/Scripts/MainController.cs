@@ -305,7 +305,7 @@ public class MainController : MonoBehaviour
 
     void SetDoggyScripts()
     {
-        if (Doggy == null) GrandsonEugene = GameObject.Find("Doggy");
+        if (Doggy == null) Doggy = GameObject.Find("Doggy");
         if (Doggy != null)
         {
             doggyInteractionScript = Doggy.GetComponent<DoggyInteractionScript>();

@@ -6,9 +6,13 @@ using static QuestsController;
 public class InventoryStalker : MonoBehaviour
 {
     public GameObject slot_prefab;
-
+    public MouseStalker mouse_stalker;
     List<SlotScript> slotScripts;
 
+    public void ChangeMouse(Item item)
+    {
+        mouse_stalker.ChangeImage(item.sprite);
+    }
     void Start()
     {
         SetInventory();

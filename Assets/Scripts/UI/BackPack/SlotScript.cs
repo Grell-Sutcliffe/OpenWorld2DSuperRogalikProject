@@ -14,8 +14,15 @@ public class SlotScript : MonoBehaviour
         slot_amount.text = string.Empty;
     }
 
-    public void UpdateSlot()
+    public void UpdateSlotItem(Item item)
     {
+        slot_item = item;
+        UpdateSlot();
+    }
 
+    void UpdateSlot()
+    {
+        slot_amount.text = slot_item.count.ToString();
+        slot_image.sprite = slot_item.sprite;
     }
 }

@@ -27,6 +27,9 @@ public class BackPackController : MonoBehaviour
 
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
+
+    public InventoryStalker inventory_stalker;
+
     // public List<int> player_items_id;
 
     void Start()
@@ -55,6 +58,7 @@ public class BackPackController : MonoBehaviour
     {
         current_selected_id = new_id;  // !!!
 
+        selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
         selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
         nameTMP.text = dict_id_to_item[new_id].name;
         descriptionTMP.text = dict_id_to_item[new_id].description;
@@ -137,6 +141,7 @@ public class BackPackController : MonoBehaviour
         BackpackIconScript new_prefab_script = new_prefab.GetComponent<BackpackIconScript>();
 
         new_prefab_script.SetNewId(id);
+        new_prefab_script.inventory_stalker = inventory_stalker;
     }
 
     public void OpenBackpackPanel()

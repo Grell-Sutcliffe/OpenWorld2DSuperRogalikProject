@@ -2589,7 +2589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -319, y: 153.81}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 1110, y: 120}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &487914976
@@ -2605,6 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot_prefab: {fileID: 5340424119869914281, guid: 1fd77d70b872bc54da60a1aae50959fd, type: 3}
+  mouse_stalker: {fileID: 1995442398}
 --- !u!114 &487914977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5560,7 +5561,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 883581269}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.88
+  m_Size: 0.84
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5895,8 +5896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -475, y: 50}
-  m_SizeDelta: {x: -1250, y: -400}
+  m_AnchoredPosition: {x: -475, y: 89.99997}
+  m_SizeDelta: {x: -1250, y: -480.00006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199299577
 MonoBehaviour:
@@ -9859,6 +9860,7 @@ GameObject:
   - component: {fileID: 1995442395}
   - component: {fileID: 1995442397}
   - component: {fileID: 1995442396}
+  - component: {fileID: 1995442398}
   m_Layer: 5
   m_Name: MouseStalker
   m_TagString: Untagged
@@ -9899,7 +9901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9923,6 +9925,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995442394}
   m_CullTransparentMesh: 1
+--- !u!114 &1995442398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995442394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6e6c7bde2087246b44dbc543adf7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  default_image_mouse: {fileID: 21300000, guid: a87c618c1cefa4446901ed5d454f59f8, type: 3}
+  image_mouse: {fileID: 1995442396}
 --- !u!1001 &1999324189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10418,6 +10434,7 @@ MonoBehaviour:
   selectedItemImage: {fileID: 1898501689}
   nameTMP: {fileID: 667582246}
   descriptionTMP: {fileID: 1064568113}
+  inventory_stalker: {fileID: 487914976}
 --- !u!1001 &2134481484
 PrefabInstance:
   m_ObjectHideFlags: 0
