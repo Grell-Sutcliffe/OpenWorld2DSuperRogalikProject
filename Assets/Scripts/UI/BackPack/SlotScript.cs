@@ -1,16 +1,21 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlotScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Image slot_image;
+    public TextMeshProUGUI slot_amount;
+    public Item slot_item;
+
     void Start()
     {
-        
+        slot_image.sprite = null;
+        slot_amount.text = string.Empty;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateSlot()
     {
-        
+
     }
 }
