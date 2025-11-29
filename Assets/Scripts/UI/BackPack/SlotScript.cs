@@ -7,8 +7,15 @@ public class SlotScript : MonoBehaviour
     public Image slot_image;
     public TextMeshProUGUI slot_amount;
     public Item slot_item;
+    
+    public int slot_index;
 
     void Start()
+    {
+        EmptySlot();
+    }
+
+    public void EmptySlot()
     {
         slot_image.sprite = null;
         slot_amount.text = string.Empty;

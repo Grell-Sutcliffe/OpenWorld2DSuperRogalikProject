@@ -23,6 +23,8 @@ public abstract class Item : MonoBehaviour
     public Guid uniqueID;
     public float radius = 0.5f;
     public int count;
+
+    public int id; // new
     // add UI 
 
     [Header("Флаги состояния")]
@@ -80,6 +82,15 @@ public abstract class Item : MonoBehaviour
 
     public Item(string name_, string description_, Sprite sprite_)
     {
+        name = name_;
+        description = description_;
+        count = 0;
+        sprite = sprite_;
+    }
+
+    public Item(int id_, string name_, string description_, Sprite sprite_)
+    {
+        id = id_;
         name = name_;
         description = description_;
         count = 0;

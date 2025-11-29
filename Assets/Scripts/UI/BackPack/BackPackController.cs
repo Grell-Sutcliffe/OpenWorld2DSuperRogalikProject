@@ -27,7 +27,6 @@ public class BackPackController : MonoBehaviour
 
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
-
     public InventoryStalker inventory_stalker;
 
     // public List<int> player_items_id;
@@ -45,13 +44,19 @@ public class BackPackController : MonoBehaviour
     {
         int ind = 1;
         // book
-        Item book = new ConsumableItem(book_name, "Вы можете прочитать эту книгу.", book_sprite);
+        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу.", book_sprite);
         dict_id_to_item[ind] = book;
         Debug.Log("AAAAAAAAAAA");
         Debug.Log(dict_id_to_item[ind].name);
         Debug.Log(ind);
 
         ind++;
+    }
+
+    public void MoveItemToInventoryById(int new_id)
+    {
+        dict_id_to_item[new_id].count--;
+        UpdateBackpack();
     }
 
     public void UpdateShowerPanel(int new_id)

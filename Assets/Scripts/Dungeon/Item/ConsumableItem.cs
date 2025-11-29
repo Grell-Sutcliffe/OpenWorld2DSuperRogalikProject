@@ -5,6 +5,15 @@ public class ConsumableItem : Item
 {
     public int amount = 1;
 
+    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_) 
+    {
+        id = id_;
+        name = name_;
+        description = description_;
+        count = 0;
+        sprite = sprite_;
+    }
+
     public ConsumableItem(string name_, string description_, Sprite sprite_) 
     {
         name = name_;
