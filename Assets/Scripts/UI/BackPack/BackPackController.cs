@@ -21,6 +21,8 @@ public class BackPackController : MonoBehaviour
 
     public string book_name = "Книга";
 
+    public Sprite empty_sprite;
+
     public Image selectedItemImage;
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI descriptionTMP;
@@ -38,6 +40,7 @@ public class BackPackController : MonoBehaviour
         content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         UpdateBackpack();
+        ClearBackpack();
     }
 
     public void MakeDictionary()
@@ -64,9 +67,15 @@ public class BackPackController : MonoBehaviour
         current_selected_id = new_id;  // !!!
 
         selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
-        selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
         nameTMP.text = dict_id_to_item[new_id].name;
         descriptionTMP.text = dict_id_to_item[new_id].description;
+    }
+
+    public void ClearShowerPanel()
+    {
+        selectedItemImage.sprite = empty_sprite;
+        nameTMP.text = "";
+        descriptionTMP.text = "";
     }
 
     public void TakeByName(string name)
@@ -152,6 +161,7 @@ public class BackPackController : MonoBehaviour
     public void OpenBackpackPanel()
     {
         gameObject.SetActive(true);
+        ClearShowerPanel();
         UpdateBackpack();
     }
 
