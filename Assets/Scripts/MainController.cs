@@ -82,8 +82,14 @@ public class MainController : MonoBehaviour
     {
         Debug.Log("SHOW INTERACTION");
 
+        foreach (string c in list_of_interactable_objects_names)
+        {
+            Debug.Log($"{c}");
+        }
+
         current_interaction_SR = null;
 
+        /*
         list_of_interactable_SR.Clear();
         list_of_interactable_objects_names.Clear();
 
@@ -112,6 +118,7 @@ public class MainController : MonoBehaviour
             list_of_interactable_SR.Add(bookInteractionScript.interactIconSR);
             list_of_interactable_objects_names.Add(Book.name);
         }
+        */
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
 
@@ -128,31 +135,58 @@ public class MainController : MonoBehaviour
 
         //Debug.Log($"list.Count = {list_of_interactable_objects_names.Count}, dangeon_F = {dangeon_F}, dangeon.name = {Dangeon.name}, list_names[cur_ind] = {list_of_interactable_objects_names[scrollInteractionScript.current_index]}");
 
+        /*
         if (dedus_F && Dedus.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (dedusDialogScript == null) SetDedusScripts();
-            dedusDialogScript.StartDialog();
+            InteractDedus();
         }
         else if (grandsonEugene_F && GrandsonEugene.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (grandsonEugeneDialogScript == null) SetGrandsonEugeneScripts();
-            grandsonEugeneDialogScript.StartDialog();
+            InteractGrandsonEugene();
         }
         else if (dangeon_F && Dangeon.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (dangeonInteractionScript == null) SetDangeonScripts();
-            ShowEnterDangeonPanel();
+            InteractDangeon();
         }
         else if (doggy_F && Doggy.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (dangeonInteractionScript == null) SetDoggyScripts();
-            doggyDialogScript.StartDialog();
+            InteractDoggy();
         }
         else if (book_F && Book.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
         {
             if (bookInteractionScript == null) SetBookScripts();
             TakeBook();
         }
+        */
+    }
+
+    public void InteractDedus()
+    {
+        dedusDialogScript.StartDialog();
+    }
+
+    public void InteractGrandsonEugene()
+    {
+        grandsonEugeneDialogScript.StartDialog();
+    }
+
+    public void InteractBook()
+    {
+        TakeBook();
+    }
+
+    public void InteractDoggy()
+    {
+        doggyDialogScript.StartDialog();
+    }
+
+    public void InteractDangeon()
+    {
+        ShowEnterDangeonPanel();
     }
 
     public void StartDialog(string speaker_text, SpeachNode speach_node)
