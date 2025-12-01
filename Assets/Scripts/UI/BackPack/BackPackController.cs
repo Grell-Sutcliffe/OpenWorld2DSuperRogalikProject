@@ -40,7 +40,7 @@ public class BackPackController : MonoBehaviour
         content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         UpdateBackpack();
-        ClearBackpack();
+        ClearShowerPanel();
     }
 
     public void MakeDictionary()
@@ -82,14 +82,13 @@ public class BackPackController : MonoBehaviour
     {
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log("BBBBBBBBBBBB");
+            Debug.Log("Take by name");
 
             Debug.Log(dict_id_to_item[id].name);
             Debug.Log(name);
             if (dict_id_to_item[id].name == name)
             {
-                // Debug.Log("Book found");
-                Debug.Log("BABABBABA BEBEBEBEB");
+                Debug.Log("Book found");
 
                 dict_id_to_item[id].count++;
                 Debug.Log(dict_id_to_item[id].count);

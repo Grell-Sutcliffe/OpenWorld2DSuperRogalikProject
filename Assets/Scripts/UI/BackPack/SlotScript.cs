@@ -26,7 +26,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     void Start()
     {
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
         //inventoryStalker = GameObject.Find("Inventory").GetComponent<InventoryStalker>();
         inventoryStalker = gameObject.GetComponentInParent<InventoryStalker>();
 
@@ -58,6 +58,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         isDragging = false;
         longPressHandled = false;
 
+        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
         inventoryStalker.ChangeMouse(backpackController.dict_id_to_item[slot_item.id]);
 
         longPressCoroutine = StartCoroutine(LongPressRoutine());
@@ -81,7 +82,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             ItemOnClick();
         }
 
-        // Если был drag — кладём предмет в слот под мышкой
+        // Если был drag
         if (longPressHandled || isDragging)
         {
             GameObject current_GO = eventData.pointerCurrentRaycast.gameObject;
@@ -92,6 +93,15 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                 if (current_GO.tag == "BackpackUI")
                 {
                     inventoryStalker.EmptySlotItem(slot_index);
+                }
+                else
+                {
+                    SlotScript newSlotScript = current_GO.GetComponent<SlotScript>();
+                    if (newSlotScript != null)
+                    {
+                        int new_slot_index = newSlotScript.slot_index;
+                        inventoryStalker.UpdateSlotItem(new_slot_index, backpackController.dict_id_to_item[slot_item.id]);
+                    }
                 }
             }
         }
@@ -138,6 +148,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private void ItemOnClick()
     {
+        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
         backpackController.UpdateShowerPanel(slot_item.id);
     }
 

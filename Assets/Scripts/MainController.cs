@@ -25,7 +25,7 @@ public class MainController : MonoBehaviour
     public GameObject Doggy;
     public GameObject Book;
 
-    ScrollInteractionScript scrollInteractionScript;
+    public ScrollInteractionScript scrollInteractionScript;
     BackPackController backpackController;
 
     InteractKeyListener keyListener;
@@ -215,7 +215,7 @@ public class MainController : MonoBehaviour
     public void TakeBook()
     {
         // Debug.Log("Take book!");
-        bookInteractionScript.TakeBook();
+        // bookInteractionScript.TakeBook();
         backpackController.TakeByName(backpackController.book_name);
     }
 
