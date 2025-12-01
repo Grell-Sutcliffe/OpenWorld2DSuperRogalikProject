@@ -1,12 +1,14 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SlotScript : MonoBehaviour
+public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler
 {
-    public InventoryStalker inventory_stalker;
+    BackPackController backpackController;
+    public InventoryStalker inventoryStalker;
 
     public Image slot_image;
     public TextMeshProUGUI slot_amount;
@@ -24,6 +26,10 @@ public class SlotScript : MonoBehaviour
 
     void Start()
     {
+        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        //inventoryStalker = GameObject.Find("Inventory").GetComponent<InventoryStalker>();
+        inventoryStalker = gameObject.GetComponentInParent<InventoryStalker>();
+
         EmptySlot();
     }
 
@@ -45,7 +51,6 @@ public class SlotScript : MonoBehaviour
         slot_image.sprite = slot_item.sprite;
     }
 
-    /*
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("SLOT MOUSE DOWN");
@@ -53,14 +58,14 @@ public class SlotScript : MonoBehaviour
         isDragging = false;
         longPressHandled = false;
 
-        inventory_stalker.ChangeMouse(backpackController.dict_id_to_item[slot_item.id]);
+        inventoryStalker.ChangeMouse(backpackController.dict_id_to_item[slot_item.id]);
 
         longPressCoroutine = StartCoroutine(LongPressRoutine());
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("MOUSE UP");
+        Debug.Log("SLOT MOUSE UP");
 
         isPointerDown = false;
 
@@ -83,20 +88,17 @@ public class SlotScript : MonoBehaviour
             Debug.Log($"mouse on {current_GO}");
             if (current_GO != null)
             {
-                SlotScript currentSlotScript = current_GO.GetComponent<SlotScript>();
-                if (currentSlotScript != null)
+                Debug.Log($"{current_GO.name} {current_GO.tag}");
+                if (current_GO.tag == "BackpackUI")
                 {
-                    int current_slot_index = currentSlotScript.slot_index;
-                    inventory_stalker.UpdateSlotItem(current_slot_index, backpackController.dict_id_to_item[id]);
-                    // currentSlotScript.UpdateSlotItem(backpackController.dict_id_to_item[id]);
-                    // backpackController.MoveItemToInventoryById(backpackController.dict_id_to_item[id].id);
+                    inventoryStalker.EmptySlotItem(slot_index);
                 }
             }
         }
 
-        if (inventory_stalker != null && inventory_stalker.mouse_stalker != null)
+        if (inventoryStalker != null && inventoryStalker.mouse_stalker != null)
         {
-            inventory_stalker.mouse_stalker.MakeDefault();
+            inventoryStalker.mouse_stalker.MakeDefault();
         }
     }
 
@@ -136,7 +138,7 @@ public class SlotScript : MonoBehaviour
 
     private void ItemOnClick()
     {
-        backpackController.UpdateShowerPanel(id);
+        backpackController.UpdateShowerPanel(slot_item.id);
     }
 
     private void StartDrag()
@@ -144,5 +146,4 @@ public class SlotScript : MonoBehaviour
         isDragging = true;
         // inventory_stalker.ChangeMouse(backpackController.dict_id_to_item[id]);
     }
-    */
 }

@@ -8,7 +8,7 @@ public class InventoryStalker : MonoBehaviour
     public GameObject inventoryPlayerPanel;
     public GameObject slot_prefab;
     public MouseStalker mouse_stalker;
-    
+
     List<int> slots_id;
     List<SlotScript> slotScripts_backpackPanel;
     List<SlotScript> slotScripts_playerPanel;
@@ -60,6 +60,12 @@ public class InventoryStalker : MonoBehaviour
         slots_id[new_index] = new_item.id;
         slotScripts_backpackPanel[new_index].UpdateSlotItem(new_item);
         slotScripts_playerPanel[new_index].UpdateSlotItem(new_item);
+    }
+
+    public void EmptySlotItem(int new_index)
+    {
+        slotScripts_backpackPanel[new_index].EmptySlot();
+        slotScripts_playerPanel[new_index].EmptySlot();
     }
 
     void FillInventory(int amount = 10)
