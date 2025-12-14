@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5d602ed6be4144a965ba49ac50366b, type: 3}
   m_Name: RougeKnightConfig
   m_EditorClassIdentifier: 
-  enemyName: "\u654C\u4EBA"
+  enemyName: RougeKnight
   maxHealth: 100
-  currentHealth: 0
   armour: 10
   damage: 20
   moveSpeed: 3
   enemyType: 0
-  detectionRange: 10
-  attackRange: 2
-  keepDistance: 1.5
+  detectionRange: 5
+  attackRange: 4
+  keepDistance: 3.5
   attackCooldown: 1.5
-  attackWindup: 0.3
