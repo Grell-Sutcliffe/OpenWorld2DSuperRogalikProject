@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,10 +14,10 @@ public class CorrtidorsGen : SimpleWalkGenerator
 
     public bool is_rand_rooms = true;
 
-    // Список всех комнат
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     private List<RoomData> allRooms = new List<RoomData>();
 
-    // Префабы для разных типов комнат
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private GameObject enemyRoomPrefab;
     [SerializeField] private GameObject chestRoomPrefab;
     [SerializeField] private GameObject startRoomPrefab;
@@ -115,7 +115,7 @@ public class CorrtidorsGen : SimpleWalkGenerator
             {
                 centerPosition = rp,
                 floorPositions = new HashSet<Vector2Int>(roomFloor),
-                roomType = DetermineRoomType(allRooms.Count) // Определяем тип
+                roomType = DetermineRoomType(allRooms.Count) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
             };
 
             allRooms.Add(roomData);
@@ -126,17 +126,17 @@ public class CorrtidorsGen : SimpleWalkGenerator
 
     private RoomType DetermineRoomType(int roomIndex)
     {
-        // Первая комната - стартовая
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (roomIndex == 0) return RoomType.Start;
 
-        // Последняя комната - босс
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ
         if (roomIndex == allRooms.Count - 1) return RoomType.Boss;
 
-        // Случайное распределение остальных комнат
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         float rand = UnityEngine.Random.value;
-        if (rand < 0.6f) return RoomType.Enemy;    // 60% вражеских
-        if (rand < 0.8f) return RoomType.Chest;    // 20% сундуков
-        return RoomType.Empty;                     // 20% пустых
+        if (rand < 0.6f) return RoomType.Enemy;    // 60% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        if (rand < 0.8f) return RoomType.Chest;    // 20% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        return RoomType.Empty;                     // 20% пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     private void CreateCorr(HashSet<Vector2Int> floorPos, HashSet<Vector2Int> potentialRoomPos)

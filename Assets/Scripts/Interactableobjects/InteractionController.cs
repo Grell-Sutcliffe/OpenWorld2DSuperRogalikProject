@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,11 +16,11 @@ public abstract class InteractionController : MonoBehaviour
 
     protected bool is_player_in_range = false;
 
-    // ==== ГЛОБАЛЬНЫЙ input ====
+    // ==== пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ input ====
     private static InputAction interact;
     private static bool inputInitialized = false;
 
-    // Все активные InteractionController
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InteractionController
     private static List<InteractionController> controllers = new List<InteractionController>();
 
     // ------------------------ LIFECYCLE ------------------------
@@ -58,13 +58,13 @@ public abstract class InteractionController : MonoBehaviour
         }
     }
 
-    // ------------------------ ГЛОБАЛЬНЫЙ ОБРАБОТЧИК F ------------------------
+    // ------------------------ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ F ------------------------
 
     private static void OnInteractGlobal(InputAction.CallbackContext ctx)
     {
         if (controllers.Count == 0) return;
 
-        // Любой контроллер подойдёт, чтобы добраться до MainController
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MainController
         var any = controllers[0];
         var mc = any.mainController;
         if (mc == null || !mc.is_keyboard_active) return;
@@ -74,15 +74,15 @@ public abstract class InteractionController : MonoBehaviour
 
         string targetName = mc.list_of_interactable_objects_names[index];
 
-        // Ищем тот контроллер, который:
-        // 1) сейчас в зоне игрока
-        // 2) его объект выбран в списке
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+        // 1) пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        // 2) пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (var c in controllers)
         {
             if (!c.is_player_in_range) continue;
             if (c.gameObject.name == targetName)
             {
-                c.Interact();        // <- ВАЖНО: вызываем только ОДИН раз
+                c.Interact();        // <- пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
                 break;
             }
         }
@@ -109,7 +109,7 @@ public abstract class InteractionController : MonoBehaviour
         }
     }
 
-    // ------------------------ ЛОГИКА ВЗАИМОДЕЙСТВИЯ ------------------------
+    // ------------------------ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ------------------------
 
     protected abstract void Interact();
 
@@ -194,7 +194,7 @@ public abstract class InteractionController : MonoBehaviour
 
     protected void OnInteract(InputAction.CallbackContext ctx)
     {
-        // UnityEngine.Debug.Log($"Нажата F - {mainController.list_of_interactable_objects_names[mainController.scrollInteractionScript.current_index]}, {mainController.scrollInteractionScript.current_index}");
+        // UnityEngine.Debug.Log($"пїЅпїЅпїЅпїЅпїЅпїЅ F - {mainController.list_of_interactable_objects_names[mainController.scrollInteractionScript.current_index]}, {mainController.scrollInteractionScript.current_index}");
         if (mainController.is_keyboard_active && is_player_in_range)
         {
             if (gameObject.name == mainController.list_of_interactable_objects_names[mainController.scrollInteractionScript.current_index])
