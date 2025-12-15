@@ -104,4 +104,9 @@ public class RogueKnight : EnemyBase
         if (proj != null)
             proj.Initialize(dir, projectileSpeed, damage);
     }
+
+    protected override void UpdateAnimations()
+    {
+        throw new System.NotImplementedException();
+    }
 }

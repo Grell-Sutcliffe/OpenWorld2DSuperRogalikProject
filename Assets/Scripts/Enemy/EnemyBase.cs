@@ -30,6 +30,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [Header("Status")]
     [SerializeField] protected bool isPlayerDetected = false;
+    protected bool isWalking = false;
 
     [Header("Config")]
     [SerializeField] protected EnemyConfig enemyConfig;
@@ -117,13 +118,25 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void MoveTowards(Vector2 target, float speedMultiplier = 1f)
     {
+        isWalking = true;
         Vector2 dir = (target - (Vector2)transform.position).normalized;
         rb.linearVelocity = dir * moveSpeed * speedMultiplier;
+        tryFlip(dir.x);
+
+    }
+
+    protected void tryFlip(float xDir)
+    {
+        if (xDir > 0)
+            spriteRenderer.flipX = false;
+        else if (xDir < 0)
+            spriteRenderer.flipX = true;
     }
 
     protected virtual void StopMovement()
     {
         rb.linearVelocity = Vector2.zero;
+        isWalking = false;
     }
 
     // ================= Attack =================
@@ -140,4 +153,7 @@ public abstract class EnemyBase : MonoBehaviour
         Gizmos.color = new Color(1, 0, 0, 0.3f);
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
+    // ================= Animations =================
+    protected abstract void UpdateAnimations();
 }
