@@ -12,7 +12,7 @@ public class MapController : MonoBehaviour
 
     List<MapPointScript> list_of_map_point_scripts;
 
-    public int bebebe = 0;
+    //public int bebebe = 0;
 
     void Start()
     {
