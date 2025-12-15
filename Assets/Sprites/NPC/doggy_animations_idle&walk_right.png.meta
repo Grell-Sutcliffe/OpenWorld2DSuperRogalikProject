@@ -155,7 +155,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -177,7 +177,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -199,7 +199,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -221,7 +221,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -243,7 +243,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 280
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -265,7 +265,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -287,7 +287,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 360
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -309,7 +309,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 400
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -331,7 +331,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -353,7 +353,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -375,7 +375,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -397,7 +397,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -419,7 +419,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -441,7 +441,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 280
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -463,7 +463,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -485,7 +485,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 360
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -507,7 +507,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 400
-        y: 0
+        y: 80
         width: 40
         height: 40
       alignment: 7
@@ -529,7 +529,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 40
+        y: 120
         width: 40
         height: 40
       alignment: 7
@@ -542,6 +542,380 @@ TextureImporter:
       bones: []
       spriteID: 30abd44b5deefa544a9ca274da8ba8ff
       internalID: -8767403539633045079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62cbfe98e4ac1e346bbc0349e6298036
+      internalID: -114120208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_19
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0af6b189022b784e9733d85c0dbcd34
+      internalID: 1340910287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_20
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f5a12810667ea4fa6911ad1a88e353
+      internalID: 477855417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae43b1c5c9d1e948b581f2a7d4da482
+      internalID: -139757266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c3bad053ad9044592b3b9713f8d1e1
+      internalID: 300668603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_23
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5862fcbdca3d54745877f0a646ae6950
+      internalID: 796711416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_24
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4905c94120a1c4a4abfbc50b9c668c44
+      internalID: -657065427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_25
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee91966453b7034891ff4f1eb167337
+      internalID: -2078783544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_26
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 40
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d268ad3a0028224b8e578711cadee50
+      internalID: -851581343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0380f1f66ad90824f934707611adeb52
+      internalID: -754599972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_28
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91bbf3190e4bc974a8beddeb112b229d
+      internalID: 964327294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_29
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6f041681c2b2e4ba4785f6fb477a2c
+      internalID: 93011210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_30
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8461395c88b4ef24b9457cfa608151d4
+      internalID: 581849721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_31
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84c6111007f7281468384e0fd9955cde
+      internalID: 541800955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_32
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afe8fdd7d63f07b45915d03ec9136c68
+      internalID: -2095177966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_33
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a19cd86275b8b4daf7095ca33fc70c
+      internalID: 1996248533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doggy_animations_idle&walk_right_34
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 40
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f5f9eb39d46d548994ec29ac7af3b5
+      internalID: -570044401
       vertices: []
       indices: 
       edges: []
@@ -570,8 +944,25 @@ TextureImporter:
       doggy_animations_idle&walk_right_15: -5234654696844599952
       doggy_animations_idle&walk_right_16: -2254052292370937985
       doggy_animations_idle&walk_right_17: 4456624229363822426
+      doggy_animations_idle&walk_right_18: -114120208
+      doggy_animations_idle&walk_right_19: 1340910287
       doggy_animations_idle&walk_right_2: 7464219763916173222
+      doggy_animations_idle&walk_right_20: 477855417
+      doggy_animations_idle&walk_right_21: -139757266
+      doggy_animations_idle&walk_right_22: 300668603
+      doggy_animations_idle&walk_right_23: 796711416
+      doggy_animations_idle&walk_right_24: -657065427
+      doggy_animations_idle&walk_right_25: -2078783544
+      doggy_animations_idle&walk_right_26: -851581343
+      doggy_animations_idle&walk_right_27: -754599972
+      doggy_animations_idle&walk_right_28: 964327294
+      doggy_animations_idle&walk_right_29: 93011210
       doggy_animations_idle&walk_right_3: 4393112876148056492
+      doggy_animations_idle&walk_right_30: 581849721
+      doggy_animations_idle&walk_right_31: 541800955
+      doggy_animations_idle&walk_right_32: -2095177966
+      doggy_animations_idle&walk_right_33: 1996248533
+      doggy_animations_idle&walk_right_34: -570044401
       doggy_animations_idle&walk_right_4: -5057235406396668549
       doggy_animations_idle&walk_right_5: -5733320455111457977
       doggy_animations_idle&walk_right_6: 5319672117601374795

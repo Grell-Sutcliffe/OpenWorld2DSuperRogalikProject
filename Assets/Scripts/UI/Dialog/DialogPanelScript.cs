@@ -27,6 +27,7 @@ public class DialogPanelScript : MonoBehaviour
 
     public class SpeachNode
     {
+        public string current_npc_name;
         public string current_text;
         public SpeachNode prev_node;
         public bool is_answering;
@@ -39,6 +40,7 @@ public class DialogPanelScript : MonoBehaviour
 
         public SpeachNode()
         {
+            current_npc_name = string.Empty;
             current_text = string.Empty;
             prev_node = null;
             next_node = null;
@@ -49,8 +51,9 @@ public class DialogPanelScript : MonoBehaviour
             is_text_action = false;
         }
 
-        public SpeachNode(string text_)
+        public SpeachNode(string npc_name_, string text_)
         {
+            current_npc_name = npc_name_;
             current_text = text_;
             prev_node = null;
             next_node = null;
@@ -104,9 +107,9 @@ public class DialogPanelScript : MonoBehaviour
             is_finished = false;
         }
 
-        public SpeachTree(string text_)
+        public SpeachTree(string npc_name_, string text_)
         {
-            root = new SpeachNode(text_);
+            root = new SpeachNode(npc_name_, text_);
             quest_title = string.Empty;
             is_finished = false;
         }

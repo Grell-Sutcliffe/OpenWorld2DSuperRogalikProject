@@ -13,6 +13,7 @@ public class DedusDialogScript : MonoBehaviour
     public SpeachTree text_hello;
     public SpeachTree TheLostGrandson_ask_for_search_grandson_1;
     public SpeachTree TheLostGrandson_ask_for_search_grandson_2;
+    public SpeachTree TheLostGrandson_ask_for_search_grandson_3;
 
     MainController mainController;
     QuestsController questsController;
@@ -44,6 +45,7 @@ public class DedusDialogScript : MonoBehaviour
         CreateSpeach_Hello();
         CreateSpeach_AskForSearchGrandson_1();
         CreateSpeach_AskForSearchGrandson_2();
+        CreateSpeach_AskForSearchGrandson_3();
     }
 
     void CreateSpeach_Hello()
@@ -52,14 +54,14 @@ public class DedusDialogScript : MonoBehaviour
         text_hello.npc_name = questsController.dedus;
         text_hello.quest_title = questsController.none_quest_name;
 
-        SpeachNode root = new SpeachNode("Здравствуй, путешественник!");
+        SpeachNode root = new SpeachNode(questsController.dedus, "Здравствуй, путешественник!");
         root.is_answering = true;
 
-        SpeachNode bye_node_1 = new SpeachNode("Как жаль. До встречи.");
+        SpeachNode bye_node_1 = new SpeachNode(questsController.dedus, "Как жаль. До встречи.");
         bye_node_1.answer_text = "Мне пора идти.";
         root.AddNextNode(bye_node_1);
 
-        SpeachNode help_node_1 = new SpeachNode("Хорошего дня!");
+        SpeachNode help_node_1 = new SpeachNode(questsController.dedus, "Хорошего дня!");
         help_node_1.answer_text = "Привет, дедуль!";
         root.AddNextNode(help_node_1);
 
@@ -72,35 +74,35 @@ public class DedusDialogScript : MonoBehaviour
         TheLostGrandson_ask_for_search_grandson_1.npc_name = questsController.dedus;
         TheLostGrandson_ask_for_search_grandson_1.quest_title = questsController.quest_TheLostGrandson;
 
-        SpeachNode root = new SpeachNode("Здравствуй, путешественник!");
+        SpeachNode root = new SpeachNode(questsController.dedus, "Здравствуй, путешественник!");
         root.is_answering = true;
 
-        SpeachNode bye_node_1 = new SpeachNode("Как жаль. До встречи.");
+        SpeachNode bye_node_1 = new SpeachNode(questsController.dedus, "Как жаль. До встречи.");
         bye_node_1.answer_text = "Мне пора идти.";
         root.AddNextNode(bye_node_1);
 
-        SpeachNode help_node_1 = new SpeachNode("У меня случилась страшная беда. Не поможешь старичку?");
+        SpeachNode help_node_1 = new SpeachNode(questsController.dedus, "У меня случилась страшная беда. Не поможешь старичку?");
         help_node_1.is_answering = true;
         help_node_1.answer_text = "Привет, дедуль!";
         root.AddNextNode(help_node_1);
 
-        SpeachNode help_node_2 = new SpeachNode("Ой, спасибо тебе, добрый молодой человек!");
+        SpeachNode help_node_2 = new SpeachNode(questsController.dedus, "Ой, спасибо тебе, добрый молодой человек!");
         help_node_2.answer_text = "Конечно, помогу.";
         help_node_1.AddNextNode(help_node_2);
 
-        SpeachNode bye_node_2 = new SpeachNode("До встречи.");
+        SpeachNode bye_node_2 = new SpeachNode(questsController.dedus, "До встречи.");
         bye_node_2.answer_text = "Мне некогда. Давай в другой раз?";
         help_node_1.AddNextNode(bye_node_2);
 
-        SpeachNode help_node_3 = new SpeachNode("Мой внук потерялся, нигде не могу найти его уже 2 дня. Пожалуйста, найди его.");
+        SpeachNode help_node_3 = new SpeachNode(questsController.dedus, "Мой внук потерялся, нигде не могу найти его уже 2 дня. Пожалуйста, найди его.");
         help_node_3.is_answering = true;
         help_node_2.AddNextNode(help_node_3);
 
-        SpeachNode bye_node_3 = new SpeachNode("Ну и ну тебя нафиг, паразит маленький.");
+        SpeachNode bye_node_3 = new SpeachNode(questsController.dedus, "Ну и ну тебя нафиг, паразит маленький.");
         bye_node_3.answer_text = "Ой, нет. Сам ищи.";
         help_node_3.AddNextNode(bye_node_3);
 
-        SpeachNode help_node_4 = new SpeachNode("Спасибо! До встречи.");
+        SpeachNode help_node_4 = new SpeachNode(questsController.dedus, "Спасибо! До встречи.");
         help_node_4.answer_text = "Обязательно найду.";
         help_node_4.is_accepting_quest = true;
         help_node_4.is_ending = true;
@@ -115,32 +117,32 @@ public class DedusDialogScript : MonoBehaviour
         TheLostGrandson_ask_for_search_grandson_2.npc_name = questsController.dedus;
         TheLostGrandson_ask_for_search_grandson_2.quest_title = questsController.quest_TheLostGrandson;
 
-        SpeachNode root = new SpeachNode("Очень переживаю за внука."); // -----------------------------------------------------+
+        SpeachNode root = new SpeachNode(questsController.dedus, "Очень переживаю за внука."); // -----------------------------------------------------+
         root.is_answering = true; //                                                                                           |
         //                                                                                                                     |
-        SpeachNode answer_node_1 = new SpeachNode("Попытаюсь вспомнить..."); // -----------------------------------------------|-----+
+        SpeachNode answer_node_1 = new SpeachNode(questsController.dedus, "Попытаюсь вспомнить..."); // -----------------------------------------------|-----+
         answer_node_1.answer_text = "Где ты видел его в последний раз?"; // <--------------------------------------------------|     |
         root.AddNextNode(answer_node_1); //                                                                                    |     |
         //                                                                                                                     |     |
-        SpeachNode answer_node_2 = new SpeachNode("Хммм... Дай-ка подумать..."); // -----------------------------------+       |     |
+        SpeachNode answer_node_2 = new SpeachNode(questsController.dedus, "Хммм... Дай-ка подумать..."); // -----------------------------------+       |     |
         answer_node_2.answer_text = "Не знаешь, куда он мог бы пойти?"; // <-------------------------------------------|-------+     |
         root.AddNextNode(answer_node_2); //                                                                            |             |     
         //                                                                                                             |             |
-        SpeachNode answer_node_11 = new SpeachNode("Кажется, он отправился гулять с Джеком."); // <--------------------|-------------+
+        SpeachNode answer_node_11 = new SpeachNode(questsController.dedus, "Кажется, он отправился гулять с Джеком."); // <--------------------|-------------+
         answer_node_11.is_answering = true; // ------------------------------------------------------------------------|-------+
         answer_node_1.AddNextNode(answer_node_11); //                                                                  |       |
         //                                                                                                             |       |
-        SpeachNode answer_node_21 = new SpeachNode("Обычно они с Джеком ходят гулять на окраину деревни."); // <-------+       |     
+        SpeachNode answer_node_21 = new SpeachNode(questsController.dedus, "Обычно они с Джеком ходят гулять на окраину деревни."); // <-------+       |     
         answer_node_21.is_answering = true; // --------------------------------------------------------------------------------+
         answer_node_2.AddNextNode(answer_node_21); //                                                                          |
         //                                                                                                                     |
-        SpeachNode answer_node_11_21_1 = new SpeachNode("Это наш пёс. Он очень дружелюбный и умный."); //                      |
+        SpeachNode answer_node_11_21_1 = new SpeachNode(questsController.dedus, "Это наш пёс. Он очень дружелюбный и умный."); //                      |
         answer_node_11_21_1.answer_text = "Кто такой Джек?"; // <--------------------------------------------------------------+
         answer_node_11_21_1.is_finishing_task = true; //                                                                       |
         answer_node_21.AddNextNode(answer_node_11_21_1); //                                                                    |       
         answer_node_11.AddNextNode(answer_node_11_21_1); //                                                                    |        
         //                                                                                                                     |
-        SpeachNode answer_node_11_21_2 = new SpeachNode("Удачи в поисках, добрый путник!"); //                                 |
+        SpeachNode answer_node_11_21_2 = new SpeachNode(questsController.dedus, "Удачи в поисках, добрый путник!"); //                                 |
         // answer_node_11_21_2.is_ending = true; //                                                                            |
         answer_node_11_21_2.answer_text = "Понятно, спасибо."; // <------------------------------------------------------------+
         answer_node_21.AddNextNode(answer_node_11_21_2); //                                                                            
@@ -148,5 +150,19 @@ public class DedusDialogScript : MonoBehaviour
 
         // TheLostGrandson_ask_for_search_grandson_2.is_finished = true;
         TheLostGrandson_ask_for_search_grandson_2.root = root;
+    }
+
+    void CreateSpeach_AskForSearchGrandson_3()
+    {
+        TheLostGrandson_ask_for_search_grandson_3 = new SpeachTree();
+        TheLostGrandson_ask_for_search_grandson_3.npc_name = questsController.dedus;
+        TheLostGrandson_ask_for_search_grandson_3.quest_title = questsController.quest_TheLostGrandson;
+
+        SpeachNode root = new SpeachNode(questsController.dedus, "Внучок!");    
+        root.is_ending = true;
+        root.is_finishing_task = true;
+
+        // TheLostGrandson_ask_for_search_grandson_2.is_finished = true;
+        TheLostGrandson_ask_for_search_grandson_3.root = root;
     }
 }

@@ -24,6 +24,7 @@ public class QuestsController : MonoBehaviour
 
     public GrandsonEugineQuestScript grandsonEugineQuestScript;
     public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
+    public GrandsonEugineMoveScript grandsonEugineMoveScript;
 
     public int accepted_quests_amout = 0;
 
@@ -56,6 +57,7 @@ public class QuestsController : MonoBehaviour
         public string NPC;
         public string title;
         public string description;
+        public string function_name;
         public bool is_task_completed;
         public List<Reward> rewards;
         public List<SpeachTree> speach_trees;
@@ -65,6 +67,7 @@ public class QuestsController : MonoBehaviour
         {
             title = string.Empty;
             description = string.Empty;
+            function_name = string.Empty;
             is_task_completed = false;
             rewards = new List<Reward>();
             speach_trees = new List<SpeachTree>();
@@ -75,6 +78,7 @@ public class QuestsController : MonoBehaviour
         {
             title = title_;
             description = description_;
+            function_name= string.Empty;
             is_task_completed = false;
             rewards = new List<Reward>();
             speach_trees = new List<SpeachTree>();
@@ -86,6 +90,7 @@ public class QuestsController : MonoBehaviour
     {
         public string title;
         public string description = string.Empty;
+        public string function_name;
         public List<Task> tasks;
         public int current_task_index;
         public List<Reward> rewards;
@@ -96,6 +101,7 @@ public class QuestsController : MonoBehaviour
         {
             title = string.Empty;
             description = string.Empty;
+            function_name = string.Empty;
             is_quest_completed = false;
             is_quest_accepted = false;
             tasks = new List<Task>();
@@ -107,6 +113,7 @@ public class QuestsController : MonoBehaviour
         {
             title = title_;
             description = description_;
+            function_name = string.Empty;
             is_quest_completed = false;
             is_quest_accepted = false;
             tasks = new List<Task>();
@@ -145,6 +152,7 @@ public class QuestsController : MonoBehaviour
 
         grandsonEugineQuestScript = dict_npc_name_to_npc_GO[grandsonEugene].GetComponent<GrandsonEugineQuestScript>();
         grandsonEugeneDialogScript = dict_npc_name_to_npc_GO[grandsonEugene].GetComponent<GrandsonEugeneDialogScript>();
+        grandsonEugineMoveScript = dict_npc_name_to_npc_GO[grandsonEugene].GetComponent<GrandsonEugineMoveScript>();
     }
 
     public void UpdateNPC()
@@ -226,6 +234,7 @@ public class QuestsController : MonoBehaviour
 
         new_quest.title = quest_TheLostGrandson;
         new_quest.description = "Помоги Дедусу отыскать внука.";
+        new_quest.function_name = "TheLostGrandson_StopMoveToPlayer";
 
         Task new_task_1 = new Task();  // DEDUS
 
@@ -265,6 +274,8 @@ public class QuestsController : MonoBehaviour
         new_task_4.title = "Помоги мальчику найти дорогу до его дедушки.";
         new_task_4.NPC = grandsonEugene;
         new_task_4.description = "Покажи мальчику дорогу до его дедушки.";
+        new_task_4.speach_trees.Add(dedusDialogScript.TheLostGrandson_ask_for_search_grandson_3);
+        new_task_4.function_name = "TheLostGrandson_StartMoveToPlayer";
         new_quest.tasks.Add(new_task_4);
 
         dict_quest_name_to_quest[new_quest.title] = new_quest;
@@ -284,5 +295,15 @@ public class QuestsController : MonoBehaviour
     public void OpenQuestPanel()
     {
         UpdateQestPanel();
+    }
+
+    void TheLostGrandson_StartMoveToPlayer()
+    {
+        grandsonEugineMoveScript.StartMoveToPlayer();
+    }
+
+    void TheLostGrandson_StopMoveToPlayer()
+    {
+        grandsonEugineMoveScript.StopMoveToPlayer();
     }
 }
