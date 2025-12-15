@@ -23,8 +23,6 @@ public abstract class InteractionController : MonoBehaviour
     // ¬се активные InteractionController
     private static List<InteractionController> controllers = new List<InteractionController>();
 
-    // ------------------------ LIFECYCLE ------------------------
-
     protected virtual void Start()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -58,13 +56,10 @@ public abstract class InteractionController : MonoBehaviour
         }
     }
 
-    // ------------------------ √ЋќЅјЋ№Ќџ… ќЅ–јЅќ“„»  F ------------------------
-
     private static void OnInteractGlobal(InputAction.CallbackContext ctx)
     {
         if (controllers.Count == 0) return;
 
-        // Ћюбой контроллер подойдЄт, чтобы добратьс€ до MainController
         var any = controllers[0];
         var mc = any.mainController;
         if (mc == null || !mc.is_keyboard_active) return;
@@ -74,21 +69,16 @@ public abstract class InteractionController : MonoBehaviour
 
         string targetName = mc.list_of_interactable_objects_names[index];
 
-        // »щем тот контроллер, который:
-        // 1) сейчас в зоне игрока
-        // 2) его объект выбран в списке
         foreach (var c in controllers)
         {
             if (!c.is_player_in_range) continue;
             if (c.gameObject.name == targetName)
             {
-                c.Interact();        // <- ¬ј∆Ќќ: вызываем только ќƒ»Ќ раз
+                c.Interact();
                 break;
             }
         }
     }
-
-    // ------------------------ TRIGGER ------------------------
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
@@ -108,8 +98,6 @@ public abstract class InteractionController : MonoBehaviour
             OffInteraction();
         }
     }
-
-    // ------------------------ Ћќ√» ј ¬«ј»ћќƒ≈…—“¬»я ------------------------
 
     protected abstract void Interact();
 
