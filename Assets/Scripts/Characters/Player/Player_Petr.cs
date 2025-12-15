@@ -20,6 +20,17 @@ public class Player : MonoBehaviour
     // §¡§Ó§ä§à§Þ§Ñ§ä §ã§à§ã§ä§à§ñ§ß§Ú§Û §Õ§Ý§ñ §å§á§â§Ñ§Ó§Ý§Ö§ß§Ú§ñ §Õ§Ó§Ú§Ø§Ö§ß§Ú§ñ §Ú§Ô§â§à§Ü§Ñ
     private PlayerMovementStateMachine movementStateMachine;
 
+
+    string playerName;
+    float maxHealth;
+    float armour;
+    float damage;
+    float moveSpeed;
+
+    float attackRange;
+    float attackCooldown;
+
+    float currentHealth;
     private void Awake()
     {
         // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
@@ -30,10 +41,28 @@ public class Player : MonoBehaviour
         PlayerAnimator = GetComponentInChildren<Animator>();
         AnimationData.Initialize();
     }
+    private void ApplyConfig()
+    {
+        if (Data == null)
+        {
+            Debug.LogWarning($"{name} has no PlayerConfig!");
+            return;
+        }
 
+        playerName = Data.playerName;
+        maxHealth = Data.maxHealth;
+        currentHealth = maxHealth;
+        armour = Data.armour;
+        damage = Data.damage;
+        moveSpeed = Data.moveSpeed;
+
+        attackRange = Data.attackRange;
+        attackCooldown = Data.attackCooldown;
+    }
     private void Start()
     {
         movementStateMachine.ChangeState(movementStateMachine.IdlingState);
+        ApplyConfig();
     }
 
     private void Update()
@@ -48,4 +77,18 @@ public class Player : MonoBehaviour
         movementStateMachine.PhysicsUpdate();
     }
 
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg}");
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

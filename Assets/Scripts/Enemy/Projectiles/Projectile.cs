@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : TeEmPe
 {
     [Header("弹丸设置")]
     [SerializeField] private float speed = 10f;  // 弹丸速度
@@ -9,9 +9,12 @@ public class Projectile : MonoBehaviour
     private Vector2 direction;  // 弹丸方向
     private float timer = 0f;   // 存活计时器
 
+    private Collider2D collider;
+
     void Start()
     {
         // 设置自动销毁，避免弹丸一直存在
+        collider = GetComponent<Collider2D>();
         Destroy(gameObject, lifetime);
     }
 
@@ -40,5 +43,21 @@ public class Projectile : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            var player = collision.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(dmg);
+            }
+
+            
+        }
+        if (isDestroyOnEnter) Destroy(gameObject);
+
     }
 }
