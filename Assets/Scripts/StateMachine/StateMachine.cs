@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class StateMachine
 {
     protected IState currentState;
 
-    // §®§Ö§ä§à§Õ §Õ§Ý§ñ §Ú§Ù§Þ§Ö§ß§Ö§ß§Ú§ñ §ã§à§ã§ä§à§ñ§ß§Ú§ñ
+    // ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ ï¿½Õ§Ý§ï¿½ ï¿½Ú§Ù§Þ§Ö§ß§Ö§ß§Ú§ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß§Ú§ï¿½
     public void ChangeState(IState newState)
     {
         currentState?.Exit();

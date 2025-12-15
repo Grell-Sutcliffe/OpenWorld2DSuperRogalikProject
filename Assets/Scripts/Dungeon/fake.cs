@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class fake : MonoBehaviour
 {
@@ -6,11 +6,17 @@ public class fake : MonoBehaviour
     public TileMapVisualize pipi;
     public GameObject playerPref;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         pipi.Clear();
         ss.fake();
         Instantiate(playerPref);
+    }
+    void Start()
+    {
+        //pipi.Clear();
+        //ss.fake();
+        //Instantiate(playerPref);
     }
 
     // Update is called once per frame

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -45,7 +45,7 @@ public class PlayerMovementState : IState
 
     #region Main Methods
 
-    // ����ߧ�ӧߧѧ� �ݧ�ԧڧܧ� �էӧڧا֧ߧڧ�
+    // ����ߧ�ӧߧѧ� �ݧ�ԧڧܧ� �էӧڧا֧ߧڧ�
     private void Move()
     {
         if (stateMachine.ReusableMovementData.MovementInput == Vector2.zero || stateMachine.ReusableMovementData.MovementSpeedModifier == 0f)
@@ -88,7 +88,7 @@ public class PlayerMovementState : IState
 
     protected virtual void AddInputActionsCallbacks()
     {
-        // ����� ���ڧާ֧� �է�ҧѧӧݧ֧ߧڧ� �ܧ�ݧҧ�ܧ� �ߧ� ���ާ֧ߧ� �էӧڧا֧ߧڧ�
+        // ����� ���ڧާ֧� �է�ҧѧӧݧ֧ߧڧ� �ܧ�ݧҧ�ܧ� �ߧ� ���ާ֧ߧ� �էӧڧا֧ߧڧ�
         stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMoveCanceled;
     }
 
@@ -98,7 +98,7 @@ public class PlayerMovementState : IState
         stateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMoveCanceled;
     }
 
-    // ����ݧҧ�� �ߧ� ���ާ֧ߧ� �էӧڧا֧ߧڧ�
+    // ����ݧҧ�� �ߧ� ���ާ֧ߧ� �էӧڧا֧ߧڧ�
     protected virtual void OnMoveCanceled(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.IdlingState);
