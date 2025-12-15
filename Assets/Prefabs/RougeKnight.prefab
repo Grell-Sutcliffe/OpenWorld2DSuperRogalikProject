@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2955045474232723174}
   - component: {fileID: 5313323764751874748}
   - component: {fileID: 3198890182937808272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RougeKnight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -165,20 +165,12 @@ MonoBehaviour:
   keepDistance: 2.5
   attackCooldown: 1.5
   isPlayerDetected: 0
-  isAttacking: 0
-  isStunned: 0
-  isDead: 0
   enemyConfig: {fileID: 11400000, guid: 2a3b54c9f2553d948b7f08b4b6276ec1, type: 2}
   projectilePrefab: {fileID: 8974915343672401948, guid: 661f970cc1f7ace40b79ed37524d9d14, type: 3}
   firePoint: {fileID: 2258494942570628568}
   projectileSpeed: 10
   strafeSpeed: 2
-  strafeDistance: 3
   retreatDistance: 2
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  waitTimeAtPoint: 2
 --- !u!50 &3198890182937808272
 Rigidbody2D:
   serializedVersion: 5
@@ -216,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2258494942570628568}
   - component: {fileID: 4813897950974437980}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
