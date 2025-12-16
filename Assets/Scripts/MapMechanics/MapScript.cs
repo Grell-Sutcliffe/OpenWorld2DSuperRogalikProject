@@ -33,9 +33,9 @@ public class MapScript : MonoBehaviour
         {
             //if (mapController.bebebe < 50) // remove !!!
             //{
-            SpawnMaps();
-            DeleteMaps();
             is_center = true;
+            SpawnMaps();
+            //DeleteMaps();
             //}
         }
     }
@@ -56,17 +56,10 @@ public class MapScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            /*
             is_center = false;
             Invoke("DeleteMaps", 0.1f);
-            */
-            Invoke("CheckMaps", 0.1f);
+            //DeleteMaps();
         }
-    }
-
-    void CheckMaps()
-    {
-        // pass;
     }
 
     void SpawnMaps()
@@ -174,125 +167,154 @@ public class MapScript : MonoBehaviour
 
     void DeleteMaps()
     {
+        bool need_to_delete = true;
         if (map_north.is_center)
         {
+            /*
             map_north.map_north?.DestroySelf();
             map_north.map_north_east?.DestroySelf();
             map_north.map_north_west?.DestroySelf();
 
             map_north.is_center = false;
-            /*
+            */
+            ///*
             map_south?.DestroySelf();
             map_south_east?.DestroySelf();
             map_south_west?.DestroySelf();
-            */
+
+            need_to_delete = false;
+            //*/
         }
         if (map_south.is_center)
         {
+            /*
             map_south.map_south?.DestroySelf();
             map_south.map_south_east?.DestroySelf();
             map_south.map_south_west?.DestroySelf();
 
             map_south.is_center = false;
-            /*
+            */
+            ///*
             map_north?.DestroySelf();
             map_north_east?.DestroySelf();
             map_north_west?.DestroySelf();
-            */
+
+            need_to_delete = false;
+            //*/
         }
         if (map_east.is_center)
         {
+            /*
             map_east.map_east?.DestroySelf();
             map_east.map_south_east?.DestroySelf();
             map_east.map_north_east?.DestroySelf();
 
             map_east.is_center = false;
-            /*
+            */
+            ///*
             map_west?.DestroySelf();
             map_south_west?.DestroySelf();
             map_north_west?.DestroySelf();
-            */
+
+            need_to_delete = false;
+            //*/
         }
         if (map_west.is_center)
         {
+
+            /*
             map_west.map_west?.DestroySelf();
             map_west.map_south_west?.DestroySelf();
             map_west.map_north_west?.DestroySelf();
 
             map_west.is_center = false;
-            /*
+            */
+            ///*
             map_east?.DestroySelf();
             map_south_east?.DestroySelf();
             map_north_east?.DestroySelf();
-            */
-        }
-        if (map_north_west.is_center)
-        {
-            map_north_west.map_north?.DestroySelf();
-            map_north_west.map_west?.DestroySelf();
-            map_north_west.map_north_east?.DestroySelf();
-            map_north_west.map_north_west?.DestroySelf();
-            map_north_west.map_south_west?.DestroySelf();
 
-            map_north_west.is_center = false;
-            /*
-            map_south?.DestroySelf();
-            map_east?.DestroySelf();
-            map_north_east?.DestroySelf();
-            map_south_east?.DestroySelf();
-            map_south_west?.DestroySelf();
-            */
+            need_to_delete = false;
+            //*/
         }
-        if (map_north_east.is_center)
+        if (need_to_delete)
         {
-            map_north_east.map_north?.DestroySelf();
-            map_north_east.map_east?.DestroySelf();
-            map_north_east.map_north_east?.DestroySelf();
-            map_north_east.map_south_east?.DestroySelf();
-            map_north_east.map_north_west?.DestroySelf();
+            if (map_north_west.is_center)
+            {
+                /*
+                map_north_west.map_north?.DestroySelf();
+                map_north_west.map_west?.DestroySelf();
+                map_north_west.map_north_east?.DestroySelf();
+                map_north_west.map_north_west?.DestroySelf();
+                map_north_west.map_south_west?.DestroySelf();
 
-            map_north_east.is_center = false;
-            /*
-            map_south?.DestroySelf();
-            map_west?.DestroySelf();
-            map_north_west?.DestroySelf();
-            map_south_east?.DestroySelf();
-            map_south_west?.DestroySelf();
-            */
-        }
-        if (map_south_west.is_center)
-        {
-            map_south_west.map_south?.DestroySelf();
-            map_south_west.map_west?.DestroySelf();
-            map_south_west.map_north_west?.DestroySelf();
-            map_south_west.map_south_east?.DestroySelf();
-            map_south_west.map_south_west?.DestroySelf();
+                map_north_west.is_center = false;
+                */
+                ///*
+                map_south?.DestroySelf();
+                map_east?.DestroySelf();
+                map_north_east?.DestroySelf();
+                map_south_east?.DestroySelf();
+                map_south_west?.DestroySelf();
+                //*/
+            }
+            if (map_north_east.is_center)
+            {
+                /*
+                map_north_east.map_north?.DestroySelf();
+                map_north_east.map_east?.DestroySelf();
+                map_north_east.map_north_east?.DestroySelf();
+                map_north_east.map_south_east?.DestroySelf();
+                map_north_east.map_north_west?.DestroySelf();
 
-            map_south_west.is_center = false;
-            /*
-            map_north?.DestroySelf();
-            map_east?.DestroySelf();
-            map_north_east?.DestroySelf();
-            map_south_east?.DestroySelf();
-            map_north_west?.DestroySelf();
-            */
-        }
-        if (map_south_east.is_center)
-        {
-            map_south_east.map_south?.DestroySelf();
-            map_south_east.map_east?.DestroySelf();
-            map_south_east.map_north_east?.DestroySelf();
-            map_south_east.map_south_east?.DestroySelf();
-            map_south_east.map_south_west?.DestroySelf();
+                map_north_east.is_center = false;
+                */
+                ///*
+                map_south?.DestroySelf();
+                map_west?.DestroySelf();
+                map_north_west?.DestroySelf();
+                map_south_east?.DestroySelf();
+                map_south_west?.DestroySelf();
+                //*/
+            }
+            if (map_south_west.is_center)
+            {
+                /*
+                map_south_west.map_south?.DestroySelf();
+                map_south_west.map_west?.DestroySelf();
+                map_south_west.map_north_west?.DestroySelf();
+                map_south_west.map_south_east?.DestroySelf();
+                map_south_west.map_south_west?.DestroySelf();
 
-            map_south_east.is_center = false;
-            /*
-            map_north?.DestroySelf();
-            map_west?.DestroySelf();
-            map_north_east?.DestroySelf();
-            map_north_west?.DestroySelf();
-            map_south_west?.DestroySelf();
-            */
+                map_south_west.is_center = false;
+                */
+                ///*
+                map_north?.DestroySelf();
+                map_east?.DestroySelf();
+                map_north_east?.DestroySelf();
+                map_south_east?.DestroySelf();
+                map_north_west?.DestroySelf();
+                //*/
+            }
+            if (map_south_east.is_center)
+            {
+                /*
+                map_south_east.map_south?.DestroySelf();
+                map_south_east.map_east?.DestroySelf();
+                map_south_east.map_north_east?.DestroySelf();
+                map_south_east.map_south_east?.DestroySelf();
+                map_south_east.map_south_west?.DestroySelf();
+
+                map_south_east.is_center = false;
+                */
+                ///*
+                map_north?.DestroySelf();
+                map_west?.DestroySelf();
+                map_north_east?.DestroySelf();
+                map_north_west?.DestroySelf();
+                map_south_west?.DestroySelf();
+                //*/
+            }
         }
     }
 
@@ -302,6 +324,6 @@ public class MapScript : MonoBehaviour
         if (gameObject.IsDestroyed()) return;
         Debug.Log($"destroy {gameObject.name}");
         */
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
