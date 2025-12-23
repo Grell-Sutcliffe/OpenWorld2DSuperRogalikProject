@@ -1,9 +1,14 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
     MapController mapController;
+
+    public GameObject mapPoints_GO;
+
+    List<MapPointScript> list_of_map_point_scripts;
 
     public bool is_center = false;
     public float width;
@@ -25,6 +30,18 @@ public class MapScript : MonoBehaviour
         //SpawnMaps();
         width = gameObject.transform.localScale.x * 2;
         height = gameObject.transform.localScale.y * 2;
+
+        FindMapPoints();
+    }
+
+    void FindMapPoints()
+    {
+        list_of_map_point_scripts = new List<MapPointScript>();
+
+        foreach (Transform child in mapPoints_GO.transform)
+        {
+            list_of_map_point_scripts.Add(child.gameObject.GetComponent<MapPointScript>());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

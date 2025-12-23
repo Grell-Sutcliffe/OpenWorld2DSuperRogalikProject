@@ -15,6 +15,13 @@ public class MapPointScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (mapController.dict_map_GOs[index].name == "GrandsonEugene")
+            {
+                if (mapController.dict_map_GOs[index].GetComponent<GrandsonEugineMoveScript>().need_to_move)
+                {
+                    return;
+                }
+            }
             Teleport();
         }
     }

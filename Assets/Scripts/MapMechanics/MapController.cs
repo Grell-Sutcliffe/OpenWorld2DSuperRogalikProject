@@ -10,8 +10,6 @@ public class MapController : MonoBehaviour
 
     public Dictionary<int, GameObject> dict_map_GOs = new Dictionary<int, GameObject>();
 
-    List<MapPointScript> list_of_map_point_scripts;
-
     //public int bebebe = 0;
 
     void Start()

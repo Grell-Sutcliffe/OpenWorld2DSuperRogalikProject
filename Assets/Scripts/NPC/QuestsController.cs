@@ -167,6 +167,18 @@ public class QuestsController : MonoBehaviour
         grandsonEugineQuestScript.UpdateInfo();
     }
 
+    public void FinishTask(string quest_title)
+    {
+        string temp_function = dict_quest_name_to_quest[quest_title].tasks[dict_quest_name_to_quest[quest_title].current_task_index].function_name;
+
+        if (temp_function != string.Empty)
+        {
+            Invoke(temp_function, 0.1f);
+        }
+
+        dict_quest_name_to_quest[quest_title].current_task_index++;
+    }
+
     public void AcceptQuest(string new_quest)
     {
         dict_quest_name_to_quest[new_quest].is_quest_accepted = true;
@@ -267,15 +279,16 @@ public class QuestsController : MonoBehaviour
         new_task_3.NPC = grandsonEugene;
         if (grandsonEugeneDialogScript == null) grandsonEugeneDialogScript = GameObject.Find("GrandsonEugene").GetComponent<GrandsonEugeneDialogScript>();
         new_task_3.speach_trees.Add(grandsonEugeneDialogScript.TheLostGrandson_ask_for_help_1);
+        new_task_3.function_name = "TheLostGrandson_StartMoveToPlayer";
         new_quest.tasks.Add(new_task_3);
 
         Task new_task_4 = new Task();
 
         new_task_4.title = "Помоги мальчику найти дорогу до его дедушки.";
-        new_task_4.NPC = grandsonEugene;
+        new_task_4.NPC = dedus;
         new_task_4.description = "Покажи мальчику дорогу до его дедушки.";
         new_task_4.speach_trees.Add(dedusDialogScript.TheLostGrandson_ask_for_search_grandson_3);
-        new_task_4.function_name = "TheLostGrandson_StartMoveToPlayer";
+        new_task_4.function_name = "TheLostGrandson_StopMoveToPlayer";
         new_quest.tasks.Add(new_task_4);
 
         dict_quest_name_to_quest[new_quest.title] = new_quest;

@@ -161,6 +161,8 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        ChangeDialogPanel(current_node.current_npc_name, string.Empty);
+
         speachText.alignment = TextAlignmentOptions.TopLeft;
         if (current_node.is_text_action)
         {
@@ -177,7 +179,7 @@ public class DialogPanelScript : MonoBehaviour
 
         if (current_node.is_finishing_task)
         {
-            questsController.dict_quest_name_to_quest[speach_tree.quest_title].current_task_index++;
+            questsController.FinishTask(speach_tree.quest_title);
         }
 
         if (current_node.is_accepting_quest)
