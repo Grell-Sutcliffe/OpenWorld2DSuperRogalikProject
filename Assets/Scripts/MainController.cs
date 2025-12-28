@@ -9,6 +9,8 @@ public class MainController : MonoBehaviour
 {
     QuestsController questsController;
 
+    public HealthBarScript healthBarScript;
+
     public GameObject playerPanel;
     public GameObject dialogPanel;
     public GameObject questPanel;
@@ -127,6 +129,16 @@ public class MainController : MonoBehaviour
             scrollInteractionScript.current_index = 0;
         }
         scrollInteractionScript.ApplyAllColors();
+    }
+
+    public void UpdateHealthBar(int amount)
+    {
+        healthBarScript.UpdateHealthBar(amount);
+    }
+
+    public void UpdateHealthBar(float amount)
+    {
+        healthBarScript.UpdateHealthBar(amount);
     }
 
     public void PressF()

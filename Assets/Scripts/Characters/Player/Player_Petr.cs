@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    MainController mainController;
+
     // Player's Data
     [Header("References")]
     [field: SerializeField] public PlayerSO Data { get; private set; }
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
     float currentHealth;
     private void Awake()
     {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+
         // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
         Input = GetComponent<PlayerInput>();
         movementStateMachine = new PlayerMovementStateMachine(this);
@@ -67,19 +71,28 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        movementStateMachine.HandleInput();
+        if (mainController.is_keyboard_active)
+        {
+            movementStateMachine.HandleInput();
 
-        movementStateMachine.Update();
+            movementStateMachine.Update();
+        }
     }
 
     private void FixedUpdate()
     {
-        movementStateMachine.PhysicsUpdate();
+        if (mainController.is_keyboard_active)
+        {
+            movementStateMachine.PhysicsUpdate();
+        }
     }
 
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
+
+        mainController.UpdateHealthBar(currentHealth / maxHealth);
+
         Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg}");
         if (currentHealth <= 0)
         {

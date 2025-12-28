@@ -3367,6 +3367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c3f8bdadb24254fa8ca8e21f2dd1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarScript: {fileID: 1966827964}
   playerPanel: {fileID: 1783968238}
   dialogPanel: {fileID: 1454043789}
   questPanel: {fileID: 1124554562}
@@ -9971,6 +9972,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1966827961}
+  - component: {fileID: 1966827964}
   - component: {fileID: 1966827963}
   - component: {fileID: 1966827962}
   m_Layer: 5
@@ -10039,6 +10041,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966827960}
   m_CullTransparentMesh: 1
+--- !u!114 &1966827964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966827960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f93efc7b8411d40bc4769b5b35313b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarFilling: {fileID: 869916291}
+  health_bar_filling_sprite_origin: {fileID: 21300000, guid: 23d5449227d20fc469fe75e6ca096495, type: 3}
+  max_helth: 10
+  current_helth: 10
 --- !u!224 &1991002275 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8672003922419920287, guid: 1fd77d70b872bc54da60a1aae50959fd, type: 3}
@@ -10309,7 +10327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1eab0e51840a3e0438916c0723aa1801, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23d5449227d20fc469fe75e6ca096495, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
