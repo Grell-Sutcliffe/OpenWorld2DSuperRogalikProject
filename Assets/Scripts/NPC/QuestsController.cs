@@ -177,6 +177,11 @@ public class QuestsController : MonoBehaviour
         }
 
         dict_quest_name_to_quest[quest_title].current_task_index++;
+
+        if (dict_quest_name_to_quest[quest_title].current_task_index >= dict_quest_name_to_quest[quest_title].tasks.Count)
+        {
+            CompleteQuest(quest_title);
+        }
     }
 
     public void AcceptQuest(string new_quest)
