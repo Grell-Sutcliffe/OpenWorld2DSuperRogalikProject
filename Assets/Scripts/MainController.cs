@@ -57,6 +57,13 @@ public class MainController : MonoBehaviour
     bool doggy_F;
     bool book_F;
 
+    public Player player;
+    /*
+    private void Update()
+    {
+        player.TakeDamage(0.001f);
+        Debug.Log(player.GetHealth());
+    }*/
     void Start()
     {
         StuffSetActiveFalse();

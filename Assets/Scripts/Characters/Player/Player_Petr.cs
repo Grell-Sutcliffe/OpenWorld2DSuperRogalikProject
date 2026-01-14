@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour
     float attackCooldown;
 
     float currentHealth;
+
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -44,6 +50,24 @@ public class Player : MonoBehaviour
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         PlayerAnimator = GetComponentInChildren<Animator>();
         AnimationData.Initialize();
+    }
+    public void ModifySpeed(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedCoroutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
+    {
+        var data = movementStateMachine;
+        //float old = data.EffectSpeedModifier;
+
+        data.EffectSpeedModifier *= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
+
+        yield return new WaitForSeconds(duration);
+
+        data.EffectSpeedModifier /= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
     }
     private void ApplyConfig()
     {
