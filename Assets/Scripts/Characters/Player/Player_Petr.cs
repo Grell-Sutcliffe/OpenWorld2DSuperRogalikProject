@@ -35,6 +35,12 @@ public class Player : MonoBehaviour
 
     float currentHealth;
 
+    [SerializeField] GameObject target;
+
+    public Transform GetTarget()
+    {
+        return target.transform;
+    }
     public float GetHealth()
     {
         return currentHealth;
