@@ -27,6 +27,12 @@ public class BackPackController : MonoBehaviour
     public int space_between_items = 50;
     public int item_in_row = 7;
 
+    const string type_everything = "everyting";
+    const string type_weapon = "weapon";
+    const string type_food = "food";
+    const string type_materials = "materials";
+    const string type_quest = "quest";
+
     public string book_name = "Книга";
     public string pink_wish_name = "Молитва безбрежных небес";
     public string blue_wish_name = "Молитва тихого поднебесья";
@@ -66,55 +72,55 @@ public class BackPackController : MonoBehaviour
 
         ind++;
         // gold
-        Item gold = new ConsumableItem(ind, gold_name, "Валюта. Используется повсеместно.", gold_sprite, 150);
+        Item gold = new ConsumableItem(ind, gold_name, "Валюта. Используется повсеместно.", gold_sprite, type_materials, 150);
         dict_id_to_item[ind] = gold;
         dict_item_name_to_id[gold_name] = ind;
 
         ind++;
         // primogem
-        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, 400);
+        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, type_materials, 400);
         dict_id_to_item[ind] = primogem;
         dict_item_name_to_id[primogem_name] = ind;
 
         ind++;
         // pink wish
-        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "Молитва на персонажа.", pink_wish_sprite, 3);
+        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "Молитва на персонажа.", pink_wish_sprite, type_materials, 3);
         dict_id_to_item[ind] = pink_wish;
         dict_item_name_to_id[pink_wish_name] = ind;
 
         ind++;
         // blue wish
-        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Молитва на оружие.", blue_wish_sprite, 11);
+        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Молитва на оружие.", blue_wish_sprite, type_materials, 11);
         dict_id_to_item[ind] = blue_wish;
         dict_item_name_to_id[blue_wish_name] = ind;
 
         ind++;
         // green_crystal
-        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Зелёный кристалл. Образуется в самых потаённых уголках пещер. Используется для улучшения оружия.", green_crystal_sprite, 11);
+        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Зелёный кристалл. Образуется в самых потаённых уголках пещер. Используется для улучшения оружия.", green_crystal_sprite, type_materials, 2);
         dict_id_to_item[ind] = green_crystal;
         dict_item_name_to_id[green_crystal_name] = ind;
 
         ind++;
         // red_crystal
-        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "Класный кристалл. Образуется на местности, наиболее озарённой солнечным светом. Используется для улучшения оружия.", red_crystal_sprite, 11);
+        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "Класный кристалл. Образуется на местности, наиболее озарённой солнечным светом. Используется для улучшения оружия.", red_crystal_sprite, type_materials, 1);
         dict_id_to_item[ind] = red_crystal;
         dict_item_name_to_id[red_crystal_name] = ind;
 
         ind++;
         // almaz
-        Item almaz = new ConsumableItem(ind, almaz_name, "Наиболее твёрдый минералл в мире. Образуется глубоко в недрах земли. Используется для улучшения оружия.", almaz_sprite, 11);
+        Item almaz = new ConsumableItem(ind, almaz_name, "Наиболее твёрдый минералл в мире. Образуется глубоко в недрах земли. Используется для улучшения оружия.", almaz_sprite, type_materials, 4);
         dict_id_to_item[ind] = almaz;
         dict_item_name_to_id[almaz_name] = ind;
 
         ind++;
         // purple_crystal
-        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "Осколок одного из самых редких минераллов. Найти его в природе - большая удача. Используется для улучшения оружия.", purple_crystal_sprite, 11);
+        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "Осколок одного из самых редких минераллов. Найти его в природе - большая удача. Используется для улучшения оружия.", purple_crystal_sprite, type_materials, 3);
         dict_id_to_item[ind] = purple_crystal;
         dict_item_name_to_id[purple_crystal_name] = ind;
 
         ind++;
         // book
-        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу, она интересная.", book_sprite);
+        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу, она интересная.", book_sprite, type_quest, 0);
         dict_id_to_item[ind] = book;
         dict_item_name_to_id[book_name] = ind;
 
@@ -149,11 +155,13 @@ public class BackPackController : MonoBehaviour
         return -1;
     }
 
+    /*
     public void MoveItemToInventoryById(int new_id)
     {
         dict_id_to_item[new_id].count--;
         UpdateBackpack();
     }
+    */
 
     public void UpdateShowerPanel(int new_id)
     {
@@ -191,25 +199,50 @@ public class BackPackController : MonoBehaviour
         }
     }
 
-    void UpdateBackpack()
+    public void ShowEverything()
+    {
+        UpdateBackpack();
+    }
+
+    public void ShowWeapon()
+    {
+        UpdateBackpack(type_weapon);
+    }
+
+    public void ShowFood()
+    {
+        UpdateBackpack(type_food);
+    }
+
+    public void ShowMaterials()
+    {
+        UpdateBackpack(type_materials);
+    }
+
+    public void ShowQuest()
+    {
+        UpdateBackpack(type_quest);
+    }
+
+    void UpdateBackpack(string type = type_everything)
     {
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
-        CountItems();
+        CountItems(type);
         ClearBackpack();
-        ChangeBackpackPanelHeight();
+        ChangeBackpackPanelHeight(type);
 
         Debug.Log(item_counter);
     }
 
-    void CountItems()
+    void CountItems(string type)
     {
         item_counter = 0;
 
         foreach (int id in dict_id_to_item.Keys)
         {
             Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].count}");
-            if (dict_id_to_item[id].count > 0)
+            if (dict_id_to_item[id].count > 0 && (dict_id_to_item[id].type == type || type == type_everything))
             {
                 item_counter++;
             }
@@ -226,7 +259,7 @@ public class BackPackController : MonoBehaviour
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
     }    
 
-    void ChangeBackpackPanelHeight()
+    void ChangeBackpackPanelHeight(string type)
     {
         int row_amount = item_counter / item_in_row + (item_counter % item_in_row == 0 ? 0 : 1);
         int new_height = row_amount * item_height + (row_amount + 1) * space_between_items;
@@ -234,7 +267,7 @@ public class BackPackController : MonoBehaviour
 
         foreach (int id in dict_id_to_item.Keys)
         {
-            if (dict_id_to_item[id].count > 0)
+            if (dict_id_to_item[id].count > 0 && (dict_id_to_item[id].type == type || type == type_everything))
             {
                 SpawnBackpackIconPrefab(id);
             }
