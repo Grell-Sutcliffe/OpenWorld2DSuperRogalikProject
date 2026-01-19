@@ -89,13 +89,13 @@ public class BackPackController : MonoBehaviour
         ind++;
     }
 
-    public bool DecreaceItemByName(string item_name)
+    public bool DecreaceItemByName(string item_name, int number)
     {
         int item_id = dict_item_name_to_id[item_name];
 
-        if (dict_id_to_item[item_id].count > 0)
+        if (dict_id_to_item[item_id].count - number >= 0)
         {
-            dict_id_to_item[item_id].count--;
+            dict_id_to_item[item_id].count -= number;
             return true;
         }
         else

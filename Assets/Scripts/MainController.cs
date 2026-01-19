@@ -82,15 +82,15 @@ public class MainController : MonoBehaviour
         is_keyboard_active = true;
     }
 
-    public bool UseWish(bool is_pink)
+    public bool UseWish(bool is_pink, int number)
     {
         if (is_pink)
         {
-            return backpackController.DecreaceItemByName(backpackController.pink_wish_name);
+            return backpackController.DecreaceItemByName(backpackController.pink_wish_name, number);
         }
         else
         {
-            return backpackController.DecreaceItemByName(backpackController.blue_wish_name);
+            return backpackController.DecreaceItemByName(backpackController.blue_wish_name, number);
         }
     }
 

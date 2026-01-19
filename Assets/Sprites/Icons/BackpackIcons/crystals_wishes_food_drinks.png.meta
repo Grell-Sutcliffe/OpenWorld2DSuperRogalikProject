@@ -459,8 +459,8 @@ TextureImporter:
       name: crystals_wishes_food_drinks_11
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 160
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -481,7 +481,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_12
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -503,7 +503,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_13
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -525,7 +525,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_14
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -547,8 +547,8 @@ TextureImporter:
       name: crystals_wishes_food_drinks_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -569,7 +569,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_16
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -591,7 +591,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_17
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 32
         width: 32
         height: 32
@@ -613,7 +613,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_18
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -635,7 +635,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_19
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -657,7 +657,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_20
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 32
         width: 32
         height: 32
@@ -679,8 +679,8 @@ TextureImporter:
       name: crystals_wishes_food_drinks_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 160
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -701,7 +701,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_22
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -723,7 +723,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_23
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -745,7 +745,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_24
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -767,7 +767,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_25
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
         width: 32
         height: 32
@@ -789,7 +789,7 @@ TextureImporter:
       name: crystals_wishes_food_drinks_26
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 0
         width: 32
         height: 32
@@ -803,6 +803,28 @@ TextureImporter:
       bones: []
       spriteID: bec84a42e3b7ddc70800000000000000
       internalID: 8997483137389071595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crystals_wishes_food_drinks_27
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c41d169145d0e49a22107d0fb0c083
+      internalID: 984958731
       vertices: []
       indices: 
       edges: []
@@ -841,6 +863,7 @@ TextureImporter:
       crystals_wishes_food_drinks_24: -107113404964821369
       crystals_wishes_food_drinks_25: 9126300721002951856
       crystals_wishes_food_drinks_26: 8997483137389071595
+      crystals_wishes_food_drinks_27: 984958731
       crystals_wishes_food_drinks_3: 4423225155935984828
       crystals_wishes_food_drinks_4: -5100632705401985048
       crystals_wishes_food_drinks_5: -4174832818506940637

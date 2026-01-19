@@ -49,9 +49,9 @@ public class WishPanelScript : MonoBehaviour
         SwitchToPinkWish();
     }
 
-    public void StartWish()
+    public void StartWish10()
     {
-        bool success = UseWish();
+        bool success = UseWish(10);
 
         if (success)
         {
@@ -69,9 +69,29 @@ public class WishPanelScript : MonoBehaviour
         mainController.UpdateWishPanelInfo();
     }
 
-    bool UseWish()
+    public void StartWish()
     {
-        return mainController.UseWish(is_pink);
+        bool success = UseWish(1);
+
+        if (success)
+        {
+            CloseWishInteractPanel();
+
+            current_animator.SetBool("is_wishing", true);
+
+            Invoke("StopWish", 0.3f);
+        }
+        else
+        {
+            Debug.Log("NOT ENOUGTH WISHES");
+            return;
+        }
+        mainController.UpdateWishPanelInfo();
+    }
+
+    bool UseWish(int number)
+    {
+        return mainController.UseWish(is_pink, number);
     }
 
     void StopWish()
