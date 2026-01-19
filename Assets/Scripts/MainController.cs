@@ -248,6 +248,7 @@ public class MainController : MonoBehaviour
     {
         dialogPanel.SetActive(true);
         questPanel.SetActive(true);
+        backpackPanel.SetActive(true);
         wishPanel.SetActive(true);
         shopPanel.SetActive(true);
         characterPanel.SetActive(true);
@@ -258,6 +259,7 @@ public class MainController : MonoBehaviour
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
+        backpackPanel.SetActive(false);
         wishPanel.SetActive(false);
         shopPanel.SetActive(false);
         characterPanel.SetActive(false);
