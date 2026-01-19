@@ -29,10 +29,11 @@ public class MainController : MonoBehaviour
 
     public ScrollInteractionScript scrollInteractionScript;
     BackPackController backpackController;
+    WishPanelScript wishPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
-    
+
     public DedusDialogScript dedusDialogScript;
     public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
     public DoggyDialogScript doggyDialogScript;
@@ -65,6 +66,7 @@ public class MainController : MonoBehaviour
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         backpackController = backpackPanel.GetComponent<BackPackController>();
+        wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -78,6 +80,29 @@ public class MainController : MonoBehaviour
         SetBookScripts();
 
         is_keyboard_active = true;
+    }
+
+    public bool UseWish(bool is_pink)
+    {
+        if (is_pink)
+        {
+            return backpackController.DecreaceItemByName(backpackController.pink_wish_name);
+        }
+        else
+        {
+            return backpackController.DecreaceItemByName(backpackController.blue_wish_name);
+        }
+    }
+
+    public void UpdateWishPanelInfo()
+    {
+        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(backpackController.pink_wish_name));
+        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(backpackController.blue_wish_name));
+    }
+
+    public int GetItemCounterByName(string name)
+    {
+        return backpackController.GetItemCounterByName(name);
     }
 
     public void ShowInteraction()
@@ -392,7 +417,7 @@ public class MainController : MonoBehaviour
 
     public void OpenWishPanel()
     {
-        wishPanel.SetActive(true);
+        wishPanelScript.OpenWishPanel();
         TurnOffKeyboard();
     }
 

@@ -17,4 +17,9 @@ public class WishAnimationScript : MonoBehaviour
     {
         wishPanelScript.CompleteWish();
     }
+
+    public void OnBlueWishAnimationEnded()
+    {
+        wishPanelScript.CompleteWish();
+    }
 }

@@ -14,6 +14,15 @@ public class ConsumableItem : Item
         sprite = sprite_;
     }
 
+    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, int count_) 
+    {
+        id = id_;
+        name = name_;
+        description = description_;
+        count = count_;
+        sprite = sprite_;
+    }
+
     public ConsumableItem(string name_, string description_, Sprite sprite_) 
     {
         name = name_;

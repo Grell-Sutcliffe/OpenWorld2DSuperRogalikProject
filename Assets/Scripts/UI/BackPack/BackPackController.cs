@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class BackPackController : MonoBehaviour
 {
     public Sprite book_sprite;
+    public Sprite pink_wish_sprite;
+    public Sprite blue_wish_sprite;
+    public Sprite gold_sprite;
+    public Sprite primogem_sprite;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
@@ -20,6 +24,10 @@ public class BackPackController : MonoBehaviour
     public int item_in_row = 7;
 
     public string book_name = "Книга";
+    public string pink_wish_name = "Молитва безбрежных небес";
+    public string blue_wish_name = "Молитва тихого поднебесья";
+    public string gold_name = "Золотая монета";
+    public string primogem_name = "Кристалл сотворения";
 
     public Sprite empty_sprite;
 
@@ -27,6 +35,7 @@ public class BackPackController : MonoBehaviour
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI descriptionTMP;
 
+    public Dictionary<string, int> dict_item_name_to_id = new Dictionary<string, int>();
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
     public InventoryStalker inventory_stalker;
@@ -45,15 +54,67 @@ public class BackPackController : MonoBehaviour
 
     public void MakeDictionary()
     {
-        int ind = 1;
+        int ind = 0;
+
+        ind++;
+        // gold
+        Item gold = new ConsumableItem(ind, gold_name, "Валюта. Используется повсеместно.", gold_sprite, 150);
+        dict_id_to_item[ind] = gold;
+        dict_item_name_to_id[gold_name] = ind;
+
+        ind++;
+        // primogem
+        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, 400);
+        dict_id_to_item[ind] = primogem;
+        dict_item_name_to_id[primogem_name] = ind;
+
+        ind++;
+        // pink wish
+        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "Молитва на персонажа.", pink_wish_sprite, 3);
+        dict_id_to_item[ind] = pink_wish;
+        dict_item_name_to_id[pink_wish_name] = ind;
+
+        ind++;
+        // blue wish
+        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Молитва на оружие.", blue_wish_sprite, 11);
+        dict_id_to_item[ind] = blue_wish;
+        dict_item_name_to_id[blue_wish_name] = ind;
+
+        ind++;
         // book
         Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу.", book_sprite);
         dict_id_to_item[ind] = book;
-        Debug.Log("AAAAAAAAAAA");
-        Debug.Log(dict_id_to_item[ind].name);
-        Debug.Log(ind);
+        dict_item_name_to_id[book_name] = ind;
 
         ind++;
+    }
+
+    public bool DecreaceItemByName(string item_name)
+    {
+        int item_id = dict_item_name_to_id[item_name];
+
+        if (dict_id_to_item[item_id].count > 0)
+        {
+            dict_id_to_item[item_id].count--;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int GetItemCounterByName(string name)
+    {
+        foreach (int id in dict_id_to_item.Keys)
+        {
+            if (dict_id_to_item[id].name == name)
+            {
+                return dict_id_to_item[id].count;
+            }
+        }
+        Debug.LogError("НЕТУ ТАКОГО В ИНВЕНТАРЕ");
+        return -1;
     }
 
     public void MoveItemToInventoryById(int new_id)
