@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject target;
 
+
     public Transform GetTarget()
     {
         return target.transform;

@@ -3,88 +3,53 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Skeleton : MonoBehaviour
+public class Skeleton : EnemyAbstract
 {
-    [SerializeField] Collider2D killZone;
     [SerializeField] GameObject projectilePref;
-    [SerializeField] float attackDelay;
+    [SerializeField] float attackDelay; // weapon
+
     [SerializeField] Transform spawnArrowPos;
 
-    [SerializeField] float speed;
-    [SerializeField] BoxCollider2D walkZone;
-
-    [SerializeField] float reachDist = 0.1f;
-    [SerializeField] GameObject pref;
     float lastHit;
     
     //GameObject player;
-    bool isTriggered;
+
     Coroutine coroutine;
     bool canHit = true;
 
-    Vector2 moveTarget;
 
-    Rigidbody2D rb;
-    private void Awake()
+    protected override void FixedUpdate()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    private void Start()
-    {
-        PickNewTarget();
-
-    }
-
-    private void PickNewTarget()
-    {
-        Bounds b = walkZone.bounds;
-
-        moveTarget = new Vector2(
-            UnityEngine.Random.Range(b.min.x, b.max.x),
-            UnityEngine.Random.Range(b.min.y, b.max.y)
-        );
-    }
-
-    private void FixedUpdate()
-    {
-        if (Vector2.Distance(rb.position, moveTarget) < reachDist)
-            PickNewTarget();
-        //Debug.Log(Vector2.MoveTowards(
-          //  rb.position,
-            //moveTarget,
-          //  /speed * Time.fixedDeltaTime
-        //));
-        //Debug.Log(Vector2.Distance(rb.position, moveTarget));
-        
-        rb.MovePosition(
-        Vector2.MoveTowards(
-            rb.position,
-            moveTarget,
-            speed * Time.fixedDeltaTime
-        ));
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        if (isTriggered)
         {
-            Debug.Log("player!");
-            var player = collision.GetComponent<Player>();
-            coroutine = StartCoroutine(AttackLoop(player.GetTarget())); // add direction to player in order to create more difficult enemy
-            isTriggered = true;
+            if (Vector2.Distance(rb.position, playerTrans.position) < 3) // убегать, добавить переменную
+            {
+                RunFrom(playerTrans);
+            }
+            else if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer)
+            {
+                rb.linearVelocity = Vector2.zero; // сделать мини блуждания
+
+            }
+            else
+            {
+                ChasePlayer();
+            }
+            return;
         }
+
+        Wander();
     }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            StopCoroutine(coroutine);
-            isTriggered = false;
-        }
-    }
+    
     IEnumerator AttackLoop(Transform player)
     {
         while (true)
-        {   if (!canHit && Time.time - lastHit < attackDelay)
+        {
+            if (isTriggered == false)
+            {
+                yield break;
+            }
+            if (!canHit && Time.time - lastHit < attackDelay)
             {
                 yield return new WaitForSeconds(attackDelay - (Time.time - lastHit));
 
@@ -95,6 +60,15 @@ public class Skeleton : MonoBehaviour
         }
     }
 
+    protected override void TryAttack()
+    {
+
+    }
+    public override void OnTrigger(Player player)
+    {
+        base.OnTrigger(player);
+        StartCoroutine(AttackLoop(player.GetTarget()));
+    }
     private void Shoot(Transform playerT)
     {
         Debug.Log("Attacked");
@@ -102,7 +76,7 @@ public class Skeleton : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         GameObject arrowGO = Instantiate(
-            projectilePref,
+            projectilePref,         // тут нада от оружия брать
             spawnArrowPos.position,
             Quaternion.Euler(0, 0, angle)
         );

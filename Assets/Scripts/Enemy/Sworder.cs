@@ -2,108 +2,44 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sworder : MonoBehaviour
+public class Sworder : EnemyAbstract
 {
 
     [SerializeField] GameObject sword;
     [SerializeField] float attackDur;
 
-    [SerializeField] GameObject player;
     [SerializeField] float angleHit;
-    [SerializeField] BoxCollider2D walkZone;
     float t;
 
-    [SerializeField] float speed;
-    bool isTriggered = false;
     bool isHitting = false;
-    Vector2 moveTarget;
-    [SerializeField] float reachDist = 0.1f;
-    [SerializeField] float reachDisttoPlayer = 5f;
 
-    Rigidbody2D rb;
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-       // StartCoroutine(Hit(player.transform));
+    [SerializeField] Collider2D col;
 
-    }
-    private void Start()
-    {
-        PickNewTarget();
-
-    }
-
-    private void PickNewTarget()
-    {
-        Bounds b = walkZone.bounds;
-
-        moveTarget = new Vector2(
-            UnityEngine.Random.Range(b.min.x, b.max.x),
-            UnityEngine.Random.Range(b.min.y, b.max.y)
-        );
-    }
-
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         if (isTriggered)
         {
-            if (Vector2.Distance(rb.position, player.transform.position) < reachDisttoPlayer) // по идее разные рич дист
+            if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer) // по идее разные рич дист
             {
                 rb.linearVelocity = Vector2.zero;
                 if (!isHitting)
                 {
                     isHitting = true;
-                    StartCoroutine(Hit(player.transform));
+                    StartCoroutine(Hit(playerTrans));
                 }
             }
             else
             {
-                rb.MovePosition(
-                    Vector2.MoveTowards(
-                        rb.position,
-                        player.transform.position,
-                        speed * Time.fixedDeltaTime
-                    ));
+                ChasePlayer();
             }
             return;
         }
-        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (Vector2.Distance(rb.position, moveTarget) < reachDist)
-            PickNewTarget();
-        //Debug.Log(Vector2.MoveTowards(
-        //  rb.position,
-        //moveTarget,
-        //  /speed * Time.fixedDeltaTime
-        //));
-        //Debug.Log(Vector2.Distance(rb.position, moveTarget));
-
-        rb.MovePosition(
-        Vector2.MoveTowards(
-            rb.position,
-            moveTarget,
-            speed * Time.fixedDeltaTime
-        ));
+        Wander();
     }
-    private void OnTriggerEnter2D(Collider2D collision)  // не ентер а просто
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("player!");
-            var player = collision.GetComponent<Player>();
-            isTriggered = true;
-            
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (isHitting) return; //???
-            isTriggered = false;
-        }
-    }
+    
     IEnumerator Hit(Transform playerPos)
     {
+        col.enabled = true;
         Vector2 toPlayer = ((Vector2)playerPos.position - (Vector2)transform.position).normalized;
         float center = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
 
@@ -125,13 +61,12 @@ public class Sworder : MonoBehaviour
             yield return null;
         }
         isHitting = false;
+        col.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void TryAttack()
     {
-        
-    }
 
+    }
 
 }
