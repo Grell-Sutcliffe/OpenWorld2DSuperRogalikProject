@@ -17,7 +17,7 @@ public class Skeleton : MonoBehaviour
     [SerializeField] GameObject pref;
     float lastHit;
     
-    GameObject player;
+    //GameObject player;
     bool isTriggered;
     Coroutine coroutine;
     bool canHit = true;
@@ -49,20 +49,19 @@ public class Skeleton : MonoBehaviour
     {
         if (Vector2.Distance(rb.position, moveTarget) < reachDist)
             PickNewTarget();
-        Debug.Log(Vector2.MoveTowards(
-            rb.position,
-            moveTarget,
-            speed * Time.fixedDeltaTime
-        ));
-        Debug.Log(Vector2.Distance(rb.position, moveTarget));
+        //Debug.Log(Vector2.MoveTowards(
+          //  rb.position,
+            //moveTarget,
+          //  /speed * Time.fixedDeltaTime
+        //));
+        //Debug.Log(Vector2.Distance(rb.position, moveTarget));
         
         rb.MovePosition(
         Vector2.MoveTowards(
             rb.position,
             moveTarget,
             speed * Time.fixedDeltaTime
-        )
-    );
+        ));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
