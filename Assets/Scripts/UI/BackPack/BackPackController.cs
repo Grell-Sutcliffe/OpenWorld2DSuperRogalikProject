@@ -10,6 +10,10 @@ public class BackPackController : MonoBehaviour
     public Sprite blue_wish_sprite;
     public Sprite gold_sprite;
     public Sprite primogem_sprite;
+    public Sprite green_crystal_sprite;
+    public Sprite red_crystal_sprite;
+    public Sprite almaz_sprite;
+    public Sprite purple_crystal_sprite;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
@@ -28,6 +32,10 @@ public class BackPackController : MonoBehaviour
     public string blue_wish_name = "Молитва тихого поднебесья";
     public string gold_name = "Золотая монета";
     public string primogem_name = "Кристалл сотворения";
+    public string green_crystal_name = "Пещерный изумруд";
+    public string red_crystal_name = "Рубиновый кварц";
+    public string almaz_name = "Глубинный алмаз";
+    public string purple_crystal_name = "Осколок Александрита";
 
     public Sprite empty_sprite;
 
@@ -81,8 +89,32 @@ public class BackPackController : MonoBehaviour
         dict_item_name_to_id[blue_wish_name] = ind;
 
         ind++;
+        // green_crystal
+        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Зелёный кристалл. Образуется в самых потаённых уголках пещер. Используется для улучшения оружия.", green_crystal_sprite, 11);
+        dict_id_to_item[ind] = green_crystal;
+        dict_item_name_to_id[green_crystal_name] = ind;
+
+        ind++;
+        // red_crystal
+        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "Класный кристалл. Образуется на местности, наиболее озарённой солнечным светом. Используется для улучшения оружия.", red_crystal_sprite, 11);
+        dict_id_to_item[ind] = red_crystal;
+        dict_item_name_to_id[red_crystal_name] = ind;
+
+        ind++;
+        // almaz
+        Item almaz = new ConsumableItem(ind, almaz_name, "Наиболее твёрдый минералл в мире. Образуется глубоко в недрах земли. Используется для улучшения оружия.", almaz_sprite, 11);
+        dict_id_to_item[ind] = almaz;
+        dict_item_name_to_id[almaz_name] = ind;
+
+        ind++;
+        // purple_crystal
+        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "Осколок одного из самых редких минераллов. Найти его в природе - большая удача. Используется для улучшения оружия.", purple_crystal_sprite, 11);
+        dict_id_to_item[ind] = purple_crystal;
+        dict_item_name_to_id[purple_crystal_name] = ind;
+
+        ind++;
         // book
-        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу.", book_sprite);
+        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу, она интересная.", book_sprite);
         dict_id_to_item[ind] = book;
         dict_item_name_to_id[book_name] = ind;
 

@@ -15,6 +15,7 @@ public class MainController : MonoBehaviour
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
+    public GameObject shopPanel;
     public GameObject characterPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
@@ -30,6 +31,7 @@ public class MainController : MonoBehaviour
     public ScrollInteractionScript scrollInteractionScript;
     BackPackController backpackController;
     WishPanelScript wishPanelScript;
+    ShopPanelScript shopPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -58,6 +60,11 @@ public class MainController : MonoBehaviour
     bool doggy_F;
     bool book_F;
 
+    private void Awake()
+    {
+        StuffSetActiveTrue();
+    }
+
     void Start()
     {
         StuffSetActiveFalse();
@@ -67,6 +74,7 @@ public class MainController : MonoBehaviour
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         backpackController = backpackPanel.GetComponent<BackPackController>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
+        shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -236,11 +244,22 @@ public class MainController : MonoBehaviour
         dialogPanelScript.StartDialog(speaker_text, speach_tree);
     }
 
+    void StuffSetActiveTrue()
+    {
+        dialogPanel.SetActive(true);
+        questPanel.SetActive(true);
+        wishPanel.SetActive(true);
+        shopPanel.SetActive(true);
+        characterPanel.SetActive(true);
+        enterDangeonPanel.SetActive(true);
+    }
+
     void StuffSetActiveFalse()
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
         wishPanel.SetActive(false);
+        shopPanel.SetActive(false);
         characterPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
 
@@ -448,6 +467,18 @@ public class MainController : MonoBehaviour
     public void CloseBackpackPanel()
     {
         backpackPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenShopPanel()
+    {
+        shopPanelScript.OpenShopPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseShopPanel()
+    {
+        shopPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
