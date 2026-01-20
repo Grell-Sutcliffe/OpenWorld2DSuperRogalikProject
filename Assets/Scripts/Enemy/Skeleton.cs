@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Skeleton : EnemyAbstract
+public class Skeleton : EnemyRange
 {
     [SerializeField] GameObject projectilePref;
     [SerializeField] float attackDelay; // weapon
@@ -11,36 +11,26 @@ public class Skeleton : EnemyAbstract
     [SerializeField] Transform spawnArrowPos;
 
     float lastHit;
-    
-    //GameObject player;
+    //Transform t;
+    GameObject player;
 
     Coroutine coroutine;
     bool canHit = true;
 
 
-    protected override void FixedUpdate()
+    protected override void Start()
     {
-        if (isTriggered)
-        {
-            if (Vector2.Distance(rb.position, playerTrans.position) < 3) // убегать, добавить переменную
-            {
-                RunFrom(playerTrans);
-            }
-            else if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer)
-            {
-                rb.linearVelocity = Vector2.zero; // сделать мини блуждания
+        canStrafe = true;
+        base.Start();
 
-            }
-            else
-            {
-                ChasePlayer();
-            }
-            return;
-        }
 
-        Wander();
     }
+
     
+    
+
+    
+
     IEnumerator AttackLoop(Transform player)
     {
         while (true)

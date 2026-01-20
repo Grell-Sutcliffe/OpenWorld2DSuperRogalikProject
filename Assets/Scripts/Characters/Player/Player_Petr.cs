@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
 
     string playerName;
-    float maxHealth;
+    [SerializeField] float maxHealth;
     float armour;
     float damage;
     float moveSpeed;

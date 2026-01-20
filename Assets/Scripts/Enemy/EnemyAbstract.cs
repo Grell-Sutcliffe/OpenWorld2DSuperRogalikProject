@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class EnemyAbstract : MonoBehaviour
@@ -10,6 +11,10 @@ public abstract class EnemyAbstract : MonoBehaviour
     protected Rigidbody2D rb;
     protected Transform playerTrans; //??
 
+    int strafeSign = 1; // рандомить вначале 1 и -1
+    [SerializeField] protected float strafeTime = 2;
+    [SerializeField] protected float strafeSpeed = 1;
+    [SerializeField] protected bool canStrafe = false;
     protected Vector2 moveTarget;
     protected bool isTriggered;
 
@@ -21,9 +26,27 @@ public abstract class EnemyAbstract : MonoBehaviour
 
     protected virtual void Start()
     {
-        PickNewTarget();
-    }
+        strafeSign *= Random.value < 0.5f ? -1 : 1;
 
+        PickNewTarget();
+        StartCoroutine(ChangeStrafe());
+    }
+    IEnumerator ChangeStrafe()
+    {
+        while (true)
+        {
+            strafeSign *= -1;
+            yield return new WaitForSeconds(strafeTime);
+
+        }
+    }
+    protected void StrafeAround(Transform playerTrans)
+    {
+        Vector2 toPlayer = ((Vector2)playerTrans.position - rb.position).normalized;
+        Vector2 perp = new Vector2(-toPlayer.y, toPlayer.x) * strafeSign; // 90° в сторону
+
+        rb.MovePosition(rb.position + perp * strafeSpeed * Time.fixedDeltaTime);
+    }
     protected virtual void FixedUpdate()
     {
         if (isTriggered && playerTrans != null)

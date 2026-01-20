@@ -1,43 +1,27 @@
 ﻿using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Sworder : EnemyAbstract
+public class Sworder : EnemyMelee
 {
 
     [SerializeField] GameObject sword;
     [SerializeField] float attackDur;
-
+    
     [SerializeField] float angleHit;
-    float t;
-
-    bool isHitting = false;
 
     [SerializeField] Collider2D col;
 
-    protected override void FixedUpdate()
+
+    protected override void Start()
     {
-        if (isTriggered)
-        {
-            if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer) // по идее разные рич дист
-            {
-                rb.linearVelocity = Vector2.zero;
-                if (!isHitting)
-                {
-                    isHitting = true;
-                    StartCoroutine(Hit(playerTrans));
-                }
-            }
-            else
-            {
-                ChasePlayer();
-            }
-            return;
-        }
-        Wander();
+        canHit = true;
+        canStrafe = true;
+        base.Start();
+
     }
-    
-    IEnumerator Hit(Transform playerPos)
+    protected override IEnumerator Hit(Transform playerPos)
     {
         col.enabled = true;
         Vector2 toPlayer = ((Vector2)playerPos.position - (Vector2)transform.position).normalized;
@@ -61,7 +45,7 @@ public class Sworder : EnemyAbstract
             yield return null;
         }
         isHitting = false;
-        col.enabled = false;
+        col.enabled = false;        //attack delay
     }
 
     protected override void TryAttack()
