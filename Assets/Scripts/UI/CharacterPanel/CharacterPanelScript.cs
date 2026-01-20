@@ -7,7 +7,7 @@ public class CharacterPanelScript : MonoBehaviour
 
     void Start()
     {
-        
+        GoToCharacterPanel();
     }
 
     public void GoToCharacterPanel()

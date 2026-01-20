@@ -25,6 +25,7 @@ public abstract class Item : MonoBehaviour
     public int count;
 
     public string type = "no_type";
+    public int stars = 0;
 
     public int id; // new
     // add UI 

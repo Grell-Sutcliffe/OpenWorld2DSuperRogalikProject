@@ -8,6 +8,12 @@ public class BackPackController : MonoBehaviour
     public Sprite book_sprite;
     public Sprite pink_wish_sprite;
     public Sprite blue_wish_sprite;
+    public Sprite sword_red_sprite;
+    public Sprite sword_white_sprite;
+    public Sprite sword_gold_sprite;
+    public Sprite sword_death_sprite;
+    public Sprite sword_purple_sprite;
+    public Sprite sword_grey_sprite;
     public Sprite gold_sprite;
     public Sprite primogem_sprite;
     public Sprite green_crystal_sprite;
@@ -37,6 +43,12 @@ public class BackPackController : MonoBehaviour
     public string book_name = "Книга";
     public string pink_wish_name = "Молитва безбрежных небес";
     public string blue_wish_name = "Молитва тихого поднебесья";
+    public string sword_red_name = "Адское пламя";
+    public string sword_white_name = "Кара безбрежных небес";
+    public string sword_gold_name = "Вознесение к солнцу";
+    public string sword_death_name = "Коса смерти";
+    public string sword_purple_name = "Безымянная память";
+    public string sword_grey_name = "Призрачная игла";
     public string gold_name = "Золотая монета";
     public string primogem_name = "Кристалл сотворения";
     public string green_crystal_name = "Пещерный изумруд";
@@ -94,6 +106,42 @@ public class BackPackController : MonoBehaviour
         Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Молитва на оружие.", blue_wish_sprite, type_materials, 11);
         dict_id_to_item[ind] = blue_wish;
         dict_item_name_to_id[blue_wish_name] = ind;
+
+        ind++;
+        // sword_red
+        Item sword_red = new ConsumableItem(ind, sword_red_name, "Меч адского пламени.", sword_red_sprite, type_weapon, 5, 1);
+        dict_id_to_item[ind] = sword_red;
+        dict_item_name_to_id[sword_red_name] = ind;
+
+        ind++;
+        // sword_white
+        Item sword_white = new ConsumableItem(ind, sword_white_name, "Меч безбрежных небес.", sword_white_sprite, type_weapon, 5, 1);
+        dict_id_to_item[ind] = sword_white;
+        dict_item_name_to_id[sword_white_name] = ind;
+
+        ind++;
+        // sword_gold
+        Item sword_gold = new ConsumableItem(ind, sword_gold_name, "Меч из чистого золота.", sword_gold_sprite, type_weapon, 5, 1);
+        dict_id_to_item[ind] = sword_gold;
+        dict_item_name_to_id[sword_gold_name] = ind;
+
+        ind++;
+        // sword_death
+        Item sword_death = new ConsumableItem(ind, sword_death_name, "Меч созданный самим богом смерти.", sword_death_sprite, type_weapon, 4, 1);
+        dict_id_to_item[ind] = sword_death;
+        dict_item_name_to_id[sword_death_name] = ind;
+
+        ind++;
+        // sword_purple
+        Item sword_purple = new ConsumableItem(ind, sword_purple_name, "Меч утерянный навечно.", sword_purple_sprite, type_weapon, 4, 1);
+        dict_id_to_item[ind] = sword_purple;
+        dict_item_name_to_id[sword_purple_name] = ind;
+
+        ind++;
+        // sword_grey
+        Item sword_grey = new ConsumableItem(ind, sword_grey_name, "Наиболее острый меч из железа.", sword_grey_sprite, type_weapon, 4, 1);
+        dict_id_to_item[ind] = sword_grey;
+        dict_item_name_to_id[sword_grey_name] = ind;
 
         ind++;
         // green_crystal
