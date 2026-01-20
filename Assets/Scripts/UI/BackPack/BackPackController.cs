@@ -30,6 +30,7 @@ public class BackPackController : MonoBehaviour
     const string type_everything = "everyting";
     const string type_weapon = "weapon";
     const string type_food = "food";
+    const string type_drink = "drink";
     const string type_materials = "materials";
     const string type_quest = "quest";
 
@@ -78,7 +79,7 @@ public class BackPackController : MonoBehaviour
 
         ind++;
         // primogem
-        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, type_materials, 400);
+        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, type_materials, 1200);
         dict_id_to_item[ind] = primogem;
         dict_item_name_to_id[primogem_name] = ind;
 
@@ -212,6 +213,11 @@ public class BackPackController : MonoBehaviour
     public void ShowFood()
     {
         UpdateBackpack(type_food);
+    }
+
+    public void ShowDrink()
+    {
+        UpdateBackpack(type_drink);
     }
 
     public void ShowMaterials()

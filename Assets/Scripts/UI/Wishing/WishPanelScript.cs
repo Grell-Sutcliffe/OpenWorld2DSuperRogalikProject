@@ -34,10 +34,9 @@ public class WishPanelScript : MonoBehaviour
     [SerializeField]
     float chance_4_star = 0.2f;
 
-    void Start()
+    void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-
         pink_stars_animator = starsGO.GetComponent<Animator>();
         blue_stars_animator = blueStarsGO.GetComponent<Animator>();
     }

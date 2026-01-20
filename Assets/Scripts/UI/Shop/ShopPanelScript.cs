@@ -86,7 +86,7 @@ public class ShopPanelScript : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void MakeDictionary()
@@ -146,6 +146,14 @@ public class ShopPanelScript : MonoBehaviour
         primogem_amount_TMP.text = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[backpackController.primogem_name]].count.ToString();
         pink_wish_amount_TMP.text = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[backpackController.pink_wish_name]].count.ToString();
         blue_wish_amount_TMP.text = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[backpackController.blue_wish_name]].count.ToString();
+
+        mainController.UpdateWishPanelInfo();
+    }
+
+    public void MaxDecreaceCurrentAmount()
+    {
+        current_amount = 1;
+        UpdateCurrentAmount();
     }
 
     public void DecreaceCurrentAmount()
@@ -164,6 +172,12 @@ public class ShopPanelScript : MonoBehaviour
             current_amount++;
             UpdateCurrentAmount();
         }
+    }
+
+    public void MaxIncreaceCurrentAmount()
+    {
+        current_amount = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[dict_id_to_shop_item[current_selected_id].currency.name]].count / current_currency_amount;
+        UpdateCurrentAmount();
     }
 
     public void UpdateShowerPanel(int new_id)
@@ -191,7 +205,7 @@ public class ShopPanelScript : MonoBehaviour
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         ClearShopPanel();
-        ChangeBackpackPanelHeight();
+        ChangeShopPanelHeight();
 
         Debug.Log(item_counter);
     }
@@ -205,7 +219,7 @@ public class ShopPanelScript : MonoBehaviour
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
     }
 
-    void ChangeBackpackPanelHeight()
+    void ChangeShopPanelHeight()
     {
         int row_amount = item_counter / item_in_row + (item_counter % item_in_row == 0 ? 0 : 1);
         int new_height = row_amount * item_height + (row_amount - 1) * space_between_items + extra_space;
@@ -220,7 +234,7 @@ public class ShopPanelScript : MonoBehaviour
     void SpawnShopIconPrefab(int id)
     {
         GameObject new_prefab = Instantiate(shopIconPrefab, content_GO.transform);
-        
+
         ShopItemScript new_prefab_script = new_prefab.GetComponent<ShopItemScript>();
 
         new_prefab_script.SetShopItem(id);
