@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        Debug.Log(333333333333);
         currentHealth -= dmg;
 
         mainController.UpdateHealthBar(currentHealth / maxHealth);

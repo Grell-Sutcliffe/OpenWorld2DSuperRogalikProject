@@ -6,12 +6,13 @@ using UnityEngine;
 public class Sworder : EnemyMelee
 {
 
-    [SerializeField] GameObject sword;
+    [SerializeField] GameObject pivot;
+
     [SerializeField] float attackDur;
     
     [SerializeField] float angleHit;
 
-    [SerializeField] Collider2D col;
+    //[SerializeField] Collider2D col;
 
 
     protected override void Start()
@@ -21,6 +22,7 @@ public class Sworder : EnemyMelee
         base.Start();
 
     }
+    /*
     protected override IEnumerator Hit(Transform playerPos)
     {
         col.enabled = true;
@@ -46,11 +48,26 @@ public class Sworder : EnemyMelee
         }
         isHitting = false;
         col.enabled = false;        //attack delay
-    }
+    }*/
 
+    protected override void Hit(Transform playerPos)
+    {
+        pivot.gameObject.SetActive(true);
+        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle); // оффсет под спрайт
+    }
     protected override void TryAttack()
     {
 
+    }
+
+    public override void SingleScript()
+    {
+        isHitting = false;
+        pivot.gameObject.SetActive(false);
     }
 
 }

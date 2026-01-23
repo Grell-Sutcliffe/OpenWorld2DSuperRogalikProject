@@ -106,4 +106,9 @@ public abstract class EnemyAbstract : MonoBehaviour
     }
 
     protected abstract void TryAttack();
+
+    public virtual void SingleScript()
+    {
+
+    }
 }

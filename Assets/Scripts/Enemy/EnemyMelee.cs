@@ -17,7 +17,8 @@ public abstract class EnemyMelee : EnemyAbstract
                 if (canHit && !isHitting)
                 {
                     isHitting = true;
-                    StartCoroutine(Hit(playerTrans));
+                    //StartCoroutine(Hit(playerTrans));
+                    Hit(playerTrans);
                 }
             }
             else
@@ -28,10 +29,13 @@ public abstract class EnemyMelee : EnemyAbstract
         }
         Wander();
     }
+    /*
     protected virtual IEnumerator Hit(Transform playerPos)
     {
        yield return null;
-    }
+    }*/
 
-    
+    protected virtual void Hit(Transform playerPos)
+    {
+    }
 }

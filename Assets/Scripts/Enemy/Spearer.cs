@@ -21,6 +21,7 @@ public class Spearer : EnemyMelee
         base.Start();
 
     }
+    /*
     protected override IEnumerator Hit(Transform playerPos)
     {
         Vector2 toPlayer = ((Vector2)playerPos.position - (Vector2)hitPoint.position).normalized;
@@ -55,7 +56,7 @@ public class Spearer : EnemyMelee
         spear.position = basePos; // вернуть в hitPoint
         isHitting = false;
     }
-
+    */
     protected override void TryAttack()
     {
 
