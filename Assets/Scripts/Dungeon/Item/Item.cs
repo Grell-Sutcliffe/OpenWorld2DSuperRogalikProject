@@ -24,6 +24,9 @@ public abstract class Item : MonoBehaviour
     public float radius = 0.5f;
     public int count;
 
+    public string type = "no_type";
+    public int stars = 0;
+
     public int id; // new
     // add UI 
 

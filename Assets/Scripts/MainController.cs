@@ -15,6 +15,7 @@ public class MainController : MonoBehaviour
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
+    public GameObject shopPanel;
     public GameObject characterPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
@@ -29,10 +30,12 @@ public class MainController : MonoBehaviour
 
     public ScrollInteractionScript scrollInteractionScript;
     BackPackController backpackController;
+    WishPanelScript wishPanelScript;
+    ShopPanelScript shopPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
-    
+
     public DedusDialogScript dedusDialogScript;
     public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
     public DoggyDialogScript doggyDialogScript;
@@ -57,13 +60,11 @@ public class MainController : MonoBehaviour
     bool doggy_F;
     bool book_F;
 
-    public Player player;
-    /*
-    private void Update()
+    private void Awake()
     {
-        player.TakeDamage(0.001f);
-        Debug.Log(player.GetHealth());
-    }*/
+        StuffSetActiveTrue();
+    }
+
     void Start()
     {
         StuffSetActiveFalse();
@@ -72,6 +73,8 @@ public class MainController : MonoBehaviour
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         backpackController = backpackPanel.GetComponent<BackPackController>();
+        wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
+        shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -85,6 +88,29 @@ public class MainController : MonoBehaviour
         SetBookScripts();
 
         is_keyboard_active = true;
+    }
+
+    public bool UseWish(bool is_pink, int number)
+    {
+        if (is_pink)
+        {
+            return backpackController.DecreaceItemByName(backpackController.pink_wish_name, number);
+        }
+        else
+        {
+            return backpackController.DecreaceItemByName(backpackController.blue_wish_name, number);
+        }
+    }
+
+    public void UpdateWishPanelInfo()
+    {
+        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(backpackController.pink_wish_name));
+        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(backpackController.blue_wish_name));
+    }
+
+    public int GetItemCounterByName(string name)
+    {
+        return backpackController.GetItemCounterByName(name);
     }
 
     public void ShowInteraction()
@@ -218,11 +244,24 @@ public class MainController : MonoBehaviour
         dialogPanelScript.StartDialog(speaker_text, speach_tree);
     }
 
+    void StuffSetActiveTrue()
+    {
+        dialogPanel.SetActive(true);
+        questPanel.SetActive(true);
+        backpackPanel.SetActive(true);
+        wishPanel.SetActive(true);
+        shopPanel.SetActive(true);
+        characterPanel.SetActive(true);
+        enterDangeonPanel.SetActive(true);
+    }
+
     void StuffSetActiveFalse()
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
+        backpackPanel.SetActive(false);
         wishPanel.SetActive(false);
+        shopPanel.SetActive(false);
         characterPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
 
@@ -399,7 +438,7 @@ public class MainController : MonoBehaviour
 
     public void OpenWishPanel()
     {
-        wishPanel.SetActive(true);
+        wishPanelScript.OpenWishPanel();
         TurnOffKeyboard();
     }
 
@@ -430,6 +469,18 @@ public class MainController : MonoBehaviour
     public void CloseBackpackPanel()
     {
         backpackPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenShopPanel()
+    {
+        shopPanelScript.OpenShopPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseShopPanel()
+    {
+        shopPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
