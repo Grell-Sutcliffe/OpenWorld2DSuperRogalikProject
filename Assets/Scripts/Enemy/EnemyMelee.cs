@@ -3,9 +3,11 @@ using UnityEngine;
 
 public abstract class EnemyMelee : EnemyAbstract
 {
-    protected bool isHitting = false;
     protected bool canHit = false;
+    [SerializeField] float attackDur;
     protected float t;  // from 0 to 1
+    protected bool reload = false;
+    protected float timeLastHit;
     protected override void FixedUpdate()
     {
         if (isTriggered)
@@ -14,11 +16,15 @@ public abstract class EnemyMelee : EnemyAbstract
             {
                 //rb.linearVelocity = Vector2.zero;
                 if (canStrafe) StrafeAround(playerTrans);
-                if (canHit && !isHitting)
+
+                if (canHit)
                 {
-                    isHitting = true;
                     //StartCoroutine(Hit(playerTrans));
                     Hit(playerTrans);
+                }
+                if (!canHit && reload)
+                {
+
                 }
             }
             else
@@ -29,12 +35,17 @@ public abstract class EnemyMelee : EnemyAbstract
         }
         Wander();
     }
-    /*
-    protected virtual IEnumerator Hit(Transform playerPos)
+    
+    protected virtual IEnumerator Delay(float time)
     {
-       yield return null;
-    }*/
-
+        yield return new WaitForSeconds(time);
+        canHit = true;
+    }
+    public void StartDelay()
+    {
+        timeLastHit = Time.time;
+        StartCoroutine(Delay(attackDur));
+    }
     protected virtual void Hit(Transform playerPos)
     {
     }

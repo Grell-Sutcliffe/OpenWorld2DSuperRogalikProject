@@ -12,24 +12,25 @@ public class SingleDamage : MonoBehaviour
     {
         enemy = transform.parent?.parent?.GetComponent<EnemyAbstract>();
         hitIds = new HashSet<int>();
-
     }
     private void OnTriggerEnter2D(Collider2D collision)  // add setitititititititititiititi
     {
         int id = collision.GetInstanceID();
         if (hitIds.Contains(id)) return;
         hitIds.Add(id);
-        Debug.Log("IDDDD");
-        Debug.Log(id);
-        Debug.Log(collision);
         var dmgable = collision.GetComponentInParent<IDamagable>();
-        Debug.Log(dmgable);
-        if (dmgable != null)
+        if (dmgable != null){
             dmgable.TakeDamage(dmg, gameObject);
+            Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
+            return;
+        }
         dmgable = collision.GetComponent<IDamagable>();
         Debug.Log(dmgable);
-        if (dmgable != null)
+        if (dmgable != null){
             dmgable.TakeDamage(dmg, gameObject);
+            Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
+
+        }
 
         /*
         if (collision.CompareTag("Player"))
@@ -53,12 +54,26 @@ public class SingleDamage : MonoBehaviour
         */
 
     }
+    
 
+    public void ChangeCollider()
+    {
+        Collider2D col = transform.GetComponentInChildren<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = !col.enabled;
+
+        }
+
+    }
     public void ChangeHit()
     {
         hitIds.Clear();
-        if (enemy != null)
+        if (enemy != null){
             enemy.SingleScript(); // лучше искать енеми в родители
+            //enemy.StartDelay();
+        }
+
     }
 
 }

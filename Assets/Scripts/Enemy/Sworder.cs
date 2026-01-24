@@ -8,7 +8,7 @@ public class Sworder : EnemyMelee
 
     [SerializeField] GameObject pivot;
 
-    [SerializeField] float attackDur;
+    
     
     [SerializeField] float angleHit;
 
@@ -66,7 +66,6 @@ public class Sworder : EnemyMelee
 
     public override void SingleScript()
     {
-        isHitting = false;
         pivot.gameObject.SetActive(false);
     }
 

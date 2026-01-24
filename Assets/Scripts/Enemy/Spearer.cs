@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 public class Spearer : EnemyMelee
 {
     [SerializeField] GameObject pivot;
-    [SerializeField] float attackDur;
 
 
     protected override void Start()
@@ -31,7 +30,6 @@ public class Spearer : EnemyMelee
 
     public override void SingleScript()
     {
-        isHitting = false;
         pivot.gameObject.SetActive(false);
     }
     /*
