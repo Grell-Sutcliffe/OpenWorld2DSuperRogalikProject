@@ -4,22 +4,35 @@ using UnityEngine.UIElements;
 
 public class Spearer : EnemyMelee
 {
-    [SerializeField] Transform spear;
+    [SerializeField] GameObject pivot;
     [SerializeField] float attackDur;
-    [SerializeField] Transform hitPoint;
 
-    [SerializeField] Collider2D col;
-    [SerializeField] float windupDur = 0.25f;   // время оттяжки назад
-    [SerializeField] float thrustDur = 0.15f;   // время укола вперёд
-    [SerializeField] float recoverDur = 0.05f;  // (опц.) возвращение
-    [SerializeField] float backOffset = 0.5f;
-    [SerializeField] float forwardOffset = 1.0f;
+
     protected override void Start()
     {
         canHit = true;
         canStrafe = false;
         base.Start();
 
+    }
+    protected override void Hit(Transform playerPos)
+    {
+        pivot.gameObject.SetActive(true);
+        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - 90f); // оффсет под спрайт
+    }
+    protected override void TryAttack()
+    {
+
+    }
+
+    public override void SingleScript()
+    {
+        isHitting = false;
+        pivot.gameObject.SetActive(false);
     }
     /*
     protected override IEnumerator Hit(Transform playerPos)
@@ -57,8 +70,5 @@ public class Spearer : EnemyMelee
         isHitting = false;
     }
     */
-    protected override void TryAttack()
-    {
-
-    }
+    
 }

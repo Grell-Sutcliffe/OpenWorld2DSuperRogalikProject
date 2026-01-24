@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
     MainController mainController;
 
@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, GameObject source = null)
     {
         Debug.Log(333333333333);
         currentHealth -= dmg;

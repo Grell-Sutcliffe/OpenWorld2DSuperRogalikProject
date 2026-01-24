@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class EnemyAbstract : MonoBehaviour
+public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 {
     [Header("Movement")]
     [SerializeField] protected float speed;
@@ -18,7 +18,24 @@ public abstract class EnemyAbstract : MonoBehaviour
     protected Vector2 moveTarget;
     protected bool isTriggered;
 
+    [SerializeField] protected float hp = 10f;
 
+    [SerializeField] protected string eName;
+    public virtual void TakeDamage(float dmg, GameObject source = null)
+    {
+        LoggerName($"took dmg = {dmg}");
+        hp -= dmg;
+        if (hp <= 0) Die();
+
+    }
+    protected virtual void LoggerName(string s = null)
+    {
+        Debug.Log($"{eName} massage: {s}");
+    }
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
+    }
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
