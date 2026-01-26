@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,21 +40,21 @@ public class BackPackController : MonoBehaviour
     const string type_materials = "materials";
     const string type_quest = "quest";
 
-    public string book_name = "Книга";
-    public string pink_wish_name = "Молитва безбрежных небес";
-    public string blue_wish_name = "Молитва тихого поднебесья";
-    public string sword_red_name = "Адское пламя";
-    public string sword_white_name = "Кара безбрежных небес";
-    public string sword_gold_name = "Вознесение к солнцу";
-    public string sword_death_name = "Коса смерти";
-    public string sword_purple_name = "Безымянная память";
-    public string sword_grey_name = "Призрачная игла";
-    public string gold_name = "Золотая монета";
-    public string primogem_name = "Кристалл сотворения";
-    public string green_crystal_name = "Пещерный изумруд";
-    public string red_crystal_name = "Рубиновый кварц";
-    public string almaz_name = "Глубинный алмаз";
-    public string purple_crystal_name = "Осколок Александрита";
+    public string book_name = "РљРЅРёРіР°";
+    public string pink_wish_name = "ГЊГ®Г«ГЁГІГўГ  ГЎГҐГ§ГЎГ°ГҐГ¦Г­Г»Гµ Г­ГҐГЎГҐГ±";
+    public string blue_wish_name = "ГЊГ®Г«ГЁГІГўГ  ГІГЁГµГ®ГЈГ® ГЇГ®Г¤Г­ГҐГЎГҐГ±ГјГї";
+    public string sword_red_name = "ГЂГ¤Г±ГЄГ®ГҐ ГЇГ«Г Г¬Гї";
+    public string sword_white_name = "ГЉГ Г°Г  ГЎГҐГ§ГЎГ°ГҐГ¦Г­Г»Гµ Г­ГҐГЎГҐГ±";
+    public string sword_gold_name = "Г‚Г®Г§Г­ГҐГ±ГҐГ­ГЁГҐ ГЄ Г±Г®Г«Г­Г¶Гі";
+    public string sword_death_name = "ГЉГ®Г±Г  Г±Г¬ГҐГ°ГІГЁ";
+    public string sword_purple_name = "ГЃГҐГ§Г»Г¬ГїГ­Г­Г Гї ГЇГ Г¬ГїГІГј";
+    public string sword_grey_name = "ГЏГ°ГЁГ§Г°Г Г·Г­Г Гї ГЁГЈГ«Г ";
+    public string gold_name = "Г‡Г®Г«Г®ГІГ Гї Г¬Г®Г­ГҐГІГ ";
+    public string primogem_name = "ГЉГ°ГЁГ±ГІГ Г«Г« Г±Г®ГІГўГ®Г°ГҐГ­ГЁГї";
+    public string green_crystal_name = "ГЏГҐГ№ГҐГ°Г­Г»Г© ГЁГ§ГіГ¬Г°ГіГ¤";
+    public string red_crystal_name = "ГђГіГЎГЁГ­Г®ГўГ»Г© ГЄГўГ Г°Г¶";
+    public string almaz_name = "ГѓГ«ГіГЎГЁГ­Г­Г»Г© Г Г«Г¬Г Г§";
+    public string purple_crystal_name = "ГЋГ±ГЄГ®Г«Г®ГЄ ГЂГ«ГҐГЄГ±Г Г­Г¤Г°ГЁГІГ ";
 
     public Sprite empty_sprite;
 
@@ -85,91 +85,91 @@ public class BackPackController : MonoBehaviour
 
         ind++;
         // gold
-        Item gold = new ConsumableItem(ind, gold_name, "Валюта. Используется повсеместно.", gold_sprite, type_materials, 150);
+        Item gold = new ConsumableItem(ind, gold_name, "Г‚Г Г«ГѕГІГ . Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї ГЇГ®ГўГ±ГҐГ¬ГҐГ±ГІГ­Г®.", gold_sprite, type_materials, 150);
         dict_id_to_item[ind] = gold;
         dict_item_name_to_id[gold_name] = ind;
 
         ind++;
         // primogem
-        Item primogem = new ConsumableItem(ind, primogem_name, "Валюта. Используется для внутреигровых покупок.", primogem_sprite, type_materials, 1200);
+        Item primogem = new ConsumableItem(ind, primogem_name, "Г‚Г Г«ГѕГІГ . Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГўГ­ГіГІГ°ГҐГЁГЈГ°Г®ГўГ»Гµ ГЇГ®ГЄГіГЇГ®ГЄ.", primogem_sprite, type_materials, 1200);
         dict_id_to_item[ind] = primogem;
         dict_item_name_to_id[primogem_name] = ind;
 
         ind++;
         // pink wish
-        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "Молитва на персонажа.", pink_wish_sprite, type_materials, 3);
+        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "ГЊГ®Г«ГЁГІГўГ  Г­Г  ГЇГҐГ°Г±Г®Г­Г Г¦Г .", pink_wish_sprite, type_materials, 3);
         dict_id_to_item[ind] = pink_wish;
         dict_item_name_to_id[pink_wish_name] = ind;
 
         ind++;
         // blue wish
-        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Молитва на оружие.", blue_wish_sprite, type_materials, 11);
+        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "ГЊГ®Г«ГЁГІГўГ  Г­Г  Г®Г°ГіГ¦ГЁГҐ.", blue_wish_sprite, type_materials, 11);
         dict_id_to_item[ind] = blue_wish;
         dict_item_name_to_id[blue_wish_name] = ind;
 
         ind++;
         // sword_red
-        Item sword_red = new ConsumableItem(ind, sword_red_name, "Меч адского пламени.", sword_red_sprite, type_weapon, 5, 1);
+        Item sword_red = new ConsumableItem(ind, sword_red_name, "ГЊГҐГ· Г Г¤Г±ГЄГ®ГЈГ® ГЇГ«Г Г¬ГҐГ­ГЁ.", sword_red_sprite, type_weapon, 5, 1);
         dict_id_to_item[ind] = sword_red;
         dict_item_name_to_id[sword_red_name] = ind;
 
         ind++;
         // sword_white
-        Item sword_white = new ConsumableItem(ind, sword_white_name, "Меч безбрежных небес.", sword_white_sprite, type_weapon, 5, 1);
+        Item sword_white = new ConsumableItem(ind, sword_white_name, "ГЊГҐГ· ГЎГҐГ§ГЎГ°ГҐГ¦Г­Г»Гµ Г­ГҐГЎГҐГ±.", sword_white_sprite, type_weapon, 5, 1);
         dict_id_to_item[ind] = sword_white;
         dict_item_name_to_id[sword_white_name] = ind;
 
         ind++;
         // sword_gold
-        Item sword_gold = new ConsumableItem(ind, sword_gold_name, "Меч из чистого золота.", sword_gold_sprite, type_weapon, 5, 1);
+        Item sword_gold = new ConsumableItem(ind, sword_gold_name, "ГЊГҐГ· ГЁГ§ Г·ГЁГ±ГІГ®ГЈГ® Г§Г®Г«Г®ГІГ .", sword_gold_sprite, type_weapon, 5, 1);
         dict_id_to_item[ind] = sword_gold;
         dict_item_name_to_id[sword_gold_name] = ind;
 
         ind++;
         // sword_death
-        Item sword_death = new ConsumableItem(ind, sword_death_name, "Меч созданный самим богом смерти.", sword_death_sprite, type_weapon, 4, 1);
+        Item sword_death = new ConsumableItem(ind, sword_death_name, "ГЊГҐГ· Г±Г®Г§Г¤Г Г­Г­Г»Г© Г±Г Г¬ГЁГ¬ ГЎГ®ГЈГ®Г¬ Г±Г¬ГҐГ°ГІГЁ.", sword_death_sprite, type_weapon, 4, 1);
         dict_id_to_item[ind] = sword_death;
         dict_item_name_to_id[sword_death_name] = ind;
 
         ind++;
         // sword_purple
-        Item sword_purple = new ConsumableItem(ind, sword_purple_name, "Меч утерянный навечно.", sword_purple_sprite, type_weapon, 4, 1);
+        Item sword_purple = new ConsumableItem(ind, sword_purple_name, "ГЊГҐГ· ГіГІГҐГ°ГїГ­Г­Г»Г© Г­Г ГўГҐГ·Г­Г®.", sword_purple_sprite, type_weapon, 4, 1);
         dict_id_to_item[ind] = sword_purple;
         dict_item_name_to_id[sword_purple_name] = ind;
 
         ind++;
         // sword_grey
-        Item sword_grey = new ConsumableItem(ind, sword_grey_name, "Наиболее острый меч из железа.", sword_grey_sprite, type_weapon, 4, 1);
+        Item sword_grey = new ConsumableItem(ind, sword_grey_name, "ГЌГ ГЁГЎГ®Г«ГҐГҐ Г®Г±ГІГ°Г»Г© Г¬ГҐГ· ГЁГ§ Г¦ГҐГ«ГҐГ§Г .", sword_grey_sprite, type_weapon, 4, 1);
         dict_id_to_item[ind] = sword_grey;
         dict_item_name_to_id[sword_grey_name] = ind;
 
         ind++;
         // green_crystal
-        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Зелёный кристалл. Образуется в самых потаённых уголках пещер. Используется для улучшения оружия.", green_crystal_sprite, type_materials, 2);
+        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Г‡ГҐГ«ВёГ­Г»Г© ГЄГ°ГЁГ±ГІГ Г«Г«. ГЋГЎГ°Г Г§ГіГҐГІГ±Гї Гў Г±Г Г¬Г»Гµ ГЇГ®ГІГ ВёГ­Г­Г»Гµ ГіГЈГ®Г«ГЄГ Гµ ГЇГҐГ№ГҐГ°. Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГіГ«ГіГ·ГёГҐГ­ГЁГї Г®Г°ГіГ¦ГЁГї.", green_crystal_sprite, type_materials, 2);
         dict_id_to_item[ind] = green_crystal;
         dict_item_name_to_id[green_crystal_name] = ind;
 
         ind++;
         // red_crystal
-        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "Класный кристалл. Образуется на местности, наиболее озарённой солнечным светом. Используется для улучшения оружия.", red_crystal_sprite, type_materials, 1);
+        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "ГЉГ«Г Г±Г­Г»Г© ГЄГ°ГЁГ±ГІГ Г«Г«. ГЋГЎГ°Г Г§ГіГҐГІГ±Гї Г­Г  Г¬ГҐГ±ГІГ­Г®Г±ГІГЁ, Г­Г ГЁГЎГ®Г«ГҐГҐ Г®Г§Г Г°ВёГ­Г­Г®Г© Г±Г®Г«Г­ГҐГ·Г­Г»Г¬ Г±ГўГҐГІГ®Г¬. Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГіГ«ГіГ·ГёГҐГ­ГЁГї Г®Г°ГіГ¦ГЁГї.", red_crystal_sprite, type_materials, 1);
         dict_id_to_item[ind] = red_crystal;
         dict_item_name_to_id[red_crystal_name] = ind;
 
         ind++;
         // almaz
-        Item almaz = new ConsumableItem(ind, almaz_name, "Наиболее твёрдый минералл в мире. Образуется глубоко в недрах земли. Используется для улучшения оружия.", almaz_sprite, type_materials, 4);
+        Item almaz = new ConsumableItem(ind, almaz_name, "ГЌГ ГЁГЎГ®Г«ГҐГҐ ГІГўВёГ°Г¤Г»Г© Г¬ГЁГ­ГҐГ°Г Г«Г« Гў Г¬ГЁГ°ГҐ. ГЋГЎГ°Г Г§ГіГҐГІГ±Гї ГЈГ«ГіГЎГ®ГЄГ® Гў Г­ГҐГ¤Г°Г Гµ Г§ГҐГ¬Г«ГЁ. Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГіГ«ГіГ·ГёГҐГ­ГЁГї Г®Г°ГіГ¦ГЁГї.", almaz_sprite, type_materials, 4);
         dict_id_to_item[ind] = almaz;
         dict_item_name_to_id[almaz_name] = ind;
 
         ind++;
         // purple_crystal
-        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "Осколок одного из самых редких минераллов. Найти его в природе - большая удача. Используется для улучшения оружия.", purple_crystal_sprite, type_materials, 3);
+        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "ГЋГ±ГЄГ®Г«Г®ГЄ Г®Г¤Г­Г®ГЈГ® ГЁГ§ Г±Г Г¬Г»Гµ Г°ГҐГ¤ГЄГЁГµ Г¬ГЁГ­ГҐГ°Г Г«Г«Г®Гў. ГЌГ Г©ГІГЁ ГҐГЈГ® Гў ГЇГ°ГЁГ°Г®Г¤ГҐ - ГЎГ®Г«ГјГёГ Гї ГіГ¤Г Г·Г . Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГіГ«ГіГ·ГёГҐГ­ГЁГї Г®Г°ГіГ¦ГЁГї.", purple_crystal_sprite, type_materials, 3);
         dict_id_to_item[ind] = purple_crystal;
         dict_item_name_to_id[purple_crystal_name] = ind;
 
         ind++;
         // book
-        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу, она интересная.", book_sprite, type_quest, 0);
+        Item book = new ConsumableItem(ind, book_name, "Р’С‹ РјРѕР¶РµС‚Рµ РїСЂРѕС‡РёС‚Р°С‚СЊ СЌС‚Сѓ РєРЅРёРіСѓ.", book_sprite, type_quest, 0);
         dict_id_to_item[ind] = book;
         dict_item_name_to_id[book_name] = ind;
 
@@ -200,7 +200,7 @@ public class BackPackController : MonoBehaviour
                 return dict_id_to_item[id].count;
             }
         }
-        Debug.LogError("НЕТУ ТАКОГО В ИНВЕНТАРЕ");
+        Debug.LogError("ГЌГ…Г’Г“ Г’ГЂГЉГЋГѓГЋ Г‚ Г€ГЌГ‚Г…ГЌГ’ГЂГђГ…");
         return -1;
     }
 

@@ -29,16 +29,35 @@ public class WishPanelScript : MonoBehaviour
 
     bool is_pink = true;
 
-    [SerializeField]
-    float chance_5_star = 0.05f;
-    [SerializeField]
-    float chance_4_star = 0.2f;
+    public class WishParameters
+    {
+        public float chance_to_get_5_star = 0.05f;
+        public float chance_to_get_4_star = 0.2f;
+        public int get_5_star_wish_amount = 60;
+        public int get_4_star_wish_amount = 10;
+        public int current_wish_made_amount = 0;
+
+        public WishParameters(float chance_to_get_5_star_, float chance_to_get_4_star_, int get_5_star_wish_amount_, int get_4_star_wish_amount_)
+        {
+            chance_to_get_5_star = chance_to_get_5_star_;
+            chance_to_get_4_star = chance_to_get_4_star_;
+            get_5_star_wish_amount = get_5_star_wish_amount_;
+            get_4_star_wish_amount = get_4_star_wish_amount_;
+            current_wish_made_amount = 0;
+        }
+    }
+
+    WishParameters pink_wish_parameters;
+    WishParameters blue_wish_parameters;
 
     void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         pink_stars_animator = starsGO.GetComponent<Animator>();
         blue_stars_animator = blueStarsGO.GetComponent<Animator>();
+
+        pink_wish_parameters = new WishParameters(0.5f, 0.1f, 60, 10);
+        blue_wish_parameters = new WishParameters(0.5f, 0.1f, 60, 10);
     }
 
     public void OpenWishPanel()
@@ -57,6 +76,8 @@ public class WishPanelScript : MonoBehaviour
             CloseWishInteractPanel();
 
             current_animator.SetBool("is_wishing", true);
+
+            ComputeRewards(10);
 
             Invoke("StopWish", 0.3f);
         }
@@ -78,6 +99,8 @@ public class WishPanelScript : MonoBehaviour
 
             current_animator.SetBool("is_wishing", true);
 
+            ComputeRewards(1);
+
             Invoke("StopWish", 0.3f);
         }
         else
@@ -91,6 +114,38 @@ public class WishPanelScript : MonoBehaviour
     bool UseWish(int number)
     {
         return mainController.UseWish(is_pink, number);
+    }
+
+    void ComputeRewards(int number)
+    {
+        if (is_pink)
+        {
+            int temp_wish_amount = pink_wish_parameters.current_wish_made_amount + number;
+
+            if (temp_wish_amount / pink_wish_parameters.get_4_star_wish_amount > pink_wish_parameters.current_wish_made_amount / pink_wish_parameters.get_4_star_wish_amount)
+            {
+                Obtain4StaarCharacter();
+            }
+
+            if (temp_wish_amount / pink_wish_parameters.get_5_star_wish_amount > pink_wish_parameters.current_wish_made_amount / pink_wish_parameters.get_5_star_wish_amount)
+            {
+                Obtain5StaarCharacter();
+            }
+
+            pink_wish_parameters.current_wish_made_amount += number;
+
+            // Random chance
+        }
+    }
+
+    void Obtain5StaarCharacter()
+    {
+
+    }
+
+    void Obtain4StaarCharacter()
+    {
+        Debug.Log("GET 4* CHARACTER");
     }
 
     void StopWish()
