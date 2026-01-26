@@ -54,7 +54,10 @@ public class PlayerMovementState : IState
         }
 
         Vector2 movementDirection = GetMovementDirection();
-        float movementSpeed = movementData.BaseSpeed * stateMachine.ReusableMovementData.MovementSpeedModifier;
+        float movementSpeed =
+            movementData.BaseSpeed 
+            * stateMachine.ReusableMovementData.MovementSpeedModifier 
+            * stateMachine.EffectSpeedModifier;
         Vector2 movementVelocity = movementDirection * movementSpeed;
         stateMachine.Player.Rigidbody2D.linearVelocity = movementVelocity;
 
