@@ -10,7 +10,8 @@ public class SingleDamage : MonoBehaviour
     bool wasHitted = false;
     private void Awake()
     {
-        enemy = transform.parent?.parent?.GetComponent<EnemyAbstract>();
+        if (transform != null && transform.parent != null && transform.parent.parent != null)
+            enemy = transform.parent.parent.GetComponent<EnemyAbstract>();
         hitIds = new HashSet<int>();
     }
     private void OnTriggerEnter2D(Collider2D collision)  // add setitititititititititiititi
@@ -25,7 +26,7 @@ public class SingleDamage : MonoBehaviour
             return;
         }
         dmgable = collision.GetComponent<IDamagable>();
-        Debug.Log(dmgable);
+        //Debug.Log(dmgable);
         if (dmgable != null){
             dmgable.TakeDamage(dmg, gameObject);
             Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
@@ -70,8 +71,8 @@ public class SingleDamage : MonoBehaviour
     {
         hitIds.Clear();
         if (enemy != null){
-            enemy.SingleScript(); // лучше искать енеми в родители
-            //enemy.StartDelay();
+            enemy.UnActivePivot(); // лучше искать енеми в родители
+            enemy.StartDelay();
         }
 
     }

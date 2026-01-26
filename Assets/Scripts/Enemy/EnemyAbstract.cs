@@ -4,23 +4,36 @@ using UnityEngine;
 public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 {
     [Header("Movement")]
+    protected bool canHit = true;
+    protected float timeLastHit;
+
+    [SerializeField] protected float attackDur = 1;
+
     [SerializeField] protected float speed;
     [SerializeField] protected BoxCollider2D walkZone;
-    [SerializeField] protected float reachDist = 0.1f;
+    [SerializeField] protected float reachDist = 0.1f;  // for walk
     [SerializeField] protected float reachDisttoPlayer = 5f;
+    [SerializeField] protected float reachDisttoPlayerWithWindow = 4f;
     protected Rigidbody2D rb;
     protected Transform playerTrans; //??
 
     int strafeSign = 1; // рандомить вначале 1 и -1
-    [SerializeField] protected float strafeTime = 2;
+    [SerializeField] protected float strafeTimeM = 2;
     [SerializeField] protected float strafeSpeed = 1;
     [SerializeField] protected bool canStrafe = false;
+    [SerializeField] protected bool canWalk = true;
+    [SerializeField] protected bool isStopWhileHit = true;
     protected Vector2 moveTarget;
     protected bool isTriggered;
 
     [SerializeField] protected float hp = 10f;
 
     [SerializeField] protected string eName;
+    [SerializeField] protected float reachDisttoRotatePivot; // чтобы 
+
+
+    protected float offset;
+    public GameObject pivot;
     public virtual void TakeDamage(float dmg, GameObject source = null)
     {
         LoggerName($"took dmg = {dmg}");
@@ -53,7 +66,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
         while (true)
         {
             strafeSign *= -1;
-            yield return new WaitForSeconds(strafeTime);
+            yield return new WaitForSeconds(strafeTimeM * Random.Range(0.5f, 1f));
 
         }
     }
@@ -75,7 +88,16 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
             Wander();
         }
     }
-
+    public void StopWalk()
+    {
+        rb.linearVelocity = Vector2.zero;
+        canWalk = false;
+    }
+    public void StartWalk()
+    {
+        canWalk = true;
+        //Debug.LogWarning($"!!!!!!!!!!!!!{savedSpeed}");
+    }
     protected virtual void Wander()
     {
         if (Vector2.Distance(rb.position, moveTarget) < reachDist)
@@ -124,8 +146,14 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 
     protected abstract void TryAttack();
 
-    public virtual void SingleScript()
+    public virtual void UnActivePivot()
     {
 
+    }
+
+    
+    public virtual void StartDelay()
+    {
+        
     }
 }

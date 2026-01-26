@@ -4,31 +4,22 @@ using UnityEngine.UIElements;
 
 public class Spearer : EnemyMelee
 {
-    [SerializeField] GameObject pivot;
+    
 
 
     protected override void Start()
     {
-        canHit = true;
-        canStrafe = false;
+        offset = 90;
         base.Start();
 
     }
-    protected override void Hit(Transform playerPos)
-    {
-        pivot.gameObject.SetActive(true);
-        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - 90f); // оффсет под спрайт
-    }
+   
     protected override void TryAttack()
     {
 
     }
 
-    public override void SingleScript()
+    public override void UnActivePivot()
     {
         pivot.gameObject.SetActive(false);
     }

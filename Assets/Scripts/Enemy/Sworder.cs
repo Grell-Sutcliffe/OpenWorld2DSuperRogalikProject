@@ -6,7 +6,6 @@ using UnityEngine;
 public class Sworder : EnemyMelee
 {
 
-    [SerializeField] GameObject pivot;
 
     
     
@@ -17,8 +16,7 @@ public class Sworder : EnemyMelee
 
     protected override void Start()
     {
-        canHit = true;
-        canStrafe = true;
+        offset = 0;
         base.Start();
 
     }
@@ -50,21 +48,13 @@ public class Sworder : EnemyMelee
         col.enabled = false;        //attack delay
     }*/
 
-    protected override void Hit(Transform playerPos)
-    {
-        pivot.gameObject.SetActive(true);
-        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle); // оффсет под спрайт
-    }
+    
     protected override void TryAttack()
     {
 
     }
 
-    public override void SingleScript()
+    public override void UnActivePivot()
     {
         pivot.gameObject.SetActive(false);
     }
