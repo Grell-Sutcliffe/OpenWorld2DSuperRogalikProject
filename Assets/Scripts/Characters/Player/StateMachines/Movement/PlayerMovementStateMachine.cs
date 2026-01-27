@@ -4,6 +4,8 @@ public class PlayerMovementStateMachine : StateMachine
 {
     public Player Player { get; }
     public PlayerStateReusableData ReusableMovementData { get; }
+    public float EffectSpeedModifier = 1f;
+
     public PlayerIdlingState IdlingState { get; }
     public PlayerRunningState RunningState { get; }
     //public PlayerDashingState DashingState { get; }

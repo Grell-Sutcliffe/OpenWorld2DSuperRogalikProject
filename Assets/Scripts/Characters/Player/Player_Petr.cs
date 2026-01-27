@@ -1,8 +1,13 @@
+using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
+    public GameObject owner => gameObject;
+    protected float current_dmg;
+    public Damage currentDmg => new Damage(current_dmg);
+
 
     // Player's Data
     [Header("References")]
@@ -24,7 +29,7 @@ public class Player : MonoBehaviour
 
 
     string playerName;
-    float maxHealth;
+    [SerializeField] float maxHealth;
     float armour;
     float damage;
     float moveSpeed;
@@ -33,6 +38,26 @@ public class Player : MonoBehaviour
     float attackCooldown;
 
     float currentHealth;
+
+    [SerializeField] GameObject target;
+
+    public void DealDamage()
+    {
+        System.Random rand = new System.Random();
+
+        this.current_dmg = damage;
+
+    }
+    public void UnActivePivot(){}
+    public void StartDelay(){}
+    public Transform GetTarget()
+    {
+        return target.transform;
+    }
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -44,6 +69,24 @@ public class Player : MonoBehaviour
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         PlayerAnimator = GetComponentInChildren<Animator>();
         AnimationData.Initialize();
+    }
+    public void ModifySpeed(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedCoroutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
+    {
+        var data = movementStateMachine;
+        //float old = data.EffectSpeedModifier;
+
+        data.EffectSpeedModifier *= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
+
+        yield return new WaitForSeconds(duration);
+
+        data.EffectSpeedModifier /= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
     }
     private void ApplyConfig()
     {
@@ -87,13 +130,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
+    protected virtual void LoggerName(string s = null)
     {
-        currentHealth -= dmg;
+        Debug.Log($"{name} massage: {s}");
+    }
+    public void TakeDamage(Damage dmg)
+    {
+        //LoggerName($"took dmg = {dmg.damage}");
+        currentHealth -= dmg.damage;
 
         mainController.UpdateHealthBar(currentHealth / maxHealth);
 
-        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg}");
+        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
         if (currentHealth <= 0)
         {
             Die();
