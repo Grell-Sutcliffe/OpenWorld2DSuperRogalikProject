@@ -45,15 +45,21 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public Damage currentDmg => new Damage(current_dmg);
     public virtual void TakeDamage(Damage dmg)
     {
-        LoggerName($"took dmg = {dmg.damage}");
+        LoggerName($"took dmg = {dmg.damage}", true);
         hp -= dmg.damage;
         if (hp <= 0) Die();
 
     }
-    protected virtual void LoggerName(string s = null)
+    protected virtual void LoggerName(string s = null, bool isWarn = false)
     {
-        Debug.Log($"{eName} massage: {s}");
+        if (isWarn)
+            Debug.Log($"{eName} massage: {s}");
+        else
+            Debug.LogWarning($"{eName} massage: {s}");
+
+
     }
+
     protected virtual void Die()
     {
         LoggerName($"{name} dead");
