@@ -39,15 +39,26 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     float currentHealth;
 
+    float crit_chance = 0.7f;
+    float crit_dmg = 2.5f;
+
     [SerializeField] GameObject target;
 
     public void DealDamage()
     {
+        int delta_damage = 0;
+
         System.Random rand = new System.Random();
+        int chance = rand.Next(0, 101);
 
-        this.current_dmg = damage;
+        if (chance <= crit_chance * 100)
+        {
+            delta_damage += RoundToMax(damage * crit_dmg);
+        }
 
+        this.current_dmg = damage + delta_damage;
     }
+
     public void UnActivePivot(){}
     public void StartDelay(){}
     public Transform GetTarget()
@@ -146,6 +157,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         {
             Die();
         }
+    }
+
+    int RoundToMax(float number)
+    {
+        return ((number * 10 % 10 > 0) ? ((int)number + 1) : ((int)number));
     }
 
     public void Die()

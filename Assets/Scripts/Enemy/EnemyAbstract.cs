@@ -34,6 +34,9 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     [SerializeField] protected string eName;
     [SerializeField] protected float reachDisttoRotatePivot; // чтобы 
 
+    float crit_chance = 0.7f;
+    float crit_dmg = 2.5f;
+
 
     protected float offset;
     public GameObject pivot;
@@ -167,10 +170,19 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
     public void DealDamage()
     {
-        this.current_dmg = weapon.damage;
-        //weapon.damage -= 1;
-        LoggerName($"now have {this.currentDmg.damage} damage");
+        int delta_damage = 0;
 
+        System.Random rand = new System.Random();
+        int chance = rand.Next(0, 101);
+
+        if (chance <= crit_chance * 100)
+        {
+            delta_damage += RoundToMax(weapon.damage * crit_dmg);
+        }
+
+        this.current_dmg = weapon.damage + delta_damage;
+
+        LoggerName($"now have {this.currentDmg.damage} damage, delta_damage = {delta_damage}\ncrit_chance = {crit_chance}, crit_dmg = {crit_dmg}, chance = {chance}");
     }
     public bool isHitting;
     protected virtual IEnumerator Delay(float time)
@@ -188,5 +200,10 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     }
 
 
+
+    int RoundToMax(float number)
+    {
+        return ((number * 10 % 10 > 0) ? ((int)number + 1) : ((int)number));
+    }
 
 }
