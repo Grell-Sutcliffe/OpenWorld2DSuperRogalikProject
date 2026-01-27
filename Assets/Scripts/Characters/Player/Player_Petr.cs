@@ -11,23 +11,20 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     // Player's Data
     [Header("References")]
-    [field: SerializeField] public PlayerSO Data { get; private set; }
+    [field: SerializeField] public PlayerSO Data;
 
-    // Component for getting player input
-    public PlayerInput Input { get; private set; }
 
     [Header("Animations")]
-    [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
 
 
-    public Rigidbody2D Rigidbody2D { get; private set; }
-    public Animator PlayerAnimator { get; private set; }
-    public SpriteRenderer SpriteRenderer { get; private set; }
-
-    // §¡§Ó§ä§à§Þ§Ñ§ä §ã§à§ã§ä§à§ñ§ß§Ú§Û §Õ§Ý§ñ §å§á§â§Ñ§Ó§Ý§Ö§ß§Ú§ñ §Õ§Ó§Ú§Ø§Ö§ß§Ú§ñ §Ú§Ô§â§à§Ü§Ñ
-    private PlayerMovementStateMachine movementStateMachine;
+    public Rigidbody2D rb;
+    public Animator anim;
+    public SpriteRenderer spriteRender;
 
 
+    private Vector2 moveVector;
+
+    float dir = 0;
     string playerName;
     [SerializeField] float maxHealth;
     float armour;
@@ -72,7 +69,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-
+        rb = GetComponent<Rigidbody2D>();
+        //anim = GetComponent<Animator>();
+        //spriteRender = GetComponent<SpriteRenderer>();
+    }
+        /*
         // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
         Input = GetComponent<PlayerInput>();
         movementStateMachine = new PlayerMovementStateMachine(this);
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     {
         StartCoroutine(SpeedCoroutine(multiplier, duration));
     }
-
+    
     private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
     {
         var data = movementStateMachine;
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         data.EffectSpeedModifier /= multiplier;
         Debug.Log(data.EffectSpeedModifier);
-    }
+    }*/
     private void ApplyConfig()
     {
         if (Data == null)
@@ -119,25 +120,62 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
     private void Start()
     {
-        movementStateMachine.ChangeState(movementStateMachine.IdlingState);
         ApplyConfig();
     }
+    bool isRun = false;
 
     private void Update()
     {
         if (mainController.is_keyboard_active)
         {
-            movementStateMachine.HandleInput();
+            float x = Input.GetAxisRaw("Horizontal");
+            float y = Input.GetAxisRaw("Vertical");
+            Vector2 input = new Vector2(x, y);
 
-            movementStateMachine.Update();
+            moveVector = input.sqrMagnitude > 1f ? input.normalized : input;
+
+            if (input.sqrMagnitude > 0.01f)
+            {
+                isRun = true;
+                anim.SetBool("isRun", true);
+                float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+                Debug.Log($"angle = {angle} {((angle + 90) % 360) / 45}");
+                
+
+                if (angle > 90 || angle < -90)
+                {
+                    angle = (angle + 360) % 360;
+                    spriteRender.flipX = true;
+                    dir = 4f - ((angle - 90f) / 45f);
+
+                }
+                else
+                {
+                    dir = ((angle + 90) % 360) / 45;
+                    spriteRender.flipX = false;
+
+                }
+
+            }
+            else
+            {
+                anim.SetBool("isRun", false);
+            }
+            anim.SetFloat("dir", dir);
         }
+        
     }
 
     private void FixedUpdate()
     {
         if (mainController.is_keyboard_active)
         {
-            movementStateMachine.PhysicsUpdate();
+            rb.linearVelocity = moveVector * moveSpeed;
+
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -152,7 +190,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         mainController.UpdateHealthBar(currentHealth / maxHealth);
 
-        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
+        Debug.LogWarning($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
         if (currentHealth <= 0)
         {
             Die();

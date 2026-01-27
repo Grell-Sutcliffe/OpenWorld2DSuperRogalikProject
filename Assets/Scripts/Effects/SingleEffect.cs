@@ -35,7 +35,7 @@ public class SingleEffect : Effect
                 }
                 else
                 {
-                    player.ModifySpeed(powerOfEffect, 1);
+                    //player.ModifySpeed(powerOfEffect, 1);
                 }
             }
             if (isDestroyAfterWork) Destroy(this.gameObject);

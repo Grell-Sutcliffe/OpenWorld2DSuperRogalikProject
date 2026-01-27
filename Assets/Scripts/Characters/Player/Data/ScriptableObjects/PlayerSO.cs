@@ -3,8 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Player", menuName = "Custom/Characters")]
 public class PlayerSO : ScriptableObject
 {
-    [field: SerializeField] public PlayerMovementData MovementData { get; private set; }
-
     [Header("BasicStatus")]
     [SerializeField] public string playerName;
     [SerializeField] public float maxHealth;
