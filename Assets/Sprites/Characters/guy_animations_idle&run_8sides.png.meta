@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6dd18018db0a2dd4db092fe2b47bd25f
+guid: 27886876bd894994f9b53fc3e54cfc18
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -304,7 +304,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -318,7 +318,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -342,7 +342,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -363,19 +363,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -383,12 +370,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -405,12 +392,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_1
       rect:
         serializedVersion: 2
-        x: 66
-        y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 72
+        y: 296
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -427,12 +414,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_2
       rect:
         serializedVersion: 2
-        x: 99
+        x: 105
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -449,12 +436,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_3
       rect:
         serializedVersion: 2
-        x: 132
-        y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 138
+        y: 296
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -471,12 +458,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_4
       rect:
         serializedVersion: 2
-        x: 165
+        x: 171
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -493,12 +480,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_5
       rect:
         serializedVersion: 2
-        x: 231
+        x: 237
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -515,12 +502,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_6
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -537,12 +524,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_7
       rect:
         serializedVersion: 2
-        x: 297
+        x: 303
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -559,12 +546,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_8
       rect:
         serializedVersion: 2
-        x: 330
+        x: 336
         y: 297
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -581,12 +568,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_9
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -603,12 +590,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_10
       rect:
         serializedVersion: 2
-        x: 66
-        y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 71
+        y: 263
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -625,12 +612,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_11
       rect:
         serializedVersion: 2
-        x: 99
+        x: 104
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -647,12 +634,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_12
       rect:
         serializedVersion: 2
-        x: 132
-        y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 137
+        y: 263
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -669,12 +656,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_13
       rect:
         serializedVersion: 2
-        x: 165
+        x: 170
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -691,12 +678,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_14
       rect:
         serializedVersion: 2
-        x: 231
+        x: 236
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -713,12 +700,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_15
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -735,12 +722,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_16
       rect:
         serializedVersion: 2
-        x: 297
+        x: 302
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -757,12 +744,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_17
       rect:
         serializedVersion: 2
-        x: 330
+        x: 335
         y: 264
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -779,12 +766,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_18
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -801,12 +788,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_19
       rect:
         serializedVersion: 2
-        x: 66
+        x: 71
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -823,12 +810,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_20
       rect:
         serializedVersion: 2
-        x: 99
+        x: 104
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -845,12 +832,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_21
       rect:
         serializedVersion: 2
-        x: 132
+        x: 137
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -867,12 +854,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_22
       rect:
         serializedVersion: 2
-        x: 165
-        y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 170
+        y: 230
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -889,12 +876,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_23
       rect:
         serializedVersion: 2
-        x: 231
+        x: 236
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -911,12 +898,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_24
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -933,12 +920,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_25
       rect:
         serializedVersion: 2
-        x: 297
+        x: 302
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -955,12 +942,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_26
       rect:
         serializedVersion: 2
-        x: 330
+        x: 335
         y: 231
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -977,12 +964,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_27
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -999,12 +986,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_28
       rect:
         serializedVersion: 2
-        x: 66
+        x: 70
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1021,12 +1008,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_29
       rect:
         serializedVersion: 2
-        x: 99
+        x: 103
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1043,12 +1030,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_30
       rect:
         serializedVersion: 2
-        x: 132
+        x: 136
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1065,12 +1052,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_31
       rect:
         serializedVersion: 2
-        x: 165
-        y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 169
+        y: 197
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1087,12 +1074,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_32
       rect:
         serializedVersion: 2
-        x: 231
+        x: 235
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1109,12 +1096,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_33
       rect:
         serializedVersion: 2
-        x: 264
+        x: 268
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1131,12 +1118,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_34
       rect:
         serializedVersion: 2
-        x: 297
+        x: 301
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1153,12 +1140,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_35
       rect:
         serializedVersion: 2
-        x: 330
+        x: 334
         y: 198
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1175,12 +1162,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_36
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1197,12 +1184,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_37
       rect:
         serializedVersion: 2
-        x: 66
+        x: 71
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1219,12 +1206,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_38
       rect:
         serializedVersion: 2
-        x: 99
+        x: 105
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1241,12 +1228,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_39
       rect:
         serializedVersion: 2
-        x: 132
+        x: 137
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1263,12 +1250,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_40
       rect:
         serializedVersion: 2
-        x: 165
+        x: 171
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1285,12 +1272,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_41
       rect:
         serializedVersion: 2
-        x: 231
+        x: 236
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1307,12 +1294,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_42
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1329,12 +1316,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_43
       rect:
         serializedVersion: 2
-        x: 297
+        x: 302
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1351,12 +1338,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_44
       rect:
         serializedVersion: 2
-        x: 330
+        x: 335
         y: 165
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1373,12 +1360,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_45
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1395,12 +1382,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_46
       rect:
         serializedVersion: 2
-        x: 66
+        x: 71
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1417,12 +1404,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_47
       rect:
         serializedVersion: 2
-        x: 99
+        x: 105
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1439,12 +1426,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_48
       rect:
         serializedVersion: 2
-        x: 132
+        x: 137
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1461,12 +1448,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_49
       rect:
         serializedVersion: 2
-        x: 165
+        x: 171
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1483,12 +1470,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_50
       rect:
         serializedVersion: 2
-        x: 231
+        x: 236
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1505,12 +1492,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_51
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1527,12 +1514,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_52
       rect:
         serializedVersion: 2
-        x: 297
+        x: 302
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1549,12 +1536,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_53
       rect:
         serializedVersion: 2
-        x: 330
+        x: 335
         y: 132
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1571,12 +1558,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_54
       rect:
         serializedVersion: 2
-        x: 0
+        x: 5
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1593,12 +1580,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_55
       rect:
         serializedVersion: 2
-        x: 66
+        x: 72
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1615,12 +1602,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_56
       rect:
         serializedVersion: 2
-        x: 99
+        x: 104
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1637,12 +1624,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_57
       rect:
         serializedVersion: 2
-        x: 132
-        y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 138
+        y: 98
+        width: 18
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1659,12 +1646,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_58
       rect:
         serializedVersion: 2
-        x: 165
+        x: 170
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1681,12 +1668,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_59
       rect:
         serializedVersion: 2
-        x: 231
+        x: 236
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1703,12 +1690,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_60
       rect:
         serializedVersion: 2
-        x: 264
+        x: 269
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1725,12 +1712,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_61
       rect:
         serializedVersion: 2
-        x: 297
+        x: 302
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1747,12 +1734,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_62
       rect:
         serializedVersion: 2
-        x: 330
+        x: 335
         y: 99
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1769,12 +1756,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_63
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1791,12 +1778,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_64
       rect:
         serializedVersion: 2
-        x: 66
+        x: 71
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1813,12 +1800,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_65
       rect:
         serializedVersion: 2
-        x: 99
+        x: 103
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1835,12 +1822,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_66
       rect:
         serializedVersion: 2
-        x: 132
-        y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 137
+        y: 65
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1857,12 +1844,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_67
       rect:
         serializedVersion: 2
-        x: 165
+        x: 169
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1879,12 +1866,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_68
       rect:
         serializedVersion: 2
-        x: 231
+        x: 235
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1901,12 +1888,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_69
       rect:
         serializedVersion: 2
-        x: 264
+        x: 268
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1923,12 +1910,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_70
       rect:
         serializedVersion: 2
-        x: 297
+        x: 301
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1945,12 +1932,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_71
       rect:
         serializedVersion: 2
-        x: 330
+        x: 334
         y: 66
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1967,12 +1954,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_72
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1989,12 +1976,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_73
       rect:
         serializedVersion: 2
-        x: 66
-        y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 72
+        y: 32
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2011,12 +1998,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_74
       rect:
         serializedVersion: 2
-        x: 99
+        x: 105
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2033,12 +2020,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_75
       rect:
         serializedVersion: 2
-        x: 132
-        y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 138
+        y: 32
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2055,12 +2042,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_76
       rect:
         serializedVersion: 2
-        x: 165
+        x: 171
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2077,12 +2064,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_77
       rect:
         serializedVersion: 2
-        x: 231
+        x: 237
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2099,12 +2086,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_78
       rect:
         serializedVersion: 2
-        x: 264
+        x: 270
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2121,12 +2108,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_79
       rect:
         serializedVersion: 2
-        x: 297
+        x: 303
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2143,12 +2130,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_80
       rect:
         serializedVersion: 2
-        x: 330
+        x: 336
         y: 33
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2165,12 +2152,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_81
       rect:
         serializedVersion: 2
-        x: 0
+        x: 6
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2187,12 +2174,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_82
       rect:
         serializedVersion: 2
-        x: 66
+        x: 72
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2209,12 +2196,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_83
       rect:
         serializedVersion: 2
-        x: 99
+        x: 105
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2231,12 +2218,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_84
       rect:
         serializedVersion: 2
-        x: 132
+        x: 138
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2253,12 +2240,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_85
       rect:
         serializedVersion: 2
-        x: 165
+        x: 171
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2275,12 +2262,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_86
       rect:
         serializedVersion: 2
-        x: 231
+        x: 237
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2297,12 +2284,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_87
       rect:
         serializedVersion: 2
-        x: 264
+        x: 270
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2319,12 +2306,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_88
       rect:
         serializedVersion: 2
-        x: 297
+        x: 303
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2341,12 +2328,12 @@ TextureImporter:
       name: guy_animations_idle&run_8sides_89
       rect:
         serializedVersion: 2
-        x: 330
+        x: 336
         y: 0
-        width: 33
-        height: 33
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2363,7 +2350,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b456678bfeac12b44814dfbc46059dc4
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
