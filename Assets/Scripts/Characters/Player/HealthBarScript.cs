@@ -47,7 +47,7 @@ public class HealthBarScript : MonoBehaviour
 
     public void UpdateHealthBar(float amount)
     {
-        Debug.Log("Float amount HEALTH BAR");
+        //Debug.Log("Float amount HEALTH BAR");
 
         current_health_percent = amount;
         current_helth = max_helth / current_health_percent;

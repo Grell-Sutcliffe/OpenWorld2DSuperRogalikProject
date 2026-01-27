@@ -24,14 +24,14 @@ public class SingleDamage : MonoBehaviour
         var dmgable = collision.GetComponentInParent<IDamagable>();                         // »«Ã≈Õ»“‹!
         if (dmgable != null){
             dmgable.TakeDamage(owner.currentDmg);
-            Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
+            //Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
             return;
         }
         dmgable = collision.GetComponent<IDamagable>();
         //Debug.Log(dmgable);
         if (dmgable != null){
             dmgable.TakeDamage(owner.currentDmg);
-            Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
+            //Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
 
         }
 
