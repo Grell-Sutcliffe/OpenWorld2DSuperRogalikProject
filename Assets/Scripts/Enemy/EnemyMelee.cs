@@ -3,9 +3,7 @@ using UnityEngine;
 
 public abstract class EnemyMelee : EnemyAbstract
 {
-    protected float t;  // from 0 to 1
-    protected bool reload; // ЗАЧЕМ
-    
+    protected float t;  // from 0 to 1    
     
 
     protected override void FixedUpdate()
@@ -15,13 +13,14 @@ public abstract class EnemyMelee : EnemyAbstract
             if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer) // по идее разные рич дист
             {
                 rb.linearVelocity = Vector2.zero;
-                if (canStrafe) StrafeAround(playerTrans);
+                if (canStrafe) StrafeAround(playerTrans);  // тут надо бы поменять...
 
-                if (canHit)
+                if (canHit && !isHitting)
                 {
                     //StartCoroutine(Hit(playerTrans));
                     if(isStopWhileHit) StopWalk();
                     RotatePivot(playerTrans, offset);
+
                     Hit();
                 }
                 return;
@@ -44,6 +43,8 @@ public abstract class EnemyMelee : EnemyAbstract
 
     protected virtual void Hit()
     {
+        isHitting = true;
+        DealDamage();
         pivot.gameObject.SetActive(true);
 
     }
@@ -56,19 +57,5 @@ public abstract class EnemyMelee : EnemyAbstract
         pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
 
-    protected virtual IEnumerator Delay(float time)
-    {
-        StartWalk();
-        yield return new WaitForSeconds(time);
-        canHit = true;
-        reload = false;
-        
-    }
-    public override void StartDelay()
-    {
-        canHit = false;
-        reload = true;
-        timeLastHit = Time.time;
-        StartCoroutine(Delay(attackDur));
-    }
+    
 }

@@ -5,13 +5,15 @@ public class SingleDamage : MonoBehaviour
 {
 
     [SerializeField] float dmg;
-    [SerializeField] EnemyAbstract enemy;
+    [SerializeField] IAttacker owner;
     HashSet<int> hitIds;
     bool wasHitted = false;
     private void Awake()
     {
         if (transform != null && transform.parent != null && transform.parent.parent != null)
-            enemy = transform.parent.parent.GetComponent<EnemyAbstract>();
+            owner = transform.parent.parent.GetComponent<IAttacker>();
+        if (owner == null)
+            owner = transform.parent.GetComponent<IAttacker>();
         hitIds = new HashSet<int>();
     }
     private void OnTriggerEnter2D(Collider2D collision)  // add setitititititititititiititi
@@ -19,16 +21,16 @@ public class SingleDamage : MonoBehaviour
         int id = collision.GetInstanceID();
         if (hitIds.Contains(id)) return;
         hitIds.Add(id);
-        var dmgable = collision.GetComponentInParent<IDamagable>();
+        var dmgable = collision.GetComponentInParent<IDamagable>();                         // »«ћ≈Ќ»“№!
         if (dmgable != null){
-            dmgable.TakeDamage(dmg, gameObject);
+            dmgable.TakeDamage(owner.currentDmg);
             Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
             return;
         }
         dmgable = collision.GetComponent<IDamagable>();
         //Debug.Log(dmgable);
         if (dmgable != null){
-            dmgable.TakeDamage(dmg, gameObject);
+            dmgable.TakeDamage(owner.currentDmg);
             Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
 
         }
@@ -70,9 +72,9 @@ public class SingleDamage : MonoBehaviour
     public void ChangeHit()
     {
         hitIds.Clear();
-        if (enemy != null){
-            enemy.UnActivePivot(); // лучше искать енеми в родители
-            enemy.StartDelay();
+        if (owner != null){
+            owner.UnActivePivot(); // лучше искать енеми в родители
+            owner.StartDelay();
         }
 
     }

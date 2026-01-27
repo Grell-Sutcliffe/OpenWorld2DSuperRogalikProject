@@ -30,7 +30,9 @@ public class Skeleton : EnemyRange
   
     public override void Shoot()
     {
+        this.DealDamage();
         Debug.Log("Attacked");
+        
         Vector2 dir = playerTrans.position - spawnArrowPos.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
@@ -39,7 +41,9 @@ public class Skeleton : EnemyRange
             spawnArrowPos.position,
             Quaternion.Euler(0, 0, angle)
         );
-        arrowGO.GetComponent<Projectiles>().SetDir(dir);
+        var arrow = arrowGO.GetComponent<Projectiles>();
+        arrow.SetDir(dir);
+        arrow.dmg = currentDmg;
         canHit = false;
     }
     

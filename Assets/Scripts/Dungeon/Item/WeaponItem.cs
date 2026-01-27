@@ -4,6 +4,7 @@ public class WeaponItem : Item
 {
     public WeaponData weaponData;
     // add characteristics 
+
     public virtual void OnPickup(GameObject player)
     {
         Debug.Log($"Подобрано оружие {name}");

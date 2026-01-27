@@ -8,10 +8,11 @@ public class Projectiles : MonoBehaviour
     //Collider2D col;
 
     //Effect
-    [SerializeField] float dmg;
     [SerializeField] float speed;
     [SerializeField] Vector3 dir;
+    public Damage dmg;
     Rigidbody2D rb;
+
     private void Awake()
     {
         //col = GetComponent<Collider2D>();
@@ -33,7 +34,7 @@ public class Projectiles : MonoBehaviour
             var player = collision.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(dmg);
+                player.TakeDamage(new Damage(dmg.damage));
                 Destroy(gameObject);
             }
         }

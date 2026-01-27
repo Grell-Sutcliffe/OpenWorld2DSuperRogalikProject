@@ -83,11 +83,12 @@ public class DamagableScript : MonoBehaviour
 
         public void TakeDamage(Damage damage)
         {
-            int dmg_amount = damage.GetDamage();
-            float delta_dmg_amount = dmg_amount * this.current_defence;
-            dmg_amount -= (int)delta_dmg_amount;
+            //int dmg_amount = damage.GetDamage();                       
+            // »« «¿ ‘ÀŒ¿“¿ “≈œ≈–‹ Õ≈ –¿¡Œ“¿≈“ —¬≈–’”
+            //float delta_dmg_amount = dmg_amount * this.current_defence;
+            //dmg_amount -= (int)delta_dmg_amount;
 
-            this.ChangeHealth(-dmg_amount);
+            //this.ChangeHealth(-dmg_amount);
         }
 
         void SetOnElement(Element element)
@@ -139,72 +140,8 @@ public class DamagableScript : MonoBehaviour
         }
     }
 
-    public class Weapon
-    {
-        Sprite sprite;
-        string name;
-        string description;
-        int stars;
-        int damage;
-        Element element;
-        int max_level;
-        int current_level;
 
-        public Weapon()
-        {
-            this.sprite = null;
-            this.name = String.Empty;
-            this.description = String.Empty;
-            this.stars = 0;
-            this.damage = 0;
-            this.element = Element.None;
-            this.max_level = 0;
-            this.current_level = 0;
-        }
+    
 
-        public Weapon(Sprite sprite, string name, string description, int stars, int damage, Element element, int max_level)
-        {
-            this.sprite = sprite;
-            this.name = name;
-            this.description = description;
-            this.stars = stars;
-            this.damage = damage;
-            this.element = element;
-            this.max_level = max_level;
-
-            this.current_level = 1;
-        }
-    }
-
-    public class Damage
-    {
-        int damage;
-        Element element;
-
-        public Damage(int damage_, Element element_ = Element.None)
-        {
-            damage = damage_;
-            element = element_;
-        }
-
-        public int GetDamage()
-        {
-            return damage;
-        }
-
-        public Element GetElement()
-        {
-            return element;
-        }
-    }
-
-    public enum Element
-    {
-        None = 0,
-        Cryo = 1,
-        Pyro = 2,
-        Electro = 3,
-        Anemo = 4,
-        Physical = 5,
-    }
+    
 }

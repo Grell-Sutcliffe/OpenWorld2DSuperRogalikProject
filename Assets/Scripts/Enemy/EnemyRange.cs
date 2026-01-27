@@ -61,22 +61,10 @@ public abstract class EnemyRange : EnemyAbstract
         pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
 
-    protected virtual IEnumerator Delay(float time)
-    {
-        StartWalk();
-        yield return new WaitForSeconds(time);
-        canHit = true;
-
-    }
+ 
     public override void UnActivePivot()
     {
         pivot.gameObject.SetActive(false);
-    }
-    public override void StartDelay()
-    {
-        canHit = false;
-        timeLastHit = Time.time;
-        StartCoroutine(Delay(attackDur));
     }
 
     public virtual void Shoot()

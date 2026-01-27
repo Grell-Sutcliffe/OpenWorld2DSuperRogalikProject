@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IDamagable 
 {
-    void TakeDamage(float dmg, GameObject source = null);
+    void TakeDamage(Damage amg);
 
 }
 

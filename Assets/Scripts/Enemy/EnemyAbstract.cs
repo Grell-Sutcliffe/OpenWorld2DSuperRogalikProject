@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public abstract class EnemyAbstract : MonoBehaviour, IDamagable
+public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 {
     [Header("Movement")]
     protected bool canHit = true;
     protected float timeLastHit;
+    public GameObject owner => gameObject;
+    
 
     [SerializeField] protected float attackDur = 1;
 
@@ -34,10 +37,16 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 
     protected float offset;
     public GameObject pivot;
-    public virtual void TakeDamage(float dmg, GameObject source = null)
+
+    [SerializeField] WeaponSO dataW;
+    protected Weapon weapon;
+
+    protected float current_dmg;
+    public Damage currentDmg => new Damage(current_dmg);
+    public virtual void TakeDamage(Damage dmg)
     {
-        LoggerName($"took dmg = {dmg}");
-        hp -= dmg;
+        LoggerName($"took dmg = {dmg.damage}");
+        hp -= dmg.damage;
         if (hp <= 0) Die();
 
     }
@@ -47,6 +56,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
     }
     protected virtual void Die()
     {
+        LoggerName($"{name} dead");
         Destroy(gameObject);
     }
     protected virtual void Awake()
@@ -56,6 +66,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
+        weapon = new Weapon(dataW);
         strafeSign *= Random.value < 0.5f ? -1 : 1;
 
         PickNewTarget();
@@ -146,14 +157,30 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable
 
     protected abstract void TryAttack();
 
-    public virtual void UnActivePivot()
+    public virtual void UnActivePivot(){}
+
+    public void DealDamage()
     {
+        this.current_dmg = weapon.damage;
+        //weapon.damage -= 1;
+        LoggerName($"now have {this.currentDmg.damage} damage");
 
     }
-
-    
-    public virtual void StartDelay()
+    public bool isHitting;
+    protected virtual IEnumerator Delay(float time)
     {
-        
+        StartWalk();
+        yield return new WaitForSeconds(weapon.cooldown);
+        canHit = true;
     }
+    public void StartDelay()
+    {
+        isHitting = false;
+        canHit = false;
+        timeLastHit = Time.time;
+        StartCoroutine(Delay(attackDur));
+    }
+
+
+
 }

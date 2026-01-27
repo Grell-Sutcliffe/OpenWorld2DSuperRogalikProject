@@ -1,9 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamagable
+public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
+    public GameObject owner => gameObject;
+    protected float current_dmg;
+    public Damage currentDmg => new Damage(current_dmg);
+
 
     // Player's Data
     [Header("References")]
@@ -37,7 +41,15 @@ public class Player : MonoBehaviour, IDamagable
 
     [SerializeField] GameObject target;
 
+    public void DealDamage()
+    {
+        System.Random rand = new System.Random();
 
+        this.current_dmg = damage;
+
+    }
+    public void UnActivePivot(){}
+    public void StartDelay(){}
     public Transform GetTarget()
     {
         return target.transform;
@@ -118,14 +130,18 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
-    public void TakeDamage(float dmg, GameObject source = null)
+    protected virtual void LoggerName(string s = null)
     {
-        Debug.Log(333333333333);
-        currentHealth -= dmg;
+        Debug.Log($"{name} massage: {s}");
+    }
+    public void TakeDamage(Damage dmg)
+    {
+        //LoggerName($"took dmg = {dmg.damage}");
+        currentHealth -= dmg.damage;
 
         mainController.UpdateHealthBar(currentHealth / maxHealth);
 
-        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg}");
+        Debug.Log($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
         if (currentHealth <= 0)
         {
             Die();

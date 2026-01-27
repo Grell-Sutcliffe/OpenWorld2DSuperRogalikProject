@@ -31,7 +31,7 @@ public class SingleEffect : Effect
             {
                 if (effectType == TypeOfEffect.DMG)
                 {
-                    player.TakeDamage(powerOfEffect);
+                    //player.TakeDamage(powerOfEffect);
                 }
                 else
                 {

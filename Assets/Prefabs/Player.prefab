@@ -90,6 +90,7 @@ MonoBehaviour:
     runParameterName: isRunning
     moveXParameterName: MoveX
     moveYParameterName: MoveY
+  maxHealth: 0
   target: {fileID: 3401088822291997560}
 --- !u!114 &1931018045161669716
 MonoBehaviour:
@@ -391,7 +392,7 @@ SpriteRenderer:
   m_Size: {x: 2.0625, y: 2.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!95 &3895007719901739014
