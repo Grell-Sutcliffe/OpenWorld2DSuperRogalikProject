@@ -5,8 +5,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
     public GameObject owner => gameObject;
-    protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg);
+    protected Damage current_dmg;
+    public Damage currentDmg => current_dmg;
     bool canHit = true;
 
 
@@ -46,19 +46,16 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     public void DealDamage()
     {
-        int delta_damage = 0;
+        bool isCrit = Random.value <= crit_chance; // crit_chance = 0..1
 
-        System.Random rand = new System.Random();
-        int chance = rand.Next(0, 101);
+        float finalDamage = damage;
+        if (isCrit)
+            finalDamage *= crit_dmg;
 
-        if (chance <= crit_chance * 100)
-        {
-            delta_damage += RoundToMax(damage * crit_dmg);
-        }
+        current_dmg = new Damage(finalDamage, isCrit);
 
-        this.current_dmg = damage + delta_damage;
+        LoggerName($"now have {current_dmg} damage (crit={isCrit})");
 
-        LoggerName($"now have {current_dmg} damage");
     }
 
     public void UnActivePivot(){

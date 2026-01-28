@@ -51,6 +51,18 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public Damage currentDmg => new Damage(current_dmg);
 
     protected bool isDead = false;
+
+    [SerializeField] DamageText damageTextPrefab;
+    [SerializeField] Transform damageTextPoint; 
+    void ShowDamage(Damage dmg)
+    {
+        var txt = Instantiate(
+            damageTextPrefab,
+            damageTextPoint.position,
+            Quaternion.identity
+        );
+        txt.Init(dmg);
+    }
     public virtual void TakeDamage(Damage dmg)
     {
         LoggerName($"took dmg = {dmg.damage}", true);
@@ -66,6 +78,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
         }
         
         ChangeHealthBar();
+        ShowDamage(dmg);
     }
     void ChangeHealthBar()
     {
