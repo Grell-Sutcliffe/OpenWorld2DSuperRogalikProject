@@ -3,70 +3,43 @@ using UnityEngine;
 
 public class ConsumableItem : Item
 {
-    public int amount = 1;
+    ConsumableItemSO data;
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_) 
+    public ConsumableItem(ConsumableItemSO data, int id)
     {
-        id = id_;
-        name = name_;
-        description = description_;
-        count = 0;
-        sprite = sprite_;
-    }
+        this.data = data;
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, int count_) 
-    {
-        id = id_;
-        name = name_;
-        description = description_;
-        count = count_;
-        sprite = sprite_;
+        this.sprite = data.sprite;
+        this.item_name = data.item_name;
+        this.description = data.description;
+
+        this.item_type = data.item_type;
+
+        this.amount = data.amount;
+
+        this.id = id;
     }
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, ItemType type_, int count_) 
+    public ConsumableItem(ConsumableItemSO data, int id, int amount)
     {
-        id = id_;
-        name = name_;
-        description = description_;
-        count = count_;
-        type = type_;
-        sprite = sprite_;
+        this.data = data;
+
+        this.sprite = data.sprite;
+        this.item_name = data.item_name;
+        this.description = data.description;
+
+        this.item_type = data.item_type;
+
+        this.amount = amount;
+
+        this.id = id;
     }
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, ItemType type_, int stars_, int count_) 
-    {
-        id = id_;
-        name = name_;
-        description = description_;
-        count = count_;
-        type = type_;
-        stars = stars_;
-        sprite = sprite_;
-    }
-
-    public ConsumableItem(string name_, string description_, Sprite sprite_) 
-    {
-        name = name_;
-        description = description_;
-        count = 0;
-        sprite = sprite_;
-    }
-    public ConsumableItem(string name_)
-    {
-        name = name_;
-        description = "";
-        count = 0;
-    }
-    public ConsumableItem()
-    {
-        name = "";
-        description = "";
-        count = 0;
-    }
-
+    /*
     public virtual void OnPickup(GameObject player)
     {
         Debug.Log($"Подобран расходник {name} x{amount}");
         Destroy(gameObject);
     }
+    */
 }

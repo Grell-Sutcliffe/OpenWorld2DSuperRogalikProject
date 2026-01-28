@@ -135,7 +135,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
             backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
 
         sprite = backpackController.dict_id_to_item[id].sprite;
-        count = backpackController.dict_id_to_item[id].count;
+        count = backpackController.dict_id_to_item[id].amount;
 
         item_image_TMP.sprite = sprite;
         item_counter_TMP.text = count.ToString();

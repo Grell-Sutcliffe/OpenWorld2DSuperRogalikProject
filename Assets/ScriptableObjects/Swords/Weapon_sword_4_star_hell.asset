@@ -12,15 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efe70d59af92e34ab7ab478c9dd299a, type: 3}
   m_Name: Weapon_sword_4_star_hell
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: b6f437d72793ef34aadaf965c0a09dbf, type: 3}
-  nameW: "\u041F\u043E\u0440\u043E\u0436\u0434\u0435\u043D\u0438\u0435 \u0430\u0434\u0430"
-  description: "4* \u043C\u0435\u0447"
+  sprite: {fileID: 21300000, guid: d8a87e76e89b8444483f40be21caaef5, type: 3}
+  weapon_name: "\u0410\u0434\u0441\u043A\u043E\u0435 \u043F\u043B\u0430\u043C\u044F"
+  description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u0432\u044B\u0441\u043E\u043A\u043E\u0433\u043E
+    \u0440\u0430\u043D\u0433\u0430. \u041F\u043E\u0434\u0445\u043E\u0434\u0438\u0442
+    \u043C\u0435\u0447\u043D\u0438\u043A\u0430\u043C."
   stars: 4
   range: 1
   cooldown: 0.5
-  damage: 4
+  damage: 5
   element: 5
+  crit_chance: 0.2
+  crit_dmg: 0.4
+  elemental_mastery: 0.25
   max_level: 70
   current_level: 1
   projectilePrefab: {fileID: 0}
   attackType: 0
+  weaponType: 1

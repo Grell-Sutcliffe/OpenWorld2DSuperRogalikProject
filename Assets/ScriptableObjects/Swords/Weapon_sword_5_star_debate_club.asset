@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4efe70d59af92e34ab7ab478c9dd299a, type: 3}
-  m_Name: Weapon_debate_club
+  m_Name: Weapon_sword_5_star_debate_club
   m_EditorClassIdentifier: 
   sprite: {fileID: -3155350821296709153, guid: 60f483e5bf474a04f8379742107bde2a, type: 3}
-  name: "\u0414\u0443\u0431\u0438\u043D\u0430 \u043F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u043E\u0432"
-  description: "\u0441\u0430\u043C\u0430\u044F \u0440\u0435\u0434\u043A\u0430\u044F
-    6* \u0434\u0443\u0431\u0438\u043D\u0430"
-  stars: 6
+  weapon_name: "\u0414\u0443\u0431\u0438\u043D\u0430 \u043F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u043E\u0432"
+  description: "\u042D\u043B\u0438\u0442\u043D\u043E\u0435 \u043E\u0440\u0443\u0436\u0438\u0435
+    \u043D\u0430\u0441\u0442\u043E\u044F\u0449\u0438\u0445 \u0433\u0435\u0440\u043E\u0435\u0432.
+    \u041F\u043E\u0434\u0445\u043E\u0434\u0438\u0442 \u043C\u0435\u0447\u043D\u0438\u043A\u0430\u043C."
+  stars: 5
   range: 1
   cooldown: 0.5
   damage: 8
   element: 5
-  crit_chance: 0.5
-  crit_dmg: 1.5
+  crit_chance: 0.4
+  crit_dmg: 0.5
   elemental_mastery: 0.3
   max_level: 100
   current_level: 1

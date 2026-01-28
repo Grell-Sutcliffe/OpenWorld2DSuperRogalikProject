@@ -74,7 +74,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
 
         foreach (int id in backpackController.dict_id_to_item.Keys)
         {
-            if (backpackController.dict_id_to_item[id].count > 0 && backpackController.dict_id_to_item[id].type == ItemType.Weapon)
+            if (backpackController.dict_id_to_item[id].amount > 0 && backpackController.dict_id_to_item[id].item_type == ItemType.Weapon)
             {
                 if (backpackController.dict_id_to_item[id] is Weapon weapon)
                 {

@@ -93,20 +93,22 @@ public class MainController : MonoBehaviour
 
     public bool UseWish(bool is_pink, int number)
     {
+        string wish_name;
         if (is_pink)
         {
-            return backpackController.DecreaceItemByName(backpackController.pink_wish_name, number);
+            wish_name = shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name;
         }
         else
         {
-            return backpackController.DecreaceItemByName(backpackController.blue_wish_name, number);
+            wish_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
         }
+        return backpackController.DecreaceItemByName(wish_name, number);
     }
 
     public void UpdateWishPanelInfo()
     {
-        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(backpackController.pink_wish_name));
-        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(backpackController.blue_wish_name));
+        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name));
+        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name));
     }
 
     public int GetItemCounterByName(string name)
@@ -250,8 +252,8 @@ public class MainController : MonoBehaviour
         dialogPanel.SetActive(true);
         questPanel.SetActive(true);
         backpackPanel.SetActive(true);
-        wishPanel.SetActive(true);
         shopPanel.SetActive(true);
+        wishPanel.SetActive(true);
         characterPanel.SetActive(true);
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
@@ -261,9 +263,9 @@ public class MainController : MonoBehaviour
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
-        backpackPanel.SetActive(false);
         wishPanel.SetActive(false);
         shopPanel.SetActive(false);
+        backpackPanel.SetActive(false);
         characterPanel.SetActive(false);
         switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
@@ -277,7 +279,7 @@ public class MainController : MonoBehaviour
     {
         // Debug.Log("Take book!");
         // bookInteractionScript.TakeBook();
-        backpackController.TakeByName(backpackController.book_name);
+        //backpackController.TakeByName(backpackController.book_name);
     }
 
     public void EnterDangeon()

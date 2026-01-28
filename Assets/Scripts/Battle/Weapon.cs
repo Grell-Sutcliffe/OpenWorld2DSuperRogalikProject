@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Weapon : Item
 {
+    public int stars;
     public int damage;
     public ElementType element;
     public WeaponType weapon_type;
+
     int max_level;
     public int current_level;
 
@@ -13,14 +15,16 @@ public class Weapon : Item
     public float crit_dmg;
 
     public float elemental_mastery;
-
     public float cooldown;
 
     WeaponSO data;
+
     public Weapon(WeaponSO data)
     {
+        this.data = data;
+
         this.sprite = data.sprite;
-        this.name = data.name;
+        this.item_name = data.weapon_name;
         this.description = data.description;
         this.stars = data.stars;
         this.damage = data.damage;
@@ -31,24 +35,65 @@ public class Weapon : Item
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
 
+        this.item_type = ItemType.Weapon;
+
         this.current_level = 1;
         this.cooldown = data.cooldown;
+
+        this.id = -100;
+
+        this.amount = 0;
     }
 
-    public Weapon(Sprite sprite, string name, string description, int stars, int damage, float crit_chance, float crit_dmg, WeaponType type, ElementType element, float elemental_mastery, int max_level)
+    public Weapon(WeaponSO data, int id)
     {
-        this.sprite = sprite;
-        this.name = name;
-        this.description = description;
-        this.stars = stars;
-        this.weapon_type = type;
-        this.damage = damage;
-        this.crit_chance = crit_chance;
-        this.crit_dmg = crit_dmg;
-        this.element = element;
-        this.elemental_mastery = elemental_mastery;
-        this.max_level = max_level;
+        this.data = data;
+
+        this.sprite = data.sprite;
+        this.item_name = data.weapon_name;
+        this.description = data.description;
+        this.stars = data.stars;
+        this.damage = data.damage;
+        this.crit_chance = data.crit_chance;
+        this.crit_dmg = data.crit_dmg;
+        this.element = data.element;
+        this.elemental_mastery = data.elemental_mastery;
+        this.max_level = data.max_level;
+        this.weapon_type = data.weaponType;
+
+        this.item_type = ItemType.Weapon;
 
         this.current_level = 1;
+        this.cooldown = data.cooldown;
+
+        this.id = id;
+
+        this.amount = 0;
+    }
+
+    public Weapon(WeaponSO data, int id, int amount)
+    {
+        this.data = data;
+
+        this.sprite = data.sprite;
+        this.item_name = data.weapon_name;
+        this.description = data.description;
+        this.stars = data.stars;
+        this.damage = data.damage;
+        this.crit_chance = data.crit_chance;
+        this.crit_dmg = data.crit_dmg;
+        this.element = data.element;
+        this.elemental_mastery = data.elemental_mastery;
+        this.max_level = data.max_level;
+        this.weapon_type = data.weaponType;
+
+        this.item_type = ItemType.Weapon;
+
+        this.current_level = 1;
+        this.cooldown = data.cooldown;
+
+        this.id = id;
+
+        this.amount = amount;
     }
 }

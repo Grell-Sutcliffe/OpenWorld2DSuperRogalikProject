@@ -8254,7 +8254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &409057201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10567,7 +10567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738165583852734987, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6038390224029019452, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
       propertyPath: m_LocalScale.x
@@ -12586,7 +12586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchWeaponPanelScript: {fileID: 829100600}
-  weapon: {fileID: 0}
   weaponImage: {fileID: 49816509}
   rarity_TMP: {fileID: 188571936}
   element_TMP: {fileID: 954220968}
@@ -14359,8 +14358,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1895194415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.093723}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36106,54 +36105,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d2e1eb0cf92f643957fa36dcc0d2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  book_sprite: {fileID: 21300000, guid: a8aae86170034da41aac0a51553aa47a, type: 3}
-  pink_wish_sprite: {fileID: 7763159343176369136, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  blue_wish_sprite: {fileID: -7390570110486239832, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  sword_red_sprite: {fileID: 21300000, guid: d8a87e76e89b8444483f40be21caaef5, type: 3}
-  sword_white_sprite: {fileID: 21300000, guid: f57a1d6e8aaf6d4419e39c8a292c435c, type: 3}
-  sword_gold_sprite: {fileID: 21300000, guid: b83804f35b945c243b7b17b8bc8d41d9, type: 3}
-  sword_death_sprite: {fileID: 21300000, guid: 5489241632c82f54fba14fbe032a29fd, type: 3}
-  sword_purple_sprite: {fileID: 21300000, guid: ab03e8803eddd3e41aa7dedacd0fea90, type: 3}
-  sword_grey_sprite: {fileID: 21300000, guid: b6f437d72793ef34aadaf965c0a09dbf, type: 3}
-  gold_sprite: {fileID: 8437113335051438618, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  primogem_sprite: {fileID: 5941800606569886412, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  green_crystal_sprite: {fileID: -5848718966397623474, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  red_crystal_sprite: {fileID: 4423225155935984828, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  almaz_sprite: {fileID: -5100632705401985048, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
-  purple_crystal_sprite: {fileID: -4174832818506940637, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
+  shopPanelScript: {fileID: 409057203}
   content_GO: {fileID: 1597779093}
   backpackIconPrefab: {fileID: 3388804503098730323, guid: a3c97d396cfa5a143a477fb02b965d3a, type: 3}
+  gold_amount: 2500
+  primogem_amount: 3400
+  pink_wish_amount: 12
+  blue_wish_amount: 67
   item_counter: 0
   current_selected_id: 0
   item_height: 400
   space_between_items: 50
   item_in_row: 7
-  book_name: "\u041A\u043D\u0438\u0433\u0430"
-  pink_wish_name: "\u041C\u043E\u043B\u0438\u0442\u0432\u0430 \u0431\u0435\u0437\u0431\u0440\u0435\u0436\u043D\u044B\u0445
-    \u043D\u0435\u0431\u0435\u0441"
-  blue_wish_name: "\u041C\u043E\u043B\u0438\u0442\u0432\u0430 \u0442\u0438\u0445\u043E\u0433\u043E
-    \u043F\u043E\u0434\u043D\u0435\u0431\u0435\u0441\u044C\u044F"
-  sword_red_name: "\u0410\u0434\u0441\u043A\u043E\u0435 \u043F\u043B\u0430\u043C\u044F"
-  sword_white_name: "\u041A\u0430\u0440\u0430 \u0431\u0435\u0437\u0431\u0440\u0435\u0436\u043D\u044B\u0445
-    \u043D\u0435\u0431\u0435\u0441"
-  sword_gold_name: "\u0412\u043E\u0437\u043D\u0435\u0441\u0435\u043D\u0438\u0435
-    \u043A \u0441\u043E\u043B\u043D\u0446\u0443"
-  sword_death_name: "\u041A\u043E\u0441\u0430 \u0441\u043C\u0435\u0440\u0442\u0438"
-  sword_purple_name: "\u0411\u0435\u0437\u044B\u043C\u044F\u043D\u043D\u0430\u044F
-    \u043F\u0430\u043C\u044F\u0442\u044C"
-  sword_grey_name: "\u041F\u0440\u0438\u0437\u0440\u0430\u0447\u043D\u0430\u044F
-    \u0438\u0433\u043B\u0430"
-  gold_name: "\u0417\u043E\u043B\u043E\u0442\u0430\u044F \u043C\u043E\u043D\u0435\u0442\u0430"
-  primogem_name: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u043B \u0441\u043E\u0442\u0432\u043E\u0440\u0435\u043D\u0438\u044F"
-  green_crystal_name: "\u041F\u0435\u0449\u0435\u0440\u043D\u044B\u0439 \u0438\u0437\u0443\u043C\u0440\u0443\u0434"
-  red_crystal_name: "\u0420\u0443\u0431\u0438\u043D\u043E\u0432\u044B\u0439 \u043A\u0432\u0430\u0440\u0446"
-  almaz_name: "\u0413\u043B\u0443\u0431\u0438\u043D\u043D\u044B\u0439 \u0430\u043B\u043C\u0430\u0437"
-  purple_crystal_name: "\u041E\u0441\u043A\u043E\u043B\u043E\u043A \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\u0438\u0442\u0430"
   empty_sprite: {fileID: 21300000, guid: a87c618c1cefa4446901ed5d454f59f8, type: 3}
   selectedItemImage: {fileID: 1898501689}
   nameTMP: {fileID: 667582246}
   descriptionTMP: {fileID: 1064568113}
   inventory_stalker: {fileID: 487914976}
+  primogemSO: {fileID: 11400000, guid: 62cae796501f961428b1280f440dbb5f, type: 2}
+  goldSO: {fileID: 11400000, guid: 075b7b3170b44454ba3720e16de915d4, type: 2}
+  pinkWishSO: {fileID: 11400000, guid: a72ae606e8d43824cb74361a43a03cc3, type: 2}
+  blueWishSO: {fileID: 11400000, guid: 00b5609eb0358f74c8e1e6a4162a3809, type: 2}
+  list_consumableItem_so:
+  - {fileID: 11400000, guid: 1e4deaecd8c5cea4b82aeacace2d1cf6, type: 2}
+  - {fileID: 11400000, guid: c6e8461e966fc024e88fe136a76a00d8, type: 2}
+  - {fileID: 11400000, guid: 978630be5db2ad946bbed6e1395b9f76, type: 2}
+  - {fileID: 11400000, guid: e9a71cccd4e041947951bf612b6799ef, type: 2}
+  - {fileID: 11400000, guid: 8e38873fe690e5b46ab16ded7cc9637a, type: 2}
+  - {fileID: 11400000, guid: 3a27970816dbd2b4aaed664613833e3e, type: 2}
+  list_itemsForSale_so:
+  - {fileID: 11400000, guid: 4a385d81a220b8948b8c06a1b6e7ddd2, type: 2}
+  - {fileID: 11400000, guid: bf88984c412d6ea4a8bab02b0e868f5d, type: 2}
+  - {fileID: 11400000, guid: 12ce68f4ce4ccf14198b6bd657bf9868, type: 2}
+  - {fileID: 11400000, guid: 7301193ace107e74393995d1bce414ee, type: 2}
   list_weapon_so:
   - {fileID: 11400000, guid: 2e2c78e88c88d07408dc76bf5e535028, type: 2}
   - {fileID: 11400000, guid: 0881098f8f18e4a4e849affbbb86d33c, type: 2}
@@ -36909,7 +36893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_AnchorMin.x
@@ -36917,15 +36901,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 768
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 896
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36957,11 +36941,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842526142080732014, guid: edcae8230a63433499bced4a98652153, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -37909,6 +37893,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 688393784}
   - {fileID: 1148866744}
   - {fileID: 1839734909}
   - {fileID: 6349350596614383173}
@@ -37919,7 +37904,6 @@ SceneRoots:
   - {fileID: 821005258}
   - {fileID: 1427578940}
   - {fileID: 1187830161}
-  - {fileID: 688393784}
   - {fileID: 582875801}
   - {fileID: 593250948}
   - {fileID: 393066794}
