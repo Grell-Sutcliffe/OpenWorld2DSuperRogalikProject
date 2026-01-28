@@ -7,6 +7,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public GameObject owner => gameObject;
     protected float current_dmg;
     public Damage currentDmg => new Damage(current_dmg);
+    bool canHit = true;
 
 
     // Player's Data
@@ -28,11 +29,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     string playerName;
     [SerializeField] float maxHealth;
     float armour;
-    float damage;
+    [SerializeField]  float damage;
     float moveSpeed;
 
     float attackRange;
-    float attackCooldown;
+    [SerializeField]  float attackCooldown;
 
     float currentHealth;
 
@@ -40,6 +41,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     float crit_dmg = 2.5f;
 
     [SerializeField] GameObject target;
+
+    public GameObject pivot;
 
     public void DealDamage()
     {
@@ -54,10 +57,28 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         }
 
         this.current_dmg = damage + delta_damage;
+
+        LoggerName($"now have {current_dmg} damage");
     }
 
-    public void UnActivePivot(){}
-    public void StartDelay(){}
+    public void UnActivePivot(){
+        pivot.gameObject.SetActive(false);
+    }
+
+    protected virtual IEnumerator Delay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canHit = true;
+    }
+    public void StartDelay()
+    {
+
+        isHit = false;
+
+        StartCoroutine(Delay(attackCooldown));
+    }
+
+
     public Transform GetTarget()
     {
         return target.transform;
@@ -123,7 +144,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         ApplyConfig();
     }
     bool isRun = false;
-
+    bool isHit = false;
+    float offset = 0;
     private void Update()
     {
         if (mainController.is_keyboard_active)
@@ -139,7 +161,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                 isRun = true;
                 anim.SetBool("isRun", true);
                 float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
-                Debug.Log($"angle = {angle} {((angle + 90) % 360) / 45}");
+                //Debug.Log($"angle = {angle} {((angle + 90) % 360) / 45}");
                 
 
                 if (angle > 90 || angle < -90)
@@ -161,9 +183,17 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             {
                 anim.SetBool("isRun", false);
             }
-            anim.SetFloat("dir", dir);
+            anim.SetFloat("dir", dir);  // вынести в отделную функцию
+            anim.SetBool("isHit", isHit);
         }
-        
+
+        if (canHit && Input.GetMouseButtonDown(0)) // ЛКМ
+        {
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RotatePivot(mouseWorldPos, offset);
+            Hit();
+        }
+
     }
 
     private void FixedUpdate()
@@ -196,7 +226,13 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             Die();
         }
     }
-
+    protected virtual void Hit()
+    {   
+        DealDamage();
+        isHit = true;
+        canHit = false;
+        pivot.gameObject.SetActive(true);
+    }
     int RoundToMax(float number)
     {
         return ((number * 10 % 10 > 0) ? ((int)number + 1) : ((int)number));
@@ -205,5 +241,14 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    protected virtual void RotatePivot(Vector2 mousePos, float offs = 0f)
+    {
+        Vector2 dir = ((Vector2)mousePos - (Vector2)pivot.transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
 }

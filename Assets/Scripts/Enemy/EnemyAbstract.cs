@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 using UnityEngine.Rendering;
 
 public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
@@ -37,7 +38,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     float crit_chance = 0.7f;
     float crit_dmg = 2.5f;
 
-
+    protected Animator anim;
     protected float offset;
     public GameObject pivot;
 
@@ -46,12 +47,20 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
     protected float current_dmg;
     public Damage currentDmg => new Damage(current_dmg);
+
+    protected bool isDead = false;
     public virtual void TakeDamage(Damage dmg)
     {
         LoggerName($"took dmg = {dmg.damage}", true);
         hp -= dmg.damage;
-        if (hp <= 0) Die();
 
+        //if (hp <= 0) Die();
+        if (hp <= 0)
+        {
+            rb.linearVelocity = Vector2.zero;
+            isDead = true;
+            anim.SetTrigger("die");
+        }
     }
     protected virtual void LoggerName(string s = null, bool isWarn = false)
     {
@@ -68,9 +77,14 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
         LoggerName($"{name} dead");
         Destroy(gameObject);
     }
+    public void DieInAnimation()
+    {
+        Destroy(gameObject);
+    }
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     protected virtual void Start()

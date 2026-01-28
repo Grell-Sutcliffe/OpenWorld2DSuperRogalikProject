@@ -8,7 +8,8 @@ public abstract class EnemyMelee : EnemyAbstract
 
     protected override void FixedUpdate()
     {
-        if (isTriggered)
+        anim.SetBool("isTriggered", isTriggered);
+        if (!isDead && isTriggered)
         {
             if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer) // по идее разные рич дист
             {
@@ -34,8 +35,9 @@ public abstract class EnemyMelee : EnemyAbstract
             if (canWalk)
                 ChasePlayer();
         }
-        else
+        else if (isDead) 
         {
+        
             Wander();
         }
         

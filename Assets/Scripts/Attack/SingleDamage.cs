@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SingleDamage : MonoBehaviour
 {
-
+        // ÅÑËÈ ÏÎ×ÅÌÓ ÒÎ ÍÅ ÏĞÎÕÎÄÈÒ, ÑÒÀÂÜ ĞÈÄÆÈÄÁÎÄÈ!!!!!!!!!ÛÛÛÛÛÛÛÛ
     [SerializeField] float dmg;
     [SerializeField] IAttacker owner;
     HashSet<int> hitIds;
@@ -18,13 +18,15 @@ public class SingleDamage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)  // add setitititititititititiititi
     {
+        //Debug.Log($"Single Damage on {collision} and {collision.gameObject.name} {transform.parent.parent.name}");
+
         int id = collision.GetInstanceID();
         if (hitIds.Contains(id)) return;
         hitIds.Add(id);
         var dmgable = collision.GetComponentInParent<IDamagable>();                         // ÈÇÌÅÍÈÒÜ!
+
         if (dmgable != null){
             dmgable.TakeDamage(owner.currentDmg);
-            //Debug.Log($"Single Damage on {collision} and {collision.gameObject.name}");
             return;
         }
         dmgable = collision.GetComponent<IDamagable>();
@@ -73,7 +75,7 @@ public class SingleDamage : MonoBehaviour
     {
         hitIds.Clear();
         if (owner != null){
-            owner.UnActivePivot(); // ëó÷øå èñêàòü åíåìè â ğîäèòåëè
+            owner.UnActivePivot(); 
             owner.StartDelay();
         }
 

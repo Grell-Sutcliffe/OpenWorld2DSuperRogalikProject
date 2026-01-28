@@ -8,7 +8,9 @@ public abstract class EnemyRange : EnemyAbstract
     
     protected override void FixedUpdate()
     {
-        if (isTriggered)
+        anim.SetBool("isTriggered", isTriggered);
+
+        if (!isDead && isTriggered)
         {
             if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoRotatePivot)
             {
@@ -44,7 +46,7 @@ public abstract class EnemyRange : EnemyAbstract
             return;
         }
 
-        Wander();
+         if (!isDead) Wander();
     }
 
     protected virtual void Hit()

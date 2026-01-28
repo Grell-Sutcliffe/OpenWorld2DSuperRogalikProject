@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: 47c56f71a210d93418ca22dc556e380e
+guid: a25738b53023afb4ca2ef0f19d20acbd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5975760616781648747
-    second: AAAAAAAAAA_0
+      213: -6102429725779204762
+    second: skeletDeath_0
   - first:
-      213: 8896227174625237861
-    second: AAAAAAAAAA_1
+      213: 6417797636833894357
+    second: skeletDeath_1
   - first:
-      213: 6863804984982711269
-    second: AAAAAAAAAA_2
+      213: -8561931039983156558
+    second: skeletDeath_2
   - first:
-      213: 326447822376441872
-    second: AAAAAAAAAA_3
+      213: -7293111819843027667
+    second: skeletDeath_3
   - first:
-      213: 8485880136389390665
-    second: AAAAAAAAAA_4
+      213: 3168384207186945030
+    second: skeletDeath_4
   - first:
-      213: 2744045513672821434
-    second: AAAAAAAAAA_5
+      213: 2734949998358704224
+    second: skeletDeath_5
+  - first:
+      213: -2227259680214275676
+    second: skeletDeath_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,10 +66,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,13 +131,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AAAAAAAAAA_0
+      name: skeletDeath_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 22
-        height: 22
+        x: 0
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b631a0abe9a2ee250800000000000000
-      internalID: 5975760616781648747
+      spriteID: 66565281f70df4ba0800000000000000
+      internalID: -6102429725779204762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AAAAAAAAAA_1
+      name: skeletDeath_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 5
-        width: 24
-        height: 24
+        x: 29
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 56bd6b82b7fb57b70800000000000000
-      internalID: 8896227174625237861
+      spriteID: 5df53df92f8901950800000000000000
+      internalID: 6417797636833894357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AAAAAAAAAA_2
+      name: skeletDeath_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 5
-        width: 23
-        height: 23
+        x: 58
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +190,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5eb23719442214f50800000000000000
-      internalID: 6863804984982711269
+      spriteID: 2b2c96a0519ed2980800000000000000
+      internalID: -8561931039983156558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AAAAAAAAAA_3
+      name: skeletDeath_3
       rect:
         serializedVersion: 2
-        x: 101
-        y: 5
-        width: 22
-        height: 22
+        x: 87
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +212,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 018927a9096c78400800000000000000
-      internalID: 326447822376441872
+      spriteID: d2dbd0fb079a9ca90800000000000000
+      internalID: -7293111819843027667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AAAAAAAAAA_4
+      name: skeletDeath_4
       rect:
         serializedVersion: 2
-        x: 133
-        y: 5
-        width: 22
-        height: 22
+        x: 116
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94178002607e3c570800000000000000
-      internalID: 8485880136389390665
+      spriteID: 604e55d46ac58fb20800000000000000
+      internalID: 3168384207186945030
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AAAAAAAAAA_5
+      name: skeletDeath_5
       rect:
         serializedVersion: 2
-        x: 165
-        y: 5
-        width: 22
-        height: 22
+        x: 145
+        y: 0
+        width: 29
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aba09f92bdec41620800000000000000
-      internalID: 2744045513672821434
+      spriteID: 06030aa788e74f520800000000000000
+      internalID: 2734949998358704224
       vertices: []
       indices: 
       edges: []
@@ -263,7 +266,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1992cce56c0fd55439645848d04299dc
     internalID: 0
     vertices: []
     indices: 
@@ -273,12 +276,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AAAAAAAAAA_0: 5975760616781648747
-      AAAAAAAAAA_1: 8896227174625237861
-      AAAAAAAAAA_2: 6863804984982711269
-      AAAAAAAAAA_3: 326447822376441872
-      AAAAAAAAAA_4: 8485880136389390665
-      AAAAAAAAAA_5: 2744045513672821434
+      skeletDeath_0: -6102429725779204762
+      skeletDeath_1: 6417797636833894357
+      skeletDeath_2: -8561931039983156558
+      skeletDeath_3: -7293111819843027667
+      skeletDeath_4: 3168384207186945030
+      skeletDeath_5: 2734949998358704224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
