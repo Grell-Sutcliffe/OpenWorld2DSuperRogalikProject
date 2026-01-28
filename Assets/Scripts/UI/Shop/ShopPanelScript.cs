@@ -54,15 +54,25 @@ public class ShopPanelScript : MonoBehaviour
         public string name;
         public int cost;
         public Sprite sprite;
-        public Currency currency;
+        //public Currency currency;
+        CostType cost_type;
 
-        public ShopItem(int id_, string name_, int cost_, Sprite sprite_, Currency currency_)
+        public ShopItem(int id_, string name_, int cost_, Sprite sprite_/*, Currency currency_*/)
         {
             id = id_;
             name = name_;
             cost = cost_;
             sprite = sprite_;
-            currency = currency_;
+            //currency = currency_;
+        }
+
+        public ShopItem(Item item, int cost, CostType cost_type)
+        {
+            this.id = item.id;
+            this.name = item.name;
+            this.sprite = item.sprite;
+            this.cost = cost;
+            this.cost_type = cost_type;
         }
     }
 
@@ -248,4 +258,10 @@ public class ShopPanelScript : MonoBehaviour
         UpdateShowerPanel(1);
         UpdateShopPanelInfo();
     }
+}
+
+public enum CostType
+{
+    Primogem = 0,
+    Gold = 1,
 }

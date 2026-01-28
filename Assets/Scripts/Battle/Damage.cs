@@ -3,9 +3,9 @@ using UnityEngine;
 public class Damage
 {
     public float damage;
-    Element element;
+    ElementType element;
 
-    public Damage(float damage_, Element element_ = Element.None)
+    public Damage(float damage_, ElementType element_ = ElementType.None)
     {
         damage = damage_;
         element = element_;
@@ -16,7 +16,7 @@ public class Damage
         return damage;
     }
 
-    public Element GetElement()
+    public ElementType GetElement()
     {
         return element;
     }

@@ -4,32 +4,37 @@ using UnityEngine.UI;
 
 public class WeaponIconScript : MonoBehaviour
 {
-    public int id;
-    public Image itemImage;
+    SwitchWeaponPanelScript switchWeaponPanelScript;
+    CharacterPanelScript characterPanelScript;
+
+    Weapon weapon;
+
+    public Image weaponImage;
+    public Image elementImage;
     public TextMeshProUGUI itemNameTMP;
-    public TextMeshProUGUI itemLevelTMP;
     public TextMeshProUGUI itemStarTMP;
 
     void Start()
     {
-
+        switchWeaponPanelScript = GameObject.Find("SwitchWeaponPanel").GetComponent<SwitchWeaponPanelScript>();
+        characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
     }
 
     public void OnClick()
     {
-        // return id;
+        switchWeaponPanelScript.SelectNewWeapon(weapon);
     }
 
-    public void SetWeaponItem(int new_id)
+    public void CreateWeaponItem(Weapon weapon)
     {
-        //if (shopPanelScript == null) shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
+        if (switchWeaponPanelScript == null) switchWeaponPanelScript = GameObject.Find("SwitchWeaponPanel").GetComponent<SwitchWeaponPanelScript>();
+        if (characterPanelScript == null) characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
 
-        id = new_id;
-        /*
-        itemImage.sprite = shopPanelScript.dict_id_to_shop_item[id].sprite;
-        itemNameTMP.text = shopPanelScript.dict_id_to_shop_item[id].name;
-        itemCostTMP.text = shopPanelScript.dict_id_to_shop_item[id].cost.ToString();
-        itemCurrencyImage.sprite = shopPanelScript.dict_id_to_shop_item[id].currency.sprite;
-        */
+        this.weapon = weapon;
+
+        weaponImage.sprite = weapon.sprite;
+        elementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.element].sprite;
+        itemNameTMP.text = weapon.name;
+        itemStarTMP.text = weapon.stars.ToString();
     }
 }

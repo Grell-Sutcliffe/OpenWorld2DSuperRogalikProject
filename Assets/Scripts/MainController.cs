@@ -17,6 +17,7 @@ public class MainController : MonoBehaviour
     public GameObject wishPanel;
     public GameObject shopPanel;
     public GameObject characterPanel;
+    public GameObject switchWeaponPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
 
@@ -252,6 +253,7 @@ public class MainController : MonoBehaviour
         wishPanel.SetActive(true);
         shopPanel.SetActive(true);
         characterPanel.SetActive(true);
+        switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
     }
 
@@ -263,6 +265,7 @@ public class MainController : MonoBehaviour
         wishPanel.SetActive(false);
         shopPanel.SetActive(false);
         characterPanel.SetActive(false);
+        switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
 
         dedus_F = false;

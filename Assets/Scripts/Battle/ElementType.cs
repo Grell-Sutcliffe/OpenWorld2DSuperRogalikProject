@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum Element
+public enum ElementType
 {
     None = 0,
     Cryo = 1,

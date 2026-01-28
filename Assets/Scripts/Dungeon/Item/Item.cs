@@ -24,7 +24,7 @@ public abstract class Item : MonoBehaviour
     public float radius = 0.5f;
     public int count;
 
-    public string type = "no_type";
+    public ItemType type = ItemType.Everything;
     public int stars = 0;
 
     public int id; // new

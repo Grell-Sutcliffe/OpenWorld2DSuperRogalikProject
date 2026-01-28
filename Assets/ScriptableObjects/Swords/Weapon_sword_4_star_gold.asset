@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efe70d59af92e34ab7ab478c9dd299a, type: 3}
+  m_Name: Weapon_sword_4_star_gold
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: b83804f35b945c243b7b17b8bc8d41d9, type: 3}
+  nameW: "\u041E\u0442\u0431\u043B\u0435\u0441\u043A \u0441\u043E\u043B\u043D\u0446\u0430"
+  description: "4* \u043C\u0435\u0447"
+  stars: 4
+  range: 1
+  cooldown: 0.5
+  damage: 4
+  element: 2
+  max_level: 70
+  current_level: 1
+  projectilePrefab: {fileID: 0}
+  attackType: 0

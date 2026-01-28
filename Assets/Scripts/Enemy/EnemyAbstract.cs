@@ -67,10 +67,12 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
         
         ChangeHealthBar();
     }
+
     void ChangeHealthBar()
     {
         enemyHealthBar.ChangeHealthBarFillingScale(hp / max_hp);
     }
+
     protected virtual void LoggerName(string s = null, bool isWarn = false)
     {
         if (isWarn)
@@ -103,6 +105,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
         PickNewTarget();
         StartCoroutine(ChangeStrafe());
+        ChangeHealthBar();
     }
     IEnumerator ChangeStrafe()
     {

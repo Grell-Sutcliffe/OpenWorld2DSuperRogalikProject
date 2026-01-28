@@ -23,7 +23,7 @@ public class ConsumableItem : Item
         sprite = sprite_;
     }
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, string type_, int count_) 
+    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, ItemType type_, int count_) 
     {
         id = id_;
         name = name_;
@@ -33,7 +33,7 @@ public class ConsumableItem : Item
         sprite = sprite_;
     }
 
-    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, string type_, int stars_, int count_) 
+    public ConsumableItem(int id_, string name_, string description_, Sprite sprite_, ItemType type_, int stars_, int count_) 
     {
         id = id_;
         name = name_;
