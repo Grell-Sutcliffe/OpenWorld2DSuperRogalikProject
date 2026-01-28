@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     public Image slot_image;
     public TextMeshProUGUI slot_amount;
     public Item slot_item;
-    
+
     public int slot_index;
 
     public float longPressThreshold = 0.3f; // 0.1f слишком мало для человека
@@ -59,9 +60,12 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         longPressHandled = false;
 
         if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
-        inventoryStalker.ChangeMouse(backpackController.dict_id_to_item[slot_item.id]);
 
-        longPressCoroutine = StartCoroutine(LongPressRoutine());
+        if (backpackController.dict_id_to_item.ContainsKey(slot_item.id))
+        {
+            inventoryStalker.ChangeMouse(backpackController.dict_id_to_item[slot_item.id]);
+            longPressCoroutine = StartCoroutine(LongPressRoutine());
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
