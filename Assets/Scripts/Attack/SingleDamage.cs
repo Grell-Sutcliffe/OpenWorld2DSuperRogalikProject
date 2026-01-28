@@ -8,6 +8,19 @@ public class SingleDamage : MonoBehaviour
     [SerializeField] IAttacker owner;
     HashSet<int> hitIds;
     bool wasHitted = false;
+
+    void OnEnable()
+    {
+        var anim = GetComponent<Animator>();
+        if (owner is Player p)
+        {   var i = 0;
+            if (p.spriteRender.flipX == false) i = 1;
+            else i = 2;
+            anim.SetInteger("attackType", i);
+
+        }
+    }
+
     private void Awake()
     {
         if (transform != null && transform.parent != null && transform.parent.parent != null)

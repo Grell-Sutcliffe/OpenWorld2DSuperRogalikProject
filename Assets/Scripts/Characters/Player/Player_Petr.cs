@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
 {
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     [SerializeField] GameObject target;
 
     public GameObject pivot;
+    public GameObject pivotL, pivotR;
 
     public void DealDamage()
     {
@@ -88,36 +90,56 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         rb = GetComponent<Rigidbody2D>();
+ 
         //anim = GetComponent<Animator>();
         //spriteRender = GetComponent<SpriteRenderer>();
     }
-        /*
-        // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
-        Input = GetComponent<PlayerInput>();
-        movementStateMachine = new PlayerMovementStateMachine(this);
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        PlayerAnimator = GetComponentInChildren<Animator>();
-        AnimationData.Initialize();
-    }
-    public void ModifySpeed(float multiplier, float duration)
-    {
-        StartCoroutine(SpeedCoroutine(multiplier, duration));
-    }
+    /*
+    // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
+    Input = GetComponent<PlayerInput>();
+    movementStateMachine = new PlayerMovementStateMachine(this);
+    Rigidbody2D = GetComponent<Rigidbody2D>();
+    SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    PlayerAnimator = GetComponentInChildren<Animator>();
+    AnimationData.Initialize();
+}
+public void ModifySpeed(float multiplier, float duration)
+{
+    StartCoroutine(SpeedCoroutine(multiplier, duration));
+}
+
+private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
+{
+    var data = movementStateMachine;
+    //float old = data.EffectSpeedModifier;
+
+    data.EffectSpeedModifier *= multiplier;
+    Debug.Log(data.EffectSpeedModifier);
+
+    yield return new WaitForSeconds(duration);
+
+    data.EffectSpeedModifier /= multiplier;
+    Debug.Log(data.EffectSpeedModifier);
+}*/
+    int facing = 1;
+    [SerializeField] float pivotOffsetX = 0.6f;
     
-    private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
+    void Flip(bool faceRight)
     {
-        var data = movementStateMachine;
-        //float old = data.EffectSpeedModifier;
+        facing = faceRight ? 1 : -1;
 
-        data.EffectSpeedModifier *= multiplier;
-        Debug.Log(data.EffectSpeedModifier);
+        Vector3 s = transform.localScale;
+        s.x = Mathf.Abs(s.x) * facing;
+        transform.localScale = s;
 
-        yield return new WaitForSeconds(duration);
-
-        data.EffectSpeedModifier /= multiplier;
-        Debug.Log(data.EffectSpeedModifier);
-    }*/
+        UpdatePivotSide();
+    }
+    void UpdatePivotSide()
+    {
+        Vector3 p = pivot.transform.localPosition;
+        p.x = Mathf.Abs(pivotOffsetX) * facing;
+        pivot.transform.localPosition = p;
+    }
     private void ApplyConfig()
     {
         if (Data == null)
@@ -166,12 +188,15 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                     angle = (angle + 360) % 360;
                     spriteRender.flipX = true;
                     dir = 4f - ((angle - 90f) / 45f);
-
+                    //Flip(spriteRender.flipX);
+                    pivot.transform.position = pivotL.transform.position;
                 }
                 else
                 {
                     dir = ((angle + 90) % 360) / 45;
                     spriteRender.flipX = false;
+                    //Flip(spriteRender.flipX);
+                    pivot.transform.position = pivotR.transform.position;
 
                 }
 
