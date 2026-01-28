@@ -30,6 +30,8 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected Vector2 moveTarget;
     protected bool isTriggered;
 
+    [SerializeField] EnemyHealthBar enemyHealthBar;
+    [SerializeField] protected float max_hp = 10f;
     [SerializeField] protected float hp = 10f;
 
     [SerializeField] protected string eName;
@@ -60,7 +62,14 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
             rb.linearVelocity = Vector2.zero;
             isDead = true;
             anim.SetTrigger("die");
+            hp = 0;
         }
+        
+        ChangeHealthBar();
+    }
+    void ChangeHealthBar()
+    {
+        enemyHealthBar.ChangeHealthBarFillingScale(hp / max_hp);
     }
     protected virtual void LoggerName(string s = null, bool isWarn = false)
     {

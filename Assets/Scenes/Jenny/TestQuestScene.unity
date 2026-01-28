@@ -9911,13 +9911,25 @@ PrefabInstance:
       value: -0.061
       objectReference: {fileID: 0}
     - target: {fileID: 7826423026952965163, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
+      propertyPath: hp
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826423026952965163, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
       propertyPath: dataW
       value: 
       objectReference: {fileID: 11400000, guid: 93aef83b74ca1d746a51484476d1f658, type: 2}
     - target: {fileID: 7826423026952965163, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
+      propertyPath: max_hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826423026952965163, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
       propertyPath: walkZone
       value: 
       objectReference: {fileID: 1165748769}
+    - target: {fileID: 7826423026952965163, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
+      propertyPath: enemyHealthBar
+      value: 
+      objectReference: {fileID: 1250806071}
     - target: {fileID: 8736383894707455395, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
       propertyPath: m_Size.x
       value: 1.8125
@@ -19726,6 +19738,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5447364660783971142, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
   m_PrefabInstance: {fileID: 1243199312}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250806071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6482444363272051414, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
+  m_PrefabInstance: {fileID: 593250948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43da81713981fd4a96393c13d486b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263209676
 GameObject:
   m_ObjectHideFlags: 0
