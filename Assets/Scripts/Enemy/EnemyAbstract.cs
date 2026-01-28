@@ -8,7 +8,6 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected bool canHit = true;
     protected float timeLastHit;
     public GameObject owner => gameObject;
-    
 
     [SerializeField] protected float attackDur = 1;
 
@@ -29,6 +28,8 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected Vector2 moveTarget;
     protected bool isTriggered;
 
+    [SerializeField] EnemyHealthBar enemyHealthBar;
+    [SerializeField] protected float max_hp = 10f;
     [SerializeField] protected float hp = 10f;
 
     [SerializeField] protected string eName;
@@ -36,7 +37,6 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
     float crit_chance = 0.7f;
     float crit_dmg = 2.5f;
-
 
     protected float offset;
     public GameObject pivot;
@@ -50,9 +50,19 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     {
         LoggerName($"took dmg = {dmg.damage}", true);
         hp -= dmg.damage;
-        if (hp <= 0) Die();
-
+        if (hp <= 0)
+        {
+            hp = 0;
+            Die();
+        }
+        ChangeHealthBar();
     }
+
+    void ChangeHealthBar()
+    {
+        enemyHealthBar.ChangeHealthBarFillingScale(hp / max_hp);
+    }
+
     protected virtual void LoggerName(string s = null, bool isWarn = false)
     {
         if (isWarn)
