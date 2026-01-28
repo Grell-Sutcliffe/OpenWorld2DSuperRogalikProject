@@ -6,7 +6,6 @@ public class DamageText : MonoBehaviour
     [SerializeField] float lifeTime = 0.8f;
     [SerializeField] AnimationCurve moveCurve = AnimationCurve.Linear(0, 0, 1, 1);
     float t;
-    [SerializeField] GameObject StartPosDMG;
     Vector3 startPos;
     Vector3 endPos;
 
