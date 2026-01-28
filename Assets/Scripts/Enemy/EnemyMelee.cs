@@ -26,7 +26,7 @@ public abstract class EnemyMelee : EnemyAbstract
                 return;
                 
             }
-            if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoRotatePivot)
+            if (!isHitting && Vector2.Distance(rb.position, playerTrans.position) < reachDisttoRotatePivot)
             {
                 RotatePivot(playerTrans, offset);
                 
