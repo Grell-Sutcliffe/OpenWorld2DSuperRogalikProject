@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4867599397194091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509094568061885706}
+  m_Layer: 12
+  m_Name: pivotR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509094568061885706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4867599397194091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.238, y: 0.578, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8543522866138125519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1697782868516196045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172145107866738764}
+  m_Layer: 12
+  m_Name: pivotL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1172145107866738764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697782868516196045}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.238, y: 0.578, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8543522866138125519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1867279333676066356
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +384,8 @@ Transform:
   - {fileID: 9009583541498140045}
   - {fileID: 7013909394594485976}
   - {fileID: 7134989537086975436}
+  - {fileID: 1509094568061885706}
+  - {fileID: 1172145107866738764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1577247464722385364
@@ -337,14 +401,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 81e4f7f2a9176e147823727df17144ab, type: 2}
-  rb: {fileID: 0}
-  anim: {fileID: 3389976509947398367}
+  rb: {fileID: 6179167146417871810}
+  anim: {fileID: 5764917881911440013}
   spriteRender: {fileID: 3675455199803781339}
-  maxHealth: 0
-  damage: 0
-  attackCooldown: 0
+  maxHealth: 1000
+  damage: 5
+  attackCooldown: 2
   target: {fileID: 3401088822291997560}
   pivot: {fileID: 1867279333676066356}
+  pivotL: {fileID: 1697782868516196045}
+  pivotR: {fileID: 4867599397194091}
+  pivotOffsetX: 0.6
 --- !u!50 &6179167146417871810
 Rigidbody2D:
   serializedVersion: 5
@@ -558,7 +625,7 @@ GameObject:
   - component: {fileID: 3675455199803781339}
   - component: {fileID: 8991439345641178037}
   - component: {fileID: 3083177607012765267}
-  - component: {fileID: 3389976509947398367}
+  - component: {fileID: 5764917881911440013}
   m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
@@ -625,15 +692,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6404843828197707954, guid: 6dd18018db0a2dd4db092fe2b47bd25f, type: 3}
+  m_Sprite: {fileID: 6939967948312172936, guid: b29e8a7a91377c449b12b00678183903, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0625, y: 2.0625}
+  m_Size: {x: 1.8125, y: 1.8125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &8991439345641178037
@@ -688,15 +755,15 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.0625, y: 2.0625}
-    newSize: {x: 2.0625, y: 2.0625}
+    oldSize: {x: 1.8125, y: 1.8125}
+    newSize: {x: 1.8125, y: 1.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.55, y: 0.1}
   m_EdgeRadius: 0
---- !u!95 &3389976509947398367
+--- !u!95 &5764917881911440013
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
