@@ -2,29 +2,22 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static CharacterPanelScript;
 
 public class BackPackController : MonoBehaviour
 {
-    public Sprite book_sprite;
-    public Sprite pink_wish_sprite;
-    public Sprite blue_wish_sprite;
-    public Sprite sword_red_sprite;
-    public Sprite sword_white_sprite;
-    public Sprite sword_gold_sprite;
-    public Sprite sword_death_sprite;
-    public Sprite sword_purple_sprite;
-    public Sprite sword_grey_sprite;
-    public Sprite gold_sprite;
-    public Sprite primogem_sprite;
-    public Sprite green_crystal_sprite;
-    public Sprite red_crystal_sprite;
-    public Sprite almaz_sprite;
-    public Sprite purple_crystal_sprite;
+    public ShopPanelScript shopPanelScript;
+    public CharacterPanelScript characterPanelScript;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
 
     RectTransform content_rect_transform;
+
+    public int gold_amount = 2500;
+    public int primogem_amount = 3400;
+    public int pink_wish_amount = 12;
+    public int blue_wish_amount = 67;
 
     public int item_counter = 0;
     public int current_selected_id;  // !!!
@@ -33,48 +26,50 @@ public class BackPackController : MonoBehaviour
     public int space_between_items = 50;
     public int item_in_row = 7;
 
-    const string type_everything = "everyting";
-    const string type_weapon = "weapon";
-    const string type_food = "food";
-    const string type_drink = "drink";
-    const string type_materials = "materials";
-    const string type_quest = "quest";
-
-    public string book_name = "Книга";
-    public string pink_wish_name = "Ìîëèòâà áåçáðåæíûõ íåáåñ";
-    public string blue_wish_name = "Ìîëèòâà òèõîãî ïîäíåáåñüÿ";
-    public string sword_red_name = "Àäñêîå ïëàìÿ";
-    public string sword_white_name = "Êàðà áåçáðåæíûõ íåáåñ";
-    public string sword_gold_name = "Âîçíåñåíèå ê ñîëíöó";
-    public string sword_death_name = "Êîñà ñìåðòè";
-    public string sword_purple_name = "Áåçûìÿííàÿ ïàìÿòü";
-    public string sword_grey_name = "Ïðèçðà÷íàÿ èãëà";
-    public string gold_name = "Çîëîòàÿ ìîíåòà";
-    public string primogem_name = "Êðèñòàëë ñîòâîðåíèÿ";
-    public string green_crystal_name = "Ïåùåðíûé èçóìðóä";
-    public string red_crystal_name = "Ðóáèíîâûé êâàðö";
-    public string almaz_name = "Ãëóáèííûé àëìàç";
-    public string purple_crystal_name = "Îñêîëîê Àëåêñàíäðèòà";
-
     public Sprite empty_sprite;
 
     public Image selectedItemImage;
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI descriptionTMP;
 
+    public GameObject weaponIconGO;
+    public TextMeshProUGUI starTMP;
+    public Image elementImage;
+
     public Dictionary<string, int> dict_item_name_to_id = new Dictionary<string, int>();
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
     public InventoryStalker inventory_stalker;
 
+    [Header("Reward & Currency Items")]
+    public ConsumableItemSO primogemSO;
+    public ConsumableItemSO goldSO;
+    public ItemForSaleSO pinkWishSO;
+    public ItemForSaleSO blueWishSO;
+
+    [Header("Сonsumable Items")]
+    public ConsumableItemSO[] list_consumableItem_so;
+
+    [Header("Items for sale")]
+    public ItemForSaleSO[] list_itemsForSale_so;
+
+    [Header("Weapons")]
+    public WeaponSO[] list_weapon_so;
+
     // public List<int> player_items_id;
+
+    private void Awake()
+    {
+        MakeDictionary();
+    }
 
     void Start()
     {
-        // MakeDictionary();
+        weaponIconGO.SetActive(false);
+        // shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
-
+        
         UpdateBackpack();
         ClearShowerPanel();
     }
@@ -84,105 +79,62 @@ public class BackPackController : MonoBehaviour
         int ind = 0;
 
         ind++;
-        // gold
-        Item gold = new ConsumableItem(ind, gold_name, "Âàëþòà. Èñïîëüçóåòñÿ ïîâñåìåñòíî.", gold_sprite, type_materials, 150);
-        dict_id_to_item[ind] = gold;
-        dict_item_name_to_id[gold_name] = ind;
-
-        ind++;
-        // primogem
-        Item primogem = new ConsumableItem(ind, primogem_name, "Âàëþòà. Èñïîëüçóåòñÿ äëÿ âíóòðåèãðîâûõ ïîêóïîê.", primogem_sprite, type_materials, 1200);
-        dict_id_to_item[ind] = primogem;
-        dict_item_name_to_id[primogem_name] = ind;
-
-        ind++;
-        // pink wish
-        Item pink_wish = new ConsumableItem(ind, pink_wish_name, "Ìîëèòâà íà ïåðñîíàæà.", pink_wish_sprite, type_materials, 3);
+        Item pink_wish = new ItemForSale(pinkWishSO, ind, pink_wish_amount);  // pink_wish must have id = 1
         dict_id_to_item[ind] = pink_wish;
-        dict_item_name_to_id[pink_wish_name] = ind;
+        dict_item_name_to_id[pink_wish.item_name] = ind;
+        shopPanelScript.MakeCurrency(CostType.PinkWish, pink_wish);
 
         ind++;
-        // blue wish
-        Item blue_wish = new ConsumableItem(ind, blue_wish_name, "Ìîëèòâà íà îðóæèå.", blue_wish_sprite, type_materials, 11);
+        Item blue_wish = new ItemForSale(blueWishSO, ind, blue_wish_amount);
         dict_id_to_item[ind] = blue_wish;
-        dict_item_name_to_id[blue_wish_name] = ind;
+        dict_item_name_to_id[blue_wish.item_name] = ind;
+        shopPanelScript.MakeCurrency(CostType.BlueWish, blue_wish);
 
         ind++;
-        // sword_red
-        Item sword_red = new ConsumableItem(ind, sword_red_name, "Ìå÷ àäñêîãî ïëàìåíè.", sword_red_sprite, type_weapon, 5, 1);
-        dict_id_to_item[ind] = sword_red;
-        dict_item_name_to_id[sword_red_name] = ind;
+        Item gold = new ConsumableItem(goldSO, ind, gold_amount);
+        //Debug.LogError($"gold == null ? --- {gold == null}");
+        dict_id_to_item[ind] = gold;
+        dict_item_name_to_id[gold.item_name] = ind;
+        shopPanelScript.MakeCurrency(CostType.Gold, gold);
 
         ind++;
-        // sword_white
-        Item sword_white = new ConsumableItem(ind, sword_white_name, "Ìå÷ áåçáðåæíûõ íåáåñ.", sword_white_sprite, type_weapon, 5, 1);
-        dict_id_to_item[ind] = sword_white;
-        dict_item_name_to_id[sword_white_name] = ind;
+        Item primogem = new ConsumableItem(primogemSO, ind, primogem_amount);
+        dict_id_to_item[ind] = primogem;
+        dict_item_name_to_id[primogem.item_name] = ind;
+        shopPanelScript.MakeCurrency(CostType.Primogem, primogem);
 
-        ind++;
-        // sword_gold
-        Item sword_gold = new ConsumableItem(ind, sword_gold_name, "Ìå÷ èç ÷èñòîãî çîëîòà.", sword_gold_sprite, type_weapon, 5, 1);
-        dict_id_to_item[ind] = sword_gold;
-        dict_item_name_to_id[sword_gold_name] = ind;
+        foreach (ItemForSaleSO itemForSale_so in list_itemsForSale_so)
+        {
+            ind++;
+            Item temp_item = new ItemForSale(itemForSale_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
 
-        ind++;
-        // sword_death
-        Item sword_death = new ConsumableItem(ind, sword_death_name, "Ìå÷ ñîçäàííûé ñàìèì áîãîì ñìåðòè.", sword_death_sprite, type_weapon, 4, 1);
-        dict_id_to_item[ind] = sword_death;
-        dict_item_name_to_id[sword_death_name] = ind;
+        foreach (ConsumableItemSO consumableItem_so in list_consumableItem_so)
+        {
+            ind++;
+            Item temp_item = new ConsumableItem(consumableItem_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
 
-        ind++;
-        // sword_purple
-        Item sword_purple = new ConsumableItem(ind, sword_purple_name, "Ìå÷ óòåðÿííûé íàâå÷íî.", sword_purple_sprite, type_weapon, 4, 1);
-        dict_id_to_item[ind] = sword_purple;
-        dict_item_name_to_id[sword_purple_name] = ind;
-
-        ind++;
-        // sword_grey
-        Item sword_grey = new ConsumableItem(ind, sword_grey_name, "Íàèáîëåå îñòðûé ìå÷ èç æåëåçà.", sword_grey_sprite, type_weapon, 4, 1);
-        dict_id_to_item[ind] = sword_grey;
-        dict_item_name_to_id[sword_grey_name] = ind;
-
-        ind++;
-        // green_crystal
-        Item green_crystal = new ConsumableItem(ind, green_crystal_name, "Çåë¸íûé êðèñòàëë. Îáðàçóåòñÿ â ñàìûõ ïîòà¸ííûõ óãîëêàõ ïåùåð. Èñïîëüçóåòñÿ äëÿ óëó÷øåíèÿ îðóæèÿ.", green_crystal_sprite, type_materials, 2);
-        dict_id_to_item[ind] = green_crystal;
-        dict_item_name_to_id[green_crystal_name] = ind;
-
-        ind++;
-        // red_crystal
-        Item red_crystal = new ConsumableItem(ind, red_crystal_name, "Êëàñíûé êðèñòàëë. Îáðàçóåòñÿ íà ìåñòíîñòè, íàèáîëåå îçàð¸ííîé ñîëíå÷íûì ñâåòîì. Èñïîëüçóåòñÿ äëÿ óëó÷øåíèÿ îðóæèÿ.", red_crystal_sprite, type_materials, 1);
-        dict_id_to_item[ind] = red_crystal;
-        dict_item_name_to_id[red_crystal_name] = ind;
-
-        ind++;
-        // almaz
-        Item almaz = new ConsumableItem(ind, almaz_name, "Íàèáîëåå òâ¸ðäûé ìèíåðàëë â ìèðå. Îáðàçóåòñÿ ãëóáîêî â íåäðàõ çåìëè. Èñïîëüçóåòñÿ äëÿ óëó÷øåíèÿ îðóæèÿ.", almaz_sprite, type_materials, 4);
-        dict_id_to_item[ind] = almaz;
-        dict_item_name_to_id[almaz_name] = ind;
-
-        ind++;
-        // purple_crystal
-        Item purple_crystal = new ConsumableItem(ind, purple_crystal_name, "Îñêîëîê îäíîãî èç ñàìûõ ðåäêèõ ìèíåðàëëîâ. Íàéòè åãî â ïðèðîäå - áîëüøàÿ óäà÷à. Èñïîëüçóåòñÿ äëÿ óëó÷øåíèÿ îðóæèÿ.", purple_crystal_sprite, type_materials, 3);
-        dict_id_to_item[ind] = purple_crystal;
-        dict_item_name_to_id[purple_crystal_name] = ind;
-
-        ind++;
-        // book
-        Item book = new ConsumableItem(ind, book_name, "Вы можете прочитать эту книгу.", book_sprite, type_quest, 0);
-        dict_id_to_item[ind] = book;
-        dict_item_name_to_id[book_name] = ind;
-
-        ind++;
+        foreach (WeaponSO weapon_so in list_weapon_so)
+        {
+            ind++;
+            Item temp_weapon = new Weapon(weapon_so, ind);
+            dict_id_to_item[ind] = temp_weapon;
+            dict_item_name_to_id[temp_weapon.item_name] = ind;
+        }
     }
 
     public bool DecreaceItemByName(string item_name, int number)
     {
         int item_id = dict_item_name_to_id[item_name];
 
-        if (dict_id_to_item[item_id].count - number >= 0)
+        if (dict_id_to_item[item_id].amount - number >= 0)
         {
-            dict_id_to_item[item_id].count -= number;
+            dict_id_to_item[item_id].amount -= number;
             return true;
         }
         else
@@ -191,17 +143,45 @@ public class BackPackController : MonoBehaviour
         }
     }
 
+    public void IncreaceItemByName(string item_name, int number)
+    {
+        int item_id = dict_item_name_to_id[item_name];
+
+        dict_id_to_item[item_id].amount += number;
+
+        //Debug.Log($"[INC] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
+        /*
+        Debug.LogError($"----------> INCREACING AMOUNT OF {item_name}. item_id = {item_id}\n" +
+            $"dict_id_to_item[item_id].item_name = {dict_id_to_item[item_id].item_name}, " +
+            $"type = {dict_id_to_item[item_id].item_type}, amount = {dict_id_to_item[item_id].amount}\n" +
+            $"{dict_id_to_item[item_id].description}");
+        */
+    }
+
     public int GetItemCounterByName(string name)
     {
         foreach (int id in dict_id_to_item.Keys)
         {
-            if (dict_id_to_item[id].name == name)
+            if (dict_id_to_item[id].item_name == name)
             {
-                return dict_id_to_item[id].count;
+                return dict_id_to_item[id].amount;
             }
         }
-        Debug.LogError("ÍÅÒÓ ÒÀÊÎÃÎ Â ÈÍÂÅÍÒÀÐÅ");
+        Debug.LogError("ERROR: !!! NOT COUNTABLE !!!");
         return -1;
+    }
+
+    public Item GetItemByName(string name)
+    {
+        foreach (int id in dict_id_to_item.Keys)
+        {
+            if (dict_id_to_item[id].item_name == name)
+            {
+                return dict_id_to_item[id];
+            }
+        }
+        Debug.LogError("ERROR: !!! NOT FOUND !!!");
+        return null;
     }
 
     /*
@@ -214,11 +194,18 @@ public class BackPackController : MonoBehaviour
 
     public void UpdateShowerPanel(int new_id)
     {
+        weaponIconGO.SetActive(false);
+
         current_selected_id = new_id;  // !!!
 
         selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
-        nameTMP.text = dict_id_to_item[new_id].name;
+        nameTMP.text = dict_id_to_item[new_id].item_name;
         descriptionTMP.text = dict_id_to_item[new_id].description;
+
+        if (dict_id_to_item[current_selected_id].item_type == ItemType.Weapon)
+        {
+            ActivateWeaponIcon();
+        }
     }
 
     public void ClearShowerPanel()
@@ -234,14 +221,14 @@ public class BackPackController : MonoBehaviour
         {
             Debug.Log("Take by name");
 
-            Debug.Log(dict_id_to_item[id].name);
+            Debug.Log(dict_id_to_item[id].item_name);
             Debug.Log(name);
-            if (dict_id_to_item[id].name == name)
+            if (dict_id_to_item[id].item_name == name)
             {
                 Debug.Log("Book found");
 
-                dict_id_to_item[id].count++;
-                Debug.Log(dict_id_to_item[id].count);
+                dict_id_to_item[id].amount++;
+                Debug.Log(dict_id_to_item[id].amount);
 
                 break;
             }
@@ -255,48 +242,50 @@ public class BackPackController : MonoBehaviour
 
     public void ShowWeapon()
     {
-        UpdateBackpack(type_weapon);
+        UpdateBackpack(ItemType.Weapon);
     }
 
     public void ShowFood()
     {
-        UpdateBackpack(type_food);
+        UpdateBackpack(ItemType.Food);
     }
 
     public void ShowDrink()
     {
-        UpdateBackpack(type_drink);
+        UpdateBackpack(ItemType.Drink);
     }
 
     public void ShowMaterials()
     {
-        UpdateBackpack(type_materials);
+        UpdateBackpack(ItemType.Materials);
     }
 
     public void ShowQuest()
     {
-        UpdateBackpack(type_quest);
+        UpdateBackpack(ItemType.Quest);
     }
 
-    void UpdateBackpack(string type = type_everything)
+    void UpdateBackpack(ItemType type = ItemType.Everything)
     {
+        weaponIconGO.SetActive(false);
+
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         CountItems(type);
         ClearBackpack();
         ChangeBackpackPanelHeight(type);
 
-        Debug.Log(item_counter);
+        //Debug.Log(item_counter);
     }
 
-    void CountItems(string type)
+    void CountItems(ItemType type)
     {
         item_counter = 0;
 
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].count}");
-            if (dict_id_to_item[id].count > 0 && (dict_id_to_item[id].type == type || type == type_everything))
+            //Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].amount}");
+            if (dict_id_to_item[id].amount > 0 && (dict_id_to_item[id].item_type == type || type == ItemType.Everything))
             {
                 item_counter++;
             }
@@ -307,21 +296,24 @@ public class BackPackController : MonoBehaviour
     {
         foreach (Transform child in content_GO.transform)
         {
-            Debug.Log($"delete item");
+            //Debug.Log($"delete item");
             Destroy(child.gameObject);
         }
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
     }    
 
-    void ChangeBackpackPanelHeight(string type)
+    void ChangeBackpackPanelHeight(ItemType type)
     {
         int row_amount = item_counter / item_in_row + (item_counter % item_in_row == 0 ? 0 : 1);
         int new_height = row_amount * item_height + (row_amount + 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
 
+        //Debug.Log($"[SPAWN] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
+
         foreach (int id in dict_id_to_item.Keys)
         {
-            if (dict_id_to_item[id].count > 0 && (dict_id_to_item[id].type == type || type == type_everything))
+            //Debug.LogError($"{dict_id_to_item[id].item_name}.amount = {dict_id_to_item[id].amount}");
+            if (dict_id_to_item[id].amount > 0 && (dict_id_to_item[id].item_type == type || type == ItemType.Everything))
             {
                 SpawnBackpackIconPrefab(id);
             }
@@ -347,5 +339,25 @@ public class BackPackController : MonoBehaviour
     public void CloseBackpackPanel()
     {
         gameObject.SetActive(false);
+    }
+
+    public Element GetElementByElementType(ElementType element_type)
+    {
+        return characterPanelScript.dict_element_type_to_element[element_type];
+    }
+
+    void ActivateWeaponIcon()
+    {
+        weaponIconGO.SetActive(true);
+
+        Weapon weapon = null;
+        if (dict_id_to_item[current_selected_id] is Weapon temp)
+        {
+            weapon = temp;
+        }
+        if (weapon == null) return;
+
+        elementImage.sprite = GetElementByElementType(weapon.elementalDamage.element_type).sprite;
+        starTMP.text = weapon.stars.ToString();
     }
 }

@@ -17,8 +17,10 @@ public class MainController : MonoBehaviour
     public GameObject wishPanel;
     public GameObject shopPanel;
     public GameObject characterPanel;
+    public GameObject switchWeaponPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
+    public GameObject multiplayerPanel;
 
     public GameObject taskShower;
 
@@ -32,6 +34,7 @@ public class MainController : MonoBehaviour
     BackPackController backpackController;
     WishPanelScript wishPanelScript;
     ShopPanelScript shopPanelScript;
+    CharacterPanelScript characterPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -45,7 +48,6 @@ public class MainController : MonoBehaviour
 
     DoggyInteractionScript doggyInteractionScript;
     DangeonInteractionScript dangeonInteractionScript;
-    BookInteractionScript bookInteractionScript;
 
     public bool is_keyboard_active = true;
 
@@ -63,11 +65,6 @@ public class MainController : MonoBehaviour
     private void Awake()
     {
         StuffSetActiveTrue();
-    }
-
-    void Start()
-    {
-        StuffSetActiveFalse();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
@@ -75,42 +72,60 @@ public class MainController : MonoBehaviour
         backpackController = backpackPanel.GetComponent<BackPackController>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
+        characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
+    }
 
-        backpackController.MakeDictionary();
+    void Start()
+    {
+        //backpackController.MakeDictionary();
 
         SetDedusScripts();
         SetGrandsonEugeneScripts();
         SetDangeonScripts();
         SetDoggyScripts();
-        SetBookScripts();
 
         is_keyboard_active = true;
+
+        StuffSetActiveFalse();
     }
 
     public bool UseWish(bool is_pink, int number)
     {
+        string wish_name;
         if (is_pink)
         {
-            return backpackController.DecreaceItemByName(backpackController.pink_wish_name, number);
+            wish_name = shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name;
         }
         else
         {
-            return backpackController.DecreaceItemByName(backpackController.blue_wish_name, number);
+            wish_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
         }
+        return backpackController.DecreaceItemByName(wish_name, number);
+    }
+
+    public void PickUpItemByName(string name)
+    {
+        backpackController.IncreaceItemByName(name, 1);
     }
 
     public void UpdateWishPanelInfo()
     {
-        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(backpackController.pink_wish_name));
-        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(backpackController.blue_wish_name));
+        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name));
+        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name));
     }
 
     public int GetItemCounterByName(string name)
     {
         return backpackController.GetItemCounterByName(name);
+    }
+
+    public Item GetItemByName(string name)
+    {
+        //Debug.LogError($"backpackController == null ? {backpackController == null}");
+        return backpackController.GetItemByName(name);
     }
 
     public void ShowInteraction()
@@ -123,37 +138,6 @@ public class MainController : MonoBehaviour
         }
 
         current_interaction_SR = null;
-
-        /*
-        list_of_interactable_SR.Clear();
-        list_of_interactable_objects_names.Clear();
-
-        if (dedus_F)
-        {
-            list_of_interactable_SR.Add(dedusController.interactIconSR);
-            list_of_interactable_objects_names.Add(Dedus.name);
-        }
-        if (grandsonEugene_F)
-        {
-            list_of_interactable_SR.Add(grandsonEugeneController.interactIconSR);
-            list_of_interactable_objects_names.Add(GrandsonEugene.name);
-        }
-        if (dangeon_F)
-        {
-            list_of_interactable_SR.Add(dangeonInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Dangeon.name);
-        }
-        if (doggy_F)
-        {
-            list_of_interactable_SR.Add(doggyInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Doggy.name);
-        }
-        if (book_F)
-        {
-            list_of_interactable_SR.Add(bookInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Book.name);
-        }
-        */
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
 
@@ -174,41 +158,6 @@ public class MainController : MonoBehaviour
         healthBarScript.UpdateHealthBar(amount);
     }
 
-    public void PressF()
-    {
-        if (list_of_interactable_objects_names.Count == 0) return;
-
-        //Debug.Log($"list.Count = {list_of_interactable_objects_names.Count}, dangeon_F = {dangeon_F}, dangeon.name = {Dangeon.name}, list_names[cur_ind] = {list_of_interactable_objects_names[scrollInteractionScript.current_index]}");
-
-        /*
-        if (dedus_F && Dedus.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dedusDialogScript == null) SetDedusScripts();
-            InteractDedus();
-        }
-        else if (grandsonEugene_F && GrandsonEugene.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (grandsonEugeneDialogScript == null) SetGrandsonEugeneScripts();
-            InteractGrandsonEugene();
-        }
-        else if (dangeon_F && Dangeon.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dangeonInteractionScript == null) SetDangeonScripts();
-            InteractDangeon();
-        }
-        else if (doggy_F && Doggy.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dangeonInteractionScript == null) SetDoggyScripts();
-            InteractDoggy();
-        }
-        else if (book_F && Book.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (bookInteractionScript == null) SetBookScripts();
-            TakeBook();
-        }
-        */
-    }
-
     public void InteractDedus()
     {
         dedusDialogScript.StartDialog();
@@ -217,11 +166,6 @@ public class MainController : MonoBehaviour
     public void InteractGrandsonEugene()
     {
         grandsonEugeneDialogScript.StartDialog();
-    }
-
-    public void InteractBook()
-    {
-        TakeBook();
     }
 
     public void InteractDoggy()
@@ -246,35 +190,32 @@ public class MainController : MonoBehaviour
 
     void StuffSetActiveTrue()
     {
+        characterPanel.SetActive(true);
         dialogPanel.SetActive(true);
         questPanel.SetActive(true);
         backpackPanel.SetActive(true);
-        wishPanel.SetActive(true);
         shopPanel.SetActive(true);
-        characterPanel.SetActive(true);
+        wishPanel.SetActive(true);
+        switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
+        //multiplayerPanel.SetActive(true);
     }
 
     void StuffSetActiveFalse()
     {
         dialogPanel.SetActive(false);
         questPanel.SetActive(false);
-        backpackPanel.SetActive(false);
         wishPanel.SetActive(false);
         shopPanel.SetActive(false);
+        backpackPanel.SetActive(false);
         characterPanel.SetActive(false);
+        switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
+        multiplayerPanel.SetActive(false);
 
         dedus_F = false;
         grandsonEugene_F = false;
         dangeon_F = false;
-    }
-
-    public void TakeBook()
-    {
-        // Debug.Log("Take book!");
-        // bookInteractionScript.TakeBook();
-        backpackController.TakeByName(backpackController.book_name);
     }
 
     public void EnterDangeon()
@@ -303,76 +244,6 @@ public class MainController : MonoBehaviour
     {
         enterDangeonPanel.SetActive(false);
         TurnOnKeyboard();
-    }
-
-    public void DedusOn()
-    {
-        dedus_F = true;
-        ShowInteraction();
-        Debug.Log("Dedus on");
-    }
-
-    public void DedusOff()
-    {
-        dedus_F = false;
-        ShowInteraction();
-        Debug.Log("Dedus off");
-    }
-
-    public void GrandsonEugeneOn()
-    {
-        grandsonEugene_F = true;
-        ShowInteraction();
-        Debug.Log("Grandson on");
-    }
-
-    public void GrandsonEugeneOff()
-    {
-        grandsonEugene_F = false;
-        ShowInteraction();
-        Debug.Log("Grandson off");
-    }
-
-    public void DangeonOn()
-    {
-        dangeon_F = true;
-        ShowInteraction();
-        Debug.Log("Dangeon on");
-    }
-
-    public void DangeonOff()
-    {
-        dangeon_F = false;
-        ShowInteraction();
-        Debug.Log("Dangeon off");
-    }
-
-    public void DoggyOn()
-    {
-        doggy_F = true;
-        ShowInteraction();
-        Debug.Log("Doggy on");
-    }
-
-    public void DoggyOff()
-    {
-        doggy_F = false;
-        ShowInteraction();
-        Debug.Log("Doggy off");
-    }
-
-    public void BookOn()
-    {
-        book_F = true;
-        ShowInteraction();
-        Debug.Log("Book on");
-    }
-
-    public void BookOff()
-    {
-        book_F = false;
-        ShowInteraction();
-        Debug.Log("Book off");
     }
 
     void SetDedusScripts()
@@ -414,15 +285,6 @@ public class MainController : MonoBehaviour
         }
     }
 
-    void SetBookScripts()
-    {
-        if (Book == null) Book = GameObject.Find("Book");
-        if (Book != null)
-        {
-            bookInteractionScript = Book.GetComponent<BookInteractionScript>();
-        }
-    }
-
     public void OpenQuestPanel()
     {
         questPanel.SetActive(true);
@@ -450,7 +312,7 @@ public class MainController : MonoBehaviour
 
     public void OpenCharacterPanel()
     {
-        characterPanel.SetActive(true);
+        characterPanelScript.OpenCharacterPanel();
         TurnOffKeyboard();
     }
 

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d3a66ade6185b4d80d1702f4fa05a6, type: 3}
+  m_Name: ConsumableItem_food_1
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7730915543169252125, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
+  item_name: "\u042F\u0438\u0447\u043D\u0438\u0446\u0430"
+  description: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
+    12 \u0435\u0434\u0438\u043D\u0438\u0446 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F."
+  item_type: 2
+  amount: 8

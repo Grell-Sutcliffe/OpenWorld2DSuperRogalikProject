@@ -16,17 +16,18 @@ public abstract class InteractionController : MonoBehaviour
 
     protected bool is_player_in_range = false;
 
-    // ==== ÃËÎÁÀËÜÍÛÉ input ====
     private static InputAction interact;
     private static bool inputInitialized = false;
 
-    // Âñå àêòèâíûå InteractionController
     private static List<InteractionController> controllers = new List<InteractionController>();
+
+    protected virtual void Awake()
+    {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+    }
 
     protected virtual void Start()
     {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
-
         interactIconSR = interactIcon.GetComponent<SpriteRenderer>();
         OffInteraction();
     }
