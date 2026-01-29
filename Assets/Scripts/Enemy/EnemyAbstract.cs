@@ -53,7 +53,39 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected bool isDead = false;
 
     [SerializeField] DamageText damageTextPrefab;
-    [SerializeField] Transform damageTextPoint; 
+    [SerializeField] Transform damageTextPoint;
+
+
+    [SerializeField] private float deadZone = 0.02f; // чтобы не дрожало около 0
+    private bool facingRight = true; // “логическое” направление
+    [SerializeField] private SpriteRenderer sr;
+
+    
+    private void Update()
+    {
+        if (isTriggered) FaceTarget(playerTrans);
+
+    }
+
+    public void FaceByDirX(float dirX)
+    {
+        if (Mathf.Abs(dirX) < deadZone) return;
+
+        bool shouldFaceRight = dirX > 0f;
+        if (shouldFaceRight == facingRight) return;
+
+        facingRight = shouldFaceRight;
+        sr.flipX = !facingRight;
+        // если твой спрайт по умолчанию смотрит ВЛЕВО, поменяй на sr.flipX = facingRight;
+    }
+
+    // Если хочешь “смотреть на цель”
+    public void FaceTarget(Transform target)
+    {
+        float dirX = target.position.x - transform.position.x;
+        FaceByDirX(dirX);
+    }
+
     void ShowDamage(Damage dmg)
     {
         var txt = Instantiate(
@@ -113,7 +145,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     {
         weapon = new Weapon(dataW);
         strafeSign *= Random.value < 0.5f ? -1 : 1;
-
+        sr = GetComponent<SpriteRenderer>();
         PickNewTarget();
         StartCoroutine(ChangeStrafe());
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements.Experimental;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
@@ -207,14 +208,18 @@ private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if 
             }
             anim.SetFloat("dir", dir);  // вынести в отделную функцию
             anim.SetBool("isHit", isHit);
+
+            if (canHit && Input.GetMouseButtonDown(0)) // ЛКМ
+            {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+                    return;
+                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RotatePivot(mouseWorldPos, offset);
+                Hit();
+            }
         }
 
-        if (canHit && Input.GetMouseButtonDown(0)) // ЛКМ
-        {
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RotatePivot(mouseWorldPos, offset);
-            Hit();
-        }
+        
 
     }
 
