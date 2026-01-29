@@ -36,6 +36,11 @@ public class CharacterPanelScript : MonoBehaviour
     public string name_anemo = "anemo";
     public string name_physical = "physical";
 
+    void Awake()
+    {
+        MakeDictionary();
+    }
+
     void Start()
     {
         currentWeaponPanelScript = weaponPanel.GetComponent<CurrentWeaponPanelScript>();
@@ -52,6 +57,12 @@ public class CharacterPanelScript : MonoBehaviour
         dict_element_type_to_element[ElementType.Electro] = new Element(ElementType.Electro, name_electro, sprite_electro);
         dict_element_type_to_element[ElementType.Anemo] = new Element(ElementType.Anemo, name_anemo, sprite_anemo);
         dict_element_type_to_element[ElementType.Physical] = new Element(ElementType.Physical, name_physical, sprite_physical);
+    }
+
+    public void OpenCharacterPanel()
+    {
+        gameObject.SetActive(true);
+        GoToCharacterPanel();
     }
 
     public void GoToCharacterPanel()

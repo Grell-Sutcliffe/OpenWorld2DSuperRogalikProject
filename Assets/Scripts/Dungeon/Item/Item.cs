@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using UnityEngine.U2D;
 
+[Serializable]
 public abstract class Item
 {
     public Sprite sprite;
@@ -16,43 +17,6 @@ public abstract class Item
     public ItemType item_type = ItemType.Everything;
 
     public int id;
-
-    //public bool playerInRange = false;
-
-    /*
-    protected virtual void Start()
-    {
-        //uniqueID = Guid.NewGuid();
-        var collider = gameObject.GetComponent<CircleCollider2D>();
-        if (collider == null)
-        {
-            collider = gameObject.AddComponent<CircleCollider2D>();
-        }
-        collider.isTrigger = true;
-        //collider.radius = radius; 
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //playerInRange = true;
-        }
-    }
-
-    protected virtual void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //playerInRange = false;
-        }
-    }
-
-    public void OnPickup(GameObject player)
-    {
-
-    }
-    */
 }
 
 public enum ItemType

@@ -33,6 +33,7 @@ public class MainController : MonoBehaviour
     BackPackController backpackController;
     WishPanelScript wishPanelScript;
     ShopPanelScript shopPanelScript;
+    CharacterPanelScript characterPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -64,11 +65,6 @@ public class MainController : MonoBehaviour
     private void Awake()
     {
         StuffSetActiveTrue();
-    }
-
-    void Start()
-    {
-        StuffSetActiveFalse();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
@@ -76,11 +72,15 @@ public class MainController : MonoBehaviour
         backpackController = backpackPanel.GetComponent<BackPackController>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
+        characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
+    }
 
-        backpackController.MakeDictionary();
+    void Start()
+    {
+        //backpackController.MakeDictionary();
 
         SetDedusScripts();
         SetGrandsonEugeneScripts();
@@ -89,6 +89,8 @@ public class MainController : MonoBehaviour
         SetBookScripts();
 
         is_keyboard_active = true;
+
+        StuffSetActiveFalse();
     }
 
     public bool UseWish(bool is_pink, int number)
@@ -105,6 +107,11 @@ public class MainController : MonoBehaviour
         return backpackController.DecreaceItemByName(wish_name, number);
     }
 
+    public void PickUpItemByName(string name)
+    {
+        backpackController.IncreaceItemByName(name, 1);
+    }
+
     public void UpdateWishPanelInfo()
     {
         wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name));
@@ -114,6 +121,12 @@ public class MainController : MonoBehaviour
     public int GetItemCounterByName(string name)
     {
         return backpackController.GetItemCounterByName(name);
+    }
+
+    public Item GetItemByName(string name)
+    {
+        //Debug.LogError($"backpackController == null ? {backpackController == null}");
+        return backpackController.GetItemByName(name);
     }
 
     public void ShowInteraction()
@@ -126,37 +139,6 @@ public class MainController : MonoBehaviour
         }
 
         current_interaction_SR = null;
-
-        /*
-        list_of_interactable_SR.Clear();
-        list_of_interactable_objects_names.Clear();
-
-        if (dedus_F)
-        {
-            list_of_interactable_SR.Add(dedusController.interactIconSR);
-            list_of_interactable_objects_names.Add(Dedus.name);
-        }
-        if (grandsonEugene_F)
-        {
-            list_of_interactable_SR.Add(grandsonEugeneController.interactIconSR);
-            list_of_interactable_objects_names.Add(GrandsonEugene.name);
-        }
-        if (dangeon_F)
-        {
-            list_of_interactable_SR.Add(dangeonInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Dangeon.name);
-        }
-        if (doggy_F)
-        {
-            list_of_interactable_SR.Add(doggyInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Doggy.name);
-        }
-        if (book_F)
-        {
-            list_of_interactable_SR.Add(bookInteractionScript.interactIconSR);
-            list_of_interactable_objects_names.Add(Book.name);
-        }
-        */
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
 
@@ -249,12 +231,12 @@ public class MainController : MonoBehaviour
 
     void StuffSetActiveTrue()
     {
+        characterPanel.SetActive(true);
         dialogPanel.SetActive(true);
         questPanel.SetActive(true);
         backpackPanel.SetActive(true);
         shopPanel.SetActive(true);
         wishPanel.SetActive(true);
-        characterPanel.SetActive(true);
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
     }
@@ -455,7 +437,7 @@ public class MainController : MonoBehaviour
 
     public void OpenCharacterPanel()
     {
-        characterPanel.SetActive(true);
+        characterPanelScript.OpenCharacterPanel();
         TurnOffKeyboard();
     }
 

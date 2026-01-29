@@ -2,10 +2,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static CharacterPanelScript;
 
 public class BackPackController : MonoBehaviour
 {
     public ShopPanelScript shopPanelScript;
+    public CharacterPanelScript characterPanelScript;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
@@ -30,6 +32,10 @@ public class BackPackController : MonoBehaviour
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI descriptionTMP;
 
+    public GameObject weaponIconGO;
+    public TextMeshProUGUI starTMP;
+    public Image elementImage;
+
     public Dictionary<string, int> dict_item_name_to_id = new Dictionary<string, int>();
     public Dictionary<int, Item> dict_id_to_item = new Dictionary<int, Item>();
 
@@ -52,19 +58,17 @@ public class BackPackController : MonoBehaviour
 
     // public List<int> player_items_id;
 
-    /*
     private void Awake()
     {
+        MakeDictionary();
     }
-    */
 
     void Start()
     {
+        weaponIconGO.SetActive(false);
         // shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
-
-        MakeDictionary();
         
         UpdateBackpack();
         ClearShowerPanel();
@@ -139,6 +143,21 @@ public class BackPackController : MonoBehaviour
         }
     }
 
+    public void IncreaceItemByName(string item_name, int number)
+    {
+        int item_id = dict_item_name_to_id[item_name];
+
+        dict_id_to_item[item_id].amount += number;
+
+        //Debug.Log($"[INC] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
+        /*
+        Debug.LogError($"----------> INCREACING AMOUNT OF {item_name}. item_id = {item_id}\n" +
+            $"dict_id_to_item[item_id].item_name = {dict_id_to_item[item_id].item_name}, " +
+            $"type = {dict_id_to_item[item_id].item_type}, amount = {dict_id_to_item[item_id].amount}\n" +
+            $"{dict_id_to_item[item_id].description}");
+        */
+    }
+
     public int GetItemCounterByName(string name)
     {
         foreach (int id in dict_id_to_item.Keys)
@@ -152,6 +171,19 @@ public class BackPackController : MonoBehaviour
         return -1;
     }
 
+    public Item GetItemByName(string name)
+    {
+        foreach (int id in dict_id_to_item.Keys)
+        {
+            if (dict_id_to_item[id].item_name == name)
+            {
+                return dict_id_to_item[id];
+            }
+        }
+        Debug.LogError("ERROR: !!! NOT FOUND !!!");
+        return null;
+    }
+
     /*
     public void MoveItemToInventoryById(int new_id)
     {
@@ -162,11 +194,18 @@ public class BackPackController : MonoBehaviour
 
     public void UpdateShowerPanel(int new_id)
     {
+        weaponIconGO.SetActive(false);
+
         current_selected_id = new_id;  // !!!
 
         selectedItemImage.sprite = dict_id_to_item[new_id].sprite;
         nameTMP.text = dict_id_to_item[new_id].item_name;
         descriptionTMP.text = dict_id_to_item[new_id].description;
+
+        if (dict_id_to_item[current_selected_id].item_type == ItemType.Weapon)
+        {
+            ActivateWeaponIcon();
+        }
     }
 
     public void ClearShowerPanel()
@@ -228,13 +267,15 @@ public class BackPackController : MonoBehaviour
 
     void UpdateBackpack(ItemType type = ItemType.Everything)
     {
+        weaponIconGO.SetActive(false);
+
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         CountItems(type);
         ClearBackpack();
         ChangeBackpackPanelHeight(type);
 
-        Debug.Log(item_counter);
+        //Debug.Log(item_counter);
     }
 
     void CountItems(ItemType type)
@@ -243,7 +284,7 @@ public class BackPackController : MonoBehaviour
 
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].amount}");
+            //Debug.Log($"current item id = {id}, amount = {dict_id_to_item[id].amount}");
             if (dict_id_to_item[id].amount > 0 && (dict_id_to_item[id].item_type == type || type == ItemType.Everything))
             {
                 item_counter++;
@@ -255,7 +296,7 @@ public class BackPackController : MonoBehaviour
     {
         foreach (Transform child in content_GO.transform)
         {
-            Debug.Log($"delete item");
+            //Debug.Log($"delete item");
             Destroy(child.gameObject);
         }
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
@@ -267,8 +308,11 @@ public class BackPackController : MonoBehaviour
         int new_height = row_amount * item_height + (row_amount + 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
 
+        //Debug.Log($"[SPAWN] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
+
         foreach (int id in dict_id_to_item.Keys)
         {
+            //Debug.LogError($"{dict_id_to_item[id].item_name}.amount = {dict_id_to_item[id].amount}");
             if (dict_id_to_item[id].amount > 0 && (dict_id_to_item[id].item_type == type || type == ItemType.Everything))
             {
                 SpawnBackpackIconPrefab(id);
@@ -295,5 +339,25 @@ public class BackPackController : MonoBehaviour
     public void CloseBackpackPanel()
     {
         gameObject.SetActive(false);
+    }
+
+    public Element GetElementByElementType(ElementType element_type)
+    {
+        return characterPanelScript.dict_element_type_to_element[element_type];
+    }
+
+    void ActivateWeaponIcon()
+    {
+        weaponIconGO.SetActive(true);
+
+        Weapon weapon = null;
+        if (dict_id_to_item[current_selected_id] is Weapon temp)
+        {
+            weapon = temp;
+        }
+        if (weapon == null) return;
+
+        elementImage.sprite = GetElementByElementType(weapon.element).sprite;
+        starTMP.text = weapon.stars.ToString();
     }
 }

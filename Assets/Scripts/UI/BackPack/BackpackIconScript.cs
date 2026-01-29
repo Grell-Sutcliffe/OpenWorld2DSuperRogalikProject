@@ -8,6 +8,11 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 {
     BackPackController backpackController;
 
+    public GameObject weaponIcon;
+
+    public TextMeshProUGUI starTMP;
+    public Image elementImage;
+
     public Image item_image_TMP;
     public TextMeshProUGUI item_counter_TMP;
     public InventoryStalker inventory_stalker;
@@ -76,10 +81,10 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
             }
         }
 
-            if (inventory_stalker != null && inventory_stalker.mouse_stalker != null)
-            {
-                inventory_stalker.mouse_stalker.MakeDefault();
-            }
+        if (inventory_stalker != null && inventory_stalker.mouse_stalker != null)
+        {
+            inventory_stalker.mouse_stalker.MakeDefault();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -137,7 +142,31 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         sprite = backpackController.dict_id_to_item[id].sprite;
         count = backpackController.dict_id_to_item[id].amount;
 
+        if (backpackController.dict_id_to_item[id].item_type == ItemType.Weapon)
+        {
+            ActivateWeaponIcon();
+        }
+        else
+        {
+            weaponIcon.SetActive(false);
+        }
+
         item_image_TMP.sprite = sprite;
         item_counter_TMP.text = count.ToString();
+    }
+
+    void ActivateWeaponIcon()
+    {
+        weaponIcon.SetActive(true);
+
+        Weapon weapon = null;
+        if (backpackController.dict_id_to_item[id] is Weapon temp)
+        {
+            weapon = temp;
+        }
+        if (weapon == null) return;
+
+        elementImage.sprite = backpackController.GetElementByElementType(weapon.element).sprite;
+        starTMP.text = weapon.stars.ToString();
     }
 }
