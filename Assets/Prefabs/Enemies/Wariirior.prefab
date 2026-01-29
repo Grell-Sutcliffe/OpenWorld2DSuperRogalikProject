@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c043478db53b8542a6ceae72b1d5f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: 4
   attackDur: 2
   speed: 3
   walkZone: {fileID: 0}
@@ -193,7 +194,7 @@ MonoBehaviour:
   eName: Sworder
   reachDisttoRotatePivot: 0
   pivot: {fileID: 3752381475296509363}
-  dataW: {fileID: 0}
+  dataW: {fileID: 11400000, guid: 436b4e8032c17774a814918ff0cf10dc, type: 2}
   damageTextPrefab: {fileID: 5174160028970153144, guid: 2c7a299f54d02c14080f8055ac361816, type: 3}
   damageTextPoint: {fileID: 3278429812705170378}
   deadZone: 0.02

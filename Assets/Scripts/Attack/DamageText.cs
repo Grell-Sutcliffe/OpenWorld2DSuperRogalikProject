@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class DamageText : MonoBehaviour
@@ -8,6 +8,7 @@ public class DamageText : MonoBehaviour
     float t;
     Vector3 startPos;
     Vector3 endPos;
+    
 
     TextMeshPro text;
 
@@ -23,7 +24,9 @@ public class DamageText : MonoBehaviour
         text.color = dmg.isCrit ? Color.red : Color.white;
 
         startPos = transform.position;
-        endPos = startPos + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1f), 0) * 1.0f; // ������
+        text.fontSize = dmg.isCrit ? 4f : 3f; // ← ВОТ ЭТО
+
+        endPos = startPos + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1f), 0) * 1.0f; // высота
         t = 0f;
 
     }

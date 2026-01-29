@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6433ddbcee599a4aaef6c8de2f53acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: 2
   attackDur: 1
   speed: 1
   walkZone: {fileID: 0}
@@ -301,7 +302,7 @@ MonoBehaviour:
   eName: Skelet
   reachDisttoRotatePivot: 5
   pivot: {fileID: 9193727690908552895}
-  dataW: {fileID: 0}
+  dataW: {fileID: 11400000, guid: 93aef83b74ca1d746a51484476d1f658, type: 2}
   damageTextPrefab: {fileID: 5174160028970153144, guid: 2c7a299f54d02c14080f8055ac361816, type: 3}
   damageTextPoint: {fileID: 432635631672976786}
   deadZone: 0.02

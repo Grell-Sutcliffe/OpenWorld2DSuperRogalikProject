@@ -9,12 +9,12 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected bool canHit = true;
     protected float timeLastHit;
     public GameObject owner => gameObject;
-    
 
+    [SerializeField] protected int music;
     [SerializeField] protected float attackDur = 1;
 
     [SerializeField] protected float speed;
-    [SerializeField] protected BoxCollider2D walkZone;
+    [SerializeField] public BoxCollider2D walkZone;
     [SerializeField] protected float reachDist = 0.1f;  // for walk
     [SerializeField] protected float reachDisttoPlayer = 5f;
     [SerializeField] protected float reachDisttoPlayerWithWindow = 4f;
@@ -107,8 +107,13 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
             isDead = true;
             anim.SetTrigger("die");
             hp = 0;
+            MusicManager.Instance.PlayByIndex(6);
         }
-        
+        else
+        {
+            MusicManager.Instance.PlayByIndex(music);
+        }
+
         ChangeHealthBar();
         ShowDamage(dmg);
     }
@@ -136,6 +141,9 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public void DieInAnimation()
     {
         Destroy(gameObject);
+
+        SpawnZone sz = GetComponentInParent<SpawnZone>();
+        if (sz != null) sz.Died();
     }
     protected virtual void Awake()
     {

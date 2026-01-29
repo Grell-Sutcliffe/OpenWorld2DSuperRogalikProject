@@ -5,8 +5,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
     public GameObject owner => gameObject;
-    protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage);
+    protected Damage current_dmg;
+    public Damage currentDmg => current_dmg;
     bool canHit = true;
 
     // Player's Data
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     [SerializeField] GameObject target;
 
+    [SerializeField] WeaponSO data;
     Weapon weapon;
 
     public GameObject pivot;
@@ -52,13 +53,17 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         System.Random rand = new System.Random();
         int chance = rand.Next(0, 101);
+        var wasCrit = false;
 
         if (chance <= current_crit_chance * 100)
         {
             delta_damage += RoundToMax(current_damage * crit_dmg);
+            wasCrit = true;
+
         }
 
-        this.current_dmg = current_damage + delta_damage;
+        this.current_dmg = new Damage(current_damage + delta_damage,  weapon.elementalDamage);
+        current_dmg.isCrit = wasCrit;
 
         LoggerName($"now have {current_dmg} damage");
     }
@@ -142,6 +147,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
     private void Start()
     {
+        weapon = new Weapon(data);
         ApplyConfig();
     }
     bool isRun = false;
@@ -222,6 +228,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         mainController.UpdateHealthBar(currentHealth / maxHealth);
 
         Debug.LogWarning($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
+        MusicManager.Instance.PlayByIndex(1);
+
         if (currentHealth <= 0)
         {
             Die();
