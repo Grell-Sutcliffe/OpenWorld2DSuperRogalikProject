@@ -47,7 +47,6 @@ public class MainController : MonoBehaviour
 
     DoggyInteractionScript doggyInteractionScript;
     DangeonInteractionScript dangeonInteractionScript;
-    BookInteractionScript bookInteractionScript;
 
     public bool is_keyboard_active = true;
 
@@ -86,7 +85,6 @@ public class MainController : MonoBehaviour
         SetGrandsonEugeneScripts();
         SetDangeonScripts();
         SetDoggyScripts();
-        SetBookScripts();
 
         is_keyboard_active = true;
 
@@ -159,41 +157,6 @@ public class MainController : MonoBehaviour
         healthBarScript.UpdateHealthBar(amount);
     }
 
-    public void PressF()
-    {
-        if (list_of_interactable_objects_names.Count == 0) return;
-
-        //Debug.Log($"list.Count = {list_of_interactable_objects_names.Count}, dangeon_F = {dangeon_F}, dangeon.name = {Dangeon.name}, list_names[cur_ind] = {list_of_interactable_objects_names[scrollInteractionScript.current_index]}");
-
-        /*
-        if (dedus_F && Dedus.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dedusDialogScript == null) SetDedusScripts();
-            InteractDedus();
-        }
-        else if (grandsonEugene_F && GrandsonEugene.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (grandsonEugeneDialogScript == null) SetGrandsonEugeneScripts();
-            InteractGrandsonEugene();
-        }
-        else if (dangeon_F && Dangeon.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dangeonInteractionScript == null) SetDangeonScripts();
-            InteractDangeon();
-        }
-        else if (doggy_F && Doggy.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (dangeonInteractionScript == null) SetDoggyScripts();
-            InteractDoggy();
-        }
-        else if (book_F && Book.name == list_of_interactable_objects_names[scrollInteractionScript.current_index])
-        {
-            if (bookInteractionScript == null) SetBookScripts();
-            TakeBook();
-        }
-        */
-    }
-
     public void InteractDedus()
     {
         dedusDialogScript.StartDialog();
@@ -202,11 +165,6 @@ public class MainController : MonoBehaviour
     public void InteractGrandsonEugene()
     {
         grandsonEugeneDialogScript.StartDialog();
-    }
-
-    public void InteractBook()
-    {
-        TakeBook();
     }
 
     public void InteractDoggy()
@@ -257,13 +215,6 @@ public class MainController : MonoBehaviour
         dangeon_F = false;
     }
 
-    public void TakeBook()
-    {
-        // Debug.Log("Take book!");
-        // bookInteractionScript.TakeBook();
-        //backpackController.TakeByName(backpackController.book_name);
-    }
-
     public void EnterDangeon()
     {
         Debug.Log("ENTER DANGEON");
@@ -290,76 +241,6 @@ public class MainController : MonoBehaviour
     {
         enterDangeonPanel.SetActive(false);
         TurnOnKeyboard();
-    }
-
-    public void DedusOn()
-    {
-        dedus_F = true;
-        ShowInteraction();
-        Debug.Log("Dedus on");
-    }
-
-    public void DedusOff()
-    {
-        dedus_F = false;
-        ShowInteraction();
-        Debug.Log("Dedus off");
-    }
-
-    public void GrandsonEugeneOn()
-    {
-        grandsonEugene_F = true;
-        ShowInteraction();
-        Debug.Log("Grandson on");
-    }
-
-    public void GrandsonEugeneOff()
-    {
-        grandsonEugene_F = false;
-        ShowInteraction();
-        Debug.Log("Grandson off");
-    }
-
-    public void DangeonOn()
-    {
-        dangeon_F = true;
-        ShowInteraction();
-        Debug.Log("Dangeon on");
-    }
-
-    public void DangeonOff()
-    {
-        dangeon_F = false;
-        ShowInteraction();
-        Debug.Log("Dangeon off");
-    }
-
-    public void DoggyOn()
-    {
-        doggy_F = true;
-        ShowInteraction();
-        Debug.Log("Doggy on");
-    }
-
-    public void DoggyOff()
-    {
-        doggy_F = false;
-        ShowInteraction();
-        Debug.Log("Doggy off");
-    }
-
-    public void BookOn()
-    {
-        book_F = true;
-        ShowInteraction();
-        Debug.Log("Book on");
-    }
-
-    public void BookOff()
-    {
-        book_F = false;
-        ShowInteraction();
-        Debug.Log("Book off");
     }
 
     void SetDedusScripts()
@@ -398,15 +279,6 @@ public class MainController : MonoBehaviour
         if (Dangeon != null)
         {
             dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
-        }
-    }
-
-    void SetBookScripts()
-    {
-        if (Book == null) Book = GameObject.Find("Book");
-        if (Book != null)
-        {
-            bookInteractionScript = Book.GetComponent<BookInteractionScript>();
         }
     }
 
