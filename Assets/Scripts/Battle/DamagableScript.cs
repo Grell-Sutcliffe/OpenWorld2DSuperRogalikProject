@@ -33,7 +33,7 @@ public class DamagableScript : MonoBehaviour
 
             max_attack = max_attack_;
             int min_delta_dmg = RoundToMax(max_attack_);
-            current_dmg = new Damage(min_delta_dmg, element_);
+            current_dmg = new Damage(min_delta_dmg, weapon.elementalDamage);
 
             max_defence = max_defence_;
             current_defence = max_defence_;
@@ -78,7 +78,7 @@ public class DamagableScript : MonoBehaviour
 
             int delta_dmg = rand.Next(min_delta_dmg, max_delta_dmg + 1);
 
-            this.current_dmg = new Damage(delta_dmg, this.element);
+            this.current_dmg = new Damage(delta_dmg, weapon.elementalDamage);
         }
 
         public void TakeDamage(Damage damage)

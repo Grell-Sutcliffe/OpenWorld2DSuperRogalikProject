@@ -357,7 +357,7 @@ public class BackPackController : MonoBehaviour
         }
         if (weapon == null) return;
 
-        elementImage.sprite = GetElementByElementType(weapon.element).sprite;
+        elementImage.sprite = GetElementByElementType(weapon.elementalDamage.element_type).sprite;
         starTMP.text = weapon.stars.ToString();
     }
 }

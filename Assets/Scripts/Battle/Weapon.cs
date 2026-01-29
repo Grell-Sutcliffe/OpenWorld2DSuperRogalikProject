@@ -5,7 +5,8 @@ public class Weapon : Item
 {
     public int stars;
     public int damage;
-    public ElementType element;
+    //public ElementType element;
+    public ElementalDamage elementalDamage;
     public WeaponType weapon_type;
 
     int max_level;
@@ -30,7 +31,8 @@ public class Weapon : Item
         this.damage = data.damage;
         this.crit_chance = data.crit_chance;
         this.crit_dmg = data.crit_dmg;
-        this.element = data.element;
+        this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
+        //this.element = data.element;
         this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
@@ -56,7 +58,8 @@ public class Weapon : Item
         this.damage = data.damage;
         this.crit_chance = data.crit_chance;
         this.crit_dmg = data.crit_dmg;
-        this.element = data.element;
+        this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
+        //this.element = data.element;
         this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
@@ -82,7 +85,8 @@ public class Weapon : Item
         this.damage = data.damage;
         this.crit_chance = data.crit_chance;
         this.crit_dmg = data.crit_dmg;
-        this.element = data.element;
+        this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
+        //this.element = data.element;
         this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;

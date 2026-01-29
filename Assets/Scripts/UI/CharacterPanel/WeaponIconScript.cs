@@ -33,7 +33,7 @@ public class WeaponIconScript : MonoBehaviour
         this.weapon = weapon;
 
         weaponImage.sprite = weapon.sprite;
-        elementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.element].sprite;
+        elementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].sprite;
         itemNameTMP.text = weapon.item_name;
         itemStarTMP.text = weapon.stars.ToString();
     }

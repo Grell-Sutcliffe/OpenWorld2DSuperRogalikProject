@@ -21,10 +21,11 @@ MonoBehaviour:
   range: 1
   cooldown: 0.5
   damage: 5
-  element: 5
+  elemental_damage: 3
+  element_type: 5
+  elemental_mastery: 0.25
   crit_chance: 0.2
   crit_dmg: 0.4
-  elemental_mastery: 0.25
   max_level: 70
   current_level: 1
   projectilePrefab: {fileID: 0}

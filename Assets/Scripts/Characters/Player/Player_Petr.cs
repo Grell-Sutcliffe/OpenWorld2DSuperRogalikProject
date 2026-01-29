@@ -6,22 +6,18 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     MainController mainController;
     public GameObject owner => gameObject;
     protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg);
+    public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage);
     bool canHit = true;
-
 
     // Player's Data
     [Header("References")]
     [field: SerializeField] public PlayerSO Data;
 
-
     [Header("Animations")]
-
 
     public Rigidbody2D rb;
     public Animator anim;
     public SpriteRenderer spriteRender;
-
 
     private Vector2 moveVector;
 
@@ -42,21 +38,27 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     [SerializeField] GameObject target;
 
+    Weapon weapon;
+
     public GameObject pivot;
 
     public void DealDamage()
     {
+        float current_damage = damage + weapon.damage;
+        float current_crit_chance = crit_chance + weapon.crit_chance;
+        float current_crit_dmg = crit_dmg + weapon.crit_dmg;
+
         int delta_damage = 0;
 
         System.Random rand = new System.Random();
         int chance = rand.Next(0, 101);
 
-        if (chance <= crit_chance * 100)
+        if (chance <= current_crit_chance * 100)
         {
-            delta_damage += RoundToMax(damage * crit_dmg);
+            delta_damage += RoundToMax(current_damage * crit_dmg);
         }
 
-        this.current_dmg = damage + delta_damage;
+        this.current_dmg = current_damage + delta_damage;
 
         LoggerName($"now have {current_dmg} damage");
     }
@@ -77,7 +79,6 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         StartCoroutine(Delay(attackCooldown));
     }
-
 
     public Transform GetTarget()
     {

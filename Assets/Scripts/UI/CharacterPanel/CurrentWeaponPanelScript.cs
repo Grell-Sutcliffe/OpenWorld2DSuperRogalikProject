@@ -36,8 +36,8 @@ public class CurrentWeaponPanelScript : MonoBehaviour
 
         weaponImage.sprite = weapon.sprite;
         rarity_TMP.text = weapon.stars.ToString();
-        element_TMP.text = characterPanelScript.dict_element_type_to_element[weapon.element].name;
-        element_Image.sprite = characterPanelScript.dict_element_type_to_element[weapon.element].sprite;
+        element_TMP.text = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].name;
+        element_Image.sprite = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].sprite;
         attack_TMP.text = "+" + weapon.damage.ToString();
         crit_chance_TMP.text = "+" + GetPercent(weapon.crit_chance).ToString();
         crit_dmg_TMP.text = "+" + GetPercent(weapon.crit_dmg).ToString();

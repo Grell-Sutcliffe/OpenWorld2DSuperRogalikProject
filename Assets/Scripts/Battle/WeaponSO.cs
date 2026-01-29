@@ -13,10 +13,13 @@ public class WeaponSO : ScriptableObject
     public float cooldown;
 
     public int damage;
-    public ElementType element;
+
+    public float elemental_damage;
+    public ElementType element_type;
+    public float elemental_mastery;
+
     public float crit_chance;
     public float crit_dmg;
-    public float elemental_mastery;
     public int max_level;
     public int current_level;
 
