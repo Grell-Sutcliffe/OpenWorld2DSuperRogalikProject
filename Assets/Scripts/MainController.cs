@@ -20,6 +20,7 @@ public class MainController : MonoBehaviour
     public GameObject switchWeaponPanel;
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
+    public GameObject multiplayerPanel;
 
     public GameObject taskShower;
 
@@ -197,6 +198,7 @@ public class MainController : MonoBehaviour
         wishPanel.SetActive(true);
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
+        //multiplayerPanel.SetActive(true);
     }
 
     void StuffSetActiveFalse()
@@ -209,6 +211,7 @@ public class MainController : MonoBehaviour
         characterPanel.SetActive(false);
         switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
+        multiplayerPanel.SetActive(false);
 
         dedus_F = false;
         grandsonEugene_F = false;
