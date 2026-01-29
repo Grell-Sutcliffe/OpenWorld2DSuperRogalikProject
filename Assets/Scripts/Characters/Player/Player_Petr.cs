@@ -1,29 +1,23 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements.Experimental;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
     public GameObject owner => gameObject;
-    protected Damage current_dmg;
-    public Damage currentDmg => current_dmg;
+    protected float current_dmg;
+    public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage);
     bool canHit = true;
-
 
     // Player's Data
     [Header("References")]
     [field: SerializeField] public PlayerSO Data;
 
-
     [Header("Animations")]
-
 
     public Rigidbody2D rb;
     public Animator anim;
     public SpriteRenderer spriteRender;
-
 
     private Vector2 moveVector;
 
@@ -44,21 +38,29 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     [SerializeField] GameObject target;
 
+    Weapon weapon;
+
     public GameObject pivot;
-    public GameObject pivotL, pivotR;
 
     public void DealDamage()
     {
-        bool isCrit = Random.value <= crit_chance; // crit_chance = 0..1
+        float current_damage = damage + weapon.damage;
+        float current_crit_chance = crit_chance + weapon.crit_chance;
+        float current_crit_dmg = crit_dmg + weapon.crit_dmg;
 
-        float finalDamage = damage;
-        if (isCrit)
-            finalDamage *= crit_dmg;
+        int delta_damage = 0;
 
-        current_dmg = new Damage(finalDamage, isCrit);
+        System.Random rand = new System.Random();
+        int chance = rand.Next(0, 101);
 
-        LoggerName($"now have {current_dmg} damage (crit={isCrit})");
+        if (chance <= current_crit_chance * 100)
+        {
+            delta_damage += RoundToMax(current_damage * crit_dmg);
+        }
 
+        this.current_dmg = current_damage + delta_damage;
+
+        LoggerName($"now have {current_dmg} damage");
     }
 
     public void UnActivePivot(){
@@ -78,7 +80,6 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         StartCoroutine(Delay(attackCooldown));
     }
 
-
     public Transform GetTarget()
     {
         return target.transform;
@@ -91,56 +92,36 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         rb = GetComponent<Rigidbody2D>();
- 
         //anim = GetComponent<Animator>();
         //spriteRender = GetComponent<SpriteRenderer>();
     }
-    /*
-    // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
-    Input = GetComponent<PlayerInput>();
-    movementStateMachine = new PlayerMovementStateMachine(this);
-    Rigidbody2D = GetComponent<Rigidbody2D>();
-    SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    PlayerAnimator = GetComponentInChildren<Animator>();
-    AnimationData.Initialize();
-}
-public void ModifySpeed(float multiplier, float duration)
-{
-    StartCoroutine(SpeedCoroutine(multiplier, duration));
-}
-
-private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
-{
-    var data = movementStateMachine;
-    //float old = data.EffectSpeedModifier;
-
-    data.EffectSpeedModifier *= multiplier;
-    Debug.Log(data.EffectSpeedModifier);
-
-    yield return new WaitForSeconds(duration);
-
-    data.EffectSpeedModifier /= multiplier;
-    Debug.Log(data.EffectSpeedModifier);
-}*/
-    int facing = 1;
-    [SerializeField] float pivotOffsetX = 0.6f;
+        /*
+        // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
+        Input = GetComponent<PlayerInput>();
+        movementStateMachine = new PlayerMovementStateMachine(this);
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        PlayerAnimator = GetComponentInChildren<Animator>();
+        AnimationData.Initialize();
+    }
+    public void ModifySpeed(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedCoroutine(multiplier, duration));
+    }
     
-    void Flip(bool faceRight)
+    private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
     {
-        facing = faceRight ? 1 : -1;
+        var data = movementStateMachine;
+        //float old = data.EffectSpeedModifier;
 
-        Vector3 s = transform.localScale;
-        s.x = Mathf.Abs(s.x) * facing;
-        transform.localScale = s;
+        data.EffectSpeedModifier *= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
 
-        UpdatePivotSide();
-    }
-    void UpdatePivotSide()
-    {
-        Vector3 p = pivot.transform.localPosition;
-        p.x = Mathf.Abs(pivotOffsetX) * facing;
-        pivot.transform.localPosition = p;
-    }
+        yield return new WaitForSeconds(duration);
+
+        data.EffectSpeedModifier /= multiplier;
+        Debug.Log(data.EffectSpeedModifier);
+    }*/
     private void ApplyConfig()
     {
         if (Data == null)
@@ -189,15 +170,12 @@ private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if 
                     angle = (angle + 360) % 360;
                     spriteRender.flipX = true;
                     dir = 4f - ((angle - 90f) / 45f);
-                    //Flip(spriteRender.flipX);
-                    pivot.transform.position = pivotL.transform.position;
+
                 }
                 else
                 {
                     dir = ((angle + 90) % 360) / 45;
                     spriteRender.flipX = false;
-                    //Flip(spriteRender.flipX);
-                    pivot.transform.position = pivotR.transform.position;
 
                 }
 
@@ -208,18 +186,14 @@ private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if 
             }
             anim.SetFloat("dir", dir);  // âûíåñòè â îòäåëíóþ ôóíêöèþ
             anim.SetBool("isHit", isHit);
-
-            if (canHit && Input.GetMouseButtonDown(0)) // ËÊÌ
-            {
-                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-                    return;
-                Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RotatePivot(mouseWorldPos, offset);
-                Hit();
-            }
         }
 
-        
+        if (canHit && Input.GetMouseButtonDown(0)) // ËÊÌ
+        {
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RotatePivot(mouseWorldPos, offset);
+            Hit();
+        }
 
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ShopItemScript : MonoBehaviour
 {
     ShopPanelScript shopPanelScript;
+    BackPackController backpackController;
 
     public int id;
     public Image itemImage;
@@ -15,6 +16,7 @@ public class ShopItemScript : MonoBehaviour
     void Awake()
     {
         shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
+        //backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
     }
 
     public void SetShopItem(int new_id)
@@ -22,10 +24,18 @@ public class ShopItemScript : MonoBehaviour
         if (shopPanelScript == null) shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         id = new_id;
-        itemImage.sprite = shopPanelScript.dict_id_to_shop_item[id].sprite;
-        itemNameTMP.text = shopPanelScript.dict_id_to_shop_item[id].name;
-        itemCostTMP.text = shopPanelScript.dict_id_to_shop_item[id].cost.ToString();
-        itemCurrencyImage.sprite = shopPanelScript.dict_id_to_shop_item[id].currency.sprite;
+
+        ItemForSale this_item = null;
+        if (shopPanelScript.GetItemById(id) is ItemForSale temp_item)
+        {
+            this_item = temp_item;
+        }
+        if (this_item == null) return;
+
+        itemImage.sprite = this_item.sprite;
+        itemNameTMP.text = this_item.item_name;
+        itemCostTMP.text = this_item.cost.cost_amount.ToString();
+        itemCurrencyImage.sprite = shopPanelScript.dict_costType_to_Item[this_item.cost.cost_type].sprite;
     }
 
     public void OnClick()

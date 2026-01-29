@@ -48,7 +48,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     void UpdateSlot()
     {
-        slot_amount.text = slot_item.count.ToString();
+        slot_amount.text = slot_item.amount.ToString();
         slot_image.sprite = slot_item.sprite;
     }
 

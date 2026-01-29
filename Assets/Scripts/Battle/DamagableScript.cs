@@ -21,19 +21,19 @@ public class DamagableScript : MonoBehaviour
         float max_defence;
         float current_defence;
 
-        Element element;
-        List<Element> element_on;
+        ElementType element;
+        List<ElementType> element_on;
 
         Weapon weapon;
 
-        public Creature(int max_health_, int max_attack_, float max_speed_, float crit_chance = 0f, float crit_dmg = 0f, float max_defence_ = 1.0f, Element element_ = Element.None, Weapon weapon = null)
+        public Creature(int max_health_, int max_attack_, float max_speed_, float crit_chance = 0f, float crit_dmg = 0f, float max_defence_ = 1.0f, ElementType element_ = ElementType.None, Weapon weapon = null)
         {
             max_health = max_health_;
             current_health = max_health_;
 
             max_attack = max_attack_;
             int min_delta_dmg = RoundToMax(max_attack_);
-            current_dmg = new Damage(min_delta_dmg, false,element_);
+            current_dmg = new Damage(min_delta_dmg, weapon.elementalDamage);
 
             max_defence = max_defence_;
             current_defence = max_defence_;
@@ -42,7 +42,7 @@ public class DamagableScript : MonoBehaviour
             current_speed = max_speed_;
 
             element = element_;
-            element_on = new List<Element>();
+            element_on = new List<ElementType>();
 
             this.weapon = weapon;
         }
@@ -78,7 +78,7 @@ public class DamagableScript : MonoBehaviour
 
             int delta_dmg = rand.Next(min_delta_dmg, max_delta_dmg + 1);
 
-            this.current_dmg = new Damage(delta_dmg, false, this.element);
+            this.current_dmg = new Damage(delta_dmg, weapon.elementalDamage);
         }
 
         public void TakeDamage(Damage damage)
@@ -91,24 +91,24 @@ public class DamagableScript : MonoBehaviour
             //this.ChangeHealth(-dmg_amount);
         }
 
-        void SetOnElement(Element element)
+        void SetOnElement(ElementType element)
         {
             this.element_on.Add(element);
 
             switch (element)
             {
-                case (Element.None):
+                case (ElementType.None):
                     break;
-                case (Element.Cryo):
+                case (ElementType.Cryo):
                     // freeze;
                     break;
-                case (Element.Pyro):
+                case (ElementType.Pyro):
                     // set on fire;
                     break;
-                case (Element.Electro):
+                case (ElementType.Electro):
                     // electrify;
                     break;
-                case (Element.Anemo):
+                case (ElementType.Anemo):
                     // blow up;
                     break;
             }
@@ -116,7 +116,7 @@ public class DamagableScript : MonoBehaviour
 
         void SetOnNone()
         {
-            this.element_on = new List<Element>();
+            this.element_on = new List<ElementType>();
         }
 
         void SetOnCryo()
