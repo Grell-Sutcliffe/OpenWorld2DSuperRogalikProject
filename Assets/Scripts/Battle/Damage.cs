@@ -5,10 +5,11 @@ public class Damage
     public float damage;
     public ElementalDamage elementalDamage;
     public bool isCrit;
-    public Damage(float damage, ElementalDamage elementalDamage = null)
+    public Damage(float damage, ElementalDamage elementalDamage = null, bool wasCrit = false)
     {
         this.damage = damage;
         this.elementalDamage = elementalDamage == null ? new ElementalDamage() : elementalDamage;
+        this.isCrit = wasCrit;
     }
     
     public Damage(float damage, float elemental_damage, ElementType element_type, float elemental_mastery)

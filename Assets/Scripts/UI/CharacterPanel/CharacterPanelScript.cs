@@ -31,8 +31,8 @@ public class CharacterPanelScript : MonoBehaviour
     
     Player playerScript;
     CurrentWeaponPanelScript currentWeaponPanelScript;
-    BackPackController backpackController;
-    ShopPanelScript shopPanelScript;
+    public BackPackController backpackController;
+    public ShopPanelScript shopPanelScript;
 
     public Image characterImage;
 
@@ -81,8 +81,8 @@ public class CharacterPanelScript : MonoBehaviour
     {
         currentWeaponPanelScript = weaponPanel.GetComponent<CurrentWeaponPanelScript>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
-        shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
+        //backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        //shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         characterUpgratePanel.SetActive(false);
 

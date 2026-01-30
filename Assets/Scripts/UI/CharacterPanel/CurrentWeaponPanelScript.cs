@@ -8,7 +8,7 @@ public class CurrentWeaponPanelScript : MonoBehaviour
     MainController mainController;
 
     //public GameObject switchWeaponPanel;
-    CharacterPanelScript characterPanelScript;
+    public CharacterPanelScript characterPanelScript;
 
     public SwitchWeaponPanelScript switchWeaponPanelScript;
     public GameObject upgrateWeaponPanel;
@@ -55,7 +55,7 @@ public class CurrentWeaponPanelScript : MonoBehaviour
 
     void Start()
     {
-        characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
+        // characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
     }
 
     public void OpenUpgrateWeaponPanel()
@@ -96,7 +96,7 @@ public class CurrentWeaponPanelScript : MonoBehaviour
 
     void UpdatePanel()
     {
-        if (characterPanelScript == null) characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
+        // if (characterPanelScript == null) characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
 
         if (weapon == null) return;
 

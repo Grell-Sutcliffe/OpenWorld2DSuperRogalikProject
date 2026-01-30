@@ -10,7 +10,9 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     public GameObject owner => gameObject;
     protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage);
+    public bool wasCrit;
+
+    public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage, wasCrit);
     bool canHit = true;
 
     // Player's Data
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     public float crit_chance = 0.7f;
     public float crit_dmg = 1.5f;
+
 
     public float defence = 0.15f;
 
@@ -91,10 +94,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         System.Random rand = new System.Random();
         int chance = rand.Next(0, 101);
-
+        wasCrit = false;
         if (chance <= current_crit_chance * 100)
         {
             delta_damage += RoundToMax(current_damage * crit_dmg);
+            wasCrit = true;
         }
 
         this.current_dmg = current_damage + delta_damage;

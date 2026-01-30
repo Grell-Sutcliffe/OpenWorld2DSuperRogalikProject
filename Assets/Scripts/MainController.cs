@@ -21,6 +21,7 @@ public class MainController : MonoBehaviour
     public GameObject backpackPanel;
     public GameObject enterDangeonPanel;
     public GameObject multiplayerPanel;
+    public GameObject rewardPanel;
 
     public GameObject taskShower;
 
@@ -35,6 +36,7 @@ public class MainController : MonoBehaviour
     WishPanelScript wishPanelScript;
     ShopPanelScript shopPanelScript;
     CharacterPanelScript characterPanelScript;
+    RewardPanelScript rewardPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -76,6 +78,7 @@ public class MainController : MonoBehaviour
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
+        rewardPanelScript = rewardPanel.GetComponent<RewardPanelScript>();
     }
 
     void Start()
@@ -104,6 +107,21 @@ public class MainController : MonoBehaviour
             wish_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
         }
         return backpackController.DecreaceItemByName(wish_name, number);
+    }
+
+    public void GetReward()
+    {
+        System.Random rand = new System.Random();
+        int new_reward_amount = rand.Next(1, 10);
+
+        rewardPanelScript.SetRewardAmount(new_reward_amount);
+    }
+
+    public void ClaimReward(int amount)
+    {
+        string reward_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
+
+        backpackController.IncreaceItemByName(reward_name, amount);
     }
 
     public void SetCharacterWeapon(Weapon weapon)
@@ -234,6 +252,8 @@ public class MainController : MonoBehaviour
         switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
         multiplayerPanel.SetActive(false);
+
+        rewardPanel.SetActive(false);
 
         dedus_F = false;
         grandsonEugene_F = false;

@@ -35,7 +35,7 @@ public class GrandsonEugineMoveScript : MonoBehaviour
     {
         animator = root.GetComponent<Animator>();
 
-        target = GameObject.Find("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         sprite = root.GetComponent<SpriteRenderer>();
 
         current_direction = is_F;

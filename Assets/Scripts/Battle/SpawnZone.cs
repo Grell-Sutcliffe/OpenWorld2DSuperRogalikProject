@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
 {
+    MainController mainController;
+
     [SerializeField] BoxCollider2D spawnZone;
     [SerializeField] private List<GameObject> objects = new List<GameObject>();
     [SerializeField] private List<int> nums = new List<int>();
@@ -13,6 +15,11 @@ public class SpawnZone : MonoBehaviour
     [SerializeField] private GameObject goOnActivate;
     bool wasTriggered = false;
     int enemyCount = 0;
+
+    private void Awake()
+    {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+    }
 
     private void Start()
     {
@@ -28,14 +35,15 @@ public class SpawnZone : MonoBehaviour
         enemyCount -= 1;
         if (enemyCount == 0) {Debug.LogWarning("ALL DEAD");
             anim.SetTrigger("reward");
+
         }
     }
 
     public void GiveReward()
     {
-
-
         if (goOnActivate != null) goOnActivate.SetActive(true);
+
+        mainController.GetReward();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
