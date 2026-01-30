@@ -1,9 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using static ShopPanelScript;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
+    BackPackController backPackController;
+
     public GameObject owner => gameObject;
     protected float current_dmg;
     public Damage currentDmg => new Damage(current_dmg, weapon.elementalDamage);
@@ -23,24 +27,59 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     float dir = 0;
     string playerName;
-    [SerializeField] float maxHealth;
+    public float maxHealth;
     float armour;
-    [SerializeField]  float damage;
+    public float damage;
     float moveSpeed;
+
+    public int max_level = 100;
+    public int current_level = 1;
 
     float attackRange;
     [SerializeField]  float attackCooldown;
 
     float currentHealth;
 
-    float crit_chance = 0.7f;
-    float crit_dmg = 2.5f;
+    public float crit_chance = 0.7f;
+    public float crit_dmg = 1.5f;
+
+    public float defence = 0.15f;
 
     [SerializeField] GameObject target;
 
-    Weapon weapon;
+    public WeaponSO weaponSO;
+    public Weapon weapon;
 
     public GameObject pivot;
+
+    public float upgrade_percent = 1.05f;
+
+    public Cost upgrate_cost;
+
+    void Awake()
+    {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        rb = GetComponent<Rigidbody2D>();
+
+        upgrate_cost = new Cost(750, CostType.Gold);
+    }
+
+    void Start()
+    {
+        ApplyConfig();
+
+        //weapon = new Weapon(weaponSO);
+        weapon = null;
+        Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
+        if (temp_item is Weapon temp_weapon)
+        {
+            //Debug.LogError("TEMP_WEAPON --- OK");
+            weapon = temp_weapon;
+        }
+        //Debug.LogError($"weapon == null : {weapon == null}");
+
+        mainController.SetCharacterWeapon(weapon);
+    }
 
     public void DealDamage()
     {
@@ -61,6 +100,17 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         this.current_dmg = current_damage + delta_damage;
 
         LoggerName($"now have {current_dmg} damage");
+    }
+
+    public void CharacterUpgrade()
+    {
+        this.maxHealth = RoundToMax(this.maxHealth * upgrade_percent);
+        this.damage = RoundToMax(this.damage * upgrade_percent);
+        this.crit_chance *= upgrade_percent;
+        this.crit_dmg *= upgrade_percent;
+        //this.defence *= upgrade_percent;
+
+        this.current_level++;
     }
 
     public void UnActivePivot(){
@@ -88,40 +138,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     {
         return currentHealth;
     }
-    private void Awake()
-    {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        rb = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
-        //spriteRender = GetComponent<SpriteRenderer>();
-    }
-        /*
-        // §ª§ß§Ú§è§Ú§Ñ§Ý§Ú§Ù§Ñ§è§Ú§ñ §Ü§à§Þ§á§à§ß§Ö§ß§ä§à§Ó
-        Input = GetComponent<PlayerInput>();
-        movementStateMachine = new PlayerMovementStateMachine(this);
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        PlayerAnimator = GetComponentInChildren<Animator>();
-        AnimationData.Initialize();
-    }
-    public void ModifySpeed(float multiplier, float duration)
-    {
-        StartCoroutine(SpeedCoroutine(multiplier, duration));
-    }
-    
-    private IEnumerator SpeedCoroutine(float multiplier, float duration) // what if someone handle two effect on the player???
-    {
-        var data = movementStateMachine;
-        //float old = data.EffectSpeedModifier;
 
-        data.EffectSpeedModifier *= multiplier;
-        Debug.Log(data.EffectSpeedModifier);
-
-        yield return new WaitForSeconds(duration);
-
-        data.EffectSpeedModifier /= multiplier;
-        Debug.Log(data.EffectSpeedModifier);
-    }*/
     private void ApplyConfig()
     {
         if (Data == null)
@@ -140,10 +157,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         attackRange = Data.attackRange;
         attackCooldown = Data.attackCooldown;
     }
-    private void Start()
-    {
-        ApplyConfig();
-    }
+
     bool isRun = false;
     bool isHit = false;
     float offset = 0;
@@ -234,7 +248,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         canHit = false;
         pivot.gameObject.SetActive(true);
     }
-    int RoundToMax(float number)
+    public int RoundToMax(float number)
     {
         return ((number * 10 % 10 > 0) ? ((int)number + 1) : ((int)number));
     }

@@ -55,7 +55,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
 
     public void Select()
     {
-        currentWeaponPanelScript.SetNewWeapon(current_selected_weapon);
+        currentWeaponPanelScript.SetNewWeaponInCharacterPanel(current_selected_weapon);
         gameObject.SetActive(false);
     }
 

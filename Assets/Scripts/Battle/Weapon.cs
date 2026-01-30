@@ -9,16 +9,17 @@ public class Weapon : Item
     public ElementalDamage elementalDamage;
     public WeaponType weapon_type;
 
-    int max_level;
+    public int max_level;
     public int current_level;
 
     public float crit_chance;
     public float crit_dmg;
 
-    public float elemental_mastery;
     public float cooldown;
 
     WeaponSO data;
+
+    public float upgrade_percent = 1.05f;
 
     public Weapon(WeaponSO data)
     {
@@ -33,7 +34,6 @@ public class Weapon : Item
         this.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
-        this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
 
@@ -60,7 +60,6 @@ public class Weapon : Item
         this.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
-        this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
 
@@ -87,7 +86,6 @@ public class Weapon : Item
         this.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
-        this.elemental_mastery = data.elemental_mastery;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
 
@@ -99,5 +97,21 @@ public class Weapon : Item
         this.id = id;
 
         this.amount = amount;
+    }
+
+    public void WeaponUpgrade()
+    {
+        this.damage = RoundToMax(this.damage * upgrade_percent);
+        this.crit_chance *= upgrade_percent;
+        this.crit_dmg *= upgrade_percent;
+        this.elementalDamage.elemental_damage *= upgrade_percent;
+        this.elementalDamage.elemental_mastery *= upgrade_percent;
+
+        this.current_level++;
+    }
+
+    int RoundToMax(float number)
+    {
+        return (int)(number * 10 % 10 > 0 ? number + 1 : number);
     }
 }

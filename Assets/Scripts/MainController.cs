@@ -106,6 +106,28 @@ public class MainController : MonoBehaviour
         return backpackController.DecreaceItemByName(wish_name, number);
     }
 
+    public void SetCharacterWeapon(Weapon weapon)
+    {
+        backpackController.IncreaceItemByName(weapon.item_name, 1);
+        characterPanelScript.SetNewWeapon(weapon);
+    }
+
+    public bool WeaponUpgrade(int weapon_id)
+    {
+        if (backpackController.dict_id_to_item[weapon_id].amount > 1)
+        {
+            if (backpackController.dict_id_to_item[weapon_id] is Weapon weapon)
+            {
+                if (weapon.current_level < weapon.max_level)
+                {
+                    weapon.WeaponUpgrade();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void PickUpItemByName(string name)
     {
         backpackController.IncreaceItemByName(name, 1);
