@@ -407,10 +407,16 @@ MonoBehaviour:
   spriteRender: {fileID: 3675455199803781339}
   maxHealth: 1000
   damage: 5
+  max_level: 100
+  current_level: 1
   attackCooldown: 2
+  crit_chance: 0.7
+  crit_dmg: 1.5
+  defence: 0.15
   target: {fileID: 3401088822291997560}
-  data: {fileID: 11400000, guid: 436b4e8032c17774a814918ff0cf10dc, type: 2}
+  weaponSO: {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
   pivot: {fileID: 1867279333676066356}
+  upgrade_percent: 1.05
 --- !u!50 &6179167146417871810
 Rigidbody2D:
   serializedVersion: 5
