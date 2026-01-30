@@ -10,6 +10,7 @@ public class SpawnZone : MonoBehaviour
 
     [SerializeField] private GameObject poof;
     Animator anim;
+    [SerializeField] private GameObject goOnActivate;
     bool wasTriggered = false;
     int enemyCount = 0;
 
@@ -33,6 +34,8 @@ public class SpawnZone : MonoBehaviour
     public void GiveReward()
     {
 
+
+        if (goOnActivate != null) goOnActivate.SetActive(true);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

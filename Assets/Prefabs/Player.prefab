@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 1577247464722385364}
   - component: {fileID: 6179167146417871810}
   - component: {fileID: 1119036041583285371}
+  - component: {fileID: 6853689500190686122}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -408,10 +409,8 @@ MonoBehaviour:
   damage: 5
   attackCooldown: 2
   target: {fileID: 3401088822291997560}
+  data: {fileID: 11400000, guid: 436b4e8032c17774a814918ff0cf10dc, type: 2}
   pivot: {fileID: 1867279333676066356}
-  pivotL: {fileID: 1697782868516196045}
-  pivotR: {fileID: 4867599397194091}
-  pivotOffsetX: 0.6
 --- !u!50 &6179167146417871810
 Rigidbody2D:
   serializedVersion: 5
@@ -485,6 +484,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.8, y: 1.5}
   m_EdgeRadius: 0
+--- !u!95 &6853689500190686122
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101229763699107761}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f1f78af9a6532c4bb30978eef1a9361, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5699673291680075753
 GameObject:
   m_ObjectHideFlags: 0
