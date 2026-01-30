@@ -64,6 +64,8 @@ public class MainController : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
