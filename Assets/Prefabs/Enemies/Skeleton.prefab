@@ -124,6 +124,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 7826423026952965163}
+--- !u!1 &3156337339955258693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432635631672976786}
+  m_Layer: 9
+  m_Name: DamageTextPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &432635631672976786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156337339955258693}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 175684227192611397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4738165583852734987
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +192,7 @@ Transform:
   - {fileID: 1296702940634802734}
   - {fileID: 6277927799520910818}
   - {fileID: 8862587159032851095}
+  - {fileID: 432635631672976786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8736383894707455395
@@ -207,7 +239,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6003149132241056094, guid: 905d4e117f5e19c4c97042450087a9d0, type: 3}
+  m_Sprite: {fileID: -9213184063717799337, guid: d6710a7171c6a924f8537d6f2ee761c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6433ddbcee599a4aaef6c8de2f53acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: 2
   attackDur: 1
   speed: 1
   walkZone: {fileID: 0}
@@ -263,13 +296,17 @@ MonoBehaviour:
   canStrafe: 0
   canWalk: 1
   isStopWhileHit: 1
-  enemyHealthBar: {fileID: 0}
-  max_hp: 10
-  hp: 10
+  enemyHealthBar: {fileID: 6482444363272051414}
+  max_hp: 100
+  hp: 60
   eName: Skelet
   reachDisttoRotatePivot: 5
   pivot: {fileID: 9193727690908552895}
-  dataW: {fileID: 0}
+  dataW: {fileID: 11400000, guid: 93aef83b74ca1d746a51484476d1f658, type: 2}
+  damageTextPrefab: {fileID: 5174160028970153144, guid: 2c7a299f54d02c14080f8055ac361816, type: 3}
+  damageTextPoint: {fileID: 432635631672976786}
+  deadZone: 0.02
+  sr: {fileID: 0}
   isHitting: 0
   reachDistfromPlayer: 3
   projectilePref: {fileID: 5003701598820385441, guid: e618d641869c177459f624e674e5503f, type: 3}
@@ -500,6 +537,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
+--- !u!114 &6482444363272051414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5531007571660440117, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
+  m_PrefabInstance: {fileID: 1527937267623090403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43da81713981fd4a96393c13d486b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8862587159032851095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}

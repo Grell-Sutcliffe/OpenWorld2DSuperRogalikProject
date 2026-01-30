@@ -9,7 +9,7 @@ public class fake : MonoBehaviour
     private void Awake()
     {
         pipi.Clear();
-        ss.fake();
+        //ss.fake();
         Instantiate(playerPref);
     }
     void Start()

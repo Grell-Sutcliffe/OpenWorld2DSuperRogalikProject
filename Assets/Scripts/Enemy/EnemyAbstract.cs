@@ -9,12 +9,12 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected bool canHit = true;
     protected float timeLastHit;
     public GameObject owner => gameObject;
-    
 
+    [SerializeField] protected int music;
     [SerializeField] protected float attackDur = 1;
 
     [SerializeField] protected float speed;
-    [SerializeField] protected BoxCollider2D walkZone;
+    [SerializeField] public BoxCollider2D walkZone;
     [SerializeField] protected float reachDist = 0.1f;  // for walk
     [SerializeField] protected float reachDisttoPlayer = 5f;
     [SerializeField] protected float reachDisttoPlayerWithWindow = 4f;
@@ -51,6 +51,50 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public Damage currentDmg => new Damage(current_dmg);
 
     protected bool isDead = false;
+
+    [SerializeField] DamageText damageTextPrefab;
+    [SerializeField] Transform damageTextPoint;
+
+
+    [SerializeField] private float deadZone = 0.02f; // чтобы не дрожало около 0
+    private bool facingRight = true; // “логическое” направление
+    [SerializeField] private SpriteRenderer sr;
+
+    
+    private void Update()
+    {
+        if (isTriggered) FaceTarget(playerTrans);
+
+    }
+
+    public void FaceByDirX(float dirX)
+    {
+        if (Mathf.Abs(dirX) < deadZone) return;
+
+        bool shouldFaceRight = dirX > 0f;
+        if (shouldFaceRight == facingRight) return;
+
+        facingRight = shouldFaceRight;
+        sr.flipX = !facingRight;
+        // если твой спрайт по умолчанию смотрит ВЛЕВО, поменяй на sr.flipX = facingRight;
+    }
+
+    // Если хочешь “смотреть на цель”
+    public void FaceTarget(Transform target)
+    {
+        float dirX = target.position.x - transform.position.x;
+        FaceByDirX(dirX);
+    }
+
+    void ShowDamage(Damage dmg)
+    {
+        var txt = Instantiate(
+            damageTextPrefab,
+            damageTextPoint.position,
+            Quaternion.identity
+        );
+        txt.Init(dmg);
+    }
     public virtual void TakeDamage(Damage dmg)
     {
         LoggerName($"took dmg = {dmg.damage}", true);
@@ -63,9 +107,15 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
             isDead = true;
             anim.SetTrigger("die");
             hp = 0;
+            MusicManager.Instance.PlayByIndex(6);
         }
-        
+        else
+        {
+            MusicManager.Instance.PlayByIndex(music);
+        }
+
         ChangeHealthBar();
+        ShowDamage(dmg);
     }
 
     void ChangeHealthBar()
@@ -91,6 +141,9 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public void DieInAnimation()
     {
         Destroy(gameObject);
+
+        SpawnZone sz = GetComponentInParent<SpawnZone>();
+        if (sz != null) sz.Died();
     }
     protected virtual void Awake()
     {
@@ -102,7 +155,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     {
         weapon = new Weapon(dataW);
         strafeSign *= Random.value < 0.5f ? -1 : 1;
-
+        sr = GetComponent<SpriteRenderer>();
         PickNewTarget();
         StartCoroutine(ChangeStrafe());
         ChangeHealthBar();

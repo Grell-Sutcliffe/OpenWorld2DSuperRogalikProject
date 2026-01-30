@@ -35,7 +35,7 @@ public abstract class EnemyMelee : EnemyAbstract
             if (canWalk)
                 ChasePlayer();
         }
-        else if (isDead) 
+        else if (!isDead) 
         {
         
             Wander();
@@ -46,6 +46,7 @@ public abstract class EnemyMelee : EnemyAbstract
     protected virtual void Hit()
     {
         isHitting = true;
+        anim.SetTrigger("hit");
         DealDamage();
         pivot.gameObject.SetActive(true);
 

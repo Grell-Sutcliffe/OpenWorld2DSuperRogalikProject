@@ -4,7 +4,7 @@ public class Damage
 {
     public float damage;
     public ElementalDamage elementalDamage;
-
+    public bool isCrit;
     public Damage(float damage, ElementalDamage elementalDamage = null)
     {
         this.damage = damage;
