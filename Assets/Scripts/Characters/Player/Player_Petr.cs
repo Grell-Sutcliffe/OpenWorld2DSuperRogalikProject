@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static ShopPanelScript;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
@@ -167,6 +168,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     float offset = 0;
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         if (mainController.is_keyboard_active)
         {
             float x = Input.GetAxisRaw("Horizontal");
@@ -238,6 +240,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         currentHealth -= dmg.damage;
 
         mainController.UpdateHealthBar(currentHealth / maxHealth);
+        MusicManager.Instance.PlayByIndex(1);
 
         Debug.LogWarning($"Player have taken a dmg and now he has {currentHealth} health was {currentHealth + dmg.damage}");
         if (currentHealth <= 0)

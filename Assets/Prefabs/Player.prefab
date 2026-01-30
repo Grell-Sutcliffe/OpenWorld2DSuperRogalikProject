@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 6179167146417871810}
   - component: {fileID: 1119036041583285371}
   - component: {fileID: 6853689500190686122}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365f9aebda13a3c4094a53c8d4354e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wasCrit: 0
   Data: {fileID: 11400000, guid: 81e4f7f2a9176e147823727df17144ab, type: 2}
   rb: {fileID: 6179167146417871810}
   anim: {fileID: 5764917881911440013}
@@ -410,8 +411,8 @@ MonoBehaviour:
   max_level: 100
   current_level: 1
   attackCooldown: 2
-  crit_chance: 0.7
-  crit_dmg: 1.5
+  crit_chance: 0.1
+  crit_dmg: 1.1
   defence: 0.15
   target: {fileID: 3401088822291997560}
   weaponSO: {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
