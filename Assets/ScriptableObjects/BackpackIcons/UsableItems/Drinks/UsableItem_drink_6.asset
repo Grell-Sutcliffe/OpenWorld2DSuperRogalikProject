@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d3a66ade6185b4d80d1702f4fa05a6, type: 3}
-  m_Name: ConsumableItem_drink_6
+  m_Script: {fileID: 11500000, guid: f86b889aafdffcc4284841d2b9a85e9d, type: 3}
+  m_Name: UsableItem_drink_6
   m_EditorClassIdentifier: 
   sprite: {fileID: -376568416023228395, guid: 83a90a06938a20b418829cbc96eddc47, type: 3}
   item_name: "\u0417\u0435\u043B\u044C\u0435 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E
     \u0443\u0440\u043E\u043D\u0430"
-  description: "\u041F\u043E\u0432\u044B\u0448\u0430\u0435\u0442 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439
-    \u0443\u0440\u043E\u043D \u043D\u0430 20%. \u042D\u0444\u0444\u0435\u043A\u0442
-    \u0434\u043B\u0438\u0442\u0441\u044F 3 \u043C\u0438\u043D\u0443\u0442\u044B."
+  description: "\u041F\u043E\u0432\u044B\u0448\u0430\u0435\u0442 \u0441\u0438\u043B\u0443
+    \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E \u0443\u0440\u043E\u043D\u0430
+    \u043D\u0430 35%. \u042D\u0444\u0444\u0435\u043A\u0442 \u0434\u043B\u0438\u0442\u0441\u044F
+    2 \u043C\u0438\u043D\u0443\u0442\u044B."
   item_type: 3
-  amount: 3
+  amount: 2
+  useType: 4
+  use_percent_from_0_to_100: 35
+  time_duration_seconds: 120
+  time_for_close: 180

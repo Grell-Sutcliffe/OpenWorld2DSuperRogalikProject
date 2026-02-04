@@ -8,10 +8,10 @@ public class AgrZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)  // не ентер а просто
     {
-        Debug.Log($"{collision}!");
+        //Debug.Log($"{collision}!");
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("player!");
+            //Debug.Log("player!");
             var player = collision.GetComponent<Player>();
 
             owner.OnTrigger(player);

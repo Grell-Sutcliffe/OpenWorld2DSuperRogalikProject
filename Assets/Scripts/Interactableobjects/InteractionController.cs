@@ -83,7 +83,7 @@ public abstract class InteractionController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("OnTriggerEnter2D");
+        //Debug.Log("OnTriggerEnter2D");
         if (other.CompareTag("Player"))
         {
             is_player_in_range = true;

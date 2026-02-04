@@ -10,6 +10,9 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public GameObject weaponIcon;
 
+    public GameObject crossIcon;
+    public TextMeshProUGUI timer_text;
+
     public TextMeshProUGUI starTMP;
     public Image elementImage;
 
@@ -35,7 +38,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("MOUSE DOWN");
+        //Debug.Log("MOUSE DOWN");
         isPointerDown = true;
         isDragging = false;
         longPressHandled = false;
@@ -47,7 +50,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("MOUSE UP");
+        //Debug.Log("MOUSE UP");
 
         isPointerDown = false;
 
@@ -150,6 +153,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         {
             weaponIcon.SetActive(false);
         }
+        crossIcon.SetActive(false);
 
         item_image_TMP.sprite = sprite;
         item_counter_TMP.text = count.ToString();
@@ -169,4 +173,43 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         elementImage.sprite = backpackController.GetElementByElementType(weapon.elementalDamage.element_type).sprite;
         starTMP.text = weapon.stars.ToString();
     }
+
+    public void CloseIconForTime(int seconds)
+    {
+        Debug.Log($"CloseIconForTime seconds = {seconds}");
+
+        if (seconds == 0)
+        {
+            OpenIcon();
+            return;
+        }
+
+        crossIcon.SetActive(true);
+        timer_text.text = seconds.ToString();
+
+        //StartCoroutine(CountdownCoroutine(seconds));
+    }
+
+    public void OpenIcon()
+    {
+        crossIcon.SetActive(false);
+    }
+
+    /*
+    private IEnumerator CountdownCoroutine(int seconds)
+    {
+        int remaining = seconds;
+
+        while (remaining > 0)
+        {
+            timer_text.text = remaining.ToString();
+            yield return new WaitForSeconds(1f);
+            remaining--;
+        }
+
+        timer_text.text = "0";
+
+        crossIcon.SetActive(false);
+    }
+    */
 }

@@ -71,14 +71,14 @@ public class CurrentWeaponPanelScript : MonoBehaviour
         upgrate_old_level_TMP.text = weapon.current_level.ToString();
         upgrate_new_level_TMP.text = (weapon.current_level + 1).ToString();
 
-        upgrate_old_attack_TMP.text = weapon.damage .ToString();
-        upgrate_new_attack_TMP.text = (characterPanelScript.RoundToMax(weapon.damage * weapon.upgrade_percent)).ToString();
+        upgrate_old_attack_TMP.text = weapon.stats.attack .ToString();
+        upgrate_new_attack_TMP.text = (characterPanelScript.RoundToMax(weapon.stats.attack * weapon.upgrade_percent)).ToString();
 
-        upgrate_old_crit_chance_TMP.text = FloatToString(weapon.crit_chance);
-        upgrate_new_crit_chance_TMP.text = FloatToString(weapon.crit_chance * weapon.upgrade_percent);
+        upgrate_old_crit_chance_TMP.text = FloatToString(weapon.stats.crit_chance);
+        upgrate_new_crit_chance_TMP.text = FloatToString(weapon.stats.crit_chance * weapon.upgrade_percent);
 
-        upgrate_old_crit_dmg_TMP.text = FloatToString(weapon.crit_dmg);
-        upgrate_new_crit_dmg_TMP.text = FloatToString(weapon.crit_dmg * weapon.upgrade_percent);
+        upgrate_old_crit_dmg_TMP.text = FloatToString(weapon.stats.crit_dmg);
+        upgrate_new_crit_dmg_TMP.text = FloatToString(weapon.stats.crit_dmg * weapon.upgrade_percent);
 
         upgrate_old_elemental_mastery_TMP.text = FloatToString(weapon.elementalDamage.elemental_mastery);
         upgrate_new_elemental_mastery_TMP.text = FloatToString(weapon.elementalDamage.elemental_mastery * weapon.upgrade_percent);
@@ -104,9 +104,9 @@ public class CurrentWeaponPanelScript : MonoBehaviour
         rarity_TMP.text = weapon.stars.ToString();
         element_TMP.text = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].name;
         element_Image.sprite = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].sprite;
-        attack_TMP.text = "+" + weapon.damage.ToString();
-        crit_chance_TMP.text = "+" + FloatToString(GetPercent(weapon.crit_chance));
-        crit_dmg_TMP.text = "+" + FloatToString(GetPercent(weapon.crit_dmg));
+        attack_TMP.text = "+" + weapon.stats.attack.ToString();
+        crit_chance_TMP.text = "+" + FloatToString(GetPercent(weapon.stats.crit_chance));
+        crit_dmg_TMP.text = "+" + FloatToString(GetPercent(weapon.stats.crit_dmg));
         elemental_mastery_TMP.text = "+" + FloatToString(GetPercent(weapon.elementalDamage.elemental_mastery));
     }
 

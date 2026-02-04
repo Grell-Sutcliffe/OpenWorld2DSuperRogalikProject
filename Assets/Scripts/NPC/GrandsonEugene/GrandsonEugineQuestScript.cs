@@ -36,7 +36,7 @@ public class GrandsonEugineQuestScript : MonoBehaviour
     {
         foreach (string quest in quests)
         {
-            Debug.Log(quest);
+            //Debug.Log(quest);
             if (!questsController.dict_quest_name_to_quest[quest].is_quest_completed)
             {
                 is_waiting_for_help = true;

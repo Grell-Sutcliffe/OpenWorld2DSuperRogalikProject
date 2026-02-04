@@ -170,11 +170,11 @@ public class MainController : MonoBehaviour
 
     public void ShowInteraction()
     {
-        Debug.Log("SHOW INTERACTION");
+        //Debug.Log("SHOW INTERACTION");
 
         foreach (string c in list_of_interactable_objects_names)
         {
-            Debug.Log($"{c}");
+            //Debug.Log($"{c}");
         }
 
         current_interaction_SR = null;

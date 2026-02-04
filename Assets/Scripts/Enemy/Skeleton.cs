@@ -31,7 +31,7 @@ public class Skeleton : EnemyRange
     public override void Shoot()
     {
         this.DealDamage();
-        Debug.Log("Attacked");
+        //Debug.Log("Attacked");
         
         Vector2 dir = playerTrans.position - spawnArrowPos.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

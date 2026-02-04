@@ -38,7 +38,7 @@ public class DedusQuestScript : MonoBehaviour
     {
         foreach (string quest in quests)
         {
-            Debug.Log(quest);
+            //Debug.Log(quest);
             if (!questsController.dict_quest_name_to_quest[quest].is_quest_completed)
             {
                 is_waiting_for_help = true;
@@ -49,7 +49,7 @@ public class DedusQuestScript : MonoBehaviour
             }
         }
 
-        Debug.Log($"HEEEY {is_quest_ongoing}, {is_waiting_for_help}");
+        //Debug.Log($"HEEEY {is_quest_ongoing}, {is_waiting_for_help}");
         if (is_quest_ongoing) dedusController.ShowExclamationPointIcon();
         else if (is_waiting_for_help) dedusController.ShowQuestionIcon();
         else dedusController.ShowDialogIcon();

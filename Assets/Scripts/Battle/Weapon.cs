@@ -4,16 +4,14 @@ using UnityEngine;
 public class Weapon : Item
 {
     public int stars;
-    public int damage;
-    //public ElementType element;
+
     public ElementalDamage elementalDamage;
     public WeaponType weapon_type;
 
     public int max_level;
     public int current_level;
 
-    public float crit_chance;
-    public float crit_dmg;
+    public Stats stats = new Stats();
 
     public float cooldown;
 
@@ -29,9 +27,9 @@ public class Weapon : Item
         this.item_name = data.weapon_name;
         this.description = data.description;
         this.stars = data.stars;
-        this.damage = data.damage;
-        this.crit_chance = data.crit_chance;
-        this.crit_dmg = data.crit_dmg;
+        this.stats.attack = data.damage;
+        this.stats.crit_chance = data.crit_chance;
+        this.stats.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
         this.max_level = data.max_level;
@@ -55,9 +53,9 @@ public class Weapon : Item
         this.item_name = data.weapon_name;
         this.description = data.description;
         this.stars = data.stars;
-        this.damage = data.damage;
-        this.crit_chance = data.crit_chance;
-        this.crit_dmg = data.crit_dmg;
+        this.stats.attack = data.damage;
+        this.stats.crit_chance = data.crit_chance;
+        this.stats.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
         this.max_level = data.max_level;
@@ -81,9 +79,9 @@ public class Weapon : Item
         this.item_name = data.weapon_name;
         this.description = data.description;
         this.stars = data.stars;
-        this.damage = data.damage;
-        this.crit_chance = data.crit_chance;
-        this.crit_dmg = data.crit_dmg;
+        this.stats.attack = data.damage;
+        this.stats.crit_chance = data.crit_chance;
+        this.stats.crit_dmg = data.crit_dmg;
         this.elementalDamage = new ElementalDamage(data.elemental_damage, data.element_type, data.elemental_mastery);
         //this.element = data.element;
         this.max_level = data.max_level;
@@ -101,9 +99,9 @@ public class Weapon : Item
 
     public void WeaponUpgrade()
     {
-        this.damage = RoundToMax(this.damage * upgrade_percent);
-        this.crit_chance *= upgrade_percent;
-        this.crit_dmg *= upgrade_percent;
+        this.stats.attack = RoundToMax(this.stats.attack * upgrade_percent);
+        this.stats.crit_chance *= upgrade_percent;
+        this.stats.crit_dmg *= upgrade_percent;
         this.elementalDamage.elemental_damage *= upgrade_percent;
         this.elementalDamage.elemental_mastery *= upgrade_percent;
 

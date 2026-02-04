@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +7,16 @@ using static CharacterPanelScript;
 
 public class BackPackController : MonoBehaviour
 {
+    Player playerScript;
+
     public ShopPanelScript shopPanelScript;
     public CharacterPanelScript characterPanelScript;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
+
+    public GameObject useButton;
+    public GameObject crossUseButton;
 
     RectTransform content_rect_transform;
 
@@ -50,6 +56,9 @@ public class BackPackController : MonoBehaviour
     [Header("Сonsumable Items")]
     public ConsumableItemSO[] list_consumableItem_so;
 
+    [Header("Usable Items")]
+    public UsableItemSO[] list_usableItem_so;
+
     [Header("Items for sale")]
     public ItemForSaleSO[] list_itemsForSale_so;
 
@@ -58,8 +67,19 @@ public class BackPackController : MonoBehaviour
 
     // public List<int> player_items_id;
 
+    Dictionary<UseType, int> dict_useType_to_seconds_left;
+    Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
+
     private void Awake()
     {
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
+        dict_useType_to_list_of_BackpackIconScripts = new Dictionary<UseType, List<BackpackIconScript>>();
+
+        ClearDictionary_useType_to_seconds_left();
+        ClearDictionary_useType_to_list_of_BackpackIconScripts();
+
         MakeDictionary();
     }
 
@@ -69,9 +89,31 @@ public class BackPackController : MonoBehaviour
         // shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
-        
+
         UpdateBackpack();
         ClearShowerPanel();
+    }
+
+    void ClearDictionary_useType_to_seconds_left()
+    {
+        dict_useType_to_seconds_left[UseType.None] = 0;
+        dict_useType_to_seconds_left[UseType.Health] = 0;
+        dict_useType_to_seconds_left[UseType.Attack] = 0;
+        dict_useType_to_seconds_left[UseType.CritChance] = 0;
+        dict_useType_to_seconds_left[UseType.CritDMG] = 0;
+        dict_useType_to_seconds_left[UseType.ElementalMastery] = 0;
+        dict_useType_to_seconds_left[UseType.Luck] = 0;
+    }
+
+    void ClearDictionary_useType_to_list_of_BackpackIconScripts()
+    {
+        dict_useType_to_list_of_BackpackIconScripts[UseType.None] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.Health] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.Attack] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.CritChance] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.CritDMG] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.ElementalMastery] = new List<BackpackIconScript>();
+        dict_useType_to_list_of_BackpackIconScripts[UseType.Luck] = new List<BackpackIconScript>();
     }
 
     public void MakeDictionary()
@@ -111,6 +153,14 @@ public class BackPackController : MonoBehaviour
             dict_item_name_to_id[temp_item.item_name] = ind;
         }
 
+        foreach (UsableItemSO usableItem_so in list_usableItem_so)
+        {
+            ind++;
+            Item temp_item = new UsableItem(usableItem_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
+
         foreach (ConsumableItemSO consumableItem_so in list_consumableItem_so)
         {
             ind++;
@@ -128,7 +178,7 @@ public class BackPackController : MonoBehaviour
         }
     }
 
-    public bool DecreaceItemByName(string item_name, int number)
+    public bool DecreaceItemByName(string item_name, int number = 1)
     {
         int item_id = dict_item_name_to_id[item_name];
 
@@ -143,7 +193,7 @@ public class BackPackController : MonoBehaviour
         }
     }
 
-    public void IncreaceItemByName(string item_name, int number)
+    public void IncreaceItemByName(string item_name, int number = 1)
     {
         int item_id = dict_item_name_to_id[item_name];
 
@@ -195,6 +245,7 @@ public class BackPackController : MonoBehaviour
     public void UpdateShowerPanel(int new_id)
     {
         weaponIconGO.SetActive(false);
+        useButton.SetActive(false);
 
         current_selected_id = new_id;  // !!!
 
@@ -205,6 +256,72 @@ public class BackPackController : MonoBehaviour
         if (dict_id_to_item[current_selected_id].item_type == ItemType.Weapon)
         {
             ActivateWeaponIcon();
+        }
+
+        if (dict_id_to_item[current_selected_id] is UsableItem usable_item)
+        {
+            useButton.SetActive(true);
+
+            if (IsUseTypeUsable(usable_item.useEffect.useType))
+            {
+                ActivateUseButton();
+            }
+            else
+            {
+                DeactivateUseButton();
+            }
+        }
+    }
+
+    void ActivateUseButton()
+    {
+        crossUseButton.SetActive(false);
+    }
+
+    void DeactivateUseButton()
+    {
+        crossUseButton.SetActive(true);
+    }
+
+    bool IsUseTypeUsable(UseType useType)
+    {
+        return dict_useType_to_seconds_left[useType] <= 0;
+    }
+
+    public void UseItem()
+    {
+        if (dict_id_to_item[current_selected_id] is UsableItem usable_item)
+        {
+            if (IsUseTypeUsable(usable_item.useEffect.useType))
+            {
+                Debug.Log($"Use item {usable_item.item_name}");
+
+                DecreaceItemByName(usable_item.item_name);
+
+                playerScript.BoostCharacter(usable_item.useEffect);
+                dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+
+                StartCoroutine(CountdownCoroutine(usable_item.useEffect.useType));
+            }
+        }
+    }
+
+    private IEnumerator CountdownCoroutine(UseType useType)
+    {
+        while (dict_useType_to_seconds_left[useType] > 0)
+        {
+            foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
+            {
+                backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
+            }
+
+            yield return new WaitForSeconds(1f);
+            dict_useType_to_seconds_left[useType]--;
+        }
+
+        foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
+        {
+            backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
         }
     }
 
@@ -268,6 +385,7 @@ public class BackPackController : MonoBehaviour
     void UpdateBackpack(ItemType type = ItemType.Everything)
     {
         weaponIconGO.SetActive(false);
+        useButton.SetActive(false);
 
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
@@ -300,10 +418,12 @@ public class BackPackController : MonoBehaviour
             Destroy(child.gameObject);
         }
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
-    }    
+    }
 
     void ChangeBackpackPanelHeight(ItemType type)
     {
+        ClearDictionary_useType_to_list_of_BackpackIconScripts();
+
         int row_amount = item_counter / item_in_row + (item_counter % item_in_row == 0 ? 0 : 1);
         int new_height = row_amount * item_height + (row_amount + 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
@@ -327,6 +447,11 @@ public class BackPackController : MonoBehaviour
 
         new_prefab_script.SetNewId(id);
         new_prefab_script.inventory_stalker = inventory_stalker;
+
+        if (dict_id_to_item[id] is UsableItem usableItem)
+        {
+            dict_useType_to_list_of_BackpackIconScripts[usableItem.useEffect.useType].Add(new_prefab_script);
+        }
     }
 
     public void OpenBackpackPanel()
