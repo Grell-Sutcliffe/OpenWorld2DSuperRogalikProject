@@ -126,6 +126,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     private void ItemOnClick()
     {
+        backpackController.current_selected_backpackIcon = this;
         backpackController.UpdateShowerPanel(id);
     }
 
@@ -156,6 +157,12 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         crossIcon.SetActive(false);
 
         item_image_TMP.sprite = sprite;
+        item_counter_TMP.text = count.ToString();
+    }
+
+    public void UpdateAmount()
+    {
+        count = backpackController.dict_id_to_item[id].amount;
         item_counter_TMP.text = count.ToString();
     }
 

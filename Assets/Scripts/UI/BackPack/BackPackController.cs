@@ -27,6 +27,7 @@ public class BackPackController : MonoBehaviour
 
     public int item_counter = 0;
     public int current_selected_id;  // !!!
+    public BackpackIconScript current_selected_backpackIcon;
 
     public int item_height = 400;
     public int space_between_items = 50;
@@ -297,6 +298,8 @@ public class BackPackController : MonoBehaviour
                 Debug.Log($"Use item {usable_item.item_name}");
 
                 DecreaceItemByName(usable_item.item_name);
+                current_selected_backpackIcon.UpdateAmount();                                                                       // ПОКАЗЫВАЕТ 0, ЕСЛИ ШТУКА КОНЧИЛАСЬ
+                //UpdateBackpackItems();                                                                                            // ЛАГАЕТ
 
                 playerScript.BoostCharacter(usable_item.useEffect);
                 dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
@@ -389,11 +392,21 @@ public class BackPackController : MonoBehaviour
 
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
+        /*
         CountItems(type);
         ClearBackpack();
         ChangeBackpackPanelHeight(type);
+        */
+        UpdateBackpackItems(type);
 
         //Debug.Log(item_counter);
+    }
+
+    void UpdateBackpackItems(ItemType type = ItemType.Everything)
+    {
+        CountItems(type);
+        ClearBackpack();
+        ChangeBackpackPanelHeight(type);
     }
 
     void CountItems(ItemType type)
