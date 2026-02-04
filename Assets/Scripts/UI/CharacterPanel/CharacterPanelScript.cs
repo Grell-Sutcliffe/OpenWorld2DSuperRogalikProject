@@ -153,7 +153,8 @@ public class CharacterPanelScript : MonoBehaviour
 
     public void GivePlayerNewWeapon()
     {
-        playerScript.weapon = currentWeaponPanelScript.weapon;
+        //playerScript.weapon = currentWeaponPanelScript.weapon;
+        playerScript.GivePlayerNewWeapon(currentWeaponPanelScript.weapon);
     }
 
     void MakeDictionary()

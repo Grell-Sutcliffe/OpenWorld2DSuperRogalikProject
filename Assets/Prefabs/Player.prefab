@@ -160,8 +160,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00000042146846, y: 2.6206634}
-  m_Size: {x: 0.50000006, y: 2.9446805}
+  m_Offset: {x: -0.00000042840833, y: 2.4879932}
+  m_Size: {x: 0.50000006, y: 2.6793406}
   m_Direction: 0
 --- !u!1 &3401088822291997560
 GameObject:
@@ -401,12 +401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365f9aebda13a3c4094a53c8d4354e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon_sprite_renderer: {fileID: 0}
   wasCrit: 0
   Data: {fileID: 11400000, guid: 81e4f7f2a9176e147823727df17144ab, type: 2}
   rb: {fileID: 6179167146417871810}
   anim: {fileID: 5764917881911440013}
   spriteRender: {fileID: 3675455199803781339}
-  maxHealth: 1000
+  maxHealth: 200
   damage: 5
   max_level: 100
   current_level: 1

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4624076932624690904}
   - component: {fileID: 419138481373540110}
   - component: {fileID: -6054001628461272511}
+  - component: {fileID: -475255335565684247}
   m_Layer: 0
   m_Name: ArrowBow
   m_TagString: Untagged
@@ -149,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeLong: 2
-  dmg: 1
   speed: 8
   dir: {x: 1, y: 0, z: 0}
 --- !u!50 &-6054001628461272511
@@ -179,3 +179,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-475255335565684247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003701598820385441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100

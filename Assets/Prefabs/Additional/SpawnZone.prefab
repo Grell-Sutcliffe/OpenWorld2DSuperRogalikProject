@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2859035280311538103}
   - component: {fileID: 3370929632857048789}
   - component: {fileID: 7819253191060008855}
+  - component: {fileID: 8357173090383884475}
   m_Layer: 0
   m_Name: SpawnZone
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   - {fileID: 4738165583852734987, guid: e670f87b03eb2f842bf2f062ef62b9ed, type: 3}
   nums: 0100000002000000
   poof: {fileID: 782257388399245924, guid: 70fff305710a6a547a8d81f65a78d23d, type: 3}
+  goOnActivate: {fileID: 0}
 --- !u!61 &6205528645659320584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,3 +215,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8357173090383884475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811681930624544177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100

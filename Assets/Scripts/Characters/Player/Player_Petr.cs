@@ -9,6 +9,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     MainController mainController;
     BackPackController backPackController;
 
+    public SpriteRenderer weapon_sprite_renderer;
+
     public GameObject owner => gameObject;
     protected float current_dmg;
     public bool wasCrit;
@@ -83,6 +85,13 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         //Debug.LogError($"weapon == null : {weapon == null}");
 
         mainController.SetCharacterWeapon(weapon);
+        GivePlayerNewWeapon(weapon);
+    }
+
+    public void GivePlayerNewWeapon(Weapon new_weapon)
+    {
+        weapon = new_weapon;
+        weapon_sprite_renderer.sprite = new_weapon.sprite;
     }
 
     public void DealDamage()

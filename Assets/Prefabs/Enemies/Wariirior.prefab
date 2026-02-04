@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 5386472056574683730}
   - component: {fileID: 2523033270892885816}
   - component: {fileID: 511915199305905752}
+  - component: {fileID: -8481495836585383977}
   m_Layer: 9
   m_Name: Wariirior
   m_TagString: Untagged
@@ -272,7 +273,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.875, y: 1}
+  m_Size: {x: 1, y: 1.4}
   m_EdgeRadius: 0
 --- !u!95 &511915199305905752
 Animator:
@@ -296,6 +297,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8481495836585383977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366335355962043441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100
 --- !u!1 &3752381475296509363
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.714
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.y

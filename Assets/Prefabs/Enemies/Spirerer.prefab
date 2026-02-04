@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 3954620552225052285}
   - component: {fileID: 5053482928918271685}
   - component: {fileID: 6886133920859056042}
+  - component: {fileID: -4548289978631004007}
   m_Layer: 9
   m_Name: Spirerer
   m_TagString: Untagged
@@ -355,7 +356,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.875, y: 1}
+  m_Size: {x: 1, y: 1.4}
   m_EdgeRadius: 0
 --- !u!95 &6886133920859056042
 Animator:
@@ -379,6 +380,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4548289978631004007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170486259333350602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100
 --- !u!1 &4270467889622739879
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,11 +540,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.z

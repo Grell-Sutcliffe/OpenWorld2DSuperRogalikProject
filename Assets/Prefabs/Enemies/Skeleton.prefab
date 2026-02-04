@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 7653543814149306565}
   - component: {fileID: 7826423026952965163}
   - component: {fileID: 242724825996264335}
+  - component: {fileID: -6475522996527876612}
   m_Layer: 9
   m_Name: Skeleton
   m_TagString: Enemy
@@ -297,8 +298,8 @@ MonoBehaviour:
   canWalk: 1
   isStopWhileHit: 1
   enemyHealthBar: {fileID: 6482444363272051414}
-  max_hp: 100
-  hp: 10
+  max_hp: 20
+  hp: 20
   eName: Skelet
   reachDisttoRotatePivot: 5
   pivot: {fileID: 9193727690908552895}
@@ -338,6 +339,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-6475522996527876612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738165583852734987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseOrder: 0
+  mul: 100
 --- !u!1 &8290936457640801460
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +450,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.15631151, y: -0.021560192}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -445,7 +460,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.53645515, y: 0.84907866}
+  m_Size: {x: 0.75, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &9193727690908552895
 GameObject:
@@ -494,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8055372696677397108, guid: 7310e457e8f2f4146903d1cc7e404fe3, type: 3}
       propertyPath: m_LocalPosition.y
