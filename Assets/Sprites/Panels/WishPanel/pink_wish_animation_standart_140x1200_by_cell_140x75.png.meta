@@ -1,0 +1,488 @@
+fileFormatVersion: 2
+guid: ec6c21a12aed1b9429dda22ca3482271
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4080736121084103580
+    second: pink_wish_animation_standart_140x1200_by_cell_140x75_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1125
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4643da85e105e57c0800000000000000
+      internalID: -4080736121084103580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1050
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 588df8d208434a14491232c360dac21b
+      internalID: 1924675971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 975
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417dd15998b034a409696b1e6e126ce4
+      internalID: 1420080259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce67bde59c2f44c4e9187b5319edca56
+      internalID: 435614706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 825
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b571a8b156615d47b892fc86a097db9
+      internalID: 211909288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea2ce196560ec3498e8f85d3836c19e
+      internalID: 1081983897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 675
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0dca5fbebb4be34299fbff40dce1f0a
+      internalID: -809969867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25342a53f305fc4693352b1f4fd638a
+      internalID: 1391447745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1842b8e5f34efaf4cad2d390f1a00358
+      internalID: -434968335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482ae007133b3a84c9faa65424a238c4
+      internalID: 2083310843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 375
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f19298f1795ae42bd429a65c3642e4
+      internalID: -1288593382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f5f83aae7134b40a2490c8aece18ad
+      internalID: -365519924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 225
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2078620227e776b40938f1d440217ac9
+      internalID: 1643657980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f06817a514df3648a802fd51ba77912
+      internalID: -305657184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 75
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca450e9f6141b7468b306a3151d4977
+      internalID: -527522589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_standart_140x1200_by_cell_140x75_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f1df02e029bbf47a44c1663ef980d7
+      internalID: -1729322958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f1df8f095ce73dd40bb6840ac1bc4d27
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pink_wish_animation_standart_140x1200_by_cell_140x75_0: -4080736121084103580
+      pink_wish_animation_standart_140x1200_by_cell_140x75_1: 1924675971
+      pink_wish_animation_standart_140x1200_by_cell_140x75_10: -1288593382
+      pink_wish_animation_standart_140x1200_by_cell_140x75_11: -365519924
+      pink_wish_animation_standart_140x1200_by_cell_140x75_12: 1643657980
+      pink_wish_animation_standart_140x1200_by_cell_140x75_13: -305657184
+      pink_wish_animation_standart_140x1200_by_cell_140x75_14: -527522589
+      pink_wish_animation_standart_140x1200_by_cell_140x75_15: -1729322958
+      pink_wish_animation_standart_140x1200_by_cell_140x75_2: 1420080259
+      pink_wish_animation_standart_140x1200_by_cell_140x75_3: 435614706
+      pink_wish_animation_standart_140x1200_by_cell_140x75_4: 211909288
+      pink_wish_animation_standart_140x1200_by_cell_140x75_5: 1081983897
+      pink_wish_animation_standart_140x1200_by_cell_140x75_6: -809969867
+      pink_wish_animation_standart_140x1200_by_cell_140x75_7: 1391447745
+      pink_wish_animation_standart_140x1200_by_cell_140x75_8: -434968335
+      pink_wish_animation_standart_140x1200_by_cell_140x75_9: 2083310843
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

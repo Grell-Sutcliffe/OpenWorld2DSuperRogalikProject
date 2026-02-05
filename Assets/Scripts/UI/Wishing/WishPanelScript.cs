@@ -7,6 +7,7 @@ public class WishPanelScript : MonoBehaviour
 {
     MainController mainController;
     public BackPackController backpackController;
+    public CharacterPanelScript characterPanelScript;
 
     public TextMeshProUGUI pink_wish_counter_text;
     public TextMeshProUGUI blue_wish_counter_text;
@@ -20,18 +21,34 @@ public class WishPanelScript : MonoBehaviour
     public GameObject blueStarsGO;
 
     public GameObject pinkWishMadePanel;
+    public GameObject pinkWishMadePanel_gold;
+    public GameObject pinkWishMadePanel_purple;
+    public GameObject pinkWishMadePanel_blue;
     public GameObject blueWishMadePanel;
+    public GameObject blueWishMadePanel_gold;
+    public GameObject blueWishMadePanel_purple;
+    public GameObject blueWishMadePanel_blue;
 
     public Image blueWishMadeRewardImage;
     public TextMeshProUGUI blueWishMadeRewardTMP;
 
+    public GameObject blueWishMadeRewardWeaponStatsGO;
+    public Image blueWishMadeRewardWeaponElementImage;
+    public TextMeshProUGUI blueWishMadeRewardStarsTMP;
+
     public GameObject pinkWishInteractPanel;
     public GameObject blueWishInteractPanel;
 
+    public GameObject wishAnimationImage;
+
+    /*
     private Animator pink_stars_animator;
     private Animator blue_stars_animator;
 
     private Animator current_animator;
+    */
+
+    private Animator wish_animator;
 
     bool is_pink = true;
 
@@ -68,15 +85,32 @@ public class WishPanelScript : MonoBehaviour
 
     Dictionary<int, List<int>> dict_star_to_list_of_reward_id = new Dictionary<int, List<int>>();
 
-    List<Item> rewards = new List<Item>();
+    public class WishReward
+    {
+        public Item item;
+        public int star;
+
+        public WishReward(Item item, int star)
+        {
+            this.item = item;
+            this.star = star;
+        }
+    }
+
+    List<WishReward> rewards = new List<WishReward>();
 
     int current_reward_index = 0;
 
     void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
+
+        /*
         pink_stars_animator = starsGO.GetComponent<Animator>();
         blue_stars_animator = blueStarsGO.GetComponent<Animator>();
+        */
+
+        wish_animator = wishAnimationImage.GetComponent<Animator>();
 
         pink_wish_parameters = new WishParameters();
         blue_wish_parameters = new WishParameters();
@@ -87,8 +121,19 @@ public class WishPanelScript : MonoBehaviour
         blueWishMadePanel.SetActive(false);
         pinkWishMadePanel.SetActive(false);
 
+        wishAnimationImage.SetActive(false);
+
         blueWishInteractPanel.SetActive(false);
         pinkWishInteractPanel.SetActive(true);
+
+        if (wish_animator == null)
+        {
+            wish_animator = wishAnimationImage.GetComponent<Animator>();
+        }
+        if (wish_animator == null)
+        {
+            Debug.LogError("ERROR: Can't find wish_animator");
+        }
 
         MakeDictionary();
     }
@@ -130,20 +175,18 @@ public class WishPanelScript : MonoBehaviour
 
     public void StartWish10()
     {
-        rewards = new List<Item>();
+        rewards = new List<WishReward>();
         current_reward_index = 0;
 
         bool success = UseWish(10);
 
         if (success)
         {
-            CloseWishInteractPanel();
-
-            current_animator.SetBool("is_wishing", true);
-
             ComputeRewards(10);
 
-            Invoke("StopWish", 0.3f);
+            //current_animator.SetBool("is_wishing", true);
+
+            //Invoke("StopWish", 0.3f);
         }
         else
         {
@@ -160,20 +203,18 @@ public class WishPanelScript : MonoBehaviour
 
     public void StartWish()
     {
-        rewards = new List<Item>();
+        rewards = new List<WishReward>();
         current_reward_index = 0;
 
         bool success = UseWish(1);
 
         if (success)
         {
-            CloseWishInteractPanel();
-
-            current_animator.SetBool("is_wishing", true);
+            //current_animator.SetBool("is_wishing", true);
 
             ComputeRewards(1);
 
-            Invoke("StopWish", 0.3f);
+            //Invoke("StopWish", 0.3f);
         }
         else
         {
@@ -190,6 +231,10 @@ public class WishPanelScript : MonoBehaviour
 
     void ComputeRewards(int number)
     {
+        CloseWishInteractPanel();
+
+        wishAnimationImage.SetActive(true);
+
         System.Random rand = new System.Random();
 
         for (int i = 0; i < number; i++)
@@ -239,11 +284,20 @@ public class WishPanelScript : MonoBehaviour
             }
         }
 
+        wish_animator.SetBool("is_wishing", true);
+        wish_animator.SetBool("is_wish_pink", is_pink);
+
         //rewards.Reverse();
     }
 
     void ObtainXStarReward(int star)
     {
+        if (star == 5) wish_animator.SetBool("is_gold", true);
+        if (star == 4) wish_animator.SetBool("is_purple", true);
+        if (star <= 3) wish_animator.SetBool("is_blue", true);
+
+        Debug.Log($"new reward. star = {star}");
+
         System.Random rand = new System.Random();
 
         Debug.Log($"GET {star}* REWARD");
@@ -253,7 +307,7 @@ public class WishPanelScript : MonoBehaviour
         Item new_item = backpackController.dict_id_to_item[reward_id];
 
         //new_weapon.amount++;
-        rewards.Add(new_item);
+        rewards.Add(new WishReward(new_item, star));
 
         ObtainItem(reward_id);
     }
@@ -263,12 +317,24 @@ public class WishPanelScript : MonoBehaviour
         backpackController.IncreaceItemByName(backpackController.dict_id_to_item[id].item_name, 1);
     }
 
-    void StopWish()
+    public void StopWish()
     {
-        current_animator.SetBool("is_wishing", false);
+        Debug.Log("WISH STOPPED");
+
+        //current_animator.SetBool("is_wishing", false);
+
+        wish_animator.SetBool("is_wishing", false);
+        wish_animator.SetBool("is_wish_pink", true);
+
+        wish_animator.SetBool("is_gold", false);
+        wish_animator.SetBool("is_purple", false);
+        wish_animator.SetBool("is_blue", false);
+
+        wishAnimationImage.SetActive(false);
+        CompleteWish();
     }
 
-    public void CompleteWish()
+    void CompleteWish()
     {
         Debug.Log("WISH MADE");
 
@@ -320,13 +386,30 @@ public class WishPanelScript : MonoBehaviour
     {
         blueWishMadePanel.SetActive(true);
 
-        Item new_item = rewards[current_reward_index];
+        blueWishMadeRewardWeaponStatsGO.SetActive(false);
+
+        blueWishMadePanel_gold.SetActive(false);
+        blueWishMadePanel_purple.SetActive(false);
+        blueWishMadePanel_blue.SetActive(false);
+
+        WishReward new_reward = rewards[current_reward_index];
         //Item new_item = rewards[rewards.Count - 1];
         //rewards.RemoveAt(rewards.Count - 1);
         current_reward_index++;
 
-        blueWishMadeRewardImage.sprite = new_item.sprite;
-        blueWishMadeRewardTMP.text = new_item.item_name;
+        if (new_reward.star == 5) blueWishMadePanel_gold.SetActive(true);
+        if (new_reward.star == 4) blueWishMadePanel_purple.SetActive(true);
+        if (new_reward.star <= 3) blueWishMadePanel_blue.SetActive(true);
+
+        if (new_reward.item is Weapon weapon)
+        {
+            blueWishMadeRewardWeaponStatsGO.SetActive(true);
+            blueWishMadeRewardWeaponElementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].sprite;
+            blueWishMadeRewardStarsTMP.text = new_reward.star.ToString();
+        }
+
+        blueWishMadeRewardImage.sprite = new_reward.item.sprite;
+        blueWishMadeRewardTMP.text = new_reward.item.item_name;
     }
 
     public void CloseWishMade()
@@ -364,12 +447,12 @@ public class WishPanelScript : MonoBehaviour
         if (is_active)
         {
             is_pink = true;
-            current_animator = pink_stars_animator;
+            //current_animator = pink_stars_animator;
         }
         else
         {
             is_pink = false;
-            current_animator = blue_stars_animator;
+            //current_animator = blue_stars_animator;
         }
     }
 

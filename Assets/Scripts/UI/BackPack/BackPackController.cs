@@ -71,13 +71,13 @@ public class BackPackController : MonoBehaviour
     Dictionary<UseType, int> dict_useType_to_seconds_left;
     Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
 
+    List<UseType> list_of_use_types;
+
     private void Awake()
     {
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
-        dict_useType_to_list_of_BackpackIconScripts = new Dictionary<UseType, List<BackpackIconScript>>();
-
+        MakeListOfUseTypes();
         ClearDictionary_useType_to_seconds_left();
         ClearDictionary_useType_to_list_of_BackpackIconScripts();
 
@@ -95,8 +95,29 @@ public class BackPackController : MonoBehaviour
         ClearShowerPanel();
     }
 
+    void MakeListOfUseTypes()
+    {
+        list_of_use_types = new List<UseType>();
+
+        list_of_use_types.Add(UseType.None);
+        list_of_use_types.Add(UseType.Health);
+        list_of_use_types.Add(UseType.Attack);
+        list_of_use_types.Add(UseType.CritChance);
+        list_of_use_types.Add(UseType.CritDMG);
+        list_of_use_types.Add(UseType.ElementalMastery);
+        list_of_use_types.Add(UseType.Luck);
+    }
+
     void ClearDictionary_useType_to_seconds_left()
     {
+        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
+
+        foreach (UseType useType in list_of_use_types)
+        {
+            dict_useType_to_seconds_left[useType] = 0;
+        }
+
+        /*
         dict_useType_to_seconds_left[UseType.None] = 0;
         dict_useType_to_seconds_left[UseType.Health] = 0;
         dict_useType_to_seconds_left[UseType.Attack] = 0;
@@ -104,10 +125,19 @@ public class BackPackController : MonoBehaviour
         dict_useType_to_seconds_left[UseType.CritDMG] = 0;
         dict_useType_to_seconds_left[UseType.ElementalMastery] = 0;
         dict_useType_to_seconds_left[UseType.Luck] = 0;
+        */
     }
 
     void ClearDictionary_useType_to_list_of_BackpackIconScripts()
     {
+        dict_useType_to_list_of_BackpackIconScripts = new Dictionary<UseType, List<BackpackIconScript>>();
+
+        foreach (UseType useType in list_of_use_types)
+        {
+            dict_useType_to_list_of_BackpackIconScripts[useType] = new List<BackpackIconScript>();
+        }
+
+        /*
         dict_useType_to_list_of_BackpackIconScripts[UseType.None] = new List<BackpackIconScript>();
         dict_useType_to_list_of_BackpackIconScripts[UseType.Health] = new List<BackpackIconScript>();
         dict_useType_to_list_of_BackpackIconScripts[UseType.Attack] = new List<BackpackIconScript>();
@@ -115,6 +145,7 @@ public class BackPackController : MonoBehaviour
         dict_useType_to_list_of_BackpackIconScripts[UseType.CritDMG] = new List<BackpackIconScript>();
         dict_useType_to_list_of_BackpackIconScripts[UseType.ElementalMastery] = new List<BackpackIconScript>();
         dict_useType_to_list_of_BackpackIconScripts[UseType.Luck] = new List<BackpackIconScript>();
+        */
     }
 
     public void MakeDictionary()
@@ -391,6 +422,11 @@ public class BackPackController : MonoBehaviour
         useButton.SetActive(false);
 
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
+
+        foreach (UseType useType in list_of_use_types)
+        {
+            StartCoroutine(CountdownCoroutine(useType));
+        }
 
         /*
         CountItems(type);

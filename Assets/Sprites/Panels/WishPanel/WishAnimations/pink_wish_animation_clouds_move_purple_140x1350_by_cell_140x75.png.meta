@@ -1,0 +1,534 @@
+fileFormatVersion: 2
+guid: f67ce3c3be5cce442a8afb3f8b8478a9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2238623670801984205
+    second: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1275
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3351114d1afcee0e0800000000000000
+      internalID: -2238623670801984205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1200
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 991a27b9ea56be248a6b19f40d81a51c
+      internalID: -925888181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1125
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9114ae8391ebcc469781b377566c3c9
+      internalID: 434129429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1050
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a1ff08f801a8b4b9f73f7d2c38546c
+      internalID: 1077095402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 975
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fdd0be6895b4042941785a803d7d6b
+      internalID: 1253221992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 900
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58dad7cd75e1da544aa4476d8e090850
+      internalID: -1264137830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 825
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43038b182fb3c44b9c665a594543dfd
+      internalID: -1347346448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e530686d5674864abf628f69599e953
+      internalID: -1424496010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 675
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67938d7a6a692bb4097fe3c1cb55aba5
+      internalID: 1239031924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5502059f71aa834b8e81902ca9631bf
+      internalID: -929077066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be7248e3e0620e40b43a954a33014cd
+      internalID: 2008196303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 450
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0fb75d22fbab342a36f2078b1601f7
+      internalID: -423401449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 375
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359297ee4ad67b04b95981503f35e869
+      internalID: 441179663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 238bcf17d76a2cd48bcc9d7d379fa0a2
+      internalID: -1561522460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 225
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d88877da7a7ae48881531e34e9c0f3
+      internalID: 2096025155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a48918f41eb6b74f881970f99499e2f
+      internalID: 1154580510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 75
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d18568c07edbd43bb30400e24b992c
+      internalID: -1492097570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 140
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79af157cc792a2646b5cef0af12a5316
+      internalID: -1302300634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dcdcbdcdeef9383408319f6417ab3c46
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_0: -2238623670801984205
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_1: -925888181
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_10: 2008196303
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_11: -423401449
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_12: 441179663
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_13: -1561522460
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_14: 2096025155
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_15: 1154580510
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_16: -1492097570
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_17: -1302300634
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_2: 434129429
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_3: 1077095402
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_4: 1253221992
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_5: -1264137830
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_6: -1347346448
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_7: -1424496010
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_8: 1239031924
+      pink_wish_animation_clouds_move_purple_140x1350_by_cell_140x75_9: -929077066
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

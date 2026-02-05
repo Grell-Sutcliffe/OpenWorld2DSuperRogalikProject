@@ -15,11 +15,16 @@ public class WishAnimationScript : MonoBehaviour
 
     public void OnWishAnimationEnded()
     {
-        wishPanelScript.CompleteWish();
+        //wishPanelScript.CompleteWish();
     }
 
     public void OnBlueWishAnimationEnded()
     {
-        wishPanelScript.CompleteWish();
+        //wishPanelScript.CompleteWish();
+    }
+
+    public void StopWish()
+    {
+        wishPanelScript.StopWish();
     }
 }
