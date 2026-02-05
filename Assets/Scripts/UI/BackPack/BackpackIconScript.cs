@@ -183,7 +183,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void CloseIconForTime(int seconds)
     {
-        Debug.Log($"CloseIconForTime seconds = {seconds}");
+        //Debug.Log($"CloseIconForTime seconds = {seconds}");
 
         if (seconds == 0)
         {
