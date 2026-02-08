@@ -281,6 +281,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RotatePivot(mouseWorldPos, offset);
+            LoggerName("PREP HIT");
             Hit();
         }
     }
@@ -299,7 +300,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     protected virtual void LoggerName(string s = null)
     {
-        //Debug.Log($"{name} massage: {s}");
+        Debug.Log($"{name} massage: {s}");
     }
 
     public void TakeDamage(Damage dmg)
@@ -323,7 +324,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
 
     protected virtual void Hit()
-    {   
+    {
+        LoggerName("HITTING");
         DealDamage();
         isHit = true;
         canHit = false;

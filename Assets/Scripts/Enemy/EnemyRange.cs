@@ -5,7 +5,7 @@ using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 public abstract class EnemyRange : EnemyAbstract
 {
     [SerializeField] float reachDistfromPlayer = 3;
-    
+    [SerializeField] Animator weaponAnim;
     protected override void FixedUpdate()
     {
         anim.SetBool("isTriggered", isTriggered);
@@ -46,12 +46,19 @@ public abstract class EnemyRange : EnemyAbstract
             return;
         }
 
-         if (!isDead) Wander();
+         if (!isDead) {
+            RotatePivotToIdle(offset);
+            Wander(); 
+        }
     }
 
     protected virtual void Hit()
     {
-        pivot.gameObject.SetActive(true);
+        //pivot.gameObject.SetActive(true);
+        //Debug.Log("???????????");
+        canHit = false;
+        weaponAnim.SetTrigger("hit");
+
 
     }
     protected virtual void RotatePivot(Transform playerPos, float offs = 0f)
@@ -62,11 +69,17 @@ public abstract class EnemyRange : EnemyAbstract
         // 2) поворачиваем pivot меча
         pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
+    protected virtual void RotatePivotToIdle(float offs = 0f)
+    {
 
- 
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, -offs); // оффсет под спрайт
+    }
+
+
     public override void UnActivePivot()
     {
-        pivot.gameObject.SetActive(false);
+        //pivot.gameObject.SetActive(false);
     }
 
     public virtual void Shoot()
