@@ -12,7 +12,7 @@ public class Bow : MonoBehaviour
         if (owner != null)
         {
             owner.Shoot();
-            owner.UnActivePivot(); // лучше искать енеми в родители
+           // owner.UnActivePivot(); // лучше искать енеми в родители
             owner.StartDelay();
         }
 
