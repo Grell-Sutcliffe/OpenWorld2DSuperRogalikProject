@@ -206,7 +206,9 @@ public class BackPackController : MonoBehaviour
             ind++;
             Item temp_weapon = new Weapon(weapon_so, ind);
             dict_id_to_item[ind] = temp_weapon;
+
             dict_item_name_to_id[temp_weapon.item_name] = ind;
+            Debug.Log($"Added {temp_weapon.item_name} in dict");
         }
     }
 

@@ -87,6 +87,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         current_hit_stats = new Stats(player_full_stats);
 
         weapon = null;
+        LoggerName($"try to access {weaponSO.weapon_name}");
+
         Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
         if (temp_item is Weapon temp_weapon)
         {
@@ -94,17 +96,29 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         }
 
         mainController.SetCharacterWeapon(weapon);
-        GivePlayerNewWeapon(weapon);
+        //GivePlayerNewWeapon(weapon);
+        LoggerName($"changed on {weapon.item_name}");
     }
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
     {
+        swordAnim.enabled = false;
         weapon = new_weapon;
+        LoggerName($"changed on {weapon_sprite_renderer.sprite.name} for {new_weapon.sprite.name}");
         weapon_sprite_renderer.sprite = new_weapon.sprite;
+        LoggerName($"{weapon_sprite_renderer.sprite.name}!!!!!!!!!!");
 
         current_stats = new Stats(current_stats, weapon.stats);
-    }
 
+
+        StartCoroutine(EnableAnimatorNextFrame(swordAnim));
+
+    }
+    IEnumerator EnableAnimatorNextFrame(Animator animator)
+    {
+        yield return null; // ∆дем один кадр
+        animator.enabled = true;
+    }
     public void DealDamage()
     {
         current_hit_stats.attack = current_stats.attack + boost_stats.attack;
