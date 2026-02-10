@@ -94,4 +94,9 @@ public class SingleDamage : MonoBehaviour
 
     }
 
+    public void DestroySword()
+    {
+        Destroy(gameObject);
+    }
+
 }

@@ -59,10 +59,13 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public Weapon weapon;
 
     public GameObject pivot;
+    public GameObject pivot_1;
+    public GameObject pivot_2;
 
     public float upgrade_percent = 1.05f;
     public Cost upgrate_cost;
 
+    public Animator swordAnim;
     void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -84,6 +87,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         current_hit_stats = new Stats(player_full_stats);
 
         weapon = null;
+        LoggerName($"try to access {weaponSO.weapon_name}");
+
         Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
         if (temp_item is Weapon temp_weapon)
         {
@@ -91,17 +96,29 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         }
 
         mainController.SetCharacterWeapon(weapon);
-        GivePlayerNewWeapon(weapon);
+        //GivePlayerNewWeapon(weapon);
+        LoggerName($"changed on {weapon.item_name}");
     }
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
     {
+        swordAnim.enabled = false;
         weapon = new_weapon;
+        LoggerName($"changed on {weapon_sprite_renderer.sprite.name} for {new_weapon.sprite.name}");
         weapon_sprite_renderer.sprite = new_weapon.sprite;
+        LoggerName($"{weapon_sprite_renderer.sprite.name}!!!!!!!!!!");
 
         current_stats = new Stats(current_stats, weapon.stats);
-    }
 
+
+        StartCoroutine(EnableAnimatorNextFrame(swordAnim));
+
+    }
+    IEnumerator EnableAnimatorNextFrame(Animator animator)
+    {
+        yield return null; // Ждем один кадр
+        animator.enabled = true;
+    }
     public void DealDamage()
     {
         current_hit_stats.attack = current_stats.attack + boost_stats.attack;
@@ -188,7 +205,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
 
     public void UnActivePivot(){
-        pivot.gameObject.SetActive(false);
+        //pivot.gameObject.SetActive(false);
+        RotatePivotToIdle();
     }
 
     protected virtual IEnumerator Delay(float time)
@@ -241,6 +259,10 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     float offset = 0;
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            swordAnim.SetTrigger("destroy");
+        }
         if (EventSystem.current.IsPointerOverGameObject()) return;
         if (mainController.is_keyboard_active)
         {
@@ -254,6 +276,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             {
                 isRun = true;
                 anim.SetBool("isRun", true);
+                swordAnim.SetBool("isRun", true);
+
                 float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
                 //Debug.Log($"angle = {angle} {((angle + 90) % 360) / 45}");
 
@@ -261,26 +285,41 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                 {
                     angle = (angle + 360) % 360;
                     spriteRender.flipX = true;
+                    pivot.transform.position = pivot_2.transform.position;
+                    
                     direction = 4f - ((angle - 90f) / 45f);
                 }
                 else
                 {
                     direction = ((angle + 90) % 360) / 45;
+
                     spriteRender.flipX = false;
+                    pivot.transform.position = pivot_1.transform.position;
+
                 }
             }
             else
             {
                 anim.SetBool("isRun", false);
+                swordAnim.SetBool("isRun", false);
             }
             anim.SetFloat("dir", direction);  // вынести в отделную функцию
             anim.SetBool("isHit", isHit);
         }
 
         if (canHit && Input.GetMouseButtonDown(0)) // ЛКМ
-        {
+        {   
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (mouseWorldPos.x < this.transform.position.x)
+            {
+                pivot.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                pivot.transform.localScale = new Vector3(1, 1, 1);
+            }
             RotatePivot(mouseWorldPos, offset);
+            LoggerName("PREP HIT");
             Hit();
         }
     }
@@ -299,7 +338,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     protected virtual void LoggerName(string s = null)
     {
-        //Debug.Log($"{name} massage: {s}");
+        Debug.Log($"{name} massage: {s}");
     }
 
     public void TakeDamage(Damage dmg)
@@ -323,11 +362,13 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
 
     protected virtual void Hit()
-    {   
+    {
+        LoggerName("HITTING");
         DealDamage();
         isHit = true;
         canHit = false;
-        pivot.gameObject.SetActive(true);
+        //pivot.gameObject.SetActive(true);
+        swordAnim.SetTrigger("hit");
     }
 
     public int RoundToMax(float number)
@@ -346,8 +387,16 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
+        Debug.Log(pivot.transform.localScale.x);
+        pivot.transform.rotation = Quaternion.Euler(0, 0,  (angle - offs) + ( pivot.transform.localScale.x == -1 ? 180 : 0)); // оффсет под спрайт
     }
+    protected virtual void RotatePivotToIdle(float offs = 0f)
+    {
+
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, -offs); // оффсет под спрайт
+    }
+
 }
 
 public class Stats

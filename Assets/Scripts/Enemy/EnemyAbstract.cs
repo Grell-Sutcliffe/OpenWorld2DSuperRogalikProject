@@ -267,14 +267,15 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected virtual IEnumerator Delay(float time)
     {
         StartWalk();
-        yield return new WaitForSeconds(weapon.cooldown);
+        yield return new WaitForSeconds(time);
+        LoggerName(canHit.ToString());
         canHit = true;
     }
     public void StartDelay()
     {
+        LoggerName($"Can't attack on {attackDur} sec");
         isHitting = false;
         canHit = false;
-        timeLastHit = Time.time;
         StartCoroutine(Delay(attackDur));
     }
 
