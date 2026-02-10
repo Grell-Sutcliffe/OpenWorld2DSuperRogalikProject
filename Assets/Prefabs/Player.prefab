@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4867599397194091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.238, y: 0.578, z: 0}
+  m_LocalPosition: {x: 0.303, y: 0.457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1697782868516196045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.238, y: 0.578, z: 0}
+  m_LocalPosition: {x: -0.299, y: 0.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,7 +77,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7134989537086975436
 Transform:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ SpriteRenderer:
   m_SortingLayerID: 1445735355
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 57dc55ceb001a9449a0a33efc11d7978, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5489241632c82f54fba14fbe032a29fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -419,7 +419,10 @@ MonoBehaviour:
   target: {fileID: 3401088822291997560}
   weaponSO: {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
   pivot: {fileID: 1867279333676066356}
+  pivot_1: {fileID: 4867599397194091}
+  pivot_2: {fileID: 1697782868516196045}
   upgrade_percent: 1.05
+  swordAnim: {fileID: 4639148576991050669}
 --- !u!50 &6179167146417871810
 Rigidbody2D:
   serializedVersion: 5
