@@ -25,6 +25,11 @@ public class DialogPanelScript : MonoBehaviour
 
     Coroutine coroutine;
 
+    public class Dialog
+    {
+
+    }
+
     public class SpeachNode
     {
         public string current_npc_name;
@@ -173,8 +178,8 @@ public class DialogPanelScript : MonoBehaviour
         {
             speach_tree.is_finished = true;
 
-            int temp_task_index = questsController.dict_quest_name_to_quest[speach_tree.quest_title].current_task_index;
-            questsController.dict_quest_name_to_quest[speach_tree.quest_title].tasks[temp_task_index].current_speach_tree_index++;
+            //int temp_task_index = questsController.dict_quest_name_to_quest[speach_tree.quest_title].current_task_index;
+            //questsController.dict_quest_name_to_quest[speach_tree.quest_title].tasks[temp_task_index].current_speach_tree_index++;
         }
 
         if (current_node.is_finishing_task)
@@ -370,7 +375,5 @@ public class DialogPanelScript : MonoBehaviour
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
         mainController.ShowPlayerPanel();
-
-        questsController.UpdateNPC();
     }
 }

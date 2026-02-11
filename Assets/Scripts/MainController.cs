@@ -41,14 +41,9 @@ public class MainController : MonoBehaviour
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
 
-    public DedusDialogScript dedusDialogScript;
-    public GrandsonEugeneDialogScript grandsonEugeneDialogScript;
-    public DoggyDialogScript doggyDialogScript;
-
     DedusController dedusController;
     GrandsonEugeneController grandsonEugeneController;
 
-    DoggyInteractionScript doggyInteractionScript;
     DangeonInteractionScript dangeonInteractionScript;
 
     public bool is_keyboard_active = true;
@@ -85,10 +80,7 @@ public class MainController : MonoBehaviour
     {
         //backpackController.MakeDictionary();
 
-        SetDedusScripts();
-        SetGrandsonEugeneScripts();
         SetDangeonScripts();
-        SetDoggyScripts();
 
         is_keyboard_active = true;
 
@@ -198,21 +190,6 @@ public class MainController : MonoBehaviour
         healthBarScript.UpdateHealthBar(amount);
     }
 
-    public void InteractDedus()
-    {
-        dedusDialogScript.StartDialog();
-    }
-
-    public void InteractGrandsonEugene()
-    {
-        grandsonEugeneDialogScript.StartDialog();
-    }
-
-    public void InteractDoggy()
-    {
-        doggyDialogScript.StartDialog();
-    }
-
     public void InteractDangeon()
     {
         ShowEnterDangeonPanel();
@@ -286,36 +263,6 @@ public class MainController : MonoBehaviour
     {
         enterDangeonPanel.SetActive(false);
         TurnOnKeyboard();
-    }
-
-    void SetDedusScripts()
-    {
-        if (Dedus == null) Dedus = GameObject.Find("Dedus");
-        if (Dedus != null)
-        {
-            dedusController = Dedus.GetComponent<DedusController>();
-            dedusDialogScript = Dedus.GetComponent<DedusDialogScript>();
-        }
-    }
-
-    void SetGrandsonEugeneScripts()
-    {
-        if (GrandsonEugene == null) GrandsonEugene = GameObject.Find("GrandsonEugine");
-        if (GrandsonEugene != null)
-        {
-            grandsonEugeneController = GrandsonEugene.GetComponent<GrandsonEugeneController>();
-            grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
-        }
-    }
-
-    void SetDoggyScripts()
-    {
-        if (Doggy == null) Doggy = GameObject.Find("Doggy");
-        if (Doggy != null)
-        {
-            doggyInteractionScript = Doggy.GetComponent<DoggyInteractionScript>();
-            doggyDialogScript = Doggy.GetComponent<DoggyDialogScript>();
-        }
     }
 
     void SetDangeonScripts()

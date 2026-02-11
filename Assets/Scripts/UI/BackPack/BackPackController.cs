@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static CharacterPanelScript;
@@ -208,6 +209,17 @@ public class BackPackController : MonoBehaviour
             dict_id_to_item[ind] = temp_weapon;
             dict_item_name_to_id[temp_weapon.item_name] = ind;
         }
+    }
+
+    public bool CheckPresenceOfItemOfAmountByItemName(string item_name, int amount)
+    {
+        int item_id = dict_item_name_to_id[item_name];
+
+        if (dict_id_to_item[item_id].amount >= amount)
+        {
+            return true;
+        }
+        return false;
     }
 
     public bool DecreaceItemByName(string item_name, int number = 1)
