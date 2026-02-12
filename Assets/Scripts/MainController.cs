@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static DialogController;
 using static DialogPanelScript;
 
 public class MainController : MonoBehaviour
@@ -195,14 +196,10 @@ public class MainController : MonoBehaviour
         ShowEnterDangeonPanel();
     }
 
-    public void StartDialog(string speaker_text, SpeachNode speach_node)
+    public void StartDialog(Dialog dialog)
     {
-        dialogPanelScript.StartDialog(speaker_text, speach_node);
-    }
-
-    public void StartDialog(string speaker_text, SpeachTree speach_tree)
-    {
-        dialogPanelScript.StartDialog(speaker_text, speach_tree);
+        if (dialog == null) return;
+        dialogPanelScript.StartDialog(dialog);
     }
 
     void StuffSetActiveTrue()

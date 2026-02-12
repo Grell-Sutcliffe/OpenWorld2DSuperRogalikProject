@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static DialogPanelScript;
+using static DialogController;
 
 public class QuestsController : MonoBehaviour
 {

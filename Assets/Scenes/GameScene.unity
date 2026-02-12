@@ -258,27 +258,11 @@ MonoBehaviour:
   taskShower: {fileID: 310027064}
   questPanelContent: {fileID: 132873630}
   questInfoPrefab: {fileID: 4375114684978154520, guid: d170897b34e98c44fa82b10ec6a5b596, type: 3}
-  dedusQuestScript: {fileID: 0}
-  dedusDialogScript: {fileID: 0}
-  doggyQuestScript: {fileID: 0}
-  doggyDialogScript: {fileID: 0}
-  grandsonEugineQuestScript: {fileID: 0}
-  grandsonEugeneDialogScript: {fileID: 0}
-  grandsonEugineMoveScript: {fileID: 0}
   accepted_quests_amout: 0
   item_height: 250
   space_between_items: 25
   none_quest_index: -1
   none_quest_name: no_name
-  dedus: Dedus
-  grandsonEugene: GrandsonEugene
-  doggy: Doggy
-  quest_TheLostGrandson: "\u041F\u043E\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0439
-    \u0432\u043D\u0443\u043A"
-  tasks_TheLostGrandson:
-  - "\u041D\u0430\u0439\u0434\u0438 \u0432\u043D\u0443\u043A\u0430"
-  - "\u0421\u043F\u0430\u0441\u0438 \u0432\u043D\u0443\u043A\u0430"
-  - "\u041E\u0442\u0432\u0435\u0434\u0438 \u0432\u043D\u0443\u043A\u0430 \u043A \u0434\u0435\u0434\u0443\u0448\u043A\u0435"
   accepted_quests: []
 --- !u!4 &582875801
 Transform:
@@ -344,9 +328,6 @@ MonoBehaviour:
   Doggy: {fileID: 745428067}
   Book: {fileID: 0}
   scrollInteractionScript: {fileID: 0}
-  dedusDialogScript: {fileID: 0}
-  grandsonEugeneDialogScript: {fileID: 0}
-  doggyDialogScript: {fileID: 0}
   is_keyboard_active: 1
   list_of_interactable_SR: []
   list_of_interactable_objects_names: []
@@ -563,6 +544,11 @@ GameObject:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4464271140763523045, guid: ad6091e7f44de46429539cff47f029d8, type: 3}
   m_PrefabInstance: {fileID: 2498988240301742411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &979321468 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2481885345222012766, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+  m_PrefabInstance: {fileID: 6349350596614383173}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1124554562 stripped
 GameObject:
@@ -1335,6 +1321,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2361183721064165219, guid: f9d1c52e433c8be46a7fae00bf892d91, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2801197891370347900, guid: f9d1c52e433c8be46a7fae00bf892d91, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1485,7 +1475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4238437053928209678, guid: f9d1c52e433c8be46a7fae00bf892d91, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4452176591963535918, guid: f9d1c52e433c8be46a7fae00bf892d91, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2029,6 +2019,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggy
       objectReference: {fileID: 0}
+    - target: {fileID: 3459586632515414221, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+      propertyPath: npc_name
+      value: "\u0414\u0436\u0435\u043A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3459586632515414221, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+      propertyPath: interactIcon
+      value: 
+      objectReference: {fileID: 979321468}
+    - target: {fileID: 3459586632515414221, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+      propertyPath: speachNodeSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b47d02b0f1f53f4ea6cef7cbaa47547, type: 2}
     - target: {fileID: 8997074071852808611, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -2069,7 +2071,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1849189408359552386, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+    - {fileID: 5473084871219992325, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
+    - {fileID: 7094540973153116730, guid: 25ec1cb2108c22641bb0cf069195f529, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
