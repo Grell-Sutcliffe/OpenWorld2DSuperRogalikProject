@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "PlayerKeyboardInput",
+            "id": "0e1526e8-8611-41c0-82fd-cb06fe27e357",
+            "actions": [
+                {
+                    "name": "SwitchWeapon_1",
+                    "type": "Button",
+                    "id": "1a9ce4bf-104a-4977-a9a4-56eba4ba4f1c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchWeapon_2",
+                    "type": "Button",
+                    "id": "8ec81df6-40e4-40b6-bee3-f10690bca733",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "63294603-6b03-4f3b-aee7-5f507785bc98",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeapon_1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46b804d2-dea6-4dd3-8d8c-c425e9434107",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeapon_2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

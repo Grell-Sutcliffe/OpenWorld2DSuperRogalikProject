@@ -1,14 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using static ShopPanelScript;
 
 public class Player : MonoBehaviour, IDamagable, IAttacker
 {
     MainController mainController;
     BackPackController backPackController;
+
+    private PlayerInputControls controls;
 
     public SpriteRenderer weapon_sprite_renderer;
 
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     protected float current_hit_damage;
     public bool wasCrit;
-    public Damage currentDmg => new Damage(current_hit_damage, weapon.elementalDamage, wasCrit);
+    public Damage currentDmg => new Damage(current_hit_damage, current_weapon.elementalDamage, wasCrit);
     bool canHit = true;
 
     public Stats player_full_stats;
@@ -55,8 +59,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     [SerializeField] GameObject target;
 
-    public WeaponSO weaponSO;
-    public Weapon weapon;
+    //public WeaponSO weaponSO;
+    public Weapon current_weapon;
+
+    public List<WeaponSO> weaponSOs;
+    public List<Weapon> weapons;
 
     public GameObject pivot;
 
@@ -71,6 +78,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         upgrate_cost = new Cost(750, CostType.Gold);
 
         boost_stats = new Stats();
+
+        controls = new PlayerInputControls();
+
+        controls.PlayerKeyboardInput.SwitchWeapon_1.performed += _ => SwitchWeapon(0);
+        controls.PlayerKeyboardInput.SwitchWeapon_2.performed += _ => SwitchWeapon(1);
     }
 
     void Start()
@@ -83,23 +95,45 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         current_stats = new Stats(player_full_stats);
         current_hit_stats = new Stats(player_full_stats);
 
-        weapon = null;
-        Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
-        if (temp_item is Weapon temp_weapon)
-        {
-            weapon = temp_weapon;
-        }
+        //current_weapon = null;
+        weapons = new List<Weapon>();
 
-        mainController.SetCharacterWeapon(weapon);
-        GivePlayerNewWeapon(weapon);
+        foreach (WeaponSO weaponSO in weaponSOs)
+        {
+            Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
+            if (temp_item is Weapon temp_weapon)
+            {
+                weapons.Add(temp_weapon);
+            }
+        }
+        current_weapon = weapons[0];
+
+        mainController.SetCharacterWeapon(current_weapon);
+        GivePlayerNewWeapon(current_weapon);
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    void SwitchWeapon(int index)
+    {
+        Debug.Log("Switch to weapon " + index);
+        GivePlayerNewWeapon(weapons[index]);
     }
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
     {
-        weapon = new_weapon;
+        current_weapon = new_weapon;
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
-        current_stats = new Stats(current_stats, weapon.stats);
+        current_stats = new Stats(current_stats, current_weapon.stats);
     }
 
     public void DealDamage()
@@ -132,7 +166,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         player_full_stats.crit_dmg *= upgrade_percent;
         //this.defence *= upgrade_percent;
 
-        current_stats = new Stats(player_full_stats, weapon.stats);
+        current_stats = new Stats(player_full_stats, current_weapon.stats);
 
         this.current_level++;
     }

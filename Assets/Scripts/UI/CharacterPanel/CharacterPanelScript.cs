@@ -102,10 +102,10 @@ public class CharacterPanelScript : MonoBehaviour
 
         //Debug.LogError($"playerScript.weapon = {playerScript.weapon} name = {playerScript.weapon.item_name}");
         health_TMP.text = RoundToMax(playerScript.player_full_stats.health).ToString();
-        attack_TMP.text = RoundToMax(playerScript.player_full_stats.attack + playerScript.weapon.stats.attack).ToString();
-        crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapon.stats.crit_chance);
-        crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.weapon.stats.crit_dmg);
-        elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapon.elementalDamage.elemental_mastery);
+        attack_TMP.text = RoundToMax(playerScript.player_full_stats.attack + playerScript.current_weapon.stats.attack).ToString();
+        crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.current_weapon.stats.crit_chance);
+        crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.current_weapon.stats.crit_dmg);
+        elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.current_weapon.elementalDamage.elemental_mastery);
         defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
     }
 
@@ -124,17 +124,17 @@ public class CharacterPanelScript : MonoBehaviour
         upgrate_old_health_TMP.text = playerScript.player_full_stats.health.ToString();
         upgrate_new_health_TMP.text = (RoundToMax(playerScript.player_full_stats.health * playerScript.upgrade_percent)).ToString();
 
-        upgrate_old_attack_TMP.text = (playerScript.player_full_stats.attack + playerScript.weapon.stats.attack).ToString();
-        upgrate_new_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.attack * playerScript.upgrade_percent + playerScript.weapon.stats.attack)).ToString();
+        upgrate_old_attack_TMP.text = (playerScript.player_full_stats.attack + playerScript.current_weapon.stats.attack).ToString();
+        upgrate_new_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.attack * playerScript.upgrade_percent + playerScript.current_weapon.stats.attack)).ToString();
 
-        upgrate_old_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapon.stats.crit_chance);
-        upgrate_new_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance * playerScript.upgrade_percent + playerScript.weapon.stats.crit_chance);
+        upgrate_old_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.current_weapon.stats.crit_chance);
+        upgrate_new_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance * playerScript.upgrade_percent + playerScript.current_weapon.stats.crit_chance);
 
-        upgrate_old_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.weapon.stats.crit_dmg);
-        upgrate_new_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg * playerScript.upgrade_percent + playerScript.weapon.stats.crit_dmg);
+        upgrate_old_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.current_weapon.stats.crit_dmg);
+        upgrate_new_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg * playerScript.upgrade_percent + playerScript.current_weapon.stats.crit_dmg);
 
-        upgrate_old_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapon.elementalDamage.elemental_mastery);
-        upgrate_new_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapon.elementalDamage.elemental_mastery);
+        upgrate_old_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.current_weapon.elementalDamage.elemental_mastery);
+        upgrate_new_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.current_weapon.elementalDamage.elemental_mastery);
         
         upgrate_old_defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
         upgrate_new_defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
