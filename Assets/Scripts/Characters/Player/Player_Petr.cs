@@ -104,11 +104,10 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             if (temp_item is Weapon temp_weapon)
             {
                 weapons.Add(temp_weapon);
+                mainController.SetCharacterWeapon(temp_weapon);
             }
         }
         current_weapon = weapons[0];
-
-        mainController.SetCharacterWeapon(current_weapon);
         GivePlayerNewWeapon(current_weapon);
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwitchWeaponPanelScript : MonoBehaviour
 {
+    CharacterPanelScript characterPanelScript;
     CurrentWeaponPanelScript currentWeaponPanelScript;
     BackPackController backpackController;
 
@@ -32,6 +33,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
 
     void Start()
     {
+        characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
         currentWeaponPanelScript = GameObject.Find("CurrentWeaponPanel").GetComponent<CurrentWeaponPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
@@ -41,6 +43,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
 
     public void OpenPanel()
     {
+        if (characterPanelScript == null) characterPanelScript = GameObject.Find("CharacterPanel").GetComponent<CharacterPanelScript>();
         if (currentWeaponPanelScript == null) currentWeaponPanelScript = GameObject.Find("CurrentWeaponPanel").GetComponent<CurrentWeaponPanelScript>();
 
         gameObject.SetActive(true);
@@ -66,7 +69,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
         ClearContent();
         SpawnNewItems();
 
-        Debug.Log(item_counter);
+        //Debug.Log(item_counter);
     }
 
     void SpawnNewItems()
@@ -79,7 +82,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
             {
                 if (backpackController.dict_id_to_item[id] is Weapon weapon)
                 {
-                    if (weapon.weapon_type == WeaponType.Sword)
+                    if (weapon.weapon_type == characterPanelScript.current_weaponType)
                     {
                         item_counter++;
                         SpawnIconPrefab(weapon);

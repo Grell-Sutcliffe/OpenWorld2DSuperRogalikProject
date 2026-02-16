@@ -38,6 +38,7 @@ public enum AttackType
 public enum WeaponType
 {
     Sword = 1,
-    Melee = 1,
-    Range = 2,
+    Stick = 2,
+    Bow = 3,
+    Spear = 4,  // --- ?
 }

@@ -77,6 +77,8 @@ public class CharacterPanelScript : MonoBehaviour
     public string name_anemo = "anemo";
     public string name_physical = "physical";
 
+    public WeaponType current_weaponType;
+
     void Awake()
     {
         currentWeaponPanelScript = weaponPanel.GetComponent<CurrentWeaponPanelScript>();
@@ -179,6 +181,22 @@ public class CharacterPanelScript : MonoBehaviour
     {
         goldImage.sprite = shopPanelScript.dict_costType_to_Item[CostType.Gold].sprite;
         goldTMP.text = shopPanelScript.dict_costType_to_Item[CostType.Gold].amount.ToString();
+    }
+
+    public void SwitchWeaponTo1()
+    {
+        SwitchWeaponTo(0);
+    }
+
+    public void SwitchWeaponTo2()
+    {
+        SwitchWeaponTo(1);
+    }
+
+    void SwitchWeaponTo(int index)
+    {
+        SetNewWeapon(playerScript.weapons[index]);
+        current_weaponType = currentWeaponPanelScript.weapon.weapon_type;
     }
 
     public void OpenCharacterPanel()

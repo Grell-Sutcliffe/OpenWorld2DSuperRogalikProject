@@ -20,11 +20,12 @@ public class MainController : MonoBehaviour
     public GameObject characterPanel;
     public GameObject switchWeaponPanel;
     public GameObject backpackPanel;
+    public GameObject buttlePanel;
     public GameObject enterDangeonPanel;
     public GameObject multiplayerPanel;
     public GameObject rewardPanel;
 
-    public GameObject taskShower;
+    //public GameObject taskShower;
 
     public GameObject Dedus;
     public GameObject GrandsonEugene;
@@ -38,6 +39,7 @@ public class MainController : MonoBehaviour
     ShopPanelScript shopPanelScript;
     CharacterPanelScript characterPanelScript;
     RewardPanelScript rewardPanelScript;
+    ButtlePanelScript buttlePanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -71,6 +73,7 @@ public class MainController : MonoBehaviour
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
         characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
+        buttlePanelScript = buttlePanel.GetComponent<ButtlePanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
