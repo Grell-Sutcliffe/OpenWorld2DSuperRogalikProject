@@ -79,6 +79,19 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         boost_stats = new Stats();
 
+        weapons = new List<Weapon>();
+
+        foreach (WeaponSO weaponSO in weaponSOs)
+        {
+            Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
+            if (temp_item is Weapon temp_weapon)
+            {
+                weapons.Add(temp_weapon);
+                //mainController.SetCharacterWeapon(temp_weapon);
+            }
+        }
+        current_weapon = weapons[0];
+
         controls = new PlayerInputControls();
 
         controls.PlayerKeyboardInput.SwitchWeapon_1.performed += _ => SwitchWeapon(0);
@@ -96,18 +109,17 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         current_hit_stats = new Stats(player_full_stats);
 
         //current_weapon = null;
-        weapons = new List<Weapon>();
 
-        foreach (WeaponSO weaponSO in weaponSOs)
+        for (int index = 0; index < weaponSOs.Count; index++)
         {
-            Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
+            Item temp_item = mainController.GetItemByName(weaponSOs[index].weapon_name);
             if (temp_item is Weapon temp_weapon)
             {
-                weapons.Add(temp_weapon);
-                mainController.SetCharacterWeapon(temp_weapon);
+                //weapons.Add(temp_weapon);
+                mainController.SetCharacterWeapon(index, temp_weapon);
             }
         }
-        current_weapon = weapons[0];
+
         GivePlayerNewWeapon(current_weapon);
     }
 
@@ -127,12 +139,19 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         GivePlayerNewWeapon(weapons[index]);
     }
 
+    public void SetNewWeaponOnIndex(int index, Weapon new_weapon)
+    {
+        weapons[index] = new_weapon;
+
+        GivePlayerNewWeapon(new_weapon);
+    }
+
     public void GivePlayerNewWeapon(Weapon new_weapon)
     {
         current_weapon = new_weapon;
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
-        current_stats = new Stats(current_stats, current_weapon.stats);
+        current_stats = new Stats(player_full_stats, current_weapon.stats);
     }
 
     public void DealDamage()

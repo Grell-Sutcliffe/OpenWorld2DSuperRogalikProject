@@ -140,7 +140,7 @@ public class CurrentWeaponPanelScript : MonoBehaviour
 
     public void SetNewWeaponInCharacterPanel(Weapon new_weapon)
     {
-        characterPanelScript.SetNewWeapon(new_weapon);
+        characterPanelScript.SetNewWeapon(characterPanelScript.current_weapon_index, new_weapon);
     }
 
     public void SetNewWeapon(Weapon new_weapon)

@@ -9,6 +9,7 @@ using static DialogPanelScript;
 public class MainController : MonoBehaviour
 {
     QuestsController questsController;
+    Player playerScript;
 
     public HealthBarScript healthBarScript;
 
@@ -67,6 +68,7 @@ public class MainController : MonoBehaviour
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         backpackController = backpackPanel.GetComponent<BackPackController>();
@@ -120,10 +122,15 @@ public class MainController : MonoBehaviour
         backpackController.IncreaceItemByName(reward_name, amount);
     }
 
-    public void SetCharacterWeapon(Weapon weapon)
+    public void SetCharacterWeapon(int index, Weapon weapon)
     {
         backpackController.IncreaceItemByName(weapon.item_name, 1);
-        characterPanelScript.SetNewWeapon(weapon);
+        characterPanelScript.SetNewWeapon(index, weapon);
+    }
+
+    public void UpdateButtlePanel()
+    {
+        buttlePanelScript.SetNewWeapons(playerScript.weapons[0], playerScript.weapons[1]);
     }
 
     public bool WeaponUpgrade(int weapon_id)
