@@ -77,7 +77,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
                 if (currentSlotScript != null)
                 {
                     int current_slot_index = currentSlotScript.slot_index;
-                    inventory_stalker.UpdateSlotItem(current_slot_index, backpackController.dict_id_to_item[id]);
+                    inventory_stalker.UpdateSlotItem(current_slot_index, backpackController.dict_id_to_item[id], this);
                     // currentSlotScript.UpdateSlotItem(backpackController.dict_id_to_item[id]);
                     // backpackController.MoveItemToInventoryById(backpackController.dict_id_to_item[id].id);
                 }

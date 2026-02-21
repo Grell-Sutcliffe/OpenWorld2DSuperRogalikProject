@@ -48,6 +48,9 @@ public class SwitchWeaponPanelScript : MonoBehaviour
 
         gameObject.SetActive(true);
         current_selected_weapon = currentWeaponPanelScript.weapon;
+
+        Debug.Log($"switchWeaponPanel --- current_selected_weapon.name = {current_selected_weapon.item_name}");
+        
         UpdateContent();
     }
 

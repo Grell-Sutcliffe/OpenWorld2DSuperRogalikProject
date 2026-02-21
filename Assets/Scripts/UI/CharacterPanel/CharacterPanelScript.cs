@@ -82,7 +82,7 @@ public class CharacterPanelScript : MonoBehaviour
     public string name_anemo = "anemo";
     public string name_physical = "physical";
 
-    public int current_weapon_index;
+    public int current_weapon_index = 0;
     public WeaponType current_weaponType;
 
     void Awake()
@@ -101,6 +101,7 @@ public class CharacterPanelScript : MonoBehaviour
     void Start()
     {
         //GoToCharacterPanel();
+        SwitchWeaponTo(0);
     }
 
     public void UpdatePanel()

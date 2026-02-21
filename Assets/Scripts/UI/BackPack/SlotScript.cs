@@ -10,6 +10,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 {
     BackPackController backpackController;
     public InventoryStalker inventoryStalker;
+    public BackpackIconScript backpackIcon;
 
     public Image slot_image;
     public TextMeshProUGUI slot_amount;
@@ -36,18 +37,27 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void EmptySlot()
     {
+        backpackIcon = null;
+        slot_item = null;
         slot_image.sprite = null;
         slot_amount.text = string.Empty;
     }
 
-    public void UpdateSlotItem(Item item)
+    public void UpdateSlotItem(Item item, BackpackIconScript backpackIconScript)
     {
+        backpackIcon = backpackIconScript;
         slot_item = item;
         UpdateSlot();
     }
 
-    void UpdateSlot()
+    public void UpdateSlot()
     {
+        if (slot_item == null || slot_item.amount <= 0)
+        {
+            EmptySlot();
+            return;
+        }
+
         slot_amount.text = slot_item.amount.ToString();
         slot_image.sprite = slot_item.sprite;
     }
@@ -104,7 +114,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                     if (newSlotScript != null)
                     {
                         int new_slot_index = newSlotScript.slot_index;
-                        inventoryStalker.UpdateSlotItem(new_slot_index, backpackController.dict_id_to_item[slot_item.id]);
+                        inventoryStalker.UpdateSlotItem(new_slot_index, backpackController.dict_id_to_item[slot_item.id], backpackIcon);
                     }
                 }
             }
@@ -153,6 +163,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private void ItemOnClick()
     {
         if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        backpackController.current_selected_backpackIcon = backpackIcon;
         backpackController.UpdateShowerPanel(slot_item.id);
     }
 

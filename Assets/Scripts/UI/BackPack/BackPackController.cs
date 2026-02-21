@@ -8,6 +8,7 @@ using static CharacterPanelScript;
 
 public class BackPackController : MonoBehaviour
 {
+    MainController mainController;
     Player playerScript;
 
     public ShopPanelScript shopPanelScript;
@@ -69,17 +70,16 @@ public class BackPackController : MonoBehaviour
 
     // public List<int> player_items_id;
 
-    Dictionary<UseType, int> dict_useType_to_seconds_left;
-    Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
+    public Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
 
-    List<UseType> list_of_use_types;
+    public List<UseType> list_of_use_types;
 
     private void Awake()
     {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         MakeListOfUseTypes();
-        ClearDictionary_useType_to_seconds_left();
         ClearDictionary_useType_to_list_of_BackpackIconScripts();
 
         MakeDictionary();
@@ -107,26 +107,6 @@ public class BackPackController : MonoBehaviour
         list_of_use_types.Add(UseType.CritDMG);
         list_of_use_types.Add(UseType.ElementalMastery);
         list_of_use_types.Add(UseType.Luck);
-    }
-
-    void ClearDictionary_useType_to_seconds_left()
-    {
-        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
-
-        foreach (UseType useType in list_of_use_types)
-        {
-            dict_useType_to_seconds_left[useType] = 0;
-        }
-
-        /*
-        dict_useType_to_seconds_left[UseType.None] = 0;
-        dict_useType_to_seconds_left[UseType.Health] = 0;
-        dict_useType_to_seconds_left[UseType.Attack] = 0;
-        dict_useType_to_seconds_left[UseType.CritChance] = 0;
-        dict_useType_to_seconds_left[UseType.CritDMG] = 0;
-        dict_useType_to_seconds_left[UseType.ElementalMastery] = 0;
-        dict_useType_to_seconds_left[UseType.Luck] = 0;
-        */
     }
 
     void ClearDictionary_useType_to_list_of_BackpackIconScripts()
@@ -329,7 +309,7 @@ public class BackPackController : MonoBehaviour
 
     bool IsUseTypeUsable(UseType useType)
     {
-        return dict_useType_to_seconds_left[useType] <= 0;
+        return mainController.dict_useType_to_seconds_left[useType] <= 0;
     }
 
     public void UseItem()
@@ -345,30 +325,26 @@ public class BackPackController : MonoBehaviour
                 //UpdateBackpackItems();                                                                                            // ЛАГАЕТ
 
                 playerScript.BoostCharacter(usable_item.useEffect);
-                dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+                mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
 
-                StartCoroutine(CountdownCoroutine(usable_item.useEffect.useType));
+                mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
             }
         }
+
+        inventory_stalker.UpdateSlots();
     }
 
-    private IEnumerator CountdownCoroutine(UseType useType)
+    public void UseItem(UsableItem usable_item)
     {
-        while (dict_useType_to_seconds_left[useType] > 0)
-        {
-            foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
-            {
-                backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
-            }
+        DecreaceItemByName(usable_item.item_name);
 
-            yield return new WaitForSeconds(1f);
-            dict_useType_to_seconds_left[useType]--;
-        }
+        playerScript.BoostCharacter(usable_item.useEffect);
+        mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
 
-        foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
-        {
-            backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
-        }
+        //StartCoroutine(CountdownCoroutine(usable_item.useEffect.useType));
+        mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
+
+        inventory_stalker.UpdateSlots();
     }
 
     public void ClearShowerPanel()
@@ -435,10 +411,12 @@ public class BackPackController : MonoBehaviour
 
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
+        /*
         foreach (UseType useType in list_of_use_types)
         {
-            StartCoroutine(CountdownCoroutine(useType));
+            mainController.StartCountdownCoroutine(useType);
         }
+        */
 
         /*
         CountItems(type);
@@ -512,6 +490,11 @@ public class BackPackController : MonoBehaviour
         if (dict_id_to_item[id] is UsableItem usableItem)
         {
             dict_useType_to_list_of_BackpackIconScripts[usableItem.useEffect.useType].Add(new_prefab_script);
+
+            if (mainController.dict_useType_to_seconds_left[usableItem.useEffect.useType] > 0)
+            {
+                new_prefab_script.CloseIconForTime(mainController.dict_useType_to_seconds_left[usableItem.useEffect.useType]);
+            }
         }
     }
 

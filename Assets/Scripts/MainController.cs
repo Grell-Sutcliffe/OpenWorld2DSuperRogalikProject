@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ public class MainController : MonoBehaviour
     QuestsController questsController;
     Player playerScript;
 
+    public InventoryStalker inventoryStalker;
     public HealthBarScript healthBarScript;
 
     public GameObject playerPanel;
@@ -57,11 +59,7 @@ public class MainController : MonoBehaviour
     public List<SpriteRenderer> list_of_interactable_SR = new List<SpriteRenderer>();
     public List<string> list_of_interactable_objects_names = new List<string>();
 
-    bool dedus_F;
-    bool grandsonEugene_F;
-    bool dangeon_F;
-    bool doggy_F;
-    bool book_F;
+    public Dictionary<UseType, int> dict_useType_to_seconds_left;
 
     private void Awake()
     {
@@ -91,6 +89,62 @@ public class MainController : MonoBehaviour
         is_keyboard_active = true;
 
         StuffSetActiveFalse();
+
+        ClearDictionary_useType_to_seconds_left();
+    }
+
+    public void StartCountdownCoroutine(UseType useType)
+    {
+        StartCoroutine(CountdownCoroutine(useType));
+    }
+
+    private IEnumerator CountdownCoroutine(UseType useType)
+    {
+        while (dict_useType_to_seconds_left[useType] > 0)
+        {
+            foreach (BackpackIconScript backpackIconScript in backpackController.dict_useType_to_list_of_BackpackIconScripts[useType])
+            {
+                backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
+            }
+            foreach (MiniSlotScript miniSlotScript in inventoryStalker.slotScripts_playerPanel)
+            {
+                if (miniSlotScript.slot_item is UsableItem usable_item)
+                {
+                    if (usable_item.useEffect.useType == useType)
+                    {
+                        miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
+            dict_useType_to_seconds_left[useType]--;
+        }
+
+        foreach (BackpackIconScript backpackIconScript in backpackController.dict_useType_to_list_of_BackpackIconScripts[useType])
+        {
+            backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
+        }
+        foreach (MiniSlotScript miniSlotScript in inventoryStalker.slotScripts_playerPanel)
+        {
+            if (miniSlotScript.slot_item is UsableItem usable_item)
+            {
+                if (usable_item.useEffect.useType == useType)
+                {
+                    miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
+                }
+            }
+        }
+    }
+
+    void ClearDictionary_useType_to_seconds_left()
+    {
+        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
+
+        foreach (UseType useType in backpackController.list_of_use_types)
+        {
+            dict_useType_to_seconds_left[useType] = 0;
+        }
     }
 
     public bool UseWish(bool is_pink, int number)
@@ -238,10 +292,6 @@ public class MainController : MonoBehaviour
         multiplayerPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
-
-        dedus_F = false;
-        grandsonEugene_F = false;
-        dangeon_F = false;
     }
 
     public void EnterDangeon()
@@ -339,6 +389,18 @@ public class MainController : MonoBehaviour
     public void CloseShopPanel()
     {
         shopPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenMultiplayerPanel()
+    {
+        multiplayerPanel.SetActive(true);
+        TurnOffKeyboard();
+    }
+
+    public void CloseMultiplayerPanel()
+    {
+        multiplayerPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
