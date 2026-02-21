@@ -17,7 +17,7 @@ public class Damage
         this.damage = damage;
         this.elementalDamage = new ElementalDamage(elemental_damage, element_type, elemental_mastery);
     }
-
+  
     public float GetDamage()
     {
         return damage;

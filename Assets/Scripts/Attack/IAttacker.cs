@@ -6,12 +6,6 @@ public interface IAttacker
     void DealDamage();
     Damage currentDmg {  get; }
 
-
-
-
-
-
-
     void UnActivePivot();
     void StartDelay();
 }

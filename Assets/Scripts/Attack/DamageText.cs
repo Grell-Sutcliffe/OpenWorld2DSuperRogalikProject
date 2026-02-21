@@ -35,7 +35,7 @@ public class DamageText : MonoBehaviour
     {
         t += Time.deltaTime / lifeTime;
         float k = moveCurve.Evaluate(t);
-        Debug.Log(moveCurve.Evaluate(t));
+        //Debug.Log(moveCurve.Evaluate(t));
         transform.position = Vector3.Lerp(startPos, endPos, k);
 
         if (t >= 1f) Destroy(gameObject);
