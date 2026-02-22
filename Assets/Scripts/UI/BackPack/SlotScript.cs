@@ -70,6 +70,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         longPressHandled = false;
 
         if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        if (slot_item == null) return;
 
         if (backpackController.dict_id_to_item.ContainsKey(slot_item.id))
         {
@@ -163,6 +164,8 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private void ItemOnClick()
     {
         if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        if (slot_item == null) return;
+
         backpackController.current_selected_backpackIcon = backpackIcon;
         backpackController.UpdateShowerPanel(slot_item.id);
     }
