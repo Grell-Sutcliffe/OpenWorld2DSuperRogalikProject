@@ -417,7 +417,9 @@ MonoBehaviour:
   wasCrit: 0
   attackCooldown: 0.5
   target: {fileID: 3401088822291997560}
-  weaponSO: {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
+  weaponSOs:
+  - {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
+  - {fileID: 11400000, guid: 15a471a695f9aaa478b2cf82316c515e, type: 2}
   pivot: {fileID: 1867279333676066356}
   upgrade_percent: 1.05
 --- !u!50 &6179167146417871810

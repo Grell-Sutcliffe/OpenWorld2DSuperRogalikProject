@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Processors;
 using UnityEngine.Rendering;
@@ -60,7 +61,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     private bool facingRight = true; // “логическое” направление
     [SerializeField] private SpriteRenderer sr;
 
-    
+   
     private void Update()
     {
         if (isTriggered) FaceTarget(playerTrans);
@@ -73,13 +74,20 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
         bool shouldFaceRight = dirX > 0f;
         if (shouldFaceRight == facingRight) return;
-
+        if (isHitting) return;
         facingRight = shouldFaceRight;
         sr.flipX = !facingRight;
-        // если твой спрайт по умолчанию смотрит ВЛЕВО, поменяй на sr.flipX = facingRight;
+        Flip();
     }
+    void Flip()
+    {
+        offset += 180;
+        offset %= 360;
+        pivot.transform.localScale = new Vector3(-pivot.transform.localScale.x, pivot.transform.localScale.y, pivot.transform.localScale.z);
+        pivot.transform.localPosition = new Vector3(-pivot.transform.localPosition.x, pivot.transform.localPosition.y, pivot.transform.localPosition.z);
 
-    // Если хочешь “смотреть на цель”
+    }
+    
     public void FaceTarget(Transform target)
     {
         float dirX = target.position.x - transform.position.x;
@@ -96,7 +104,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
         txt.Init(dmg);
     }
     public virtual void TakeDamage(Damage dmg)
-    {
+    {   if (isDead) return;
         LoggerName($"took dmg = {dmg.damage}", true);
         hp -= dmg.damage;
 

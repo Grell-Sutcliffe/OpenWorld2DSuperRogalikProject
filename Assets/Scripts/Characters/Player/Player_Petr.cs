@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -70,9 +71,18 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public float upgrade_percent = 1.05f;
     public Cost upgrate_cost;
 
+    float offset = 0;
+    float usedOffset = 0;
+    Vector3 localPivotPosSaved;
     void Awake()
     {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        localPivotPosSaved = pivot.transform.localPosition;
+        usedOffset = offset;
+        GameObject mainControllerGO = GameObject.Find("MainController");
+        if (mainControllerGO != null) {
+
+            mainController = mainControllerGO.GetComponent<MainController>();
+        }
         rb = GetComponent<Rigidbody2D>();
 
         upgrate_cost = new Cost(750, CostType.Gold);
@@ -290,10 +300,18 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     bool isRun = false;
     bool isHit = false;
-    float offset = 0;
+    bool overMenu = false;
+    
+    bool isFasingRight = true;
     private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject()){
+            overMenu = true;
+        }
+        else
+        {
+            overMenu = false;
+        }
         if (mainController.is_keyboard_active)
         {
             float x = Input.GetAxisRaw("Horizontal");
@@ -314,6 +332,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                     angle = (angle + 360) % 360;
                     spriteRender.flipX = true;
                     direction = 4f - ((angle - 90f) / 45f);
+                    
                 }
                 else
                 {
@@ -329,14 +348,37 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             anim.SetBool("isHit", isHit);
         }
 
-        if (canHit && Input.GetMouseButtonDown(0)) // ËÊÌ
+        if (canHit && Input.GetMouseButtonDown(0) && !overMenu) // ËÊÌ
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RotatePivot(mouseWorldPos, offset);
+            
+            if (mouseWorldPos.x > transform.position.x)
+            {
+                FlipPivotRight();
+            }
+            else
+            {
+                FlipPivotLeft();
+            }
+            RotatePivot(mouseWorldPos, usedOffset);
             Hit();
         }
     }
+    private void FlipPivotRight()
+    {
+        usedOffset = offset;
+        pivot.transform.localScale = Vector3.one;
+        pivot.transform.localPosition = localPivotPosSaved;
 
+
+    }
+    private void FlipPivotLeft()
+    {
+        usedOffset = offset + 180;
+        pivot.transform.localScale = new Vector3(-1,1,0);
+        pivot.transform.localPosition = new Vector3(-localPivotPosSaved.x, localPivotPosSaved.y, localPivotPosSaved.z);
+
+    }
     private void FixedUpdate()
     {
         if (mainController.is_keyboard_active)
