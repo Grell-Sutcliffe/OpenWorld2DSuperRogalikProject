@@ -116,7 +116,7 @@ public class CharacterPanelScript : MonoBehaviour
 
         //Debug.LogError($"playerScript.weapon = {playerScript.weapon} name = {playerScript.weapon.item_name}");
         health_TMP.text = RoundToMax(playerScript.player_full_stats.health).ToString();
-        attack_TMP.text = RoundToMax(playerScript.player_full_stats.attack + playerScript.weapons[current_weapon_index].stats.attack).ToString();
+        attack_TMP.text = RoundToMax(playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
         crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance);
         crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg);
         elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapons[current_weapon_index].elementalDamage.elemental_mastery);
@@ -138,8 +138,8 @@ public class CharacterPanelScript : MonoBehaviour
         upgrate_old_health_TMP.text = playerScript.player_full_stats.health.ToString();
         upgrate_new_health_TMP.text = (RoundToMax(playerScript.player_full_stats.health * playerScript.upgrade_percent)).ToString();
 
-        upgrate_old_attack_TMP.text = (playerScript.player_full_stats.attack + playerScript.weapons[current_weapon_index].stats.attack).ToString();
-        upgrate_new_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.attack * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.attack)).ToString();
+        upgrate_old_attack_TMP.text = (playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
+        upgrate_new_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.physical_attack * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.physical_attack)).ToString();
 
         upgrate_old_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance);
         upgrate_new_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.crit_chance);

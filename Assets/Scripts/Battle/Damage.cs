@@ -2,50 +2,68 @@ using UnityEngine;
 
 public class Damage
 {
-    public float damage;
-    public ElementalDamage elementalDamage;
-    public bool isCrit;
-    public Damage(float damage, ElementalDamage elementalDamage = null, bool wasCrit = false)
-    {
-        this.damage = damage;
-        this.elementalDamage = elementalDamage == null ? new ElementalDamage() : elementalDamage;
-        this.isCrit = wasCrit;
-    }
-    
-    public Damage(float damage, float elemental_damage, ElementType element_type, float elemental_mastery)
-    {
-        this.damage = damage;
-        this.elementalDamage = new ElementalDamage(elemental_damage, element_type, elemental_mastery);
-    }
-  
-    public float GetDamage()
-    {
-        return damage;
-    }
+    public float physical_dmg;
+    public float elemental_dmg;
+    public ElementType element_type;
+    public bool isPhysicalCrit;
+    public bool isElementalCrit;
 
-    public ElementType GetElement()
+    public Damage(float physical_dmg, float elemental_dmg, ElementType element_type, bool isPhysicalCrit = false, bool isElementalCrit = false)
     {
-        return elementalDamage.element_type;
+        this.physical_dmg = physical_dmg;
+        this.elemental_dmg = elemental_dmg;
+        this.element_type = element_type;
+        this.isPhysicalCrit = isPhysicalCrit;
+        this.isElementalCrit = isElementalCrit;
     }
 }
 
-public class ElementalDamage
+public class Stats
 {
-    public float elemental_damage;
-    public ElementType element_type;
-    public float elemental_mastery;
+    public float health = 0f;
+    public float physical_attack = 0f;
+    public float elemental_attack = 0f;
+    public float crit_chance = 0f;
+    public float crit_dmg = 0f;
+    public float elementsl_mastery = 0f;
+    //public float defence = 0f;
 
-    public ElementalDamage()
+    public float physical_dmg;
+    public float elemental_dmg;
+
+    public bool is_physical_crit;
+    public bool is_elemental_crit;
+
+    public Stats(Stats stats)
     {
-        elemental_damage = 0f;
-        element_type = ElementType.None;
-        elemental_mastery = 0f;
+        this.health = stats.health;
+        this.physical_attack = stats.physical_attack;
+        this.elemental_attack = stats.elemental_attack;
+        this.crit_chance = stats.crit_chance;
+        this.crit_dmg = stats.crit_dmg;
+        this.elementsl_mastery = stats.elementsl_mastery;
+        //this.defence = stats.defence;
     }
 
-    public ElementalDamage(float demage, ElementType element_type, float elemental_mastery)
+    public Stats(Stats stats1, Stats stats2)
     {
-        this.elemental_damage = demage;
-        this.element_type = element_type;
-        this.elemental_mastery = elemental_mastery;
+        this.health = stats1.health + stats2.health;
+        this.physical_attack = stats1.physical_attack + stats2.physical_attack;
+        this.elemental_attack = stats1.elemental_attack + stats2.elemental_attack;
+        this.crit_chance = stats1.crit_chance + stats2.crit_chance;
+        this.crit_dmg = stats1.crit_dmg + stats2.crit_dmg;
+        this.elementsl_mastery = stats1.elementsl_mastery + stats2.elementsl_mastery;
+        //this.defence = stats1.defence + stats2.defence;
+    }
+
+    public Stats(float health = 0, float physical_attack = 0, float elemental_attack = 0, float crit_chance = 0, float crit_dmg = 0, float defence = 0, float elementsl_mastery = 0)
+    {
+        this.health = health;
+        this.physical_attack = physical_attack;
+        this.elemental_attack = elemental_attack;
+        this.crit_chance = crit_chance;
+        this.crit_dmg = crit_dmg;
+        this.elementsl_mastery = elementsl_mastery;
+        //this.defence = defence;
     }
 }

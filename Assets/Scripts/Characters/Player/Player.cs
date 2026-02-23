@@ -45,15 +45,14 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     [SerializeField] float player_start_defence = 0f;
     [SerializeField] float player_start_elementsl_mastery = 0f;
 
-    protected float current_hit_damage;
-    public bool wasCrit;
-    public Damage currentDmg => new Damage(current_hit_damage, current_weapon.elementalDamage, wasCrit);
     bool canHit = true;
 
     public Stats player_full_stats;
     public Stats current_stats;
     public Stats boost_stats;
     public Stats current_hit_stats;
+
+    public Damage currentDmg => new Damage(current_hit_stats.physical_dmg, current_hit_stats.elemental_dmg, current_weapon.element_type, current_hit_stats.is_physical_crit, current_hit_stats.is_elemental_crit);
 
     [Header("Other stuff")]
     [SerializeField] float attackCooldown;
@@ -74,6 +73,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     float offset = 0;
     float usedOffset = 0;
     Vector3 localPivotPosSaved;
+
     void Awake()
     {
         localPivotPosSaved = pivot.transform.localPosition;
@@ -166,30 +166,65 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     public void DealDamage()
     {
+        /*
         current_hit_stats.attack = current_stats.attack + boost_stats.attack;
         current_hit_stats.crit_chance = current_stats.crit_chance + boost_stats.crit_chance;
         current_hit_stats.crit_dmg = current_stats.crit_chance + boost_stats.crit_dmg;
+        */
+        UpdateStats();
+    }
 
-        int delta_damage = 0;
+    void UpdateStats()
+    {
+        current_stats = new Stats(player_full_stats, current_weapon.stats);
+        current_hit_stats = new Stats(current_stats, boost_stats);
 
+        current_hit_stats.physical_dmg = current_hit_stats.physical_attack;
+        current_hit_stats.elemental_dmg = current_hit_stats.elemental_attack;
+
+        current_hit_stats.is_physical_crit = false;
+        current_hit_stats.is_elemental_crit = false;
+
+        if (CheckCritChance())
+        {
+            int delta_physical_damage = RoundToMax(current_hit_stats.physical_attack * current_hit_stats.crit_dmg);
+            current_hit_stats.physical_dmg += delta_physical_damage;
+            current_hit_stats.is_physical_crit = true;
+            
+        }
+        if (CheckCritChance())
+        {
+            int delta_elemental_damage = RoundToMax(current_hit_stats.elemental_attack * current_hit_stats.crit_dmg);
+            current_hit_stats.elemental_dmg += delta_elemental_damage;
+            current_hit_stats.is_elemental_crit = true;
+        }
+    }
+
+    bool CheckCritChance()
+    {
+        return CheckCritChance(current_hit_stats);
+    }
+
+    bool CheckCritChance(Stats temp_stats)
+    {
         System.Random rand = new System.Random();
         int chance = rand.Next(0, 101);
-        wasCrit = false;
-        if (chance <= current_hit_stats.crit_chance * 100)
+
+        bool is_crit = false;
+
+        if (chance <= temp_stats.crit_chance * 100)
         {
-            delta_damage += RoundToMax(current_hit_stats.attack * current_hit_stats.crit_dmg);
-            wasCrit = true;
+            //delta_damage += RoundToMax(current_hit_stats.attack * current_hit_stats.crit_dmg);
+            is_crit = true;
         }
 
-        this.current_hit_damage = current_hit_stats.attack + delta_damage;
-
-        LoggerName($"now have {this.current_hit_damage} damage");
+        return is_crit;
     }
 
     public void CharacterUpgrade()
     {
         this.player_full_stats.health = RoundToMax(this.player_full_stats.health * upgrade_percent);
-        this.player_full_stats.attack = RoundToMax(this.player_full_stats.attack * upgrade_percent);
+        this.player_full_stats.physical_attack = RoundToMax(this.player_full_stats.physical_attack * upgrade_percent);
         this.player_full_stats.crit_chance *= upgrade_percent;
         player_full_stats.crit_dmg *= upgrade_percent;
         //this.defence *= upgrade_percent;
@@ -213,7 +248,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                 UpdateHealthBar();
                 break;
             case UseType.Attack:
-                boost_stats.attack = (current_stats.attack * useEffect.use_percent_from_0_to_100 / 100f);
+                boost_stats.physical_attack = (current_stats.physical_attack * useEffect.use_percent_from_0_to_100 / 100f);
                 break;
             case UseType.CritChance:
                 boost_stats.crit_chance = useEffect.use_percent_from_0_to_100 / 100f;
@@ -235,7 +270,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         switch (useEffect.useType)
         {
             case UseType.Attack:
-                boost_stats.attack = 0;
+                boost_stats.physical_attack = 0;
                 break;
             case UseType.CritChance:
                 boost_stats.crit_chance = 0;
@@ -290,7 +325,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         */
 
         player_full_stats.health = Data.maxHealth;
-        player_full_stats.attack = Data.damage;
+        player_full_stats.physical_attack = Data.damage;
 
         moveSpeed = Data.moveSpeed;
 
@@ -399,7 +434,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public void TakeDamage(Damage dmg)
     {
         //LoggerName($"took dmg = {dmg.damage}");
-        current_stats.health -= dmg.damage;
+        current_stats.health -= (dmg.physical_dmg + dmg.elemental_dmg);
 
         UpdateHealthBar();
         MusicManager.Instance.PlayByIndex(1);
@@ -441,45 +476,5 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
         // 2) поворачиваем pivot меча
         pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
-    }
-}
-
-public class Stats
-{
-    public float health = 0f;
-    public float attack = 0f;
-    public float crit_chance = 0f;
-    public float crit_dmg = 0f;
-    public float defence = 0f;
-    public float elementsl_mastery = 0f;
-
-    public Stats(Stats stats)
-    {
-        this.health = stats.health;
-        this.attack = stats.attack;
-        this.crit_chance = stats.crit_chance;
-        this.crit_dmg = stats.crit_dmg;
-        this.defence = stats.defence;
-        this.elementsl_mastery = stats.elementsl_mastery;
-    }
-
-    public Stats(Stats stats1, Stats stats2)
-    {
-        this.health = stats1.health + stats2.health;
-        this.attack = stats1.attack + stats2.attack;
-        this.crit_chance = stats1.crit_chance + stats2.crit_chance;
-        this.crit_dmg = stats1.crit_dmg + stats2.crit_dmg;
-        this.defence = stats1.defence + stats2.defence;
-        this.elementsl_mastery = stats1.elementsl_mastery + stats2.elementsl_mastery;
-    }
-
-    public Stats(float health = 0, float attack = 0, float crit_chance = 0, float crit_dmg = 0, float defence = 0, float elementsl_mastery = 0)
-    {
-        this.health = health;
-        this.attack = attack;
-        this.crit_chance = crit_chance;
-        this.crit_dmg = crit_dmg;
-        this.defence = defence;
-        this.elementsl_mastery = elementsl_mastery;
     }
 }

@@ -12,7 +12,8 @@ public class WeaponSO : ScriptableObject
     public float range;
     public float cooldown;
 
-    public int damage;
+    public int physical_attack;
+    public int elemental_attack;
 
     public float elemental_damage;
     public ElementType element_type;

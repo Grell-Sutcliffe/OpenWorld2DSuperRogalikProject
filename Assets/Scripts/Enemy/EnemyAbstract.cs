@@ -264,10 +264,10 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
         if (chance <= crit_chance * 100)
         {
-            delta_damage += RoundToMax(weapon.stats.attack * crit_dmg);
+            delta_damage += RoundToMax(weapon.stats.physical_attack * crit_dmg);
         }
 
-        this.current_dmg = weapon.stats.attack + delta_damage;
+        this.current_dmg = weapon.stats.physical_attack + delta_damage;
 
         LoggerName($"now have {this.currentDmg.damage} damage, delta_damage = {delta_damage}\ncrit_chance = {crit_chance}, crit_dmg = {crit_dmg}, chance = {chance}");
     }

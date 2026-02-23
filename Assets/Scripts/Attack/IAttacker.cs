@@ -4,7 +4,7 @@ public interface IAttacker
 {
     GameObject owner { get; }
     void DealDamage();
-    Damage currentDmg {  get; }
+    Damage currentDmg { get; }
 
     void UnActivePivot();
     void StartDelay();
