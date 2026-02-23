@@ -4,43 +4,28 @@ using UnityEngine;
 public abstract class EnemyMelee : EnemyAbstract
 {
     protected float t;  // from 0 to 1    
-    
 
-    protected override void FixedUpdate()
+
+    protected override void HandleCombat(float distToPlayer)
     {
-        anim.SetBool("isTriggered", isTriggered);
-        if (!isDead && isTriggered)
+        // Достаточно близко для атаки
+        if (distToPlayer < reachDisttoPlayer)
         {
-            if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer) // по идее разные рич дист
-            {
-                rb.linearVelocity = Vector2.zero;
-                if (canStrafe) StrafeAround(playerTrans);  // тут надо бы поменять...
+            StopMovement();
 
-                if (canHit && !isHitting)
-                {
-                    //StartCoroutine(Hit(playerTrans));
-                    if(isStopWhileHit) StopWalk();
-                    RotatePivot(playerTrans, offset);
+            if (canStrafe) StrafeAround(playerTrans);
 
-                    Hit();
-                }
-                return;
-                
-            }
-            if (!isHitting && Vector2.Distance(rb.position, playerTrans.position) < reachDisttoRotatePivot)
+            if (canHit && !isHitting)
             {
+                if (isStopWhileHit) StopWalk();
                 RotatePivot(playerTrans, offset);
-                
+                Hit();
             }
-            if (canWalk)
-                ChasePlayer();
+            return;
         }
-        else if (!isDead) 
-        {
-        
-            Wander();
-        }
-        
+
+        // Далеко — догоняем
+        if (canWalk) ChasePlayer();
     }
 
     protected virtual void Hit()
@@ -51,14 +36,7 @@ public abstract class EnemyMelee : EnemyAbstract
         pivot.gameObject.SetActive(true);
 
     }
-    protected virtual void RotatePivot(Transform playerPos, float offs = 0f)
-    {
-        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
-    }
+   
 
     
 }

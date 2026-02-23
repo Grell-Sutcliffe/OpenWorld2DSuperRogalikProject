@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Funnel : MonoBehaviour
@@ -15,6 +16,8 @@ public class Funnel : MonoBehaviour
     CircleCollider2D circleCollider;
 
     bool isDelay;
+    private HashSet<IDamagable> damagedThisCycle = new HashSet<IDamagable>();
+
     Damage damage;
     public void Init(Damage dmg, float forse, float del, float radius, float PS, float freq, float time)
     {
@@ -33,31 +36,39 @@ public class Funnel : MonoBehaviour
         StartCoroutine(Spawn());
         Destroy(gameObject, timeLife);
     }
+    private bool isCycleActive = false;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        Rigidbody2D targetRb = collision.GetComponent<Rigidbody2D>();
-        if (targetRb != null)
+        var enemy = collision.GetComponent<EnemyAbstract>();
+        Debug.Log(enemy);
+        if (enemy != null)
         {
-            Vector2 direction = (Vector2)transform.position - targetRb.position;
+            Vector2 direction = (Vector2)transform.position - (Vector2)collision.transform.position;
             float distance = direction.magnitude;
-
+            if (distance < 0.3) return;
             float force = pullForce / Mathf.Max(distance, 0.5f);
 
-            targetRb.AddForce(direction.normalized * force);
+            enemy.externalForce += direction.normalized * force;
         }
 
+        // Урон — каждый враг получает независимо
         var damageable = collision.GetComponent<IDamagable>();
         if (damageable == null)
             damageable = collision.GetComponentInParent<IDamagable>();
 
-        if (damageable != null && !isDelay)
-        {   if (damage == null)
-            {
-                damage = new Damage(1);
-            }
+        if (damageable != null && !damagedThisCycle.Contains(damageable))
+        {
+            if (damage == null) damage = new Damage(1);
+
             damageable.TakeDamage(damage);
-            StartCoroutine(Delay());
+            damagedThisCycle.Add(damageable);
+
+            if (!isCycleActive)
+            {
+                StartCoroutine(DamageCycle());
+            }
         }
     }
     private IEnumerator Spawn()
@@ -90,11 +101,11 @@ public class Funnel : MonoBehaviour
         var fp = particle.GetComponent<FunnelParticle>();
         fp.Init(transform, particleSpeed, destroyDist);
     }
-    private IEnumerator Delay()
+    private IEnumerator DamageCycle()
     {
-        isDelay = true;
+        isCycleActive = true;
         yield return new WaitForSeconds(delay);
-        isDelay = false;
-
+        damagedThisCycle.Clear();  // все могут получить урон снова
+        isCycleActive = false;
     }
 }
