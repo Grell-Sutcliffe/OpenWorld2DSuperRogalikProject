@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 
 public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 {
+    [HideInInspector] public Vector2 externalForce;
     [Header("Movement")]
     protected bool canHit = true;
     protected float timeLastHit;
@@ -186,14 +187,43 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     }
     protected virtual void FixedUpdate()
     {
+        if (isDead) return;
+
+        anim.SetBool("isTriggered", isTriggered);
+
         if (isTriggered && playerTrans != null)
         {
-            ChasePlayer();
+            float distToPlayer = Vector2.Distance(rb.position, playerTrans.position);
+
+            if (distToPlayer < reachDisttoRotatePivot && !isHitting)
+            {
+                RotatePivot(playerTrans, offset);
+            }
+
+            HandleCombat(distToPlayer);
         }
         else
         {
             Wander();
         }
+        if (externalForce.sqrMagnitude > 0.001f)
+        {
+            rb.MovePosition(rb.position + externalForce * Time.fixedDeltaTime);
+            externalForce = Vector2.zero; // сбрасываем каждый кадр
+        }
+    }
+    protected abstract void HandleCombat(float distToPlayer);
+    protected void StopMovement()
+    {
+        rb.MovePosition(rb.position);
+    }
+    protected virtual void RotatePivot(Transform playerPos, float offs = 0f)
+    {
+        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // 2) поворачиваем pivot меча
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
     public void StopWalk()
     {

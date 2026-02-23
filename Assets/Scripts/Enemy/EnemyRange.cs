@@ -5,48 +5,28 @@ using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 public abstract class EnemyRange : EnemyAbstract
 {
     [SerializeField] float reachDistfromPlayer = 3;
-    
-    protected override void FixedUpdate()
+
+    protected override void HandleCombat(float distToPlayer)
     {
-        anim.SetBool("isTriggered", isTriggered);
-
-        if (!isDead && isTriggered)
+        // —лишком близко Ч убегаем и стрел€ем
+        if (distToPlayer < reachDistfromPlayer)
         {
-            if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoRotatePivot)
-            {
-                RotatePivot(playerTrans, offset);
-
-            }
-            if (Vector2.Distance(rb.position, playerTrans.position) < reachDistfromPlayer) // убегать, добавить переменную
-            {
-                RunFrom(playerTrans);
-                if (canHit){
-                    if (isStopWhileHit) StopWalk();
-                    RotatePivot(playerTrans, offset);
-                    Hit();
-                }
-                return;
-            }
-            else if (Vector2.Distance(rb.position, playerTrans.position) < reachDisttoPlayer)
-            {
-                rb.linearVelocity = Vector2.zero; // сделать мини блуждани€
-                if (canStrafe) StrafeAround(playerTrans);
-                if (canHit)
-                {
-                    if (isStopWhileHit) StopWalk();
-                    RotatePivot(playerTrans, offset);
-                    Hit();
-                }
-                return;
-            }
-
-            
-            if (canWalk)
-                ChasePlayer();
+            RunFrom(playerTrans);
+            TryShoot();
             return;
         }
 
-         if (!isDead) Wander();
+        // ¬ зоне комфорта Ч стоим/стрейфим и стрел€ем
+        if (distToPlayer < reachDisttoPlayer)
+        {
+            StopMovement();
+            if (canStrafe) StrafeAround(playerTrans);
+            TryShoot();
+            return;
+        }
+
+        // ƒалеко Ч догон€ем
+        if (canWalk) ChasePlayer();
     }
 
     protected virtual void Hit()
@@ -54,16 +34,16 @@ public abstract class EnemyRange : EnemyAbstract
         pivot.gameObject.SetActive(true);
 
     }
-    protected virtual void RotatePivot(Transform playerPos, float offs = 0f)
+    private void TryShoot()
     {
-        Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (!canHit) return;
 
-        // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
+        if (isStopWhileHit) StopWalk();
+        RotatePivot(playerTrans, offset);
+        Hit();
     }
 
- 
+
     public override void UnActivePivot()
     {
         pivot.gameObject.SetActive(false);
