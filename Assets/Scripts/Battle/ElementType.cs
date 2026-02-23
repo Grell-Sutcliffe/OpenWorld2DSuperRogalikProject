@@ -2,10 +2,9 @@ using UnityEngine;
 
 public enum ElementType
 {
-    None = 0,
+    Physical = 0,
     Cryo = 1,
     Pyro = 2,
-    Electro = 3,
-    Anemo = 4,
-    Physical = 5,
+    Energo = 3,
+    Floro = 4,
 }

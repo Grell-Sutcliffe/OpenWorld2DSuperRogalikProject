@@ -20,9 +20,9 @@ MonoBehaviour:
   stars: 4
   range: 1
   cooldown: 0.5
-  damage: 5
-  elemental_damage: 3
-  element_type: 5
+  physical_attack: 6
+  elemental_attack: 0
+  element_type: 0
   elemental_mastery: 0.25
   crit_chance: 0.2
   crit_dmg: 0.4

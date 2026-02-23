@@ -31,6 +31,7 @@ public class Weapon : Item
         this.stats.elemental_attack = data.elemental_attack;
         this.stats.crit_chance = data.crit_chance;
         this.stats.crit_dmg = data.crit_dmg;
+        this.stats.elemental_mastery = data.elemental_mastery;
         //this.element = data.element;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
@@ -58,6 +59,7 @@ public class Weapon : Item
         this.stats.elemental_attack = data.elemental_attack;
         this.stats.crit_chance = data.crit_chance;
         this.stats.crit_dmg = data.crit_dmg;
+        this.stats.elemental_mastery = data.elemental_mastery;
         //this.element = data.element;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
@@ -85,6 +87,7 @@ public class Weapon : Item
         this.stats.elemental_attack = data.elemental_attack;
         this.stats.crit_chance = data.crit_chance;
         this.stats.crit_dmg = data.crit_dmg;
+        this.stats.elemental_mastery = data.elemental_mastery;
         //this.element = data.element;
         this.max_level = data.max_level;
         this.weapon_type = data.weaponType;
@@ -105,7 +108,7 @@ public class Weapon : Item
         this.stats.physical_attack = RoundToMax(this.stats.physical_attack * upgrade_percent);
         this.stats.crit_chance *= upgrade_percent;
         this.stats.crit_dmg *= upgrade_percent;
-        this.stats.elementsl_mastery *= upgrade_percent;
+        this.stats.elemental_mastery *= upgrade_percent;
 
         this.current_level++;
     }

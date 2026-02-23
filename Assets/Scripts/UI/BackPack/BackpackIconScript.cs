@@ -177,7 +177,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         }
         if (weapon == null) return;
 
-        elementImage.sprite = backpackController.GetElementByElementType(weapon.elementalDamage.element_type).sprite;
+        elementImage.sprite = backpackController.GetElementByElementType(weapon.element_type).sprite;
         starTMP.text = weapon.stars.ToString();
     }
 

@@ -20,11 +20,14 @@ public class DamageText : MonoBehaviour
 
     public void Init(Damage dmg)
     {
-        text.text = Mathf.RoundToInt(dmg.damage).ToString();
-        text.color = dmg.isCrit ? Color.red : Color.white;
+        // я исправиа это всё конкретно под физ урон, надо будет добавить элементальный урон и красить его в соответствующий цвет
+        // то есть криты будут красными только на физ уроне, на элементальном уроне при крите цифры просто будут больше в размере и всё
+
+        text.text = Mathf.RoundToInt(dmg.physical_dmg).ToString();
+        text.color = dmg.isPhysicalCrit ? Color.red : Color.white;
 
         startPos = transform.position;
-        text.fontSize = dmg.isCrit ? 4f : 3f; // ← ВОТ ЭТО
+        text.fontSize = dmg.isPhysicalCrit ? 4f : 3f; // ← ВОТ ЭТО
 
         endPos = startPos + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1f), 0) * 1.0f; // высота
         t = 0f;

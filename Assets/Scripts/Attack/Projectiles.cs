@@ -34,7 +34,7 @@ public class Projectiles : MonoBehaviour
             var player = collision.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(new Damage(dmg.damage));
+                player.TakeDamage(new Damage(dmg.physical_dmg, dmg.elemental_dmg, dmg.element_type));
                 Destroy(gameObject);
             }
         }

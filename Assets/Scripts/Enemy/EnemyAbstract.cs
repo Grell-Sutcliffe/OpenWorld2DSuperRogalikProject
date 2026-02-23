@@ -49,7 +49,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     protected Weapon weapon;
 
     protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg);
+    public Damage currentDmg => new Damage(current_dmg, 0, ElementType.Physical);
 
     protected bool isDead = false;
 
@@ -105,8 +105,8 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     }
     public virtual void TakeDamage(Damage dmg)
     {   if (isDead) return;
-        LoggerName($"took dmg = {dmg.damage}", true);
-        hp -= dmg.damage;
+        //LoggerName($"took dmg = {dmg.damage}", true);
+        hp -= (dmg.physical_dmg + dmg.elemental_dmg);
 
         //if (hp <= 0) Die();
         if (hp <= 0)
@@ -269,7 +269,7 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
 
         this.current_dmg = weapon.stats.physical_attack + delta_damage;
 
-        LoggerName($"now have {this.currentDmg.damage} damage, delta_damage = {delta_damage}\ncrit_chance = {crit_chance}, crit_dmg = {crit_dmg}, chance = {chance}");
+        //LoggerName($"now have {this.currentDmg.damage} damage, delta_damage = {delta_damage}\ncrit_chance = {crit_chance}, crit_dmg = {crit_dmg}, chance = {chance}");
     }
     public bool isHitting;
     protected virtual IEnumerator Delay(float time)

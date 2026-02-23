@@ -25,7 +25,7 @@ public class Stats
     public float elemental_attack = 0f;
     public float crit_chance = 0f;
     public float crit_dmg = 0f;
-    public float elementsl_mastery = 0f;
+    public float elemental_mastery = 0f;
     //public float defence = 0f;
 
     public float physical_dmg;
@@ -41,7 +41,7 @@ public class Stats
         this.elemental_attack = stats.elemental_attack;
         this.crit_chance = stats.crit_chance;
         this.crit_dmg = stats.crit_dmg;
-        this.elementsl_mastery = stats.elementsl_mastery;
+        this.elemental_mastery = stats.elemental_mastery;
         //this.defence = stats.defence;
     }
 
@@ -52,7 +52,7 @@ public class Stats
         this.elemental_attack = stats1.elemental_attack + stats2.elemental_attack;
         this.crit_chance = stats1.crit_chance + stats2.crit_chance;
         this.crit_dmg = stats1.crit_dmg + stats2.crit_dmg;
-        this.elementsl_mastery = stats1.elementsl_mastery + stats2.elementsl_mastery;
+        this.elemental_mastery = stats1.elemental_mastery + stats2.elemental_mastery;
         //this.defence = stats1.defence + stats2.defence;
     }
 
@@ -63,7 +63,7 @@ public class Stats
         this.elemental_attack = elemental_attack;
         this.crit_chance = crit_chance;
         this.crit_dmg = crit_dmg;
-        this.elementsl_mastery = elementsl_mastery;
+        this.elemental_mastery = elementsl_mastery;
         //this.defence = defence;
     }
 }

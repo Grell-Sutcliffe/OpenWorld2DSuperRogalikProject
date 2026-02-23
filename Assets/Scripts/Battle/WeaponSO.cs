@@ -15,7 +15,6 @@ public class WeaponSO : ScriptableObject
     public int physical_attack;
     public int elemental_attack;
 
-    public float elemental_damage;
     public ElementType element_type;
     public float elemental_mastery;
 

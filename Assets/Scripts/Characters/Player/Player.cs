@@ -257,7 +257,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                 boost_stats.crit_dmg = useEffect.use_percent_from_0_to_100 / 100f;
                 break;
             case UseType.ElementalMastery:
-                boost_stats.elementsl_mastery = useEffect.use_percent_from_0_to_100 / 100f;
+                boost_stats.elemental_mastery = useEffect.use_percent_from_0_to_100 / 100f;
                 break;
         }
         StartCoroutine(RemoveBoostAfterSeconds(useEffect));
@@ -279,7 +279,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                 boost_stats.crit_dmg = 0;
                 break;
             case UseType.ElementalMastery:
-                boost_stats.elementsl_mastery = 0;
+                boost_stats.elemental_mastery = 0;
                 break;
         }
     }

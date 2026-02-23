@@ -404,7 +404,7 @@ public class WishPanelScript : MonoBehaviour
         if (new_reward.item is Weapon weapon)
         {
             blueWishMadeRewardWeaponStatsGO.SetActive(true);
-            blueWishMadeRewardWeaponElementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.elementalDamage.element_type].sprite;
+            blueWishMadeRewardWeaponElementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.element_type].sprite;
             blueWishMadeRewardStarsTMP.text = new_reward.star.ToString();
         }
 

@@ -54,7 +54,7 @@ public class Funnel : MonoBehaviour
         if (damageable != null && !isDelay)
         {   if (damage == null)
             {
-                damage = new Damage(1);
+                damage = new Damage(1, 1, ElementType.Physical);
             }
             damageable.TakeDamage(damage);
             StartCoroutine(Delay());

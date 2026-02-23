@@ -43,29 +43,29 @@ public class CharacterPanelScript : MonoBehaviour
 
     [Header("’арактеристики")]
     public TextMeshProUGUI health_TMP;
-    public TextMeshProUGUI attack_TMP;
+    public TextMeshProUGUI physical_attack_TMP;
+    public TextMeshProUGUI elemental_attack_TMP;
     public TextMeshProUGUI crit_chance_TMP;
     public TextMeshProUGUI crit_dmg_TMP;
     public TextMeshProUGUI elemental_mastery_TMP;
-    public TextMeshProUGUI defence_TMP;
 
     [Header("”лучшить характеристики OLD")]
     public TextMeshProUGUI upgrate_old_level_TMP;
     public TextMeshProUGUI upgrate_old_health_TMP;
-    public TextMeshProUGUI upgrate_old_attack_TMP;
+    public TextMeshProUGUI upgrate_old_physical_attack_TMP;
+    public TextMeshProUGUI upgrate_old_elemental_attack_TMP;
     public TextMeshProUGUI upgrate_old_crit_chance_TMP;
     public TextMeshProUGUI upgrate_old_crit_dmg_TMP;
     public TextMeshProUGUI upgrate_old_elemental_mastery_TMP;
-    public TextMeshProUGUI upgrate_old_defence_TMP;
 
     [Header("”лучшить характеристики NEW")]
     public TextMeshProUGUI upgrate_new_level_TMP;
     public TextMeshProUGUI upgrate_new_health_TMP;
-    public TextMeshProUGUI upgrate_new_attack_TMP;
+    public TextMeshProUGUI upgrate_new_physical_attack_TMP;
+    public TextMeshProUGUI upgrate_new_elemental_attack_TMP;
     public TextMeshProUGUI upgrate_new_crit_chance_TMP;
     public TextMeshProUGUI upgrate_new_crit_dmg_TMP;
     public TextMeshProUGUI upgrate_new_elemental_mastery_TMP;
-    public TextMeshProUGUI upgrate_new_defence_TMP;
 
     [Header("Ёлементы")]
     public Dictionary<ElementType, Element> dict_element_type_to_element;
@@ -78,8 +78,8 @@ public class CharacterPanelScript : MonoBehaviour
 
     public string name_cryo = "cryo";
     public string name_pyro = "pyro";
-    public string name_electro = "electro";
-    public string name_anemo = "anemo";
+    public string name_electro = "energo";
+    public string name_anemo = "floro";
     public string name_physical = "physical";
 
     public int current_weapon_index = 0;
@@ -116,11 +116,11 @@ public class CharacterPanelScript : MonoBehaviour
 
         //Debug.LogError($"playerScript.weapon = {playerScript.weapon} name = {playerScript.weapon.item_name}");
         health_TMP.text = RoundToMax(playerScript.player_full_stats.health).ToString();
-        attack_TMP.text = RoundToMax(playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
-        crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance);
-        crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg);
-        elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapons[current_weapon_index].elementalDamage.elemental_mastery);
-        defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
+        physical_attack_TMP.text = RoundToMax(playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
+        elemental_attack_TMP.text = RoundToMax(playerScript.player_full_stats.elemental_attack + playerScript.weapons[current_weapon_index].stats.elemental_attack).ToString();
+        crit_chance_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance));
+        crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg));
+        elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.weapons[current_weapon_index].stats.elemental_mastery));
     }
 
     public void OpenCharacterUpgradePanel()
@@ -138,20 +138,20 @@ public class CharacterPanelScript : MonoBehaviour
         upgrate_old_health_TMP.text = playerScript.player_full_stats.health.ToString();
         upgrate_new_health_TMP.text = (RoundToMax(playerScript.player_full_stats.health * playerScript.upgrade_percent)).ToString();
 
-        upgrate_old_attack_TMP.text = (playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
-        upgrate_new_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.physical_attack * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.physical_attack)).ToString();
+        upgrate_old_physical_attack_TMP.text = (playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
+        upgrate_new_physical_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.physical_attack * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.physical_attack)).ToString();
 
-        upgrate_old_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance);
-        upgrate_new_crit_chance_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_chance * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.crit_chance);
+        upgrate_old_elemental_attack_TMP.text = (playerScript.player_full_stats.elemental_attack + playerScript.weapons[current_weapon_index].stats.elemental_attack).ToString();
+        upgrate_new_elemental_attack_TMP.text = (RoundToMax(playerScript.player_full_stats.elemental_attack * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.elemental_attack)).ToString();
 
-        upgrate_old_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg);
-        upgrate_new_crit_dmg_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.crit_dmg * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.crit_dmg);
+        upgrate_old_crit_chance_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance));
+        upgrate_new_crit_chance_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_chance * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.crit_chance));
 
-        upgrate_old_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapons[current_weapon_index].elementalDamage.elemental_mastery);
-        upgrate_new_elemental_mastery_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.weapons[current_weapon_index].elementalDamage.elemental_mastery);
-        
-        upgrate_old_defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
-        upgrate_new_defence_TMP.text = currentWeaponPanelScript.FloatToString(playerScript.player_full_stats.defence);
+        upgrate_old_crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg));
+        upgrate_new_crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_dmg * playerScript.upgrade_percent + playerScript.weapons[current_weapon_index].stats.crit_dmg));
+
+        upgrate_old_elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.weapons[current_weapon_index].stats.elemental_mastery));
+        upgrate_new_elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.weapons[current_weapon_index].stats.elemental_mastery));
     }
 
     public void CharacterUpgrade()
@@ -177,8 +177,8 @@ public class CharacterPanelScript : MonoBehaviour
 
         dict_element_type_to_element[ElementType.Cryo] = new Element(ElementType.Cryo, name_cryo, sprite_cryo);
         dict_element_type_to_element[ElementType.Pyro] = new Element(ElementType.Pyro, name_pyro, sprite_pyro);
-        dict_element_type_to_element[ElementType.Electro] = new Element(ElementType.Electro, name_electro, sprite_electro);
-        dict_element_type_to_element[ElementType.Anemo] = new Element(ElementType.Anemo, name_anemo, sprite_anemo);
+        dict_element_type_to_element[ElementType.Energo] = new Element(ElementType.Energo, name_electro, sprite_electro);
+        dict_element_type_to_element[ElementType.Floro] = new Element(ElementType.Floro, name_anemo, sprite_anemo);
         dict_element_type_to_element[ElementType.Physical] = new Element(ElementType.Physical, name_physical, sprite_physical);
     }
 
@@ -238,5 +238,22 @@ public class CharacterPanelScript : MonoBehaviour
     public int RoundToMax(float number)
     {
         return (int)(number * 10 % 10 > 0 ? number + 1 : number);
+    }
+
+    public string FloatToString(float number)
+    {
+        if (float.IsNaN(number) || float.IsInfinity(number))
+            return "0.0";
+
+        int temp_int = (int)(number * 10);
+        number = temp_int / 10f;
+
+        return number.ToString();
+    }
+
+    public float GetPercent(float number)
+    {
+        if (float.IsNaN(number) || float.IsInfinity(number)) return 0f;
+        return number * 100;
     }
 }

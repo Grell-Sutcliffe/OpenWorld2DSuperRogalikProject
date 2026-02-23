@@ -5,7 +5,7 @@ public class DamageZoneS : MonoBehaviour, IAttacker
     [SerializeField] float dmg;
     public GameObject owner => gameObject;
     protected float current_dmg;
-    public Damage currentDmg => new Damage(current_dmg);
+    public Damage currentDmg => new Damage(current_dmg, 0, ElementType.Physical);
 
     private void Start()
     {
