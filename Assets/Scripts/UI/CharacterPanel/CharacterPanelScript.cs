@@ -67,6 +67,14 @@ public class CharacterPanelScript : MonoBehaviour
     public TextMeshProUGUI upgrate_new_crit_dmg_TMP;
     public TextMeshProUGUI upgrate_new_elemental_mastery_TMP;
 
+    [Header("BOOST ’арактеристики")]
+    public TextMeshProUGUI boost_health_TMP;
+    public TextMeshProUGUI boost_physical_attack_TMP;
+    public TextMeshProUGUI boost_elemental_attack_TMP;
+    public TextMeshProUGUI boost_crit_chance_TMP;
+    public TextMeshProUGUI boost_crit_dmg_TMP;
+    public TextMeshProUGUI boost_elemental_mastery_TMP;
+
     [Header("Ёлементы")]
     public Dictionary<ElementType, Element> dict_element_type_to_element;
 
@@ -115,12 +123,70 @@ public class CharacterPanelScript : MonoBehaviour
         weapon2Image.sprite = playerScript.weapons[1].sprite;
 
         //Debug.LogError($"playerScript.weapon = {playerScript.weapon} name = {playerScript.weapon.item_name}");
+        /*
         health_TMP.text = RoundToMax(playerScript.player_full_stats.health).ToString();
         physical_attack_TMP.text = RoundToMax(playerScript.player_full_stats.physical_attack + playerScript.weapons[current_weapon_index].stats.physical_attack).ToString();
         elemental_attack_TMP.text = RoundToMax(playerScript.player_full_stats.elemental_attack + playerScript.weapons[current_weapon_index].stats.elemental_attack).ToString();
         crit_chance_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_chance + playerScript.weapons[current_weapon_index].stats.crit_chance));
         crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.player_full_stats.crit_dmg + playerScript.weapons[current_weapon_index].stats.crit_dmg));
         elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.weapons[current_weapon_index].stats.elemental_mastery));
+        */
+        /*
+        health_TMP.text = RoundToMax(playerScript.current_stats.health).ToString();
+        physical_attack_TMP.text = RoundToMax(playerScript.current_stats.physical_attack).ToString();
+        elemental_attack_TMP.text = RoundToMax(playerScript.current_stats.elemental_attack).ToString();
+        crit_chance_TMP.text = FloatToString(GetPercent(playerScript.current_stats.crit_chance));
+        crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.current_stats.crit_dmg));
+        elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.current_stats.elemental_mastery));
+        */
+
+        health_TMP.text = RoundToMax(playerScript.current_stats.health).ToString();
+        boost_health_TMP.text = "";
+        if (playerScript.boost_stats.health > 0)
+        {
+            health_TMP.text += "+" + RoundToMax(playerScript.boost_stats.health).ToString();
+            boost_health_TMP.text += "+" + RoundToMax(playerScript.boost_stats.health).ToString();
+        }
+
+        physical_attack_TMP.text = RoundToMax(playerScript.current_stats.physical_attack).ToString();
+        boost_physical_attack_TMP.text = "";
+        if (playerScript.boost_stats.physical_attack > 0)
+        {
+            physical_attack_TMP.text += "+" + RoundToMax(playerScript.boost_stats.physical_attack).ToString();
+            boost_physical_attack_TMP.text += "+" + RoundToMax(playerScript.boost_stats.physical_attack).ToString();
+        }
+
+        elemental_attack_TMP.text = RoundToMax(playerScript.current_stats.elemental_attack).ToString();
+        boost_elemental_attack_TMP.text = "";
+        if (playerScript.boost_stats.elemental_attack > 0)
+        {
+            elemental_attack_TMP.text += "+" + RoundToMax(playerScript.boost_stats.elemental_attack).ToString();
+            boost_elemental_attack_TMP.text += "+" + RoundToMax(playerScript.boost_stats.elemental_attack).ToString();
+        }
+
+        crit_chance_TMP.text = FloatToString(GetPercent(playerScript.current_stats.crit_chance));
+        boost_crit_chance_TMP.text = "";
+        if (playerScript.boost_stats.crit_chance > 0)
+        {
+            crit_chance_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.crit_chance));
+            boost_crit_chance_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.crit_chance));
+        }
+
+        crit_dmg_TMP.text = FloatToString(GetPercent(playerScript.current_stats.crit_dmg));
+        boost_crit_dmg_TMP.text = "";
+        if (playerScript.boost_stats.crit_dmg > 0)
+        {
+            crit_dmg_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.crit_dmg));
+            boost_crit_dmg_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.crit_dmg));
+        }
+
+        elemental_mastery_TMP.text = FloatToString(GetPercent(playerScript.current_stats.elemental_mastery));
+        boost_elemental_mastery_TMP.text = "";
+        if (playerScript.boost_stats.elemental_mastery > 0)
+        {
+            elemental_mastery_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.elemental_mastery));
+            boost_elemental_mastery_TMP.text += "+" + FloatToString(GetPercent(playerScript.boost_stats.elemental_mastery));
+        }
     }
 
     public void OpenCharacterUpgradePanel()
