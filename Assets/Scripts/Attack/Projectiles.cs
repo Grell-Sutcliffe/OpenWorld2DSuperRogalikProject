@@ -26,17 +26,18 @@ public class Projectiles : MonoBehaviour
     }
 
     // Update is called once per frame
-   
+    private IDamagable FindDamageable(Collider2D collision)
+    {
+        var result = collision.GetComponent<IDamagable>();
+        if (result != null) return result;
+
+        return collision.GetComponentInParent<IDamagable>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            var player = collision.GetComponent<Player>();
-            if (player != null)
-            {
-                player.TakeDamage(new Damage(dmg.physical_dmg, dmg.elemental_dmg, dmg.element_type));
-                Destroy(gameObject);
-            }
-        }
+        var damageable = FindDamageable(collision);
+
+        Debug.Log(collision, collision.gameObject);
+        damageable.TakeDamage(dmg);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.Processors;
 using UnityEngine.Rendering;
 
-public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
+public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 {
     [Header("Movement")]
     protected bool canHit = true;
@@ -46,7 +46,6 @@ public abstract class EnemyAbstract : MonoBehaviour, IDamagable, IAttacker
     public GameObject pivot;
 
     [SerializeField] WeaponSO dataW;
-    protected Weapon weapon;
 
     protected float current_dmg;
     public Damage currentDmg => new Damage(current_dmg, 0, ElementType.Physical);
