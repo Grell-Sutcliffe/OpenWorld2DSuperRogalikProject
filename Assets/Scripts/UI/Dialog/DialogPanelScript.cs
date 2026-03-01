@@ -109,14 +109,48 @@ public class DialogPanelScript : MonoBehaviour
         {
             answerPanel.SetActive(true);
             ChangeAnswerPanelHeight();
+            return;
         }
-        else
+        if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
         {
-            is_line_finished = true;
+            /*
+            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
 
-            if (current_speachNode is DefaultSpeachNode current_default_speachNode)
+            current_speachNode = itemDeliverySpeachNode.next_speachNode;
+            */
+            return;
+        }
+
+        is_line_finished = true;
+
+        if (current_speachNode is DefaultSpeachNode current_default_speachNode)
+        {
+            current_speachNode = current_default_speachNode.next_speachNode;
+        }
+    }
+
+    private void OnEnable()
+    {
+        EventBus.OnEvent += HandleEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnEvent -= HandleEvent;
+    }
+
+    private void HandleEvent(IEvent e)
+    {
+        if (e is ItemDeliveredEvent itemDeliveredEvent)
+        {
+            if (itemDeliveredEvent.is_success)
             {
-                current_speachNode = current_default_speachNode.next_speachNode;
+                is_line_finished = true;
+                NextLine();
+            }
+            else
+            {
+                CloseDialogPanel();
             }
         }
     }
@@ -132,6 +166,14 @@ public class DialogPanelScript : MonoBehaviour
     {
         if (!is_line_finished)
         {
+            if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
+            {
+                mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
+
+                current_speachNode = itemDeliverySpeachNode.next_speachNode;
+                return;
+            }
+
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -215,11 +257,11 @@ public class DialogPanelScript : MonoBehaviour
         mainController.TurnOffKeyboard();
         mainController.HidePlayerPanel();
     }
-    
+
     public void FinishDialog()
     {
         EventBus.Raise(new DialogueFinishedEvent(current_dialog.dialog_name));
-        
+
         CloseDialogPanel();
     }
 

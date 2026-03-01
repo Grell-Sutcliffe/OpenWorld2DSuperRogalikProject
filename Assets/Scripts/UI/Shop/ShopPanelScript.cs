@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -87,6 +88,7 @@ public class ShopPanelScript : MonoBehaviour
     {
         if (current_cost > current_cost_item.amount)
         {
+            mainController.OpenErrorPanel(ErrorType.NotEnoughMaterials);
             return;
         }
 

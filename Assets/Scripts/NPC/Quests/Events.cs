@@ -44,6 +44,18 @@ public readonly struct ItemUsedEvent : IEvent
     }
 }
 
+public readonly struct ItemDeliveredEvent : IEvent
+{
+    public readonly List<CollectableItem> collectableItems;
+    public readonly bool is_success;
+
+    public ItemDeliveredEvent(List<CollectableItem> collectableItems, bool is_success)
+    {
+        this.collectableItems = collectableItems;
+        this.is_success = is_success;
+    }
+}
+
 /*
 public readonly struct ZoneEnteredEvent : IEvent
 {

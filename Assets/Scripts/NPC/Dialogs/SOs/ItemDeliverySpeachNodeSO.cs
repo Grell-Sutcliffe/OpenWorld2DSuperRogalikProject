@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AnswerableSpeachNode", menuName = "Dialog/AnswerableSpeachNode")]
-public class ItemDeliverySpeachNodeSO : SpeachNodeSO
+[CreateAssetMenu(fileName = "ItemDeliverySpeachNode", menuName = "Dialog/ItemDeliverySpeachNode")]
+public class ItemDeliverySpeachNodeSO : DefaultSpeachNodeSO
 {
     public List<ItemSO> list_of_itemSOs;
     public List<int> list_of_item_amounts;

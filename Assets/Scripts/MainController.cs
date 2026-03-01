@@ -27,6 +27,8 @@ public class MainController : MonoBehaviour
     public GameObject enterDangeonPanel;
     public GameObject multiplayerPanel;
     public GameObject rewardPanel;
+    public GameObject itemDeliveryPanel;
+    public GameObject errorPanel;
 
     //public GameObject taskShower;
 
@@ -43,6 +45,8 @@ public class MainController : MonoBehaviour
     CharacterPanelScript characterPanelScript;
     RewardPanelScript rewardPanelScript;
     ButtlePanelScript buttlePanelScript;
+    ErrorPanelScript errorPanelScript;
+    ItemDeliveryPanelScript itemDeliveryPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -74,6 +78,8 @@ public class MainController : MonoBehaviour
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
         characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
         buttlePanelScript = buttlePanel.GetComponent<ButtlePanelScript>();
+        errorPanelScript = errorPanel.GetComponent<ErrorPanelScript>();
+        itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -245,6 +251,17 @@ public class MainController : MonoBehaviour
         scrollInteractionScript.ApplyAllColors();
     }
 
+    public void OpenErrorPanel(ErrorType errorType)
+    {
+        errorPanelScript.ShowError(errorType);
+    }
+
+    public void OpenItemDeliveryPanel(List<CollectableItem> list)
+    {
+        Debug.Log("MainController  :  Open DeliveryPanel");
+        itemDeliveryPanelScript.OpenPanel(list);
+    }
+
     public void UpdateHealthBar(int amount)
     {
         healthBarScript.UpdateHealthBar(amount);
@@ -276,6 +293,7 @@ public class MainController : MonoBehaviour
         wishPanel.SetActive(true);
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
+        errorPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -290,6 +308,8 @@ public class MainController : MonoBehaviour
         switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
         multiplayerPanel.SetActive(false);
+        errorPanel.SetActive(false);
+        itemDeliveryPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
     }

@@ -4,21 +4,21 @@ using UnityEngine.UI;
 
 public class Icon_ItemDelivery_Script : MonoBehaviour
 {
-    BackPackController backpackController;
+    Item item;
 
     public Image image;
     public TextMeshProUGUI amountTMP;
 
-    private void Awake()
+    public void SetItem(CollectableItem collectableItem, Item item)
     {
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
-    }
+        this.item = item;
 
-    public void SetItem(CollectableItem collectableItem)
-    {
-        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        image.sprite = item.sprite;
+        amountTMP.text = item.amount.ToString() + "/" + collectableItem.amount.ToString();
 
-        image.sprite = backpackController.GetItemByName(collectableItem.item_name).sprite;
-        amountTMP.text = collectableItem.amount.ToString();
+        if (item.amount < collectableItem.amount)
+        {
+            amountTMP.color = Color.red;
+        }
     }
 }

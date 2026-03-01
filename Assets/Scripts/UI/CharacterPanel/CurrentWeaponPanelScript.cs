@@ -98,6 +98,10 @@ public class CurrentWeaponPanelScript : MonoBehaviour
             OpenUpgrateWeaponPanel();
             UpdatePanel();
         }
+        else
+        {
+            mainController.OpenErrorPanel(ErrorType.NotEnoughMaterials);
+        }
     }
 
     void UpdatePanel()

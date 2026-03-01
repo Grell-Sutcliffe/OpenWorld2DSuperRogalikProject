@@ -229,6 +229,10 @@ public class CharacterPanelScript : MonoBehaviour
             OpenCharacterUpgradePanel();
             UpdatePanel();
         }
+        else
+        {
+            mainController.OpenErrorPanel(ErrorType.NotEnoughMaterials);
+        }
     }
 
     public void GivePlayerNewWeapon()

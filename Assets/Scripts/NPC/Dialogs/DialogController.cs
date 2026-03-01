@@ -70,13 +70,17 @@ public class DialogController : MonoBehaviour
             {
                 return new AnswerableSpeachNode(answerableSpeachNodeSO);
             }
-            if (speachNodeSO is DefaultSpeachNodeSO defaultSpeachNodeSO)
-            {
-                return new DefaultSpeachNode(defaultSpeachNodeSO);
-            }
             if (speachNodeSO is FunctionSpeachNodeSO functionSpeachNodeSO)
             {
                 return new FunctionSpeachNode(functionSpeachNodeSO);
+            }
+            if (speachNodeSO is ItemDeliverySpeachNodeSO itemDeliverySpeachNodeSO)
+            {
+                return new ItemDeliverySpeachNode(itemDeliverySpeachNodeSO);
+            }
+            if (speachNodeSO is DefaultSpeachNodeSO defaultSpeachNodeSO)
+            {
+                return new DefaultSpeachNode(defaultSpeachNodeSO);
             }
 
             return null;
@@ -106,24 +110,29 @@ public class DialogController : MonoBehaviour
         }
     }
 
-    public class ItemDeliverySpeachNode : SpeachNode
+    public class ItemDeliverySpeachNode : DefaultSpeachNode
     {
         //public List<int> list_of_item_id;
-        public List<CollectableItem> list_of_item_names;
+        public List<CollectableItem> list_of_CollectableItems;
 
         ItemDeliverySpeachNodeSO data;
 
-        public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.speaker_name, data.speach, data.speach_type)
+        public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.speaker_name, data.speach, data.speach_type)
         {
             this.data = data;
 
             //this.list_of_item_id = new List<int>();
-            this.list_of_item_names = new List<CollectableItem>();
+            this.list_of_CollectableItems = new List<CollectableItem>();
             for (int i = 0; i < data.list_of_item_amounts.Count; i++)
             {
                 //this.list_of_item_id.Add(new Item(itemSO));
-                this.list_of_item_names.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
+                this.list_of_CollectableItems.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
             }
+        }
+
+        public ItemDeliverySpeachNode(List<CollectableItem> list_of_CollectableItems, ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.speaker_name, data.speach, data.speach_type)
+        {
+            this.list_of_CollectableItems = list_of_CollectableItems;
         }
     }
 

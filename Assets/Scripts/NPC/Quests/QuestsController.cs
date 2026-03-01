@@ -166,15 +166,15 @@ public class QuestsController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventBus.OnEvent += HandleGameEvent;
+        EventBus.OnEvent += HandleEvent;
     }
 
     private void OnDisable()
     {
-        EventBus.OnEvent -= HandleGameEvent;
+        EventBus.OnEvent -= HandleEvent;
     }
 
-    private void HandleGameEvent(IEvent e)
+    private void HandleEvent(IEvent e)
     {
         if (e is ItemCollectedEvent itemCollectedEvent)
         {
