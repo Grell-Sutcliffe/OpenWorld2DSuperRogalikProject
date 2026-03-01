@@ -31,6 +31,8 @@ public class DialogPanelScript : MonoBehaviour
 
     bool is_line_finished;
 
+    Dialog current_dialog;
+
     SpeachNode current_speachNode;
 
     void Start()
@@ -42,9 +44,11 @@ public class DialogPanelScript : MonoBehaviour
         answer_panel_rect_transform = answerPanel.GetComponent<RectTransform>();
     }
 
-    public void StartDialog(Dialog new_speachNode)
+    public void StartDialog(Dialog new_dialog)
     {
-        current_speachNode = new_speachNode.current_speachNode;
+        current_dialog = new_dialog;
+        current_speachNode = new_dialog.current_speachNode;
+
         if (current_speachNode == null) return;
 
         OpenDialogPanel();
@@ -144,7 +148,9 @@ public class DialogPanelScript : MonoBehaviour
         }
         else
         {
-            CloseDialogPanel();
+            //CloseDialogPanel();
+            FinishDialog();
+            return;
         }
     }
 
@@ -208,6 +214,13 @@ public class DialogPanelScript : MonoBehaviour
 
         mainController.TurnOffKeyboard();
         mainController.HidePlayerPanel();
+    }
+    
+    public void FinishDialog()
+    {
+        EventBus.Raise(new DialogueFinishedEvent(current_dialog.dialog_name));
+        
+        CloseDialogPanel();
     }
 
     public void CloseDialogPanel()

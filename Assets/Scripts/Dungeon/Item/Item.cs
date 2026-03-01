@@ -4,7 +4,7 @@ using System.Threading;
 using UnityEngine.U2D;
 
 [Serializable]
-public abstract class Item
+public class Item
 {
     public Sprite sprite;
     public string item_name;
@@ -17,6 +17,24 @@ public abstract class Item
     public ItemType item_type = ItemType.Everything;
 
     public int id;
+
+    ItemSO data;
+
+    public Item()
+    {
+
+    }
+
+    public Item(ItemSO data)
+    {
+        this.data = data;
+
+        this.sprite = data.sprite;
+        this.item_name = data.item_name;
+        this.description = data.description;
+
+        this.item_type = data.item_type;
+    }
 }
 
 public enum ItemType

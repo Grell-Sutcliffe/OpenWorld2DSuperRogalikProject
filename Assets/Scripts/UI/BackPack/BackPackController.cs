@@ -209,6 +209,9 @@ public class BackPackController : MonoBehaviour
         if (dict_id_to_item[item_id].amount - number >= 0)
         {
             dict_id_to_item[item_id].amount -= number;
+
+            EventBus.Raise(new ItemUsedEvent(dict_item_name_to_id[item_name]));
+
             return true;
         }
         else
@@ -222,6 +225,8 @@ public class BackPackController : MonoBehaviour
         int item_id = dict_item_name_to_id[item_name];
 
         dict_id_to_item[item_id].amount += number;
+
+        EventBus.Raise(new ItemCollectedEvent(dict_item_name_to_id[item_name], number));
 
         //Debug.Log($"[INC] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
         /*

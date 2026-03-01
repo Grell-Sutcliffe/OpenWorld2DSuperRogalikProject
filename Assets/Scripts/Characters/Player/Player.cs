@@ -52,7 +52,13 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public Stats boost_stats;
     public Stats current_hit_stats;
 
-    public Damage currentDmg => new Damage(current_hit_stats.physical_dmg, current_hit_stats.elemental_dmg, current_weapon.element_type, current_hit_stats.is_physical_crit, current_hit_stats.is_elemental_crit);
+    public Damage currentDmg => new Damage(
+        RoundToMax(current_hit_stats.physical_dmg),
+        RoundToMax(current_hit_stats.elemental_dmg),
+        current_weapon.element_type,
+        current_hit_stats.is_physical_crit,
+        current_hit_stats.is_elemental_crit
+    );
 
     [Header("Other stuff")]
     [SerializeField] float attackCooldown;
@@ -79,7 +85,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
         GameObject mainControllerGO = GameObject.Find("MainController");
-        if (mainControllerGO != null) {
+        if (mainControllerGO != null)
+        {
 
             mainController = mainControllerGO.GetComponent<MainController>();
         }
@@ -190,7 +197,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             int delta_physical_damage = RoundToMax(current_hit_stats.physical_attack * current_hit_stats.crit_dmg);
             current_hit_stats.physical_dmg += delta_physical_damage;
             current_hit_stats.is_physical_crit = true;
-            
+
         }
         if (CheckCritChance())
         {
@@ -284,7 +291,8 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         }
     }
 
-    public void UnActivePivot(){
+    public void UnActivePivot()
+    {
         pivot.gameObject.SetActive(false);
     }
 
@@ -336,11 +344,12 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     bool isRun = false;
     bool isHit = false;
     bool overMenu = false;
-    
+
     bool isFasingRight = true;
     private void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()){
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
             overMenu = true;
         }
         else
@@ -367,7 +376,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
                     angle = (angle + 360) % 360;
                     spriteRender.flipX = true;
                     direction = 4f - ((angle - 90f) / 45f);
-                    
+
                 }
                 else
                 {
@@ -386,7 +395,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         if (canHit && Input.GetMouseButtonDown(0) && !overMenu) // ËÊÌ
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
+
             if (mouseWorldPos.x > transform.position.x)
             {
                 FlipPivotRight();
@@ -410,7 +419,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     private void FlipPivotLeft()
     {
         usedOffset = offset + 180;
-        pivot.transform.localScale = new Vector3(-1,1,0);
+        pivot.transform.localScale = new Vector3(-1, 1, 0);
         pivot.transform.localPosition = new Vector3(-localPivotPosSaved.x, localPivotPosSaved.y, localPivotPosSaved.z);
 
     }
@@ -452,7 +461,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     }
 
     protected virtual void Hit()
-    {   
+    {
         DealDamage();
         isHit = true;
         canHit = false;

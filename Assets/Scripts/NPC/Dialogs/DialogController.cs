@@ -7,7 +7,8 @@ using static QuestsController;
 public class DialogController : MonoBehaviour
 {
     protected MainController mainController;
-    protected QuestsController questsController;    
+    protected QuestsController questsController;   
+    protected BackPackController backpackController;
 
     public class Answer
     {
@@ -105,6 +106,27 @@ public class DialogController : MonoBehaviour
         }
     }
 
+    public class ItemDeliverySpeachNode : SpeachNode
+    {
+        //public List<int> list_of_item_id;
+        public List<CollectableItem> list_of_item_names;
+
+        ItemDeliverySpeachNodeSO data;
+
+        public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.speaker_name, data.speach, data.speach_type)
+        {
+            this.data = data;
+
+            //this.list_of_item_id = new List<int>();
+            this.list_of_item_names = new List<CollectableItem>();
+            for (int i = 0; i < data.list_of_item_amounts.Count; i++)
+            {
+                //this.list_of_item_id.Add(new Item(itemSO));
+                this.list_of_item_names.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
+            }
+        }
+    }
+
     public class DefaultSpeachNode : SpeachNode
     {
         public SpeachNode next_speachNode;
@@ -150,8 +172,22 @@ public class DialogController : MonoBehaviour
 
     public class Dialog
     {
+        public string dialog_name;
         public SpeachNode current_speachNode;
 
+        DialogSO data;
+
+        public Dialog(DialogSO data)
+        {
+            if (data == null) return;
+
+            this.data = data;
+
+            this.dialog_name = data.dialog_name;
+            this.current_speachNode = new SpeachNode().NewSpeachNode(data.first_speachNode);
+        }
+
+        /*
         public Dialog(SpeachNodeSO current_speachNodeSO)
         {
             this.current_speachNode = new SpeachNode().NewSpeachNode(current_speachNodeSO);
@@ -161,6 +197,7 @@ public class DialogController : MonoBehaviour
         {
             this.current_speachNode = current_speachNode;
         }
+        */
     }
 
     /*
