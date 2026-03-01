@@ -6,7 +6,7 @@ public class NPCController : InteractionController
 {
     public string npc_name;
 
-    public SpeachNodeSO speachNodeSO; 
+    public DialogSO default_dialogSO; 
 
     public Dialog default_dialog;
 
@@ -16,7 +16,7 @@ public class NPCController : InteractionController
     {
         base.Start();
 
-        default_dialog = new Dialog(speachNodeSO);
+        default_dialog = new Dialog(default_dialogSO);
     }
 
     protected override void Interact()

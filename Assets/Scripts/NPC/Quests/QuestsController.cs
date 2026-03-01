@@ -2,6 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using static DialogController;
 
+public class Reward
+{
+    public string item_name;
+    public int amount;
+}
+
+public class CollectableItem
+{
+    public string item_name;
+    public int amount;
+
+    public CollectableItem(string item_name, int amount)
+    {
+        this.item_name = item_name;
+        this.amount = amount;
+    }
+}
+
 public class QuestsController : MonoBehaviour
 {
     MainController mainController;
@@ -23,18 +41,6 @@ public class QuestsController : MonoBehaviour
 
     public int none_quest_index = -1;
     public string none_quest_name = "no_name";
-
-    public class Reward
-    {
-        public Item item;
-        public int amount;
-    }
-
-    public class CollectableItem
-    {
-        public Item item;
-        public int amount;
-    }
 
     public abstract class Task
     {
@@ -156,6 +162,28 @@ public class QuestsController : MonoBehaviour
         quest_panel_rect_transform = questPanelContent.GetComponent<RectTransform>();
 
         MakeQuests();
+    }
+
+    private void OnEnable()
+    {
+        EventBus.OnEvent += HandleGameEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnEvent -= HandleGameEvent;
+    }
+
+    private void HandleGameEvent(IEvent e)
+    {
+        if (e is ItemCollectedEvent itemCollectedEvent)
+        {
+            Debug.Log($"EVENT  :  Подобрали {itemCollectedEvent.item_id} x{itemCollectedEvent.amount}");
+        }
+        else if (e is DialogueFinishedEvent dialogFinishedEvent)
+        {
+            Debug.Log($"EVENT  :  Поговорили {dialogFinishedEvent.dialog_name}");
+        }
     }
 
     public void FinishTask(string quest_title)
