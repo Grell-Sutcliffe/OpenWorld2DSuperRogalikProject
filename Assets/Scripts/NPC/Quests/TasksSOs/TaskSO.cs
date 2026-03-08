@@ -11,7 +11,7 @@ public class TaskSO : ScriptableObject
 
     public List<Reward> rewards;
 
-    public TaskSO next_task;
+    public TaskSO next_taskSO;
 }
 
 /*

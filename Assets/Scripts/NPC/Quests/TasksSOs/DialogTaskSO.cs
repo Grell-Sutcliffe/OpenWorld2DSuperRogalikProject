@@ -4,4 +4,5 @@ using UnityEngine;
 public class DialogTaskSO : TaskSO
 {
     //public Dialog dialog;
+    public DialogSO dialogSO;
 }

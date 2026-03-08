@@ -73,7 +73,7 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        ChangeDialogPanel(current_speachNode.speaker_name);
+        ChangeDialogPanel(current_speachNode.npcController.npc_name);
         ChangeSpeachTextAlignment();
 
         ClearAndCloseAnswerPanel();
@@ -260,7 +260,11 @@ public class DialogPanelScript : MonoBehaviour
 
     public void FinishDialog()
     {
-        EventBus.Raise(new DialogueFinishedEvent(current_dialog.dialog_name));
+        if (current_dialog.is_finished)
+        {
+            current_dialog.is_finished = true;
+            EventBus.Raise(new DialogueFinishedEvent(current_dialog.title));
+        }
 
         CloseDialogPanel();
     }

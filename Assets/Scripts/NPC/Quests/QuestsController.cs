@@ -20,10 +20,150 @@ public class CollectableItem
     }
 }
 
+public class Task
+{
+    public string subtitle;
+    public string description;
+
+    public string finish_function_name;
+
+    public List<Reward> rewards;
+
+    public Task next_task;
+
+    public Task()
+    {
+
+    }
+
+    public Task(string subtitle, string description = "", string finish_function_name = "", Task next_task = null)
+    {
+        this.subtitle = subtitle;
+        this.description = description;
+        this.finish_function_name = finish_function_name;
+        this.next_task = next_task;
+
+        rewards = new List<Reward>();
+    }
+
+    public Task(string subtitle, string description = "", string finish_function_name = "", TaskSO next_taskSO = null)
+    {
+        this.subtitle = subtitle;
+        this.description = description;
+        this.finish_function_name = finish_function_name;
+        this.next_task = new Task().NewTask(next_taskSO);
+
+        rewards = new List<Reward>();
+    }
+
+    public Task NewTask(TaskSO temp_taskSO)
+    {
+        if (temp_taskSO is DialogTaskSO temp_dialogTaskSO)
+        {
+            return new DialogTask(temp_dialogTaskSO);
+        }
+
+        return null;
+    }
+
+    public virtual Task FinishTaskAndGetNextTask()
+    {
+        //if (CheckIfTaskIsCompleted())
+        {
+            return next_task;
+        }
+        return this;
+    }
+}
+
+public class DialogTask : Task
+{
+    //public Dialog dialog;
+    public string dialog_title;
+
+    DialogTaskSO data;
+
+    public DialogTask(DialogTaskSO data) : base(data.subtitle, data.description, data.finish_function_name, data.next_taskSO)
+    {
+        this.dialog_title = data.dialogSO.title;
+
+        this.data = data;
+    }
+
+    public DialogTask(Dialog dialog, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
+    {
+        //this.dialog = dialog;
+        this.dialog_title = dialog.title;
+    }
+
+    /*
+    public override bool CheckIfTaskIsCompleted()
+    {
+        throw new System.NotImplementedException();
+        //return dialog.current_speeck == null;
+    }
+    */
+}
+
+public class CollectItemTask : Task
+{
+    public List<CollectableItem> collectable_items;
+
+    public CollectItemTask(List<CollectableItem> collectable_items, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
+    {
+        this.collectable_items = collectable_items;
+    }
+
+    /*
+    public override bool CheckIfTaskIsCompleted()
+    {
+
+        throw new System.NotImplementedException();
+        foreach (CollectableItem item in collectable_items)
+        {
+            if ()
+        }
+        return true;
+    }
+    */
+}
+public class EnemyKillTask : Task
+{
+    public List<GameObject> enemy_GOs;
+
+    public EnemyKillTask(List<GameObject> enemy_GOs, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
+    {
+        this.enemy_GOs = enemy_GOs;
+    }
+
+    /*
+    public override bool CheckIfTaskIsCompleted()
+    {
+        throw new System.NotImplementedException();
+    }
+    */
+}
+
+public class Quest
+{
+    public string title;
+
+    public Task current_task;
+
+    public List<Reward> rewards;
+
+    public Quest(string title, Task current_task)
+    {
+        this.title = title;
+        this.current_task = current_task;
+    }
+}
+
 public class QuestsController : MonoBehaviour
 {
     MainController mainController;
     BackPackController backpackController;
+    DialogController dialogController;
 
     public GameObject taskShower;
     public GameObject questPanelContent;
@@ -42,107 +182,6 @@ public class QuestsController : MonoBehaviour
     public int none_quest_index = -1;
     public string none_quest_name = "no_name";
 
-    public abstract class Task
-    {
-        public string subtitle;
-        public string description;
-
-        public string finish_function_name;
-
-        public List<Reward> rewards;
-
-        public Task next_task;
-
-        public Task(string subtitle, string description = "", string finish_function_name = "", Task next_task = null)
-        {
-            this.subtitle = subtitle;
-            this.description = description;
-            this.finish_function_name = finish_function_name;
-            this.next_task = next_task;
-
-            rewards = new List<Reward>();
-        }
-
-        public virtual Task FinishTaskAndGetNextTask()
-        {
-            if (CheckIfTaskIsCompleted())
-            {
-                return next_task;
-            }
-            return this;
-        }
-
-        public abstract bool CheckIfTaskIsCompleted();
-    }
-
-    public class DialogTask : Task
-    {
-        public Dialog dialog;
-
-        public DialogTask(Dialog dialog, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-        {
-            this.dialog = dialog;
-        }
-
-        public override bool CheckIfTaskIsCompleted()
-        {
-            throw new System.NotImplementedException();
-            //return dialog.current_speeck == null;
-        }
-    }
-
-    public class CollectItemTask : Task
-    {
-        public List<CollectableItem> collectable_items;
-
-        public CollectItemTask(List<CollectableItem> collectable_items, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-        {
-            this.collectable_items = collectable_items;
-        }
-
-        public override bool CheckIfTaskIsCompleted()
-        {
-            
-            throw new System.NotImplementedException();
-            /*
-            foreach (CollectableItem item in collectable_items)
-            {
-                if ()
-            }
-            return true;
-            */
-        }
-    }
-    public class EnemyKillTask : Task
-    {
-        public List<GameObject> enemy_GOs;
-
-        public EnemyKillTask(List<GameObject> enemy_GOs, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-        {
-            this.enemy_GOs = enemy_GOs;
-        }
-
-        public override bool CheckIfTaskIsCompleted()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public class Quest
-    {
-        public string title;
-
-        public Task current_task;
-
-        public List<Reward> rewards;
-
-        public Quest(string title, Task current_task)
-        {
-            this.title = title;
-            this.current_task = current_task;
-        }
-    }
-
     public Dictionary<string, Quest> dict_quest_name_to_quest = new Dictionary<string, Quest>();
     public Dictionary<string, List<string>> dict_npc_to_list_of_quests_names = new Dictionary<string, List<string>>();
     public Dictionary<string, GameObject> dict_npc_name_to_npc_GO = new Dictionary<string, GameObject>();
@@ -153,6 +192,7 @@ public class QuestsController : MonoBehaviour
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
     }
 
     void Start()
@@ -176,24 +216,20 @@ public class QuestsController : MonoBehaviour
 
     private void HandleEvent(IEvent e)
     {
-        if (e is ItemCollectedEvent itemCollectedEvent)
+        if (e is DialogFinishedEvent dialogFinishedEvent)
         {
-            Debug.Log($"EVENT  :  Подобрали {itemCollectedEvent.item_id} x{itemCollectedEvent.amount}");
-        }
-        else if (e is DialogueFinishedEvent dialogFinishedEvent)
-        {
-            Debug.Log($"EVENT  :  Поговорили {dialogFinishedEvent.dialog_name}");
+            Debug.Log($"EVENT  :  Завершили диалог {dialogFinishedEvent.dialog_title}");
         }
     }
 
     public void FinishTask(string quest_title)
     {
-        
+
     }
 
     public void AcceptQuest(string new_quest)
     {
-        
+
     }
 
     public void CompleteQuest(string new_quest)
@@ -231,7 +267,7 @@ public class QuestsController : MonoBehaviour
 
     void MakeQuests()
     {
-        
+
     }
 
     public void OpenQuestPanel()

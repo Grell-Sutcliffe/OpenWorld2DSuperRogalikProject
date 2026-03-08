@@ -10,10 +10,23 @@ public class DialogController : MonoBehaviour
     protected QuestsController questsController;   
     protected BackPackController backpackController;
 
+    public Dictionary<string, Dialog> dict_dialog_title_to_dialog;
+
+    private void Awake()
+    {
+        dict_dialog_title_to_dialog = new Dictionary<string, Dialog>();
+    }
+
+    public void AddNewDialog(DialogSO dialogSO)
+    {
+        dict_dialog_title_to_dialog[dialogSO.title] = new Dialog(dialogSO);
+    }
+
     public class Answer
     {
         public string answer_text;
         public SpeachNode next_speachNode;
+        public int delta_disposition_to_player = 0;
 
         AnswerSO data;
 
@@ -25,18 +38,20 @@ public class DialogController : MonoBehaviour
             //this.next_speachNode = new SpeachNode(data.next_speachNode);  // так нельзя, тк класс SpeachNode - абстрактный
 
             this.next_speachNode = new SpeachNode().NewSpeachNode(data.next_speachNode);
+            this.delta_disposition_to_player = data.delta_disposition_to_player;
         }
 
-        public Answer(string answer_text, SpeachNode next_speachNode)
+        public Answer(string answer_text, SpeachNode next_speachNode, int delta_disposition_to_player)
         {
             this.answer_text = answer_text;
             this.next_speachNode = next_speachNode;
+            this.delta_disposition_to_player = delta_disposition_to_player;
         }
     }
 
     public class SpeachNode
     {
-        public string speaker_name;
+        public NPCController npcController;
         public string speach;
         public SpeachType speach_type;
 
@@ -44,22 +59,21 @@ public class DialogController : MonoBehaviour
 
         public SpeachNode()
         {
-            this.speaker_name = "";
-            this.speach = "";
+
         }
 
         public SpeachNode(SpeachNodeSO data)
         {
             this.data = data;
 
-            this.speaker_name = data.speaker_name;
+            this.npcController = data.npcController;
             this.speach = data.speach;
             this.speach_type = data.speach_type;
         }
 
-        public SpeachNode(string speaker_name, string speach, SpeachType speach_type = SpeachType.Speach)
+        public SpeachNode(NPCController npcController, string speach, SpeachType speach_type = SpeachType.Speach)
         {
-            this.speaker_name = speaker_name;
+            this.npcController = npcController;
             this.speach = speach;
             this.speach_type = speach_type;
         }
@@ -93,7 +107,7 @@ public class DialogController : MonoBehaviour
 
         AnswerableSpeachNodeSO data;
 
-        public AnswerableSpeachNode(AnswerableSpeachNodeSO data) : base(data.speaker_name, data.speach, data.speach_type)
+        public AnswerableSpeachNode(AnswerableSpeachNodeSO data) : base(data.npcController, data.speach, data.speach_type)
         {
             this.data = data;
 
@@ -104,7 +118,7 @@ public class DialogController : MonoBehaviour
             }
         }
 
-        public AnswerableSpeachNode(List<Answer> answers, string speaker_name, string speach, SpeachType speach_type = SpeachType.Speach) : base(speaker_name, speach, speach_type)
+        public AnswerableSpeachNode(List<Answer> answers, NPCController npcController, string speach, SpeachType speach_type = SpeachType.Speach) : base(npcController, speach, speach_type)
         {
             this.answers = answers;
         }
@@ -117,7 +131,7 @@ public class DialogController : MonoBehaviour
 
         ItemDeliverySpeachNodeSO data;
 
-        public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.speaker_name, data.speach, data.speach_type)
+        public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.npcController, data.speach, data.speach_type)
         {
             this.data = data;
 
@@ -130,7 +144,7 @@ public class DialogController : MonoBehaviour
             }
         }
 
-        public ItemDeliverySpeachNode(List<CollectableItem> list_of_CollectableItems, ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.speaker_name, data.speach, data.speach_type)
+        public ItemDeliverySpeachNode(List<CollectableItem> list_of_CollectableItems, ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.npcController, data.speach, data.speach_type)
         {
             this.list_of_CollectableItems = list_of_CollectableItems;
         }
@@ -142,19 +156,19 @@ public class DialogController : MonoBehaviour
 
         DefaultSpeachNodeSO data;
 
-        public DefaultSpeachNode(DefaultSpeachNodeSO data) : base(data.speaker_name, data.speach, data.speach_type)
+        public DefaultSpeachNode(DefaultSpeachNodeSO data) : base(data.npcController, data.speach, data.speach_type)
         {
             this.data = data;
 
             this.next_speachNode = NewSpeachNode(data.next_speachNode);
         }
 
-        public DefaultSpeachNode(SpeachNode next_speachNode, string speaker_name, string speach, SpeachType speach_type = SpeachType.Speach) : base(speaker_name, speach, speach_type)
+        public DefaultSpeachNode(SpeachNode next_speachNode, NPCController npcController, string speach, SpeachType speach_type = SpeachType.Speach) : base(npcController, speach, speach_type)
         {
             this.next_speachNode = next_speachNode;
         }
 
-        public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, string speaker_name, string speach, SpeachType speach_type = SpeachType.Speach) : base(speaker_name, speach, speach_type)
+        public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, NPCController npcController, string speach, SpeachType speach_type = SpeachType.Speach) : base(npcController, speach, speach_type)
         {
             this.next_speachNode = NewSpeachNode(next_speachNodeSO);
         }
@@ -166,14 +180,14 @@ public class DialogController : MonoBehaviour
 
         FunctionSpeachNodeSO data;
 
-        public FunctionSpeachNode(FunctionSpeachNodeSO data) : base(data.next_speachNode, data.speaker_name, data.speach, data.speach_type)
+        public FunctionSpeachNode(FunctionSpeachNodeSO data) : base(data.next_speachNode, data.npcController, data.speach, data.speach_type)
         {
             this.data = data;
 
             this.function_name = data.function_name;
         }
 
-        public FunctionSpeachNode(string function_name, SpeachNode next_speachNode, string speaker_name, string speach, SpeachType speach_type = SpeachType.Speach) : base(next_speachNode, speaker_name, speach, speach_type)
+        public FunctionSpeachNode(string function_name, SpeachNode next_speachNode, NPCController npcController, string speach, SpeachType speach_type = SpeachType.Speach) : base(next_speachNode, npcController, speach, speach_type)
         {
             this.function_name = function_name;
         }
@@ -181,8 +195,9 @@ public class DialogController : MonoBehaviour
 
     public class Dialog
     {
-        public string dialog_name;
+        public string title;
         public SpeachNode current_speachNode;
+        public bool is_finished = false;
 
         DialogSO data;
 
@@ -192,7 +207,7 @@ public class DialogController : MonoBehaviour
 
             this.data = data;
 
-            this.dialog_name = data.dialog_name;
+            this.title = data.title;
             this.current_speachNode = new SpeachNode().NewSpeachNode(data.first_speachNode);
         }
 

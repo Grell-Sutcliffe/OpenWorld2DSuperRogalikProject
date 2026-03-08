@@ -56,6 +56,11 @@ public readonly struct ItemDeliveredEvent : IEvent
     }
 }
 
+public readonly struct DialogFinishedEvent : IEvent
+{
+    public readonly string dialog_title;
+}
+
 /*
 public readonly struct ZoneEnteredEvent : IEvent
 {
