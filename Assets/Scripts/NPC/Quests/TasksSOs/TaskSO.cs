@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static QuestsController;
 
+[CreateAssetMenu(fileName = "Task", menuName = "Quest/Task")]
 public class TaskSO : ScriptableObject
 {
     public string subtitle;

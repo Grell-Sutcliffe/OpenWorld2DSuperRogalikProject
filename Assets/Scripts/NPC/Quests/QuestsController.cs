@@ -147,15 +147,38 @@ public class EnemyKillTask : Task
 public class Quest
 {
     public string title;
+    public string description;
 
     public Task current_task;
 
     public List<Reward> rewards;
 
+    public string quest_accepting_NPC_name;
+
+    QuestSO data;
+
+    /*
     public Quest(string title, Task current_task)
     {
         this.title = title;
         this.current_task = current_task;
+    }
+    */
+
+    public Quest(QuestSO data)
+    {
+        this.data = data;
+
+        this.title = data.title;
+        this.description = data.description;
+
+        this.current_task = new Task().NewTask(data.start_taskSO);
+
+        this.rewards = new List<Reward>();
+
+        //foreach ()
+
+        this.quest_accepting_NPC_name = data.quest_accepting_NPCSO.npc_name;
     }
 }
 
@@ -174,7 +197,7 @@ public class QuestsController : MonoBehaviour
 
     TaskShowerScript taskShowerScript;
 
-    public int accepted_quests_amout = 0;
+    private int accepted_quests_amout = 0;
 
     public int item_height = 250;
     public int space_between_items = 25;
@@ -182,10 +205,13 @@ public class QuestsController : MonoBehaviour
     public int none_quest_index = -1;
     public string none_quest_name = "no_name";
 
-    public Dictionary<string, Quest> dict_quest_name_to_quest = new Dictionary<string, Quest>();
-    public Dictionary<string, List<string>> dict_npc_to_list_of_quests_names = new Dictionary<string, List<string>>();
-    public Dictionary<string, GameObject> dict_npc_name_to_npc_GO = new Dictionary<string, GameObject>();
+    private string temp_task = "";
 
+    public Dictionary<string, Quest> dict_quest_name_to_quest = new Dictionary<string, Quest>();
+    //public Dictionary<string, List<string>> dict_npc_to_list_of_quests_names = new Dictionary<string, List<string>>();
+    //public Dictionary<string, GameObject> dict_npc_name_to_npc_GO = new Dictionary<string, GameObject>();
+
+    public List<QuestSO> quests = new List<QuestSO>();
     public List<string> accepted_quests = new List<string>();
 
     private void Awake()
@@ -202,6 +228,25 @@ public class QuestsController : MonoBehaviour
         quest_panel_rect_transform = questPanelContent.GetComponent<RectTransform>();
 
         MakeQuests();
+        UpdateNPCsQuestsIcons();
+    }
+
+    public void UpdateNPCsQuestsIcons()
+    {
+        foreach (QuestSO questSO in quests)
+        {
+            if (accepted_quests.Contains(questSO.title))
+            {
+                mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconHasAcceptedQuestSetActiveTrue();
+                continue;
+            }
+            if (dict_quest_name_to_quest[questSO.title].current_task != null)
+            {
+                mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconHasUnacceptedQuestSetActiveTrue();
+                continue;
+            }
+            mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconThinkingSetActiveTrue();
+        }
     }
 
     private void OnEnable()
@@ -219,6 +264,12 @@ public class QuestsController : MonoBehaviour
         if (e is DialogFinishedEvent dialogFinishedEvent)
         {
             Debug.Log($"EVENT  :  Завершили диалог {dialogFinishedEvent.dialog_title}");
+            ShowNewTask();
+        }
+        else if (e is QuestAcceptedEvent questAcceptedEvent)
+        {
+            Debug.Log($"EVENT  :  Приняли квест {questAcceptedEvent.quest_title}");
+            AcceptQuest(questAcceptedEvent.quest_title);
         }
     }
 
@@ -229,17 +280,24 @@ public class QuestsController : MonoBehaviour
 
     public void AcceptQuest(string new_quest)
     {
+        accepted_quests.Add(new_quest);
 
+        temp_task = dict_quest_name_to_quest[new_quest].current_task.subtitle;
+
+        UpdateNPCsQuestsIcons();
     }
 
     public void CompleteQuest(string new_quest)
     {
         accepted_quests.Remove(new_quest);
-        accepted_quests_amout--;
+
+        UpdateNPCsQuestsIcons();
     }
 
     public void UpdateQestPanel()
     {
+        accepted_quests_amout = accepted_quests.Count;
+
         foreach (Transform child in questPanelContent.transform)
         {
             Destroy(child.gameObject);
@@ -260,6 +318,15 @@ public class QuestsController : MonoBehaviour
         quest_panel_rect_transform.sizeDelta = new Vector2(quest_panel_rect_transform.sizeDelta.x, new_height);
     }
 
+    private void ShowNewTask()
+    {
+        if (temp_task != "")
+        {
+            taskShowerScript.ShowNewTask(temp_task);
+            temp_task = "";
+        }
+    }
+
     public void ShowNewTask(string new_task)
     {
         taskShowerScript.ShowNewTask(new_task);
@@ -267,7 +334,9 @@ public class QuestsController : MonoBehaviour
 
     void MakeQuests()
     {
-
+        foreach (QuestSO questSO in quests) {
+            dict_quest_name_to_quest[questSO.title] = new Quest(questSO);
+        }
     }
 
     public void OpenQuestPanel()

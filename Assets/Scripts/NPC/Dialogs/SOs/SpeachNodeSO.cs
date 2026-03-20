@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SpeachNodeSO : ScriptableObject
 {
-    public NPCController npcController;
+    public NPCSO npcSO;
     public string speach;
     public SpeachType speach_type;
 }

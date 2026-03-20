@@ -65,6 +65,8 @@ public class MainController : MonoBehaviour
 
     public Dictionary<UseType, int> dict_useType_to_seconds_left;
 
+    public Dictionary<string, NPCController> dict_npc_name_to_npcController;
+
     private void Awake()
     {
         StuffSetActiveTrue();
@@ -84,6 +86,8 @@ public class MainController : MonoBehaviour
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
         rewardPanelScript = rewardPanel.GetComponent<RewardPanelScript>();
+
+        Make_dict_npc_name_to_npcController();
     }
 
     void Start()
@@ -97,6 +101,23 @@ public class MainController : MonoBehaviour
         StuffSetActiveFalse();
 
         ClearDictionary_useType_to_seconds_left();
+    }
+
+    void Make_dict_npc_name_to_npcController()
+    {
+        dict_npc_name_to_npcController = new Dictionary<string, NPCController>();
+
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+
+        foreach (GameObject npc in npcs)
+        {
+            NPCController npcController = npc.GetComponent<NPCController>();
+
+            if (npcController != null)
+            {
+                dict_npc_name_to_npcController[npcController.data.npc_name] = npcController;
+            }
+        }
     }
 
     public void StartCountdownCoroutine(UseType useType)

@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d575c7c8d034c4d9d8784421980b2b, type: 3}
-  m_Name: Dialog
+  m_Script: {fileID: 11500000, guid: 4a857e4607fdf1c4ba6131d88165e9df, type: 3}
+  m_Name: Answer_12
   m_EditorClassIdentifier: 
-  dialog_name: book founder
-  first_speachNode: {fileID: 11400000, guid: d782724adbe50ab4582c3f2f8b31eb37, type: 2}
+  answer_text: "\u0414\u0430, \u043A\u043E\u043D\u0435\u0447\u043D\u043E"
+  next_speachNode: {fileID: 11400000, guid: 496846acfd6db7b4aadb5230cf50cf8b, type: 2}
+  delta_disposition_to_player: 0

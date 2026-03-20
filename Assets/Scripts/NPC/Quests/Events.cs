@@ -59,6 +59,21 @@ public readonly struct ItemDeliveredEvent : IEvent
 public readonly struct DialogFinishedEvent : IEvent
 {
     public readonly string dialog_title;
+
+    public DialogFinishedEvent(string dialog_title)
+    {
+        this.dialog_title = dialog_title;
+    }
+}
+
+public readonly struct QuestAcceptedEvent : IEvent
+{
+    public readonly string quest_title;
+
+    public QuestAcceptedEvent(string quest_title)
+    {
+        this.quest_title = quest_title;
+    }
 }
 
 /*

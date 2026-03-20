@@ -73,7 +73,7 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        ChangeDialogPanel(current_speachNode.npcController.npc_name);
+        ChangeDialogPanel(current_speachNode.npcSO.npc_name);
         ChangeSpeachTextAlignment();
 
         ClearAndCloseAnswerPanel();
@@ -119,6 +119,10 @@ public class DialogPanelScript : MonoBehaviour
             current_speachNode = itemDeliverySpeachNode.next_speachNode;
             */
             return;
+        }
+        if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
+        {
+            EventBus.Raise(new QuestAcceptedEvent(questAcceptingSpeachNode.quest_title));
         }
 
         is_line_finished = true;
