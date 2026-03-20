@@ -2799,7 +2799,7 @@ RectTransform:
   m_Father: {fileID: 708820930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21178,7 +21178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &650510520
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23198,11 +23198,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.15
+      value: -3.8200002
       objectReference: {fileID: 0}
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: -16.22
       objectReference: {fileID: 0}
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.z
@@ -42159,6 +42159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c548ca48acac1348a2462a47db93701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogs:
+  - {fileID: 11400000, guid: 5021ac7e113779c448a9417d64716073, type: 2}
 --- !u!4 &1198607776
 Transform:
   m_ObjectHideFlags: 0
@@ -53180,9 +53182,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 758804198}
     m_Modifications:
     - target: {fileID: 500141277912921824, guid: 4388203b590a72d4db0ec82abae1b89a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 500141277912921824, guid: 4388203b590a72d4db0ec82abae1b89a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1478119458}
+      objectReference: {fileID: 1478119462}
+    - target: {fileID: 500141277912921824, guid: 4388203b590a72d4db0ec82abae1b89a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 500141277912921824, guid: 4388203b590a72d4db0ec82abae1b89a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ItemDeliveryPanelScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4754456393754809199, guid: 4388203b590a72d4db0ec82abae1b89a, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -56278,9 +56292,9 @@ RectTransform:
   m_Father: {fileID: 872845553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -37, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1662053094
 MonoBehaviour:
@@ -64726,11 +64740,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.17
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.14
+      value: -13.2
       objectReference: {fileID: 0}
     - target: {fileID: 899105306015724531, guid: 4b5f11a4f4c5c4043a231020324b2dde, type: 3}
       propertyPath: m_LocalPosition.z
@@ -74480,6 +74494,14 @@ PrefabInstance:
       propertyPath: icon_hasUnacceptedQuest
       value: 
       objectReference: {fileID: 461114649}
+    - target: {fileID: 4990254691092112540, guid: 6b5c3c847acef9740b46facaf64e7b69, type: 3}
+      propertyPath: list_of_dialogs_to_quests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990254691092112540, guid: 6b5c3c847acef9740b46facaf64e7b69, type: 3}
+      propertyPath: 'list_of_dialogs_to_quests.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 95ba264e3d1c3f84987e62d68c949c8f, type: 2}
     - target: {fileID: 8450240551158324448, guid: 6b5c3c847acef9740b46facaf64e7b69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.8

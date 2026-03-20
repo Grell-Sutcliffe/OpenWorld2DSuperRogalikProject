@@ -10,13 +10,13 @@ public class CharacterPanelScript : MonoBehaviour
     public class Element
     {
         public ElementType type;
-        public string name;
+        public string element_name;
         public Sprite sprite;
 
-        public Element (ElementType type, string name, Sprite sprite)
+        public Element (ElementType type, string element_name, Sprite sprite)
         {
             this.type = type;
-            this.name = name;
+            this.element_name = element_name;
             this.sprite = sprite;
         }
     }

@@ -279,7 +279,7 @@ public class MainController : MonoBehaviour
 
     public void OpenItemDeliveryPanel(List<CollectableItem> list)
     {
-        Debug.Log("MainController  :  Open DeliveryPanel");
+        //Debug.Log("MainController  :  Open DeliveryPanel");
         itemDeliveryPanelScript.OpenPanel(list);
     }
 
@@ -315,6 +315,7 @@ public class MainController : MonoBehaviour
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
         errorPanel.SetActive(true);
+        itemDeliveryPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 

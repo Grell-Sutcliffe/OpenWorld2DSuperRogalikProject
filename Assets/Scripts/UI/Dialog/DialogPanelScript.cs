@@ -54,6 +54,10 @@ public class DialogPanelScript : MonoBehaviour
         OpenDialogPanel();
         //ChangeDialogPanel(current_speachNode.speaker_name);
 
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
         coroutine = StartCoroutine(TypeLine());
     }
 
@@ -73,6 +77,8 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        //Debug.Log($"Dialog  :  TypeLine -- dialog = {current_dialog.title}, speach_node = {current_speachNode.speach}");
+
         ChangeDialogPanel(current_speachNode.npcSO.npc_name);
         ChangeSpeachTextAlignment();
 
@@ -103,6 +109,19 @@ public class DialogPanelScript : MonoBehaviour
 
     void FinishLine()
     {
+        //Debug.Log($"DialogPanel   :   line finished");
+
+        if (current_speachNode == null)
+        {
+            CloseDialogPanel();
+            return;
+        }
+
+        if (current_speachNode.is_finishing)
+        {
+            current_dialog.is_finished = true;
+        }
+
         iconNextLine.SetActive(true);
 
         if (current_speachNode is AnswerableSpeachNode _)
@@ -118,10 +137,12 @@ public class DialogPanelScript : MonoBehaviour
 
             current_speachNode = itemDeliverySpeachNode.next_speachNode;
             */
-            return;
+            //return;
+            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
         }
         if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
         {
+            // Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
             EventBus.Raise(new QuestAcceptedEvent(questAcceptingSpeachNode.quest_title));
         }
 
@@ -163,6 +184,11 @@ public class DialogPanelScript : MonoBehaviour
     {
         is_line_finished = true;
         current_speachNode = new_next_node;
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
         coroutine = StartCoroutine(TypeLine());
     }
 
@@ -170,14 +196,6 @@ public class DialogPanelScript : MonoBehaviour
     {
         if (!is_line_finished)
         {
-            if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
-            {
-                mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
-
-                current_speachNode = itemDeliverySpeachNode.next_speachNode;
-                return;
-            }
-
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
@@ -188,14 +206,28 @@ public class DialogPanelScript : MonoBehaviour
             return;
         }
 
+        /*
+        if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
+        {
+            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
+
+            current_speachNode = itemDeliverySpeachNode.next_speachNode;
+            return;
+        }
+        */
+
         if (current_speachNode != null)
         {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
             coroutine = StartCoroutine(TypeLine());
         }
         else
         {
-            //CloseDialogPanel();
-            FinishDialog();
+            CloseDialogPanel();
+            // FinishDialog();
             return;
         }
     }
@@ -262,6 +294,7 @@ public class DialogPanelScript : MonoBehaviour
         mainController.HidePlayerPanel();
     }
 
+    /*
     public void FinishDialog()
     {
         if (current_dialog.is_finished)
@@ -272,14 +305,28 @@ public class DialogPanelScript : MonoBehaviour
 
         CloseDialogPanel();
     }
+    */
 
     public void CloseDialogPanel()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        if (current_dialog.is_finished)
+        {
+            Debug.Log($"EventBus  ---  dialog finished = {current_dialog.title}");
+            EventBus.Raise(new DialogFinishedEvent(current_dialog.title));
+        }
+
         gameObject.SetActive(false);
-        mainController.TurnOnKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
+        mainController.TurnOnKeyboard();
         mainController.ShowPlayerPanel();
+
+        questsController.ShowNewTask();
     }
 }

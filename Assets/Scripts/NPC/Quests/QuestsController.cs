@@ -265,21 +265,45 @@ public class QuestsController : MonoBehaviour
         {
             Debug.Log($"EVENT  :  Завершили диалог {dialogFinishedEvent.dialog_title}");
             ShowNewTask();
+
+            List<string> list_of_quests_to_be_completed = new List<string>();
+
+            foreach (string quest_title in accepted_quests)
+            {
+                if (dict_quest_name_to_quest[quest_title].current_task is DialogTask dialogTask)
+                {
+                    if (dialogFinishedEvent.dialog_title == dialogTask.dialog_title)
+                    {
+                        dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+
+                        if (dict_quest_name_to_quest[quest_title].current_task == null)
+                        {
+                            list_of_quests_to_be_completed.Add(quest_title);
+                        }
+                    }
+                }
+            }
+
+            foreach (string quest_title in list_of_quests_to_be_completed)
+            {
+                CompleteQuest(quest_title);
+            }
         }
-        else if (e is QuestAcceptedEvent questAcceptedEvent)
+
+        if (e is QuestAcceptedEvent questAcceptedEvent)
         {
             Debug.Log($"EVENT  :  Приняли квест {questAcceptedEvent.quest_title}");
             AcceptQuest(questAcceptedEvent.quest_title);
         }
     }
 
-    public void FinishTask(string quest_title)
-    {
-
-    }
-
     public void AcceptQuest(string new_quest)
     {
+        if (accepted_quests.Contains(new_quest))
+        {
+            return;
+        }
+
         accepted_quests.Add(new_quest);
 
         temp_task = dict_quest_name_to_quest[new_quest].current_task.subtitle;
@@ -318,7 +342,7 @@ public class QuestsController : MonoBehaviour
         quest_panel_rect_transform.sizeDelta = new Vector2(quest_panel_rect_transform.sizeDelta.x, new_height);
     }
 
-    private void ShowNewTask()
+    public void ShowNewTask()
     {
         if (temp_task != "")
         {

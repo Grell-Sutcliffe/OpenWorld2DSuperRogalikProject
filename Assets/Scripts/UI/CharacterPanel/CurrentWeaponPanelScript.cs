@@ -112,7 +112,7 @@ public class CurrentWeaponPanelScript : MonoBehaviour
 
         weaponImage.sprite = weapon.sprite;
         rarity_TMP.text = weapon.stars.ToString();
-        element_TMP.text = characterPanelScript.dict_element_type_to_element[weapon.element_type].name;
+        element_TMP.text = characterPanelScript.dict_element_type_to_element[weapon.element_type].element_name;
         element_Image.sprite = characterPanelScript.dict_element_type_to_element[weapon.element_type].sprite;
         physical_attack_TMP.text = "+" + weapon.stats.physical_attack.ToString();
         elemental_attack_TMP.text = "+" + weapon.stats.elemental_attack.ToString();

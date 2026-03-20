@@ -8,6 +8,7 @@ public class NPCController : InteractionController
 {
     public NPCSO data;
 
+    protected QuestsController questsController;
     protected DialogController dialogController;
 
     public GameObject icon_thinking;
@@ -30,6 +31,7 @@ public class NPCController : InteractionController
     protected void Awake()
     {
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
+        questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 
         npc_name = data.npc_name;
     }
@@ -58,6 +60,18 @@ public class NPCController : InteractionController
 
     protected void StartDialog()
     {
+        foreach (string quest_title in questsController.accepted_quests)
+        {
+            if (questsController.dict_quest_name_to_quest[quest_title].current_task is DialogTask dialogTask)
+            {
+                if (dialogController.dict_dialog_title_to_dialog[dialogTask.dialog_title].dialog_starting_npc == this.npc_name)
+                {
+                    mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[dialogTask.dialog_title]);
+                    return;
+                }
+            }
+        }
+
         foreach (DialogSO dialogSO in list_of_dialogs_to_quests)
         {
             if (dialogController.dict_dialog_title_to_dialog[dialogSO.title].is_finished == false)

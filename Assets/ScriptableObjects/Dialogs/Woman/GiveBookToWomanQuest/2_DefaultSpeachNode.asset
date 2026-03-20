@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedf2ee02ddbbd44297c167b37d836f4, type: 3}
   m_Name: 2_DefaultSpeachNode
   m_EditorClassIdentifier: 
-  speaker_name: "\u0416\u0435\u043D\u0449\u0438\u043D\u0430"
+  npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
   speach: "\u041E, \u0441\u043F\u0430\u0441\u0438\u0431\u043A\u0438!"
   speach_type: 0
+  is_finishing: 1
   next_speachNode: {fileID: 0}

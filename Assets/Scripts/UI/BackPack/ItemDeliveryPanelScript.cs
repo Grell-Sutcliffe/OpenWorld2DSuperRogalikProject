@@ -6,6 +6,7 @@ public class ItemDeliveryPanelScript : MonoBehaviour
 {
     MainController mainController;
     BackPackController backpackController;
+    DialogPanelScript dialogPanelScript;
 
     public GameObject content_GO;
 
@@ -19,6 +20,7 @@ public class ItemDeliveryPanelScript : MonoBehaviour
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        dialogPanelScript = GameObject.Find("DialogPanel").GetComponent<DialogPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
     }
@@ -41,12 +43,19 @@ public class ItemDeliveryPanelScript : MonoBehaviour
 
     public void OpenPanel(List<CollectableItem> list)
     {
-        Debug.Log("DeliveryPanel  :  Open DeliveryPanel");
+        //Debug.Log("DeliveryPanel  :  Open DeliveryPanel");
 
         deliverable_items = list;
         gameObject.SetActive(true);
 
         UpdatePanel();
+    }
+
+    public void ClosePanel()
+    {
+        dialogPanelScript.CloseDialogPanel();
+
+        gameObject.SetActive(false);
     }
 
     public void UpdatePanel()

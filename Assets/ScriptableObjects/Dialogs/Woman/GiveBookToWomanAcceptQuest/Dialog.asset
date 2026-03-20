@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d575c7c8d034c4d9d8784421980b2b, type: 3}
   m_Name: Dialog
   m_EditorClassIdentifier: 
-  title: 
-  first_speachNode: {fileID: 0}
+  title: woman to book quest dialog
+  first_speachNode: {fileID: 11400000, guid: e778c7ebc68b79f4cbc35febb08d5da9, type: 2}
+  dialog_starting_npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}

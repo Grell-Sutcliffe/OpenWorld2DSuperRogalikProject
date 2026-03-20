@@ -89,10 +89,3 @@ public readonly struct ZoneEnteredEvent : IEvent
     }
 }
 */
-
-public readonly struct DialogueFinishedEvent : IEvent
-{
-    public readonly string dialog_name;
-
-    public DialogueFinishedEvent(string dialog_name) => this.dialog_name = dialog_name;
-}

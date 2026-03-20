@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb4cb92d5dcdde45afd7f4da1cb7a39, type: 3}
   m_Name: 1_ItemDeliverySpeachNode
   m_EditorClassIdentifier: 
-  speaker_name: "\u0416\u0435\u043D\u0449\u0438\u043D\u0430"
+  npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
   speach: "\u041F\u0440\u0438\u0432\u0435\u0442, \u043A\u0440\u0430\u0441\u0430\u0432\u0447\u0438\u043A!
-    \u0414\u0430\u0439 \u043A\u043D\u0438\u0433\u0443 \u043F\u0436 \u043F\u0436 
-    \u043F\u0436"
+    \u0414\u0430\u0439 \u043A\u043D\u0438\u0433\u0443 \u043F\u0436 \u043F\u0436 \u043F\u0436"
   speach_type: 0
+  is_finishing: 0
   next_speachNode: {fileID: 11400000, guid: 1c0b8866d25e23d4ba9d39516daaa439, type: 2}
   list_of_itemSOs:
   - {fileID: 11400000, guid: 04c0a5187a0fdc748bd14983e9c80f17, type: 2}
