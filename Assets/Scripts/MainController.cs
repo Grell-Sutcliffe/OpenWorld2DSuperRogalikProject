@@ -109,7 +109,7 @@ public class MainController : MonoBehaviour
 
     void SetGrandsonEugeneDialogScript()
     {
-        if (GrandsonEugene == null) GrandsonEugene = GameObject.Find("GrandsonEugine");
+        if (GrandsonEugene == null) GrandsonEugene = GameObject.Find("GrandsonEugene");
         if (GrandsonEugene != null) grandsonEugeneDialogScript = GrandsonEugene.GetComponent<GrandsonEugeneDialogScript>();
     }
 
