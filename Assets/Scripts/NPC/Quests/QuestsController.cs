@@ -199,7 +199,7 @@ public class QuestsController : MonoBehaviour
 
     private int accepted_quests_amout = 0;
 
-    public int item_height = 250;
+    public int item_height = 350;
     public int space_between_items = 25;
 
     public int none_quest_index = -1;
