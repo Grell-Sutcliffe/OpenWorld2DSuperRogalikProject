@@ -23,13 +23,34 @@ public class PiewAttack : MonoBehaviour
             }
         }
     }
+    public void SearchPref()
+    {
+        owner = GetComponentInParent<IAttacker>();
+        Creature creature = GetComponentInParent<Creature>();
+        if (creature != null)
+        {
+            Weapon weapon = creature.GetWeapon();
+
+            WeaponRange weaponRange = weapon as WeaponRange;
+
+            if (weaponRange != null)
+            {
+                prefab = weaponRange.projectilePrefab;
+            }
+            else
+            {
+                Debug.LogError("меч не посох");
+            }
+        }
+    }
     public void Shoot()
     {
+        SearchPref();// ?
         Vector2 dir = ShootPoint.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         GameObject arrowGO = Instantiate(
-            projectilePref,         // тут нада от оружия брать
+            prefab,         // тут нада от оружия брать
             ShootPoint.transform.position,
             Quaternion.Euler(0, 0, angle)
         );

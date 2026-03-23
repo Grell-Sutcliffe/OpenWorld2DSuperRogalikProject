@@ -104,13 +104,14 @@ public class Player : Creature, IDamagable, IAttacker
         {
             Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
             if (temp_item is Weapon temp_weapon)
-            {
+            {   
+
                 weapons.Add(temp_weapon);
                 //mainController.SetCharacterWeapon(temp_weapon);
             }
         }
         weapon = weapons[0];
-
+        Debug.Log(weapon.data);
         controls = new PlayerInputControls();
 
         controls.PlayerKeyboardInput.SwitchWeapon_1.performed += _ => SwitchWeapon(0);
@@ -167,9 +168,10 @@ public class Player : Creature, IDamagable, IAttacker
 
         }
         GivePlayerNewWeapon(weapons[index]);
+        Debug.Log($"Gived {weapons[index].data}");
     }
 
-    public void SetNewWeaponOnIndex(int index, Weapon new_weapon)
+    public void SetNewWeaponOnIndex(int index, Weapon new_weapon) //bebe
     {
         weapons[index] = new_weapon;
 
@@ -177,8 +179,15 @@ public class Player : Creature, IDamagable, IAttacker
     }
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
-    {
-        weapon = new_weapon;
+    {   if (new_weapon.data.attackType == AttackType.Range)
+        {
+            weapon = new_weapon;
+        }
+        else
+        {
+            weapon = new_weapon;
+        }
+        
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
         current_stats = new Stats(player_full_stats, weapon.stats);
@@ -478,7 +487,7 @@ public class Player : Creature, IDamagable, IAttacker
         DealDamage();
         isHit = true;
         canHit = false;
-        Debug.Log(pivot);
+        //Debug.Log(pivot);
         pivot.gameObject.SetActive(true);
     }
 

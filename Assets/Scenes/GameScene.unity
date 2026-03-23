@@ -7227,6 +7227,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9e4ca55eef3e1b43aa3e2ff2acaeb3b, type: 2}
   - {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
   - {fileID: 11400000, guid: 15a471a695f9aaa478b2cf82316c515e, type: 2}
+  list_weapon_so_range:
+  - {fileID: 11400000, guid: 1a3361c6090526a41a2efff48745f832, type: 2}
+  - {fileID: 11400000, guid: 0b0f86c302338774685fbf9dcd655785, type: 2}
   list_of_use_types: 
 --- !u!95 &259582251
 Animator:
@@ -15949,7 +15952,7 @@ PrefabInstance:
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: pivotFirst
       value: 
-      objectReference: {fileID: 464614089}
+      objectReference: {fileID: 641411068}
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: crit_chance
       value: 0.1
@@ -15957,7 +15960,7 @@ PrefabInstance:
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: pivotSecond
       value: 
-      objectReference: {fileID: 641411068}
+      objectReference: {fileID: 464614089}
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: weaponSOs.Array.size
       value: 2
@@ -15973,7 +15976,7 @@ PrefabInstance:
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: 'weaponSOs.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 15a471a695f9aaa478b2cf82316c515e, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a3361c6090526a41a2efff48745f832, type: 2}
     - target: {fileID: 1867279333676066356, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16031,7 +16034,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4867599397194091, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
+    - {fileID: 1697782868516196045, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8543522866138125519, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       insertIndex: -1
