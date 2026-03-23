@@ -84,6 +84,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
         GameObject mainControllerGO = GameObject.Find("MainController");
@@ -153,20 +154,22 @@ public class Player : Creature, IDamagable, IAttacker
         controls.Disable();
     }
 
-    void SwitchWeapon(int index)
+    public void SwitchWeapon(int index)
     {
         canHit = true;
         Debug.Log("Switch to weapon " + index);
         if (index == 0){
             pivot = pivotFirst;
             pivotSecond.gameObject.SetActive(false);
+
         }
         else
         {
             pivot = pivotSecond;
             pivotFirst.gameObject.SetActive(false);
-
         }
+        SpriteRenderer sr = pivot.GetComponentInChildren<SpriteRenderer>();
+        weapon_sprite_renderer = sr;
         GivePlayerNewWeapon(weapons[index]);
         Debug.Log($"Gived {weapons[index].data}");
     }
@@ -179,15 +182,9 @@ public class Player : Creature, IDamagable, IAttacker
     }
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
-    {   if (new_weapon.data.attackType == AttackType.Range)
-        {
-            weapon = new_weapon;
-        }
-        else
-        {
-            weapon = new_weapon;
-        }
-        
+    {
+        weapon = new_weapon;
+
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
         current_stats = new Stats(player_full_stats, weapon.stats);
@@ -378,6 +375,7 @@ public class Player : Creature, IDamagable, IAttacker
         {
             overMenu = false;
         }
+        //Debug.Log(mainController.is_keyboard_active);
         if (mainController.is_keyboard_active)
         {
             float x = Input.GetAxisRaw("Horizontal");

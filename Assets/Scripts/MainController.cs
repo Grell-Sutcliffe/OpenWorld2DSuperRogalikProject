@@ -10,7 +10,7 @@ using static DialogPanelScript;
 public class MainController : MonoBehaviour
 {
     QuestsController questsController;
-    Player playerScript;
+    public Player playerScript;
 
     public InventoryStalker inventoryStalker;
     public HealthBarScript healthBarScript;
@@ -63,6 +63,7 @@ public class MainController : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
