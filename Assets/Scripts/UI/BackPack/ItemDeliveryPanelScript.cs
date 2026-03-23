@@ -32,6 +32,7 @@ public class ItemDeliveryPanelScript : MonoBehaviour
         if (was_deliver_success)
         {
             // успешно отдали
+            // dialogPanelScript.NextLine(false);
             gameObject.SetActive(false);
         }
         else

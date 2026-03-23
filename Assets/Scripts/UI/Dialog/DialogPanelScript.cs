@@ -130,16 +130,7 @@ public class DialogPanelScript : MonoBehaviour
             ChangeAnswerPanelHeight();
             return;
         }
-        if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
-        {
-            /*
-            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
-
-            current_speachNode = itemDeliverySpeachNode.next_speachNode;
-            */
-            //return;
-            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
-        }
+        
         if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
         {
             // Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
@@ -147,11 +138,6 @@ public class DialogPanelScript : MonoBehaviour
         }
 
         is_line_finished = true;
-
-        if (current_speachNode is DefaultSpeachNode current_default_speachNode)
-        {
-            current_speachNode = current_default_speachNode.next_speachNode;
-        }
     }
 
     private void OnEnable()
@@ -170,8 +156,7 @@ public class DialogPanelScript : MonoBehaviour
         {
             if (itemDeliveredEvent.is_success)
             {
-                is_line_finished = true;
-                NextLine();
+                NextLine(false);
             }
             else
             {
@@ -194,6 +179,17 @@ public class DialogPanelScript : MonoBehaviour
 
     public void NextLine()
     {
+        NextLine(true);
+    }
+
+    public void NextLine(bool need_nextNode)
+    {
+        if (current_speachNode == null)
+        {
+            CloseDialogPanel();
+            return;
+        }
+
         if (!is_line_finished)
         {
             if (coroutine != null)
@@ -206,15 +202,17 @@ public class DialogPanelScript : MonoBehaviour
             return;
         }
 
-        /*
         if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
         {
             mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
-
             current_speachNode = itemDeliverySpeachNode.next_speachNode;
             return;
         }
-        */
+
+        if (need_nextNode && current_speachNode is DefaultSpeachNode current_default_speachNode)
+        {
+            current_speachNode = current_default_speachNode.next_speachNode;
+        }
 
         if (current_speachNode != null)
         {
