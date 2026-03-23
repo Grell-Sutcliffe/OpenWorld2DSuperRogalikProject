@@ -93,11 +93,16 @@ public class NPCController : InteractionController
     {
         while (true)
         {
-            yield return new WaitForSeconds(60);
+            System.Random rand = new System.Random();
+            int new_delay = rand.Next(45, 60);
+
+            yield return new WaitForSeconds(new_delay);
 
             icon_thinking.SetActive(true);
 
-            yield return new WaitForSeconds(5);
+            new_delay = rand.Next(5, 7);
+
+            yield return new WaitForSeconds(new_delay);
 
             icon_thinking.SetActive(false);
         }

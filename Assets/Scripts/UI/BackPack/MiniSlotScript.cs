@@ -26,7 +26,7 @@ public class MiniSlotScript : MonoBehaviour
     void Start()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         //inventoryStalker = GameObject.Find("Inventory").GetComponent<InventoryStalker>();
         inventoryStalker = gameObject.GetComponentInParent<InventoryStalker>();
 
@@ -74,7 +74,7 @@ public class MiniSlotScript : MonoBehaviour
 
     public void ItemOnClick()
     {
-        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        if (backpackController == null) backpackController = GameObject.Find("BackpackController")?.GetComponent<BackPackController>();
         if (!is_clickable) return;
 
         if (slot_item is UsableItem usable_item)

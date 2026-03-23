@@ -23,6 +23,16 @@ public class CollectableItem
     public string item_name;
     public int amount;
 
+    CollectableItemSO data;
+
+    public CollectableItem(CollectableItemSO data)
+    {
+        this.data = data;
+
+        this.item_name= data.itemSO.item_name;
+        this.amount = data.amount;
+    }
+
     public CollectableItem(string item_name, int amount)
     {
         this.item_name = item_name;
@@ -66,11 +76,15 @@ public class Task
         //rewards = new List<Reward>();
     }
 
-    public Task NewTask(TaskSO temp_taskSO)
+    public Task NewTask(TaskSO taskSO)
     {
-        if (temp_taskSO is DialogTaskSO temp_dialogTaskSO)
+        if (taskSO is DialogTaskSO dialogTaskSO)
         {
-            return new DialogTask(temp_dialogTaskSO);
+            return new DialogTask(dialogTaskSO);
+        }
+        if (taskSO is CollectItemTaskSO collectItemTask)
+        {
+            return new CollectItemTask(collectItemTask);
         }
 
         return null;
@@ -117,6 +131,20 @@ public class DialogTask : Task
 public class CollectItemTask : Task
 {
     public List<CollectableItem> collectable_items;
+
+    CollectItemTaskSO data;
+
+    public CollectItemTask(CollectItemTaskSO data) : base(data.subtitle, data.description, data.finish_function_name, data.next_taskSO)
+    {
+        this.collectable_items = new List<CollectableItem>();
+
+        foreach (CollectableItemSO collectableItemSO in data.collectacleItemSOs)
+        {
+            collectable_items.Add(new CollectableItem(collectableItemSO));
+        }
+
+        this.data = data;
+    }
 }
 
 public class EnemyKillTask : Task
@@ -239,12 +267,12 @@ public class QuestsController : MonoBehaviour
 
     private void HandleEvent(IEvent e)
     {
+        List<string> list_of_quests_to_be_completed = new List<string>();
+
         if (e is DialogFinishedEvent dialogFinishedEvent)
         {
             Debug.Log($"EVENT  :  Завершили диалог {dialogFinishedEvent.dialog_title}");
             ShowNewTask();
-
-            List<string> list_of_quests_to_be_completed = new List<string>();
 
             foreach (string quest_title in accepted_quests)
             {
@@ -261,10 +289,35 @@ public class QuestsController : MonoBehaviour
                     }
                 }
             }
+        }
 
-            foreach (string quest_title in list_of_quests_to_be_completed)
+        if (e is ItemCollectedEvent itemCollectedEvent)
+        {
+            foreach (string quest_title in accepted_quests)
             {
-                CompleteQuest(quest_title);
+                if (dict_quest_name_to_quest[quest_title].current_task is CollectItemTask collectItemTask)
+                {
+                    bool is_task_finished = true;
+
+                    foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
+                    {
+                        if (backpackController.GetItemCounterByName(collectableItem.item_name) < collectableItem.amount)
+                        {
+                            is_task_finished = false;
+                            break;
+                        }
+                    }
+
+                    if (is_task_finished)
+                    {
+                        NextTask(quest_title);
+
+                        if (dict_quest_name_to_quest[quest_title].current_task == null)
+                        {
+                            list_of_quests_to_be_completed.Add(quest_title);
+                        }
+                    }
+                }
             }
         }
 
@@ -272,6 +325,11 @@ public class QuestsController : MonoBehaviour
         {
             Debug.Log($"EVENT  :  Приняли квест {questAcceptedEvent.quest_title}");
             AcceptQuest(questAcceptedEvent.quest_title);
+        }
+
+        foreach (string quest_title in list_of_quests_to_be_completed)
+        {
+            CompleteQuest(quest_title);
         }
     }
 
@@ -296,6 +354,25 @@ public class QuestsController : MonoBehaviour
         if (dict_quest_name_to_quest[quest_title].current_task != null)
         {
             ShowNewTask(dict_quest_name_to_quest[quest_title].current_task.subtitle);
+        }
+
+        if (dict_quest_name_to_quest[quest_title].current_task is CollectItemTask collectItemTask)
+        {
+            bool is_task_finished = true;
+
+            foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
+            {
+                if (backpackController.GetItemCounterByName(collectableItem.item_name) < collectableItem.amount)
+                {
+                    is_task_finished = false;
+                    break;
+                }
+            }
+
+            if (is_task_finished)
+            {
+                NextTask(quest_title);
+            }
         }
     }
 

@@ -88,6 +88,8 @@ public class MainController : MonoBehaviour
         rewardPanelScript = rewardPanel.GetComponent<RewardPanelScript>();
 
         Make_dict_npc_name_to_npcController();
+
+        SetIconThinkingNPC();
     }
 
     void Start()
@@ -117,6 +119,14 @@ public class MainController : MonoBehaviour
             {
                 dict_npc_name_to_npcController[npcController.data.npc_name] = npcController;
             }
+        }
+    }
+
+    void SetIconThinkingNPC()
+    {
+        foreach (string npc_name in dict_npc_name_to_npcController.Keys)
+        {
+            dict_npc_name_to_npcController[npc_name].IconThinkingSetActiveTrue();
         }
     }
 
