@@ -33,7 +33,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     void Start()
     {
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -141,7 +141,7 @@ public class BackpackIconScript : MonoBehaviour, IPointerDownHandler, IPointerUp
         id = new_id;
 
         if (backpackController == null)
-            backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+            backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         sprite = backpackController.dict_id_to_item[id].sprite;
         count = backpackController.dict_id_to_item[id].amount;

@@ -536,7 +536,6 @@ public class BackPackController : MonoBehaviour
 
     public void OpenBackpackPanel()
     {
-        gameObject.SetActive(true);
         ClearShowerPanel();
         UpdateBackpack();
     }

@@ -19,7 +19,7 @@ public class ItemDeliveryPanelScript : MonoBehaviour
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         dialogPanelScript = GameObject.Find("DialogPanel").GetComponent<DialogPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();

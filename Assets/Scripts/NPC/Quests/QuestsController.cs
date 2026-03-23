@@ -6,6 +6,16 @@ public class Reward
 {
     public string item_name;
     public int amount;
+
+    RewardSO data;
+
+    public Reward(RewardSO data)
+    {
+        this.data = data;
+
+        this.item_name = data.itemSO.item_name;
+        this.amount = data.amount;
+    }
 }
 
 public class CollectableItem
@@ -27,7 +37,7 @@ public class Task
 
     public string finish_function_name;
 
-    public List<Reward> rewards;
+    //public List<Reward> rewards;
 
     public Task next_task;
 
@@ -43,7 +53,7 @@ public class Task
         this.finish_function_name = finish_function_name;
         this.next_task = next_task;
 
-        rewards = new List<Reward>();
+        //rewards = new List<Reward>();
     }
 
     public Task(string subtitle, string description = "", string finish_function_name = "", TaskSO next_taskSO = null)
@@ -53,7 +63,7 @@ public class Task
         this.finish_function_name = finish_function_name;
         this.next_task = new Task().NewTask(next_taskSO);
 
-        rewards = new List<Reward>();
+        //rewards = new List<Reward>();
     }
 
     public Task NewTask(TaskSO temp_taskSO)
@@ -65,6 +75,17 @@ public class Task
 
         return null;
     }
+
+    /*
+    public void CreateListOfRewards(List<RewardSO> rewardSOs)
+    {
+        this.rewards = new List<Reward>();
+
+        foreach (RewardSO rewardSO in rewardSOs)
+        {
+            rewards.Add(new Reward(rewardSO));
+        }
+    }*/
 
     public virtual Task FinishTaskAndGetNextTask()
     {
@@ -87,61 +108,20 @@ public class DialogTask : Task
     {
         this.dialog_title = data.dialogSO.title;
 
+        //this.CreateListOfRewards(data.rewardSOs);
+
         this.data = data;
     }
-
-    public DialogTask(Dialog dialog, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-    {
-        //this.dialog = dialog;
-        this.dialog_title = dialog.title;
-    }
-
-    /*
-    public override bool CheckIfTaskIsCompleted()
-    {
-        throw new System.NotImplementedException();
-        //return dialog.current_speeck == null;
-    }
-    */
 }
 
 public class CollectItemTask : Task
 {
     public List<CollectableItem> collectable_items;
-
-    public CollectItemTask(List<CollectableItem> collectable_items, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-    {
-        this.collectable_items = collectable_items;
-    }
-
-    /*
-    public override bool CheckIfTaskIsCompleted()
-    {
-
-        throw new System.NotImplementedException();
-        foreach (CollectableItem item in collectable_items)
-        {
-            if ()
-        }
-        return true;
-    }
-    */
 }
+
 public class EnemyKillTask : Task
 {
-    public List<GameObject> enemy_GOs;
-
-    public EnemyKillTask(List<GameObject> enemy_GOs, string subtitle, string description = "", string finish_function_name = "", Task next_task = null) : base(subtitle, description, finish_function_name, next_task)
-    {
-        this.enemy_GOs = enemy_GOs;
-    }
-
-    /*
-    public override bool CheckIfTaskIsCompleted()
-    {
-        throw new System.NotImplementedException();
-    }
-    */
+    // public List<GameObject> enemy_GOs;
 }
 
 public class Quest
@@ -157,14 +137,6 @@ public class Quest
 
     QuestSO data;
 
-    /*
-    public Quest(string title, Task current_task)
-    {
-        this.title = title;
-        this.current_task = current_task;
-    }
-    */
-
     public Quest(QuestSO data)
     {
         this.data = data;
@@ -179,6 +151,13 @@ public class Quest
         //foreach ()
 
         this.quest_accepting_NPC_name = data.quest_accepting_NPCSO.npc_name;
+
+        this.rewards = new List<Reward>();
+
+        foreach (RewardSO rewardSO in data.rewardSOs)
+        {
+            this.rewards.Add(new Reward(rewardSO));
+        }
     }
 }
 
@@ -197,9 +176,7 @@ public class QuestsController : MonoBehaviour
 
     TaskShowerScript taskShowerScript;
 
-    private int accepted_quests_amout = 0;
-
-    public int item_height = 350;
+    public int item_height = 500;
     public int space_between_items = 25;
 
     public int none_quest_index = -1;
@@ -213,11 +190,12 @@ public class QuestsController : MonoBehaviour
 
     public List<QuestSO> quests = new List<QuestSO>();
     public List<string> accepted_quests = new List<string>();
+    public List<string> finished_quests = new List<string>();
 
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
     }
 
@@ -274,7 +252,7 @@ public class QuestsController : MonoBehaviour
                 {
                     if (dialogFinishedEvent.dialog_title == dialogTask.dialog_title)
                     {
-                        dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+                        NextTask(quest_title);
 
                         if (dict_quest_name_to_quest[quest_title].current_task == null)
                         {
@@ -310,35 +288,65 @@ public class QuestsController : MonoBehaviour
 
         UpdateNPCsQuestsIcons();
     }
+    
+    public void NextTask(string quest_title)
+    {
+        dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+
+        if (dict_quest_name_to_quest[quest_title].current_task != null)
+        {
+            ShowNewTask(dict_quest_name_to_quest[quest_title].current_task.subtitle);
+        }
+    }
 
     public void CompleteQuest(string new_quest)
     {
         accepted_quests.Remove(new_quest);
+        finished_quests.Add(new_quest);
 
         UpdateNPCsQuestsIcons();
     }
 
+    public void ClaimRewardsOnQuest(string quest_title)
+    {
+        foreach (Reward reward in dict_quest_name_to_quest[quest_title].rewards)
+        {
+            backpackController.IncreaceItemByName(reward.item_name, reward.amount);
+        }
+
+        finished_quests.Remove(quest_title);
+    }
+
     public void UpdateQestPanel()
     {
-        accepted_quests_amout = accepted_quests.Count;
-
         foreach (Transform child in questPanelContent.transform)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (string quest in accepted_quests)
+        int new_height = 0;
+        quest_panel_rect_transform.sizeDelta = new Vector2(quest_panel_rect_transform.sizeDelta.x, new_height);
+
+        SpawnQuestsOfList(finished_quests);
+        SpawnQuestsOfList(accepted_quests);
+    }
+
+    public void SpawnQuestsOfList(List<string> list_of_quests)
+    {
+        int quests_amout = list_of_quests.Count;
+
+        foreach (string quest in list_of_quests)
         {
             GameObject new_prefab = Instantiate(questInfoPrefab, questPanelContent.transform);
             QuestInfoScript questInfoScript = new_prefab.GetComponent<QuestInfoScript>();
 
             Quest temp_quest = dict_quest_name_to_quest[quest];
-            string current_quest_description = temp_quest.current_task.subtitle;
 
-            questInfoScript.SetNewQuestTitle(quest, current_quest_description);
+            questInfoScript.SetQuest(quest);
         }
 
-        int new_height = accepted_quests_amout * item_height + (accepted_quests_amout + 1) * space_between_items;
+        int delta_height = quests_amout * item_height + (quests_amout + 1) * space_between_items;
+        float new_height = quest_panel_rect_transform.sizeDelta.y + delta_height;
         quest_panel_rect_transform.sizeDelta = new Vector2(quest_panel_rect_transform.sizeDelta.x, new_height);
     }
 

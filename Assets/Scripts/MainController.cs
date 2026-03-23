@@ -73,9 +73,9 @@ public class MainController : MonoBehaviour
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
-        backpackController = backpackPanel.GetComponent<BackPackController>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
         characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
@@ -412,6 +412,7 @@ public class MainController : MonoBehaviour
 
     public void OpenBackpackPanel()
     {
+        backpackPanel.SetActive(true);
         backpackController.OpenBackpackPanel();
         TurnOffKeyboard();
     }

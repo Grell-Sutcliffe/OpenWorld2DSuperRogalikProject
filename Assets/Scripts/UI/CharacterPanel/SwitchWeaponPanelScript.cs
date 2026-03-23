@@ -28,7 +28,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
         //mainController = GameObject.Find("MainController").GetComponent<MainController>();
         //Debug.LogError($"GameObject.Find(\"BackpackPanel\") == null: {GameObject.Find("BackpackPanel") == null}");
 
-        backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
     }
 
     void Start()

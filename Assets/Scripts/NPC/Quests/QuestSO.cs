@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest/Quest")]
@@ -11,5 +11,5 @@ public class QuestSO : ScriptableObject
 
     public NPCSO quest_accepting_NPCSO;
 
-    // public List<RewardSO> rewardSOs;
+    public List<RewardSO> rewardSOs = new List<RewardSO>();
 }
