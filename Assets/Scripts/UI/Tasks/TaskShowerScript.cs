@@ -18,10 +18,10 @@ public class TaskShowerScript : MonoBehaviour
 
     public void ShowNewTask(string task_name)
     {
-        Invoke("ShowTaskShower", 1f);
+        Invoke("ShowTaskShower", 0.1f);
         taskShowerText.text = task_name;
 
-        Invoke("HideTaskShower", 10f);
+        Invoke("HideTaskShower", 5f);
     }
 
     public void ShowTaskShower()

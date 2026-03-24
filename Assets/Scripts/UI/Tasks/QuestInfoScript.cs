@@ -3,32 +3,77 @@ using UnityEngine;
 
 public class QuestInfoScript : MonoBehaviour
 {
+    QuestsController questsController;
+
     public TextMeshProUGUI quest_title_TMP;
+    public TextMeshProUGUI quest_subtitle_TMP;
     public TextMeshProUGUI quest_description_TMP;
 
-    public string quest_title;
-    public string quest_description;
+    public GameObject rewardsGO;
+    public GameObject questInfoGO;
+    public GameObject claimRewardsButton;
+
+    public GameObject rewardPrefab;
+
+    Quest quest;
 
     void Start()
     {
+        questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+    }
+
+    public void SetQuest(string quest_title)
+    {
+        if (questsController == null) questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+
+        quest = questsController.dict_quest_name_to_quest[quest_title];
+
+        quest_title_TMP.text = quest.title;
+
+        if (quest.current_task != null)
+        {
+            quest_subtitle_TMP.text = quest.current_task.subtitle;
+            quest_description_TMP.text = quest.current_task.description;
+        }
+
+        UpdateQuestIcon();
+        SpawnRewards();
+    }
+
+    void UpdateQuestIcon()
+    {
+        if (quest.current_task == null)
+        {
+            questInfoGO.SetActive(false);
+            claimRewardsButton.SetActive(true);
+        }
+        else
+        {
+            questInfoGO.SetActive(true);
+            claimRewardsButton.SetActive(false);
+        }
+    }
+
+    void SpawnRewards()
+    {
+        foreach (Transform child in rewardsGO.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Reward reward in quest.rewards)
+        {
+            GameObject new_prefab = Instantiate(rewardPrefab, rewardsGO.transform);
+            RewardIconScript new_prefab_script = new_prefab.GetComponent<RewardIconScript>();
+
+            new_prefab_script.SetReward(reward);
+        }
+    }
+
+    public void ClaimRewards()
+    {
+        questsController.ClaimRewardsOnQuest(quest.title);
         
-    }
-
-    public void SetNewQuestTitle(string new_title)
-    {
-        quest_title = new_title;
-        quest_description = "";
-
-        quest_title_TMP.text = quest_title;
-        quest_description_TMP.text = quest_description;
-    }
-
-    public void SetNewQuestTitle(string new_title, string new_description)
-    {
-        quest_title = new_title;
-        quest_description = new_description;
-
-        quest_title_TMP.text = quest_title;
-        quest_description_TMP.text = quest_description;
+        claimRewardsButton.SetActive(false);
     }
 }

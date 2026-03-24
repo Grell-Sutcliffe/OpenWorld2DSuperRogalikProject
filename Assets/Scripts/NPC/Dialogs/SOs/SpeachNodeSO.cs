@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SpeachNodeSO : ScriptableObject
 {
-    public string speaker_name;
+    public NPCSO npcSO;
     public string speach;
     public SpeachType speach_type;
+
+    public bool is_finishing;
 }

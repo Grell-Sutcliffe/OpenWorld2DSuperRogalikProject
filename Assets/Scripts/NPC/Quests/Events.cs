@@ -44,6 +44,38 @@ public readonly struct ItemUsedEvent : IEvent
     }
 }
 
+public readonly struct ItemDeliveredEvent : IEvent
+{
+    public readonly List<CollectableItem> collectableItems;
+    public readonly bool is_success;
+
+    public ItemDeliveredEvent(List<CollectableItem> collectableItems, bool is_success)
+    {
+        this.collectableItems = collectableItems;
+        this.is_success = is_success;
+    }
+}
+
+public readonly struct DialogFinishedEvent : IEvent
+{
+    public readonly string dialog_title;
+
+    public DialogFinishedEvent(string dialog_title)
+    {
+        this.dialog_title = dialog_title;
+    }
+}
+
+public readonly struct QuestAcceptedEvent : IEvent
+{
+    public readonly string quest_title;
+
+    public QuestAcceptedEvent(string quest_title)
+    {
+        this.quest_title = quest_title;
+    }
+}
+
 /*
 public readonly struct ZoneEnteredEvent : IEvent
 {
@@ -57,10 +89,3 @@ public readonly struct ZoneEnteredEvent : IEvent
     }
 }
 */
-
-public readonly struct DialogueFinishedEvent : IEvent
-{
-    public readonly string dialog_name;
-
-    public DialogueFinishedEvent(string dialog_name) => this.dialog_name = dialog_name;
-}

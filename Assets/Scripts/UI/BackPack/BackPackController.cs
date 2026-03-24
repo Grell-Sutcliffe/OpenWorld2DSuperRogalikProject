@@ -13,6 +13,7 @@ public class BackPackController : MonoBehaviour
 
     public ShopPanelScript shopPanelScript;
     public CharacterPanelScript characterPanelScript;
+    public ItemDeliveryPanelScript itemDeliveryPanelScript;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
@@ -191,6 +192,31 @@ public class BackPackController : MonoBehaviour
         }
     }
 
+    public bool DeliverItems(List<CollectableItem> items)
+    {
+        foreach (CollectableItem item in items)
+        {
+            if (!CheckPresenceOfItemOfAmountByItemName(item))
+            {
+                EventBus.Raise(new ItemDeliveredEvent(items, false));
+                return false;
+            }
+        }
+        foreach (CollectableItem item in items)
+        {
+            DecreaceItemByName(item);
+        }
+
+        EventBus.Raise(new ItemDeliveredEvent(items, true));
+
+        return true;
+    }
+
+    public bool CheckPresenceOfItemOfAmountByItemName(CollectableItem collectableItem)
+    {
+        return CheckPresenceOfItemOfAmountByItemName(collectableItem.item_name, collectableItem.amount);
+    }
+
     public bool CheckPresenceOfItemOfAmountByItemName(string item_name, int amount)
     {
         int item_id = dict_item_name_to_id[item_name];
@@ -200,6 +226,11 @@ public class BackPackController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool DecreaceItemByName(CollectableItem item)
+    {
+        return DecreaceItemByName(item.item_name, item.amount);
     }
 
     public bool DecreaceItemByName(string item_name, int number = 1)
@@ -505,7 +536,6 @@ public class BackPackController : MonoBehaviour
 
     public void OpenBackpackPanel()
     {
-        gameObject.SetActive(true);
         ClearShowerPanel();
         UpdateBackpack();
     }

@@ -28,7 +28,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     void Start()
     {
-        backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         //inventoryStalker = GameObject.Find("Inventory").GetComponent<InventoryStalker>();
         inventoryStalker = gameObject.GetComponentInParent<InventoryStalker>();
 
@@ -69,7 +69,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
         isDragging = false;
         longPressHandled = false;
 
-        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        if (backpackController == null) backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         if (slot_item == null) return;
 
         if (backpackController.dict_id_to_item.ContainsKey(slot_item.id))
@@ -163,7 +163,7 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     private void ItemOnClick()
     {
-        if (backpackController == null) backpackController = GameObject.Find("BackpackPanel")?.GetComponent<BackPackController>();
+        if (backpackController == null) backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         if (slot_item == null) return;
 
         backpackController.current_selected_backpackIcon = backpackIcon;

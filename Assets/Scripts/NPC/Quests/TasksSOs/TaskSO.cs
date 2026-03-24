@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static QuestsController;
 
+[CreateAssetMenu(fileName = "Task", menuName = "Quest/Task")]
 public class TaskSO : ScriptableObject
 {
     public string subtitle;
@@ -9,9 +9,9 @@ public class TaskSO : ScriptableObject
 
     public string finish_function_name;
 
-    public List<Reward> rewards;
+    //public List<RewardSO> rewardSOs = new List<RewardSO>();
 
-    public TaskSO next_task;
+    public TaskSO next_taskSO;
 }
 
 /*

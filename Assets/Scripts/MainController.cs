@@ -27,6 +27,8 @@ public class MainController : MonoBehaviour
     public GameObject enterDangeonPanel;
     public GameObject multiplayerPanel;
     public GameObject rewardPanel;
+    public GameObject itemDeliveryPanel;
+    public GameObject errorPanel;
 
     //public GameObject taskShower;
 
@@ -43,6 +45,8 @@ public class MainController : MonoBehaviour
     CharacterPanelScript characterPanelScript;
     RewardPanelScript rewardPanelScript;
     ButtlePanelScript buttlePanelScript;
+    ErrorPanelScript errorPanelScript;
+    ItemDeliveryPanelScript itemDeliveryPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -61,23 +65,31 @@ public class MainController : MonoBehaviour
 
     public Dictionary<UseType, int> dict_useType_to_seconds_left;
 
+    public Dictionary<string, NPCController> dict_npc_name_to_npcController;
+
     private void Awake()
     {
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
-        backpackController = backpackPanel.GetComponent<BackPackController>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
         shopPanelScript = shopPanel.GetComponent<ShopPanelScript>();
         characterPanelScript = characterPanel.GetComponent<CharacterPanelScript>();
         buttlePanelScript = buttlePanel.GetComponent<ButtlePanelScript>();
+        errorPanelScript = errorPanel.GetComponent<ErrorPanelScript>();
+        itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
         rewardPanelScript = rewardPanel.GetComponent<RewardPanelScript>();
+
+        Make_dict_npc_name_to_npcController();
+
+        SetIconThinkingNPC();
     }
 
     void Start()
@@ -91,6 +103,31 @@ public class MainController : MonoBehaviour
         StuffSetActiveFalse();
 
         ClearDictionary_useType_to_seconds_left();
+    }
+
+    void Make_dict_npc_name_to_npcController()
+    {
+        dict_npc_name_to_npcController = new Dictionary<string, NPCController>();
+
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+
+        foreach (GameObject npc in npcs)
+        {
+            NPCController npcController = npc.GetComponent<NPCController>();
+
+            if (npcController != null)
+            {
+                dict_npc_name_to_npcController[npcController.data.npc_name] = npcController;
+            }
+        }
+    }
+
+    void SetIconThinkingNPC()
+    {
+        foreach (string npc_name in dict_npc_name_to_npcController.Keys)
+        {
+            dict_npc_name_to_npcController[npc_name].IconThinkingSetActiveTrue();
+        }
     }
 
     public void StartCountdownCoroutine(UseType useType)
@@ -245,6 +282,17 @@ public class MainController : MonoBehaviour
         scrollInteractionScript.ApplyAllColors();
     }
 
+    public void OpenErrorPanel(ErrorType errorType)
+    {
+        errorPanelScript.ShowError(errorType);
+    }
+
+    public void OpenItemDeliveryPanel(List<CollectableItem> list)
+    {
+        //Debug.Log("MainController  :  Open DeliveryPanel");
+        itemDeliveryPanelScript.OpenPanel(list);
+    }
+
     public void UpdateHealthBar(int amount)
     {
         healthBarScript.UpdateHealthBar(amount);
@@ -276,6 +324,8 @@ public class MainController : MonoBehaviour
         wishPanel.SetActive(true);
         switchWeaponPanel.SetActive(true);
         enterDangeonPanel.SetActive(true);
+        errorPanel.SetActive(true);
+        itemDeliveryPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -290,6 +340,8 @@ public class MainController : MonoBehaviour
         switchWeaponPanel.SetActive(false);
         enterDangeonPanel.SetActive(false);
         multiplayerPanel.SetActive(false);
+        errorPanel.SetActive(false);
+        itemDeliveryPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
     }
@@ -370,6 +422,7 @@ public class MainController : MonoBehaviour
 
     public void OpenBackpackPanel()
     {
+        backpackPanel.SetActive(true);
         backpackController.OpenBackpackPanel();
         TurnOffKeyboard();
     }

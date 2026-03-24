@@ -6,4 +6,6 @@ public class AnswerSO : ScriptableObject
     public string answer_text;
     // public AnswerType type_of_answer_text;
     public SpeachNodeSO next_speachNode;
+
+    public int delta_disposition_to_player = 0;
 }

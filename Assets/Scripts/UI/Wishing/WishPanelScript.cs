@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WishPanelScript : MonoBehaviour
 {
     MainController mainController;
-    public BackPackController backpackController;
+    BackPackController backpackController;
     public CharacterPanelScript characterPanelScript;
 
     public TextMeshProUGUI pink_wish_counter_text;
@@ -104,6 +104,7 @@ public class WishPanelScript : MonoBehaviour
     void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         /*
         pink_stars_animator = starsGO.GetComponent<Animator>();
@@ -226,7 +227,12 @@ public class WishPanelScript : MonoBehaviour
 
     bool UseWish(int number)
     {
-        return mainController.UseWish(is_pink, number);
+        bool success = mainController.UseWish(is_pink, number);
+        if (!success)
+        {
+            mainController.OpenErrorPanel(ErrorType.NotEnoughMaterials);
+        }
+        return success;
     }
 
     void ComputeRewards(int number)
