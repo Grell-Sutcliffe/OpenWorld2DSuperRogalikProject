@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using static ShopPanelScript;
 
-public class Player : MonoBehaviour, IDamagable, IAttacker
+public class Player : Creature, IDamagable, IAttacker
 {
     MainController mainController;
     BackPackController backPackController;
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     public Damage currentDmg => new Damage(
         RoundToMax(current_hit_stats.physical_dmg),
         RoundToMax(current_hit_stats.elemental_dmg),
-        current_weapon.element_type,
+        weapon.element_type,
         current_hit_stats.is_physical_crit,
         current_hit_stats.is_elemental_crit
     );
@@ -66,12 +66,14 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
     [SerializeField] GameObject target;
 
     //public WeaponSO weaponSO;
-    public Weapon current_weapon;
+    //public Weapon weapon;
 
     public List<WeaponSO> weaponSOs;
     public List<Weapon> weapons;
 
     public GameObject pivot;
+    public GameObject pivotSecond;
+    public GameObject pivotFirst;
 
     public float upgrade_percent = 1.05f;
     public Cost upgrate_cost;
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
         GameObject mainControllerGO = GameObject.Find("MainController");
@@ -102,13 +105,14 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         {
             Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
             if (temp_item is Weapon temp_weapon)
-            {
+            {   
+
                 weapons.Add(temp_weapon);
                 //mainController.SetCharacterWeapon(temp_weapon);
             }
         }
-        current_weapon = weapons[0];
-
+        weapon = weapons[0];
+        Debug.Log(weapon.data);
         controls = new PlayerInputControls();
 
         controls.PlayerKeyboardInput.SwitchWeapon_1.performed += _ => SwitchWeapon(0);
@@ -137,7 +141,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             }
         }
 
-        GivePlayerNewWeapon(current_weapon);
+        GivePlayerNewWeapon(weapon);
     }
 
     private void OnEnable()
@@ -150,13 +154,27 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         controls.Disable();
     }
 
-    void SwitchWeapon(int index)
+    public void SwitchWeapon(int index)
     {
+        canHit = true;
         Debug.Log("Switch to weapon " + index);
+        if (index == 0){
+            pivot = pivotFirst;
+            pivotSecond.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            pivot = pivotSecond;
+            pivotFirst.gameObject.SetActive(false);
+        }
+        SpriteRenderer sr = pivot.GetComponentInChildren<SpriteRenderer>();
+        weapon_sprite_renderer = sr;
         GivePlayerNewWeapon(weapons[index]);
+        Debug.Log($"Gived {weapons[index].data}");
     }
 
-    public void SetNewWeaponOnIndex(int index, Weapon new_weapon)
+    public void SetNewWeaponOnIndex(int index, Weapon new_weapon) //bebe
     {
         weapons[index] = new_weapon;
 
@@ -165,10 +183,11 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     public void GivePlayerNewWeapon(Weapon new_weapon)
     {
-        current_weapon = new_weapon;
+        weapon = new_weapon;
+
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
-        current_stats = new Stats(player_full_stats, current_weapon.stats);
+        current_stats = new Stats(player_full_stats, weapon.stats);
     }
 
     public void DealDamage()
@@ -183,7 +202,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
 
     void UpdateStats()
     {
-        current_stats = new Stats(player_full_stats, current_weapon.stats);
+        current_stats = new Stats(player_full_stats, weapon.stats);
         current_hit_stats = new Stats(current_stats, boost_stats);
 
         current_hit_stats.physical_dmg = current_hit_stats.physical_attack;
@@ -236,7 +255,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         player_full_stats.crit_dmg *= upgrade_percent;
         //this.defence *= upgrade_percent;
 
-        current_stats = new Stats(player_full_stats, current_weapon.stats);
+        current_stats = new Stats(player_full_stats, weapon.stats);
 
         this.current_level++;
     }
@@ -356,6 +375,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         {
             overMenu = false;
         }
+        //Debug.Log(mainController.is_keyboard_active);
         if (mainController.is_keyboard_active)
         {
             float x = Input.GetAxisRaw("Horizontal");
@@ -391,7 +411,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
             anim.SetFloat("dir", direction);  // вынести в отделную функцию
             anim.SetBool("isHit", isHit);
         }
-
+        
         if (canHit && Input.GetMouseButtonDown(0) && !overMenu) // ЛКМ
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -465,6 +485,7 @@ public class Player : MonoBehaviour, IDamagable, IAttacker
         DealDamage();
         isHit = true;
         canHit = false;
+        //Debug.Log(pivot);
         pivot.gameObject.SetActive(true);
     }
 

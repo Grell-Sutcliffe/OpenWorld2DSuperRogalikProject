@@ -15,9 +15,13 @@ public class Weapon : Item
 
     public float cooldown;
 
-    WeaponSO data;
+    public WeaponSO data;
 
     public float upgrade_percent = 1.05f;
+    public Weapon()
+    {
+        
+    }
 
     public Weapon(WeaponSO data)
     {

@@ -270,11 +270,13 @@ public class CharacterPanelScript : MonoBehaviour
 
     public void SwitchWeaponTo1()
     {
+        playerScript.SwitchWeapon(0);
         SwitchWeaponTo(0);
     }
 
     public void SwitchWeaponTo2()
     {
+        playerScript.SwitchWeapon(1);
         SwitchWeaponTo(1);
     }
 

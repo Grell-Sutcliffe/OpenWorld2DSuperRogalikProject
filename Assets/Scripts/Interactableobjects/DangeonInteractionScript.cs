@@ -5,7 +5,9 @@ public class DangeonInteractionScript : InteractionController
 {
     public void EnterDangeon()
     {
-        SceneManager.LoadScene(2);
+        mainController.TurnOnKeyboard();
+        SceneManager.LoadScene(1);
+        mainController.playerScript.transform.position = Vector3.zero;
     }
 
     protected override void Interact()

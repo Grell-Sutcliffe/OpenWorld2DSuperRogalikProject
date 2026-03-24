@@ -68,7 +68,8 @@ public class BackPackController : MonoBehaviour
 
     [Header("Weapons")]
     public WeaponSO[] list_weapon_so;
-
+    [Header("WeaponsRange")]
+    public WeaponSO[] list_weapon_so_range;
     // public List<int> player_items_id;
 
     public Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
@@ -187,6 +188,14 @@ public class BackPackController : MonoBehaviour
         {
             ind++;
             Item temp_weapon = new Weapon(weapon_so, ind);
+            dict_id_to_item[ind] = temp_weapon;
+            dict_item_name_to_id[temp_weapon.item_name] = ind;
+        }
+
+        foreach (WeaponSO weapon_so_range in list_weapon_so_range)
+        {
+            ind++;
+            Item temp_weapon = new WeaponRange(weapon_so_range, ind, weapon_so_range.projectilePrefab, 1, 1);
             dict_id_to_item[ind] = temp_weapon;
             dict_item_name_to_id[temp_weapon.item_name] = ind;
         }
