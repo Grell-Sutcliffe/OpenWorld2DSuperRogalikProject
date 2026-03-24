@@ -8786,7 +8786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10942,7 +10942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15858,7 +15858,7 @@ PrefabInstance:
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: 'weaponSOs.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 15a471a695f9aaa478b2cf82316c515e, type: 2}
+      objectReference: {fileID: 11400000, guid: 1a3361c6090526a41a2efff48745f832, type: 2}
     - target: {fileID: 1867279333676066356, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -22305,6 +22305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c3f8bdadb24254fa8ca8e21f2dd1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScript: {fileID: 0}
   inventoryStalker: {fileID: 1530169916}
   healthBarScript: {fileID: 1841205355}
   playerPanel: {fileID: 1248590485}
@@ -47995,7 +47996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0009464649}
+  m_AnchoredPosition: {x: 0, y: 0.00022574556}
   m_SizeDelta: {x: 0, y: 1300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1412665540
@@ -48464,6 +48465,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9e4ca55eef3e1b43aa3e2ff2acaeb3b, type: 2}
   - {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
   - {fileID: 11400000, guid: 15a471a695f9aaa478b2cf82316c515e, type: 2}
+  list_weapon_so_range:
+  - {fileID: 11400000, guid: 1a3361c6090526a41a2efff48745f832, type: 2}
+  - {fileID: 11400000, guid: 0b0f86c302338774685fbf9dcd655785, type: 2}
   list_of_use_types: 
 --- !u!4 &1416291885
 Transform:
@@ -62784,6 +62788,10 @@ PrefabInstance:
       propertyPath: goOnActivate
       value: 
       objectReference: {fileID: 298971531}
+    - target: {fileID: 8916785324542595453, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8931568017627969195, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.645
@@ -66744,7 +66752,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 87446613}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999195
+  m_Size: 0.9996483
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
