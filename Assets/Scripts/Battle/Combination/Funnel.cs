@@ -60,7 +60,7 @@ public class Funnel : MonoBehaviour
 
         if (damageable != null && !damagedThisCycle.Contains(damageable))
         {
-            if (damage == null) damage = new Damage(1);
+            if (damage == null) damage = new Damage(1, 0, ElementType.Physical);
 
             damageable.TakeDamage(damage);
             damagedThisCycle.Add(damageable);
