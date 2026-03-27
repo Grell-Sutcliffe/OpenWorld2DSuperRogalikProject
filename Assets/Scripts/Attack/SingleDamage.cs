@@ -12,12 +12,11 @@ public class SingleDamage : MonoBehaviour
 
     void OnEnable()
     {
+        ColliderDisnable();
         var anim = GetComponent<Animator>();
         if (owner is Player p)
-        {   var i = 0;
-            if (p.spriteRender.flipX == false) i = 1;
-            else i = 2;
-            anim.SetInteger("attackType", i);
+        {
+            anim.SetInteger("aType", Random.Range(0, 2));
 
         }
     }
@@ -72,6 +71,28 @@ public class SingleDamage : MonoBehaviour
         }
 
     }
+
+    public void ColliderEnable()
+    {
+        Collider2D col = transform.GetComponentInChildren<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+
+        }
+
+    }
+    public void ColliderDisnable()
+    {
+        Collider2D col = transform.GetComponentInChildren<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+
+        }
+
+    }
+
     public void ChangeHit()
     {
         hitIds.Clear();

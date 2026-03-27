@@ -142,6 +142,7 @@ public class Player : Creature, IDamagable, IAttacker
         }
 
         GivePlayerNewWeapon(weapon);
+        SwitchWeapon(0);
     }
 
     private void OnEnable()
@@ -319,12 +320,13 @@ public class Player : Creature, IDamagable, IAttacker
     {
         yield return new WaitForSeconds(time);
         canHit = true;
+        Debug.Log("NOW HE CAN HIT");
     }
     public void StartDelay()
     {
 
         isHit = false;
-
+        Debug.Log($"DELAY {attackCooldown}");
         StartCoroutine(Delay(attackCooldown));
     }
 

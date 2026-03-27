@@ -7,6 +7,15 @@ public class PiewAttack : MonoBehaviour
     [SerializeField] GameObject projectilePref;
     GameObject prefab;
     IAttacker owner;
+    void OnEnable()
+    {
+        var anim = GetComponent<Animator>();
+        if (owner is Player p)
+        {
+            anim.SetInteger("aType", Random.Range(0, 2));
+
+        }
+    }
     private void Awake()
     {
         owner = GetComponentInParent<IAttacker>();

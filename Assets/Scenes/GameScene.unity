@@ -15962,6 +15962,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 464614089}
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
+      propertyPath: attackCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: weaponSOs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -22343,6 +22347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c3f8bdadb24254fa8ca8e21f2dd1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScript: {fileID: 0}
   inventoryStalker: {fileID: 1530169916}
   healthBarScript: {fileID: 1841205355}
   playerPanel: {fileID: 1248590485}
@@ -45226,6 +45231,10 @@ PrefabInstance:
     - target: {fileID: 6761071403749392761, guid: 158779135735ea243bc016b374cfeeaf, type: 3}
       propertyPath: m_Name
       value: MusicManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827790337113154098, guid: 158779135735ea243bc016b374cfeeaf, type: 3}
+      propertyPath: tracksPhantom.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
