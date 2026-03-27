@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static DialogController;
 
@@ -29,7 +30,7 @@ public class CollectableItem
     {
         this.data = data;
 
-        this.item_name= data.itemSO.item_name;
+        this.item_name = data.itemSO.item_name;
         this.amount = data.amount;
     }
 
@@ -138,7 +139,7 @@ public class CollectItemTask : Task
     {
         this.collectable_items = new List<CollectableItem>();
 
-        foreach (CollectableItemSO collectableItemSO in data.collectacleItemSOs)
+        foreach (CollectableItemSO collectableItemSO in data.collectableItemSOs)
         {
             collectable_items.Add(new CollectableItem(collectableItemSO));
         }
@@ -147,9 +148,51 @@ public class CollectItemTask : Task
     }
 }
 
-public class EnemyKillTask : Task
+public class UseItemTask : Task
 {
-    // public List<GameObject> enemy_GOs;
+    public List<CollectableItem> usaable_items;
+
+    UseItemTaskSO data;
+
+    public UseItemTask(UseItemTaskSO data) : base(data.subtitle, data.description, data.finish_function_name, data.next_taskSO)
+    {
+        this.usaable_items = new List<CollectableItem>();
+
+        foreach (CollectableItemSO collectableItemSO in data.usableItemSOs)
+        {
+            usaable_items.Add(new CollectableItem(collectableItemSO));
+        }
+
+        this.data = data;
+    }
+}
+
+public class KillEnemyTask : Task
+{
+    string enemySpawn_title;
+
+    KillEnemyTaskSO data;
+
+    public KillEnemyTask(KillEnemyTaskSO data) : base(data.subtitle, data.description, data.finish_function_name, data.next_taskSO)
+    {
+        this.data = data;
+
+        this.enemySpawn_title = data.enemySpawnSO.title;
+    }
+}
+
+public class FindLocationTask : Task
+{
+    string location_title;
+
+    FindLocationTaskSO data;
+
+    public FindLocationTask(FindLocationTaskSO data) : base(data.subtitle, data.description, data.finish_function_name, data.next_taskSO)
+    {
+        this.data = data;
+
+        this.location_title = data.locationSO.title;
+    }
 }
 
 public class Quest
@@ -198,6 +241,10 @@ public class QuestsController : MonoBehaviour
     public GameObject taskShower;
     public GameObject questPanelContent;
 
+    public GameObject trackTaskShower;
+    public TextMeshProUGUI trackTaskTitleTMP;
+    public TextMeshProUGUI trackTaskDescriptionTMP;
+
     RectTransform quest_panel_rect_transform;
 
     public GameObject questInfoPrefab;
@@ -208,9 +255,9 @@ public class QuestsController : MonoBehaviour
     public int space_between_items = 25;
 
     public int none_quest_index = -1;
-    public string none_quest_name = "no_name";
+    public const string none_quest_name = "no_name";
 
-    private string temp_task = "";
+    private string temp_task = none_quest_name;
 
     public Dictionary<string, Quest> dict_quest_name_to_quest = new Dictionary<string, Quest>();
     //public Dictionary<string, List<string>> dict_npc_to_list_of_quests_names = new Dictionary<string, List<string>>();
@@ -219,6 +266,10 @@ public class QuestsController : MonoBehaviour
     public List<QuestSO> quests = new List<QuestSO>();
     public List<string> accepted_quests = new List<string>();
     public List<string> finished_quests = new List<string>();
+
+    public List<QuestInfoScript> questInfoScripts = new List<QuestInfoScript>();
+
+    public string tracking_quest_title = none_quest_name;
 
     private void Awake()
     {
@@ -255,6 +306,45 @@ public class QuestsController : MonoBehaviour
         }
     }
 
+    void SetAllQuestInfoScriptsDontTrackTask()
+    {
+        trackTaskShower.SetActive(false);
+
+        foreach (QuestInfoScript questInfoScript in questInfoScripts)
+        {
+            questInfoScript.Track(false);
+        }
+    }
+
+    public void SetTrackTask(string quest_title = none_quest_name)
+    {
+        SetAllQuestInfoScriptsDontTrackTask();
+
+        tracking_quest_title = quest_title;
+
+        if (tracking_quest_title == none_quest_name) return;
+
+        if (!dict_quest_name_to_quest.ContainsKey(quest_title)) return;
+
+        if (dict_quest_name_to_quest[quest_title].current_task != null)
+        {
+            trackTaskShower.SetActive(true);
+
+            trackTaskTitleTMP.text = dict_quest_name_to_quest[quest_title].current_task.subtitle;
+            trackTaskDescriptionTMP.text = dict_quest_name_to_quest[quest_title].current_task.description;
+
+            if (dict_quest_name_to_quest[quest_title].current_task is CollectItemTask collectItemTask)
+            {
+                trackTaskDescriptionTMP.text += "\n";
+
+                foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
+                {
+                    trackTaskDescriptionTMP.text += collectableItem.item_name + " " + backpackController.GetItemCounterByName(collectableItem.item_name).ToString() + "/" + collectableItem.amount.ToString() + "\n";
+                }
+            }
+        }
+    }
+
     private void OnEnable()
     {
         EventBus.OnEvent += HandleEvent;
@@ -267,6 +357,8 @@ public class QuestsController : MonoBehaviour
 
     private void HandleEvent(IEvent e)
     {
+        UpdateTrackTask(tracking_quest_title);
+
         List<string> list_of_quests_to_be_completed = new List<string>();
 
         if (e is DialogFinishedEvent dialogFinishedEvent)
@@ -346,7 +438,7 @@ public class QuestsController : MonoBehaviour
 
         UpdateNPCsQuestsIcons();
     }
-    
+
     public void NextTask(string quest_title)
     {
         dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
@@ -373,6 +465,16 @@ public class QuestsController : MonoBehaviour
             {
                 NextTask(quest_title);
             }
+        }
+
+        UpdateTrackTask(quest_title);
+    }
+
+    public void UpdateTrackTask(string quest_title)
+    {
+        if (quest_title == tracking_quest_title)
+        {
+            SetTrackTask(quest_title);
         }
     }
 
@@ -410,6 +512,8 @@ public class QuestsController : MonoBehaviour
 
     public void SpawnQuestsOfList(List<string> list_of_quests)
     {
+        questInfoScripts = new List<QuestInfoScript>();
+
         int quests_amout = list_of_quests.Count;
 
         foreach (string quest in list_of_quests)
@@ -417,9 +521,20 @@ public class QuestsController : MonoBehaviour
             GameObject new_prefab = Instantiate(questInfoPrefab, questPanelContent.transform);
             QuestInfoScript questInfoScript = new_prefab.GetComponent<QuestInfoScript>();
 
-            Quest temp_quest = dict_quest_name_to_quest[quest];
+            questInfoScripts.Add(questInfoScript);
+
+            //Quest temp_quest = dict_quest_name_to_quest[quest];
 
             questInfoScript.SetQuest(quest);
+
+            if (quest == tracking_quest_title)
+            {
+                questInfoScript.Track(true);
+            }
+            else
+            {
+                questInfoScript.Track(false);
+            }
         }
 
         int delta_height = quests_amout * item_height + (quests_amout + 1) * space_between_items;
@@ -443,7 +558,8 @@ public class QuestsController : MonoBehaviour
 
     void MakeQuests()
     {
-        foreach (QuestSO questSO in quests) {
+        foreach (QuestSO questSO in quests)
+        {
             dict_quest_name_to_quest[questSO.title] = new Quest(questSO);
         }
     }

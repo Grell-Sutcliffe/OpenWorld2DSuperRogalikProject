@@ -2,6 +2,30 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Location
+{
+    public string title;
+}
+
+public class EnemySpawn : Location
+{
+    List<EnemyOfAmountSO> list_enemy_of_amount;
+
+    EnemySpawnSO data;
+
+    public EnemySpawn(EnemySpawnSO enemySpawnSO)
+    {
+        this.data = enemySpawnSO;
+
+        list_enemy_of_amount = new List<EnemyOfAmountSO>();
+
+        foreach (EnemyOfAmountSO enemyOfAmountSO in enemySpawnSO.enemyOfAmountSOs)
+        {
+            list_enemy_of_amount.Add(enemyOfAmountSO);
+        }
+    }
+}
+
 public class MapController : MonoBehaviour
 {
     MainController mainController;

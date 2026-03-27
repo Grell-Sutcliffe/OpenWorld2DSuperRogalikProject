@@ -13,6 +13,9 @@ public class QuestInfoScript : MonoBehaviour
     public GameObject questInfoGO;
     public GameObject claimRewardsButton;
 
+    public GameObject trackButton;
+    public GameObject dontTrackButton;
+
     public GameObject rewardPrefab;
 
     Quest quest;
@@ -20,6 +23,23 @@ public class QuestInfoScript : MonoBehaviour
     void Start()
     {
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+    }
+
+    public void DontTrackButton()
+    {
+        questsController.SetTrackTask();
+    }
+
+    public void TrackButton()
+    {
+        questsController.SetTrackTask(quest.title);
+        Track(true);
+    }
+
+    public void Track(bool need_to_track)
+    {
+        trackButton.SetActive(!need_to_track);
+        dontTrackButton.SetActive(need_to_track);
     }
 
     public void SetQuest(string quest_title)

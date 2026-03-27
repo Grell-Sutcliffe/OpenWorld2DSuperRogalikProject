@@ -34,6 +34,18 @@ public readonly struct ItemCollectedEvent : IEvent
     }
 }
 
+public readonly struct LocationEnteredEvent : IEvent
+{
+    public readonly string location_title;
+    public readonly string creature_name;
+
+    public LocationEnteredEvent(string location_title, string creature_name)
+    {
+        this.location_title = location_title;
+        this.creature_name = creature_name;
+    }
+}
+
 public readonly struct ItemUsedEvent : IEvent
 {
     public readonly int item_id;
