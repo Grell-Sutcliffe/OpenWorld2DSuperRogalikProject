@@ -44,7 +44,7 @@ public class MusicManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        source = GetComponent<AudioSource>();
+        //source = GetComponent<AudioSource>();
         Instance = this;
         DontDestroyOnLoad(gameObject);
         //Debug.Log(gameObject.name);
