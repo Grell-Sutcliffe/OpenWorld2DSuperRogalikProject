@@ -112,6 +112,13 @@ public class Task
     }
 }
 
+/*
+public class EventTask : Task
+{
+    public 
+}
+*/
+
 public class DialogTask : Task
 {
     //public Dialog dialog;

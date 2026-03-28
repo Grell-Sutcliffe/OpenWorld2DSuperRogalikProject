@@ -10,6 +10,8 @@ using static DialogPanelScript;
 public class MainController : MonoBehaviour
 {
     QuestsController questsController;
+    AchievementController achievementController;
+
     public Player playerScript;
 
     public InventoryStalker inventoryStalker;
@@ -75,6 +77,7 @@ public class MainController : MonoBehaviour
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+        achievementController = GameObject.Find("AchievementController").GetComponent<AchievementController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
@@ -332,6 +335,7 @@ public class MainController : MonoBehaviour
         enterDangeonPanel.SetActive(true);
         errorPanel.SetActive(true);
         itemDeliveryPanel.SetActive(true);
+        achievementPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -348,6 +352,7 @@ public class MainController : MonoBehaviour
         multiplayerPanel.SetActive(false);
         errorPanel.SetActive(false);
         itemDeliveryPanel.SetActive(false);
+        achievementPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
     }
@@ -451,9 +456,9 @@ public class MainController : MonoBehaviour
         TurnOnKeyboard();
     }
 
-    public void OpenAcievementPanel()
+    public void OpenAchievementPanel()
     {
-        achievementPanelScript.OpenPanel();
+        achievementController.OpenAchievementPanel();
         TurnOffKeyboard();
     }
 
