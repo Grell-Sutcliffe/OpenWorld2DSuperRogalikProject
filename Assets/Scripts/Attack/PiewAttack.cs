@@ -4,9 +4,17 @@ public class PiewAttack : MonoBehaviour
 {
     //нужен ли риджитбоди...
     [SerializeField] GameObject ShootPoint;
-    [SerializeField] GameObject projectilePref;
     GameObject prefab;
     IAttacker owner;
+    void OnEnable()
+    {
+        var anim = GetComponent<Animator>();
+        if (owner is Player p)
+        {
+            anim.SetInteger("aType", Random.Range(0, 2));
+
+        }
+    }
     private void Awake()
     {
         owner = GetComponentInParent<IAttacker>();
@@ -56,6 +64,7 @@ public class PiewAttack : MonoBehaviour
         );
         var arrow = arrowGO.GetComponent<Projectiles>();
         arrow.SetDir(dir);
+        arrow.transform.Rotate(0, 0, arrow.OffsetRad);
         arrow.dmg = owner.currentDmg;
     }
     public void ChangeHit()

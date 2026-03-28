@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
@@ -6,8 +7,12 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
+    [SerializeField] private AudioSource musicSource;
+    int currentMusicIndex = 0;
+    [SerializeField] private List<AudioClip> tracksPhantom = new();
     [SerializeField] private AudioSource source;
     [SerializeField] private List<AudioClip> tracks = new();
+    private Coroutine musicCoroutine;
     /*
      * 0 - poof (0) 
      * 1 - playerdmg
@@ -17,6 +22,21 @@ public class MusicManager : MonoBehaviour
      * 
      * 
      */
+    public void PlayPhantomMusicByIndex(int index)
+    {
+        if (index < 0 || index >= tracks.Count)
+        {
+            Debug.LogWarning($"Music phantom index {index} out of range");
+            return;
+        }
+        currentMusicIndex = index;
+
+        if (musicCoroutine != null)
+            StopCoroutine(musicCoroutine);
+
+        musicCoroutine = StartCoroutine(MusicPlaylistRoutine());
+        
+    }
     private void Awake()
     {
         if (Instance != null)
@@ -24,11 +44,29 @@ public class MusicManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        source = GetComponent<AudioSource>();
+        //source = GetComponent<AudioSource>();
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        //Debug.Log(gameObject.name);
     }
+    private IEnumerator MusicPlaylistRoutine()
+    {
+        while (true)
+        {
+            AudioClip clip = tracksPhantom[currentMusicIndex];
 
+            musicSource.clip = clip;
+            musicSource.loop = false;
+            musicSource.Play();
+
+            yield return new WaitForSeconds(clip.length);
+
+            currentMusicIndex++;
+
+            if (currentMusicIndex >= tracksPhantom.Count)
+                currentMusicIndex = 0;
+        }
+    }
     public void PlayByIndex(int index, bool isLoop = false)
     {
         if (index < 0 || index >= tracks.Count)

@@ -9,6 +9,7 @@ public class Projectiles : MonoBehaviour
 
     //Effect
     [SerializeField] float speed;
+    public float OffsetRad;
     [SerializeField] Vector3 dir;
     public Damage dmg;
     Rigidbody2D rb;
@@ -18,6 +19,7 @@ public class Projectiles : MonoBehaviour
         //col = GetComponent<Collider2D>();
         Destroy(gameObject, lifeLong);
         rb = GetComponent<Rigidbody2D>();
+        
     }
     public void SetDir(Vector3 newDir)
     {

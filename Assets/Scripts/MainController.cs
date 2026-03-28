@@ -107,6 +107,8 @@ public class MainController : MonoBehaviour
         StuffSetActiveFalse();
 
         ClearDictionary_useType_to_seconds_left();
+
+        MusicManager.Instance.PlayPhantomMusicByIndex(0);
     }
 
     void Make_dict_npc_name_to_npcController()
