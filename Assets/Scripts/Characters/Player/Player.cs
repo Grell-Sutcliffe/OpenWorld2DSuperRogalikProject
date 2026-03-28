@@ -320,13 +320,13 @@ public class Player : Creature, IDamagable, IAttacker
     {
         yield return new WaitForSeconds(time);
         canHit = true;
-        Debug.Log("NOW HE CAN HIT");
+        //Debug.Log("NOW HE CAN HIT");
     }
     public void StartDelay()
     {
 
         isHit = false;
-        Debug.Log($"DELAY {attackCooldown}");
+        //Debug.Log($"DELAY {attackCooldown}");
         StartCoroutine(Delay(attackCooldown));
     }
 
