@@ -22,6 +22,7 @@ public class MainController : MonoBehaviour
     public GameObject shopPanel;
     public GameObject characterPanel;
     public GameObject switchWeaponPanel;
+    public GameObject achievementPanel;
     public GameObject backpackPanel;
     public GameObject buttlePanel;
     public GameObject enterDangeonPanel;
@@ -47,6 +48,7 @@ public class MainController : MonoBehaviour
     ButtlePanelScript buttlePanelScript;
     ErrorPanelScript errorPanelScript;
     ItemDeliveryPanelScript itemDeliveryPanelScript;
+    AchievementPanelScript achievementPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -83,6 +85,7 @@ public class MainController : MonoBehaviour
         buttlePanelScript = buttlePanel.GetComponent<ButtlePanelScript>();
         errorPanelScript = errorPanel.GetComponent<ErrorPanelScript>();
         itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
+        achievementPanelScript = achievementPanel.GetComponent<AchievementPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -443,6 +446,18 @@ public class MainController : MonoBehaviour
     public void CloseShopPanel()
     {
         shopPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenAcievementPanel()
+    {
+        achievementPanelScript.OpenPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseAchievementPanel()
+    {
+        achievementPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
