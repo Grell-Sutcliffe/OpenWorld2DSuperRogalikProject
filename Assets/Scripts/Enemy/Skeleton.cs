@@ -15,7 +15,7 @@ public class Skeleton : EnemyRange
 
     protected override void Start()
     {
-        offset = -45;
+        offset = 45f;
         canStrafe = true;
         base.Start();
 

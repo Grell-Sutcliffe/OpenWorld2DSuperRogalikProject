@@ -75,19 +75,21 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         bool shouldFaceRight = dirX > 0f;
         if (shouldFaceRight == facingRight) return;
         if (isHitting) return;
+
         facingRight = shouldFaceRight;
         sr.flipX = !facingRight;
         Flip();
     }
+
     void Flip()
     {
-        offset += 180;
-        offset %= 360;
-        pivot.transform.localScale = new Vector3(-pivot.transform.localScale.x, pivot.transform.localScale.y, pivot.transform.localScale.z);
-        pivot.transform.localPosition = new Vector3(-pivot.transform.localPosition.x, pivot.transform.localPosition.y, pivot.transform.localPosition.z);
-
+        pivot.transform.localPosition = new Vector3(
+            -pivot.transform.localPosition.x,
+            pivot.transform.localPosition.y,
+            pivot.transform.localPosition.z
+        );
     }
-    
+
     public void FaceTarget(Transform target)
     {
         float dirX = target.position.x - transform.position.x;
@@ -144,6 +146,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     protected virtual void Die()
     {
         LoggerName($"{name} dead");
+
         Destroy(gameObject);
     }
     public void DieInAnimation()

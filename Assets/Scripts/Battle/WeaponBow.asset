@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: WeaponBow
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  nameW: Bow
+  weapon_name: 
   description: Bow
   stars: 0
   range: 0
   cooldown: 2
-  damage: 5
-  element: 0
+  physical_attack: 2
+  elemental_attack: 2
+  element_type: 0
+  elemental_mastery: 0
+  crit_chance: 20
+  crit_dmg: 0
   max_level: 0
   current_level: 0
   projectilePrefab: {fileID: 5003701598820385441, guid: e618d641869c177459f624e674e5503f, type: 3}
   attackType: 0
+  weaponType: 0
