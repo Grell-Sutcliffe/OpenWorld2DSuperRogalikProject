@@ -88,16 +88,12 @@ public readonly struct QuestAcceptedEvent : IEvent
     }
 }
 
-/*
-public readonly struct ZoneEnteredEvent : IEvent
+public readonly struct QuestCompletedEvent : IEvent
 {
-    public readonly string zoneId;
-    public readonly int actorInstanceId;
+    public readonly string quest_title;
 
-    public ZoneEnteredEvent(string zoneId, int actorInstanceId)
+    public QuestCompletedEvent(string quest_title)
     {
-        this.zoneId = zoneId;
-        this.actorInstanceId = actorInstanceId;
+        this.quest_title = quest_title;
     }
 }
-*/

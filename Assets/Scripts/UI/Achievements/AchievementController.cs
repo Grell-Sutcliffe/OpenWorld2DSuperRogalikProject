@@ -8,9 +8,20 @@ public enum AchievementType
     NPC = 2,
     Map = 3,
     Enemy = 4,
-    Weapon = 5,
+    Wish = 5,
     Upgrade = 6,
     Inventory = 7,
+}
+
+public class AchievementTask
+{
+    public bool is_completed;
+}
+
+public class QuestAchievementTask : AchievementTask
+{
+    public int current_completed_quests_amount;
+    public int max_completed_quests_amount;
 }
 
 public class Achievement
@@ -86,7 +97,7 @@ public class AchievementController : MonoBehaviour
         achievementTypes.Add(AchievementType.NPC);
         achievementTypes.Add(AchievementType.Map);
         achievementTypes.Add(AchievementType.Enemy);
-        achievementTypes.Add(AchievementType.Weapon);
+        achievementTypes.Add(AchievementType.Wish);
         achievementTypes.Add(AchievementType.Upgrade);
         achievementTypes.Add(AchievementType.Inventory);
     }
