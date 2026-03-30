@@ -377,6 +377,7 @@ public class BackPackController : MonoBehaviour
         }
 
         inventory_stalker.UpdateSlots();
+        UpdateShowerPanel(current_selected_id);
     }
 
     public void UseItem(UsableItem usable_item)

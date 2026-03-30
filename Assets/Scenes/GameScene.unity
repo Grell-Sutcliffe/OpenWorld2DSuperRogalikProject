@@ -9139,7 +9139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &287496177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17281,7 +17281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f1e5b34788dbc44a0db63f8c8f169b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backpackController: {fileID: 0}
   gold_amount_TMP: {fileID: 1425479129}
   primogem_amount_TMP: {fileID: 633630539}
   pink_wish_amount_TMP: {fileID: 2006629169}
@@ -35552,7 +35551,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 135}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &979934046
 CanvasRenderer:
@@ -50019,7 +50018,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 135}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1394553927
 MonoBehaviour:

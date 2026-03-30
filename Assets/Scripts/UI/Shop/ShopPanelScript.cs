@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ShopPanelScript : MonoBehaviour
 {
     MainController mainController;
-    public BackPackController backpackController;
+    BackPackController backpackController;
 
     public TextMeshProUGUI gold_amount_TMP;
     public TextMeshProUGUI primogem_amount_TMP;
@@ -69,7 +69,7 @@ public class ShopPanelScript : MonoBehaviour
     private void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        //backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
     }
