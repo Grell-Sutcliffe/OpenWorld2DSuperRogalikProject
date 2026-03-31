@@ -20,8 +20,12 @@ public class AchievementTask
 
 public class QuestAchievementTask : AchievementTask
 {
-    public int current_completed_quests_amount;
-    public int max_completed_quests_amount;
+    public int completed_quests_amount;
+}
+
+public class UpgradeAchievementTask : AchievementTask  // ???
+{
+    public int level;
 }
 
 public class Achievement

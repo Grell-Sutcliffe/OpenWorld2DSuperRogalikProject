@@ -1,16 +1,7 @@
 using UnityEngine;
 
-public class QuestsAchievementTaskSO : MonoBehaviour
+[CreateAssetMenu(fileName = "QuestsAchievementTask", menuName = "Achievement/QuestsAchievementTask")]
+public class QuestsAchievementTaskSO : AchievementTaskSO
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int completed_quests_amount;
 }
