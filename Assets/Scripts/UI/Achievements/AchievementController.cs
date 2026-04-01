@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+int current_id = 0;
+
 public enum AchievementType
 {
     All = 0,
@@ -30,7 +32,7 @@ public class UpgradeAchievementTask : AchievementTask  // ???
 
 public class Achievement
 {
-    public string achievement_title;
+    public int id;
     public string achievement_text;
     public List<Task> tasks;
     public List<Reward> rewards;
@@ -41,11 +43,12 @@ public class Achievement
 
     AchievementSO data;
 
-    public Achievement(AchievementSO data)
+    public Achievement(int id, AchievementSO data)
     {
         this.data = data;
 
-        this.achievement_title = data.achievement_title;
+        this.id = id;
+
         this.achievement_text = data.achievement_text;
         this.achievementType = data.achievementType;
 
@@ -64,6 +67,8 @@ public class Achievement
             this.rewards.Add(new Reward(rewardSO));
         }
     }
+
+    //public Achievement(int id, string achievement_text)
 }
 
 public class AchievementController : MonoBehaviour
@@ -77,7 +82,9 @@ public class AchievementController : MonoBehaviour
     AchievementPanelScript achievementPanelScript;
 
     List<AchievementType> achievementTypes;
-    public List<AchievementSO> list_of_achievementSOs;
+    public List<AchievementSO> list_of_achievementSOs = new List<AchievementSO>();
+
+    public List<int> list_of_completed_quest_amount_for_quest_achievement = new List<int>();
 
     public Dictionary<string, Achievement> dict_achievement_title_to_achievement;
     public Dictionary<AchievementType, List<string>> dict_achievementType_to_list_of_achievement_list;
