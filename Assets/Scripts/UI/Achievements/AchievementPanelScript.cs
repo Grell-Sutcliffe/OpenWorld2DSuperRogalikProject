@@ -46,7 +46,7 @@ public class AchievementPanelScript : MonoBehaviour
 
         foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
         {
-            if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed == false)
+            if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == false)
             {
                 item_counter++;
             }
@@ -67,6 +67,14 @@ public class AchievementPanelScript : MonoBehaviour
     {
         int new_height = item_counter * item_height + (item_counter - 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
+
+        foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
+        {
+            if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed == true && achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == false)
+            {
+                SpawnPrefab(achievement_title);
+            }
+        }
 
         foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
         {

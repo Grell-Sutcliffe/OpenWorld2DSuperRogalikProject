@@ -219,6 +219,34 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 891938122154580141}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClaimRewardsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AchievementIconScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114037342510250408, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5620645018052777028, guid: 4b516fdcecdeb554fb5805cb1cbaf063, type: 3}
       propertyPath: m_Pivot.x
       value: 0

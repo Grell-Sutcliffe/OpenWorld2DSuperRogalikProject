@@ -37518,7 +37518,13 @@ MonoBehaviour:
   rewardPrefab: {fileID: 8529952090723327040, guid: 470e7d82403c0064d9c45fcf7583d7da, type: 3}
   list_of_achievementSOs:
   - {fileID: 11400000, guid: 8dbc68c65e88f7144a9ac9e0aecb8c19, type: 2}
-  - {fileID: 11400000, guid: 5a864279c9e7e2d44b16c1bc0a36e23f, type: 2}
+  - {fileID: 11400000, guid: 1d9e6e5c3a7ac0a4a8aaf3484511d66f, type: 2}
+  - {fileID: 11400000, guid: 454394ff1aa4e6b4398203a2d991b57e, type: 2}
+  - {fileID: 11400000, guid: ea85016ea46d114428a419e0fcd0910c, type: 2}
+  - {fileID: 11400000, guid: 90583d901daaf13439364ba6e06b0633, type: 2}
+  - {fileID: 11400000, guid: e3ea39e7a17f4fb4d813ce6b03421bd4, type: 2}
+  - {fileID: 11400000, guid: 0658d686e611bf047b489c110de1b272, type: 2}
+  - {fileID: 11400000, guid: e5e545444c05ed34c95df6470350f17d, type: 2}
 --- !u!4 &1025867215
 Transform:
   m_ObjectHideFlags: 0
@@ -79533,6 +79539,18 @@ PrefabInstance:
     - target: {fileID: 1912345351454951008, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935868502672833544, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935868502672833544, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935868502672833544, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_AnchorMax.y

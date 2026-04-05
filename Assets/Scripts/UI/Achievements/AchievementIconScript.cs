@@ -31,11 +31,25 @@ public class AchievementIconScript : MonoBehaviour
         this.achievement_title = achievement_title;
         achievementTMP.text = achievementController.dict_achievement_title_to_achievement[achievement_title].achievement_text;
 
+        SetCurrentProgress();
+
         UpdateContent();
         DeactivateClaimButton();
         if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed)
         {
             ActivateClaimButton();
+        }
+    }
+
+    void SetCurrentProgress()
+    {
+        if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_NPC_TalkToAmountNPC achievementTask_NPC_TalkToAmountNPC)
+        {
+            achievementTMP.text += " " + achievementController.set_of_npc_names_player_talked_to.Count.ToString() + "/" + achievementTask_NPC_TalkToAmountNPC.amount;
+        }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_NPC_MakeAmountDialogs achievementTask_NPC_MakeAmountDialogs)
+        {
+            achievementTMP.text += " " + achievementController.set_of_completed_dialog_titles.Count.ToString() + "/" + achievementTask_NPC_MakeAmountDialogs.amount;
         }
     }
 
