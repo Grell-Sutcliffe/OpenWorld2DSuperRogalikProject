@@ -67,6 +67,10 @@ public class AchievementController : MonoBehaviour
 
     public HashSet<string> set_of_completed_dialog_titles = new HashSet<string>();
     public HashSet<string> set_of_npc_names_player_talked_to = new HashSet<string>();
+    public HashSet<string> set_of_completed_quest_titles = new HashSet<string>();
+
+    private int amount_of_items_used = 0;
+    private int amount_of_wishes_made = 0;
 
     private void Start()
     {
@@ -148,6 +152,8 @@ public class AchievementController : MonoBehaviour
             {
                 if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
 
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
                 if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_NPC_TalkToCertainNPC achievementTask_NPC_TalkToCertainNPC)
                 {
                     if (set_of_npc_names_player_talked_to.Contains(achievementTask_NPC_TalkToCertainNPC.npcSO.npc_name))
@@ -174,14 +180,80 @@ public class AchievementController : MonoBehaviour
             }
         }
 
-        if (e is ItemCollectedEvent itemCollectedEvent)
+        if (e is QuestCompletedEvent questCompletedEvent)
         {
-            
+            set_of_completed_quest_titles.Add(questCompletedEvent.quest_title);
+
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Quests])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_QUEST_CompleteCertainQuest achievementTask_QUEST_CompleteCertainQuest)
+                {
+                    if (set_of_completed_quest_titles.Contains(achievementTask_QUEST_CompleteCertainQuest.questSO.title))
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_QUEST_CompleteAmountQuest achievementTask_QUEST_CompleteAmountQuest)
+                {
+                    if (set_of_completed_quest_titles.Count >= achievementTask_QUEST_CompleteAmountQuest.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+            }
         }
 
-        if (e is QuestAcceptedEvent questAcceptedEvent)
+        if (e is ItemUsedEvent itemUsedEvent)
         {
-            
+            amount_of_items_used++;
+
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Inventory])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_INVENTORY_UseCertainItem achievementTask_INVENTORY_UseCertainItem)
+                {
+                    if (achievementTask_INVENTORY_UseCertainItem.usableItemSO.item_name == itemUsedEvent.item_name)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_INVENTORY_UseAmountItems achievementTask_INVENTORY_UseAmountItems)
+                {
+                    if (amount_of_items_used >= achievementTask_INVENTORY_UseAmountItems.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+            }
+        }
+
+        if (e is WishMadeEvent wishMadeEvent)
+        {
+            amount_of_wishes_made += wishMadeEvent.wish_amount;
+
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Wish])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_WISH_UseAmountWishes achievementTask_WISH_UseAmountWishes)
+                {
+                    if (amount_of_wishes_made >= achievementTask_WISH_UseAmountWishes.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+            }
         }
     }
 }

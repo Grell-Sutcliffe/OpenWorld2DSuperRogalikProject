@@ -250,8 +250,6 @@ public class BackPackController : MonoBehaviour
         {
             dict_id_to_item[item_id].amount -= number;
 
-            EventBus.Raise(new ItemUsedEvent(dict_item_name_to_id[item_name]));
-
             return true;
         }
         else
@@ -365,14 +363,18 @@ public class BackPackController : MonoBehaviour
             {
                 Debug.Log($"Use item {usable_item.item_name}");
 
-                DecreaceItemByName(usable_item.item_name);
-                current_selected_backpackIcon.UpdateAmount();                                                                       // ПОКАЗЫВАЕТ 0, ЕСЛИ ШТУКА КОНЧИЛАСЬ
-                //UpdateBackpackItems();                                                                                            // ЛАГАЕТ
+                bool was_used = DecreaceItemByName(usable_item.item_name);
+                if (was_used)
+                {
+                    EventBus.Raise(new ItemUsedEvent(usable_item.item_name));
 
-                playerScript.BoostCharacter(usable_item.useEffect);
-                mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+                    current_selected_backpackIcon.UpdateAmount();
 
-                mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
+                    playerScript.BoostCharacter(usable_item.useEffect);
+                    mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+
+                    mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
+                }
             }
         }
 

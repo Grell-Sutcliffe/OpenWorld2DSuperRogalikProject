@@ -551,7 +551,7 @@ public class QuestsController : MonoBehaviour
 
     public void ShowNewTask()
     {
-        if (temp_task != "")
+        if (temp_task != "" && temp_task != none_quest_name)
         {
             taskShowerScript.ShowNewTask(temp_task);
             temp_task = "";

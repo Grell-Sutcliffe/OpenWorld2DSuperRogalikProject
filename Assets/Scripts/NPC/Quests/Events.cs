@@ -46,13 +46,25 @@ public readonly struct LocationEnteredEvent : IEvent
     }
 }
 
+public readonly struct WishMadeEvent : IEvent
+{
+    public readonly int wish_amount;
+    public readonly List<WishReward> rewards;
+
+    public WishMadeEvent(int wish_amount, List<WishReward> rewards)
+    {
+        this.wish_amount = wish_amount;
+        this.rewards = rewards;
+    }
+}
+
 public readonly struct ItemUsedEvent : IEvent
 {
-    public readonly int item_id;
+    public readonly string item_name;
 
-    public ItemUsedEvent(int item_id)
+    public ItemUsedEvent(string item_name)
     {
-        this.item_id = item_id;
+        this.item_name = item_name;
     }
 }
 

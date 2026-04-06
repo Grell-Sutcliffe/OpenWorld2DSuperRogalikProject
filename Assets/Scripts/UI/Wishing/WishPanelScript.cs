@@ -3,6 +3,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class WishReward
+{
+    public Item item;
+    public int star;
+
+    public WishReward(Item item, int star)
+    {
+        this.item = item;
+        this.star = star;
+    }
+}
+
 public class WishPanelScript : MonoBehaviour
 {
     MainController mainController;
@@ -84,18 +96,6 @@ public class WishPanelScript : MonoBehaviour
     WishParameters blue_wish_parameters;
 
     Dictionary<int, List<int>> dict_star_to_list_of_reward_id = new Dictionary<int, List<int>>();
-
-    public class WishReward
-    {
-        public Item item;
-        public int star;
-
-        public WishReward(Item item, int star)
-        {
-            this.item = item;
-            this.star = star;
-        }
-    }
 
     List<WishReward> rewards = new List<WishReward>();
 
@@ -294,6 +294,8 @@ public class WishPanelScript : MonoBehaviour
         wish_animator.SetBool("is_wish_pink", is_pink);
 
         //rewards.Reverse();
+
+        EventBus.Raise(new WishMadeEvent(number, rewards));
     }
 
     void ObtainXStarReward(int star)

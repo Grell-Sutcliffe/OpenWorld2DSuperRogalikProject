@@ -414,7 +414,7 @@ public class Player : Creature, IDamagable, IAttacker
             anim.SetBool("isHit", isHit);
         }
         //Debug.Log($"{canHit} {Input.GetMouseButtonDown(0)} {overMenu}");
-        if (canHit && Input.GetMouseButtonDown(0) && !overMenu) // À Ã
+        if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active) // À Ã
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

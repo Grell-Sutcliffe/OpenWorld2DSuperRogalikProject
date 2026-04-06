@@ -47,7 +47,8 @@ public class DialogPanelScript : MonoBehaviour
     public void StartDialog(Dialog new_dialog)
     {
         current_dialog = new_dialog;
-        current_speachNode = new_dialog.current_speachNode;
+        //current_speachNode = new_dialog.current_speachNode;
+        current_speachNode = new SpeachNode().NewSpeachNode(new_dialog.current_speachNodeSO);   // THIS !!!
 
         if (current_speachNode == null) return;
 
@@ -205,13 +206,15 @@ public class DialogPanelScript : MonoBehaviour
         if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
         {
             mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
-            current_speachNode = itemDeliverySpeachNode.next_speachNode;
+            //current_speachNode = itemDeliverySpeachNode.next_speachNode;
+            current_speachNode = new SpeachNode().NewSpeachNode(itemDeliverySpeachNode.next_speachNodeSO);   // THIS !!!
             return;
         }
 
         if (need_nextNode && current_speachNode is DefaultSpeachNode current_default_speachNode)
         {
-            current_speachNode = current_default_speachNode.next_speachNode;
+            //current_speachNode = current_default_speachNode.n(ext_speachNode;
+            current_speachNode = new SpeachNode().NewSpeachNode(current_default_speachNode.next_speachNodeSO);
         }
 
         if (current_speachNode != null)

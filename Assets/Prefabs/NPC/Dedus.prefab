@@ -457,8 +457,15 @@ MonoBehaviour:
   interactIcon: {fileID: 1261833713436180136}
   interactIconSR: {fileID: 0}
   interactKey: 102
+  data: {fileID: 11400000, guid: 169712a39da9d674789059f6d6a2c852, type: 2}
+  icon_thinking: {fileID: 8882129121821266596}
+  icon_hasUnacceptedQuest: {fileID: 5009293130994990120}
+  icon_hasAcceptedQuest: {fileID: 8891967850244397776}
   npc_name: 
-  default_dialogSO: {fileID: 0}
+  default_dialogSO: {fileID: 11400000, guid: 9d027fda58779b9498cac1ddf2b6027e, type: 2}
+  list_of_dialogs_to_quests: []
+  default_dialog_title: 
+  disposition_to_player: 0
   iconTask_1: {fileID: 5009293130994990120}
   iconTask_7: {fileID: 8891967850244397776}
   iconDialog: {fileID: 8882129121821266596}

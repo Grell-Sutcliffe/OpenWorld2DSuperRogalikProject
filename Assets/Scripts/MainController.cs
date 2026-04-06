@@ -365,11 +365,13 @@ public class MainController : MonoBehaviour
 
     public void ShowPlayerPanel()
     {
+        is_keyboard_active = true;
         playerPanel.SetActive(true);
     }
 
     public void HidePlayerPanel()
     {
+        is_keyboard_active = false;
         playerPanel.SetActive(false);
     }
 

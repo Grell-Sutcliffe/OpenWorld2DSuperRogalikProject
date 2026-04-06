@@ -52,8 +52,15 @@ MonoBehaviour:
   interactIcon: {fileID: 2481885345222012766}
   interactIconSR: {fileID: 0}
   interactKey: 102
+  data: {fileID: 11400000, guid: 11a451e595991424ca2d87ff52a20347, type: 2}
+  icon_thinking: {fileID: 0}
+  icon_hasUnacceptedQuest: {fileID: 0}
+  icon_hasAcceptedQuest: {fileID: 0}
   npc_name: "\u0414\u0436\u0435\u043A"
   default_dialogSO: {fileID: 11400000, guid: 7a8dd71c023f737418bf89aaaf1ff5bd, type: 2}
+  list_of_dialogs_to_quests: []
+  default_dialog_title: 
+  disposition_to_player: 0
 --- !u!50 &2785410501232260070
 Rigidbody2D:
   serializedVersion: 5

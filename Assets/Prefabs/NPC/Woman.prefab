@@ -454,11 +454,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff8ee1bec4cd6e4485fda06f3ef717a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 0}
+  interactIcon: {fileID: 1261833713436180136}
   interactIconSR: {fileID: 0}
   interactKey: 102
-  npc_name: 
-  default_dialogSO: {fileID: 0}
+  data: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
+  icon_thinking: {fileID: 8882129121821266596}
+  icon_hasUnacceptedQuest: {fileID: 5009293130994990120}
+  icon_hasAcceptedQuest: {fileID: 8891967850244397776}
+  npc_name: "\u0416\u0435\u043D\u0449\u0438\u043D\u0430"
+  default_dialogSO: {fileID: 11400000, guid: 72256c7d3f1476247aff205472c4e62e, type: 2}
+  list_of_dialogs_to_quests:
+  - {fileID: 11400000, guid: 95ba264e3d1c3f84987e62d68c949c8f, type: 2}
+  default_dialog_title: 
+  disposition_to_player: 0
 --- !u!50 &1020523022278242033
 Rigidbody2D:
   serializedVersion: 5

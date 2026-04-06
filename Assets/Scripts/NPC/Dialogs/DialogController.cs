@@ -122,7 +122,7 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
 
     ItemDeliverySpeachNodeSO data;
 
-    public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    public ItemDeliverySpeachNode(ItemDeliverySpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
     {
         this.data = data;
 
@@ -135,7 +135,7 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
         }
     }
 
-    public ItemDeliverySpeachNode(List<CollectableItem> list_of_CollectableItems, ItemDeliverySpeachNodeSO data) : base(data.next_speachNode, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    public ItemDeliverySpeachNode(List<CollectableItem> list_of_CollectableItems, ItemDeliverySpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
     {
         this.list_of_CollectableItems = list_of_CollectableItems;
     }
@@ -143,7 +143,8 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
 
 public class DefaultSpeachNode : SpeachNode
 {
-    public SpeachNode next_speachNode;
+    //public SpeachNode next_speachNode;
+    public SpeachNodeSO next_speachNodeSO;
 
     DefaultSpeachNodeSO data;
 
@@ -151,18 +152,24 @@ public class DefaultSpeachNode : SpeachNode
     {
         this.data = data;
 
-        this.next_speachNode = NewSpeachNode(data.next_speachNode);
+        //this.next_speachNode = NewSpeachNode(data.next_speachNodeSO);
+        this.next_speachNodeSO = data.next_speachNodeSO;
     }
 
-    public DefaultSpeachNode(SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
-    {
-        this.next_speachNode = next_speachNode;
-    }
-
+    //public DefaultSpeachNode(SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
     public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
     {
+        //this.next_speachNode = next_speachNode;
+        this.next_speachNodeSO = next_speachNodeSO;
+    }
+
+    /*
+    public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
+    {
+        //this.next_speachNode = NewSpeachNode(next_speachNodeSO);
         this.next_speachNode = NewSpeachNode(next_speachNodeSO);
     }
+    */
 }
 
 public class QuestAcceptingSpeachNode : DefaultSpeachNode
@@ -171,7 +178,7 @@ public class QuestAcceptingSpeachNode : DefaultSpeachNode
 
     QuestAcceptingSpeachNodeSO data;
 
-    public QuestAcceptingSpeachNode(QuestAcceptingSpeachNodeSO data) : base(data.next_speachNode, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    public QuestAcceptingSpeachNode(QuestAcceptingSpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
     {
         this.data = data;
 
@@ -186,14 +193,15 @@ public class FunctionSpeachNode : DefaultSpeachNode
 
     FunctionSpeachNodeSO data;
 
-    public FunctionSpeachNode(FunctionSpeachNodeSO data) : base(data.next_speachNode, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    public FunctionSpeachNode(FunctionSpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
     {
         this.data = data;
 
         this.function_name = data.function_name;
     }
 
-    public FunctionSpeachNode(string function_name, SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(next_speachNode, npcSO, speach, speach_type, is_finishing)
+    //public FunctionSpeachNode(string function_name, SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(next_speachNode, npcSO, speach, speach_type, is_finishing)
+    public FunctionSpeachNode(string function_name, SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(next_speachNodeSO, npcSO, speach, speach_type, is_finishing)
     {
         this.function_name = function_name;
     }
@@ -202,7 +210,8 @@ public class FunctionSpeachNode : DefaultSpeachNode
 public class Dialog
 {
     public string title;
-    public SpeachNode current_speachNode;
+    //public SpeachNode current_speachNode;
+    public SpeachNodeSO current_speachNodeSO;
     public bool is_finished = false;
 
     public string dialog_starting_npc;
@@ -216,7 +225,8 @@ public class Dialog
         this.data = data;
 
         this.title = data.title;
-        this.current_speachNode = new SpeachNode().NewSpeachNode(data.first_speachNode);
+        //this.current_speachNode = new SpeachNode().NewSpeachNode(data.first_speachNode);
+        this.current_speachNodeSO = data.first_speachNode;
 
         this.dialog_starting_npc = data.dialog_starting_npcSO.npc_name;
     }
