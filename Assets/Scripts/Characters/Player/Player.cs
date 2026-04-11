@@ -470,7 +470,7 @@ public class Player : Creature, IDamagable, IAttacker
         UpdateHealthBar();
         MusicManager.Instance.PlayByIndex(1);
 
-        //Debug.LogWarning($"Player have taken a dmg and now he has {current_stats.health} health was {current_stats.health + dmg.damage}");
+        Debug.LogWarning($"Player have taken a dmg {dmg.physical_dmg} {dmg.elemental_dmg} and now he has {current_stats.health}");
         if (current_stats.health <= 0)
         {
             Die();
