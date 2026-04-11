@@ -20,7 +20,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     [SerializeField] protected float reachDist = 0.1f;  // for walk
     [SerializeField] protected float reachDisttoPlayer = 5f;
     [SerializeField] protected float reachDisttoPlayerWithWindow = 4f;
-    protected Rigidbody2D rb;
+    public Rigidbody2D rb;
     protected Transform playerTrans; //??
 
     int strafeSign = 1; // рандомить вначале 1 и -1
@@ -61,7 +61,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     private bool facingRight = true; // “логическое” направление
     [SerializeField] private SpriteRenderer sr;
 
-   
+    
     private void Update()
     {
         if (isTriggered) FaceTarget(playerTrans);
@@ -189,9 +189,14 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 
         rb.MovePosition(rb.position + perp * strafeSpeed * Time.fixedDeltaTime);
     }
+    protected Vector2 frameMovement;
+
     protected virtual void FixedUpdate()
     {
-        if (isDead) return;
+        if (isDead || isStopped) return;
+
+        frameMovement = Vector2.zero;
+        bool suppressMovement = externalForce.sqrMagnitude > 0.1f;
 
         anim.SetBool("isTriggered", isTriggered);
 
@@ -210,11 +215,16 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         {
             Wander();
         }
+        frameMovement += externalForce * Time.fixedDeltaTime;
+        externalForce = Vector2.zero;
+        rb.MovePosition(rb.position + frameMovement);
+        /*
         if (externalForce.sqrMagnitude > 0.001f)
         {
             rb.MovePosition(rb.position + externalForce * Time.fixedDeltaTime);
             externalForce = Vector2.zero; // сбрасываем каждый кадр
         }
+        */
     }
     protected abstract void HandleCombat(float distToPlayer);
     protected void StopMovement()
@@ -244,9 +254,8 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         if (Vector2.Distance(rb.position, moveTarget) < reachDist)
             PickNewTarget();
 
-        rb.MovePosition(
-            Vector2.MoveTowards(rb.position, moveTarget, speed * Time.fixedDeltaTime)
-        );
+        Vector2 newPos = Vector2.MoveTowards(rb.position, moveTarget, speed * Time.fixedDeltaTime);
+        frameMovement += newPos - rb.position;
     }
     public virtual void OnTrigger(Player player)
     {
@@ -257,18 +266,16 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     {
         isTriggered = false;
     }
+    
     protected virtual void ChasePlayer()
     {
-        rb.MovePosition(
-            Vector2.MoveTowards(rb.position, playerTrans.position, speed * Time.fixedDeltaTime)
-        );
+        Vector2 newPos = Vector2.MoveTowards(rb.position, playerTrans.position, speed * Time.fixedDeltaTime);
+        frameMovement += newPos - rb.position;
     }
     protected virtual void RunFrom(Transform t)
     {
         Vector2 dir = (rb.position - (Vector2)t.position).normalized;
-
-        rb.MovePosition(
-        rb.position + dir * speed * Time.fixedDeltaTime);
+        frameMovement += dir * speed * Time.fixedDeltaTime;
     }
     protected void PickNewTarget()
     {

@@ -5,9 +5,11 @@ public class EffectController : MonoBehaviour
 {
     Animator anim;
     ElementType handledEffect;
+    Creature creature;
     void Start()
     {
         anim = GetComponent<Animator>();
+        creature = GetComponentInParent<Creature>();
     }
 
 
@@ -15,6 +17,12 @@ public class EffectController : MonoBehaviour
     {
         return 1;
     }
+
+
+   
+    
+
+
 }
 
 public enum ElementType

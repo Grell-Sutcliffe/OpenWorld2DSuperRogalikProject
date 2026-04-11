@@ -47,7 +47,7 @@ public class Funnel : MonoBehaviour
         {
             Vector2 direction = (Vector2)transform.position - (Vector2)collision.transform.position;
             float distance = direction.magnitude;
-            if (distance < 0.3) return;
+            if (distance < 1) return;
             float force = pullForce / Mathf.Max(distance, 0.5f);
 
             enemy.externalForce += direction.normalized * force;
