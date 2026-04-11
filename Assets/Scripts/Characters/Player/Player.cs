@@ -82,8 +82,9 @@ public class Player : Creature, IDamagable, IAttacker
     float usedOffset = 0;
     Vector3 localPivotPosSaved;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
@@ -462,7 +463,7 @@ public class Player : Creature, IDamagable, IAttacker
         //Debug.Log($"{name} massage: {s}");
     }
 
-    public void TakeDamage(Damage dmg)
+    override public void TakeDamage(Damage dmg)
     {
         //LoggerName($"took dmg = {dmg.damage}");
         current_stats.health -= (dmg.physical_dmg + dmg.elemental_dmg);

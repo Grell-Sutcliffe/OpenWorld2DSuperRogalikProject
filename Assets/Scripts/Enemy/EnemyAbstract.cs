@@ -105,7 +105,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         );
         txt.Init(dmg);
     }
-    public virtual void TakeDamage(Damage dmg)
+    override public void TakeDamage(Damage dmg)
     {   if (isDead) return;
         //LoggerName($"took dmg = {dmg.damage}", true);
         hp -= (dmg.physical_dmg + dmg.elemental_dmg);
@@ -156,8 +156,10 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         SpawnZone sz = GetComponentInParent<SpawnZone>();
         if (sz != null) sz.Died();
     }
-    protected virtual void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
