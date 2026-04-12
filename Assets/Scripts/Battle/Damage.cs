@@ -16,6 +16,15 @@ public class Damage
         this.isPhysicalCrit = isPhysicalCrit;
         this.isElementalCrit = isElementalCrit;
     }
+
+    public Damage(Damage damage)
+    {
+        this.physical_dmg = damage.physical_dmg;
+        this.elemental_dmg = damage.elemental_dmg;
+        this.element_type = damage.element_type;
+        this.isPhysicalCrit = damage.isPhysicalCrit;
+        this.isElementalCrit = damage.isElementalCrit;
+    }
 }
 
 public class Stats

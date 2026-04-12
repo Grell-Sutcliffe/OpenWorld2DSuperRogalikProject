@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CharacterPanelScript : MonoBehaviour
 {
     MainController mainController;
+    BackPackController backpackController;
 
     public class Element
     {
@@ -36,7 +37,6 @@ public class CharacterPanelScript : MonoBehaviour
     
     Player playerScript;
     CurrentWeaponPanelScript currentWeaponPanelScript;
-    public BackPackController backpackController;
     public ShopPanelScript shopPanelScript;
 
     public Image characterImage;
@@ -98,7 +98,7 @@ public class CharacterPanelScript : MonoBehaviour
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         currentWeaponPanelScript = weaponPanel.GetComponent<CurrentWeaponPanelScript>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        //backpackController = GameObject.Find("BackpackPanel").GetComponent<BackPackController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         //shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         characterUpgratePanel.SetActive(false);

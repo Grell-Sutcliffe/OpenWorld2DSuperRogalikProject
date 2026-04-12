@@ -61,7 +61,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     private bool facingRight = true; // “логическое” направление
     [SerializeField] private SpriteRenderer sr;
 
-    
+
     private void Update()
     {
         if (isTriggered) FaceTarget(playerTrans);
@@ -98,17 +98,40 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 
     void ShowDamage(Damage dmg)
     {
-        var txt = Instantiate(
-            damageTextPrefab,
-            damageTextPoint.position,
-            Quaternion.identity
-        );
-        txt.Init(dmg);
+        if (dmg.physical_dmg > 0)
+        {
+            var txt = Instantiate(
+                damageTextPrefab,
+                new Vector3(damageTextPoint.position.x - 0.2f, damageTextPoint.position.y, damageTextPoint.position.z),
+                Quaternion.identity
+            );
+            txt.InitPhysical(dmg);
+        }
+        if (dmg.elemental_dmg > 0)
+        {
+            var txt = Instantiate(
+                damageTextPrefab,
+                new Vector3(damageTextPoint.position.x + 0.2f, damageTextPoint.position.y, damageTextPoint.position.z),
+                Quaternion.identity
+            );
+            txt.InitElemental(dmg);
+        }
     }
+
     override public void TakeDamage(Damage dmg)
-    {   if (isDead) return;
+    {
+        if (isDead) return;
         //LoggerName($"took dmg = {dmg.damage}", true);
-        hp -= (dmg.physical_dmg + dmg.elemental_dmg);
+
+        Damage new_damage = new Damage(dmg);
+
+        if (dmg.element_type != ElementType.Physical)
+        {
+            effectController.HandleEffect(new_damage);
+        }
+
+        int dmg_amount = (int)new_damage.physical_dmg + (int)new_damage.elemental_dmg;
+        hp -= dmg_amount;
 
         //if (hp <= 0) Die();
         if (hp <= 0)
@@ -266,7 +289,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     {
         isTriggered = false;
     }
-    
+
     protected virtual void ChasePlayer()
     {
         Vector2 newPos = Vector2.MoveTowards(rb.position, playerTrans.position, speed * Time.fixedDeltaTime);
@@ -294,7 +317,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 
     protected abstract void TryAttack();
 
-    public virtual void UnActivePivot(){}
+    public virtual void UnActivePivot() { }
 
     public void DealDamage()
     {

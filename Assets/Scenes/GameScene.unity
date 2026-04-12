@@ -8509,7 +8509,7 @@ RectTransform:
   m_Father: {fileID: 1674778310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11125,7 +11125,6 @@ MonoBehaviour:
   weapon2Image: {fileID: 264785370}
   costImage: {fileID: 538441318}
   costTMP: {fileID: 1592704401}
-  backpackController: {fileID: 0}
   shopPanelScript: {fileID: 518133036}
   characterImage: {fileID: 95903136}
   health_TMP: {fileID: 820178058}
@@ -17434,11 +17433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8543522866138125519, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4
+      value: -11.1
       objectReference: {fileID: 0}
     - target: {fileID: 8543522866138125519, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.6
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8543522866138125519, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20122,10 +20121,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2047359953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 675, y: -100}
+  m_SizeDelta: {x: 230, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564478871
 MonoBehaviour:
@@ -28466,10 +28465,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2047359953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 115, y: -100}
+  m_SizeDelta: {x: 230, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &794474305
 MonoBehaviour:
@@ -53167,7 +53166,7 @@ MonoBehaviour:
   backpackIconPrefab: {fileID: 3388804503098730323, guid: a3c97d396cfa5a143a477fb02b965d3a, type: 3}
   useButton: {fileID: 107075066}
   crossUseButton: {fileID: 973163571}
-  gold_amount: 2500
+  gold_amount: 250000
   primogem_amount: 3400
   pink_wish_amount: 12
   blue_wish_amount: 67
@@ -74380,10 +74379,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2047359953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 395, y: -100}
+  m_SizeDelta: {x: 230, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963341102
 MonoBehaviour:
@@ -79075,7 +79074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2076034702
 MonoBehaviour:
   m_ObjectHideFlags: 0
