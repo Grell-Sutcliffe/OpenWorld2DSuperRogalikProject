@@ -30,6 +30,7 @@ public class MainController : MonoBehaviour
     public GameObject enterDangeonPanel;
     public GameObject multiplayerPanel;
     public GameObject rewardPanel;
+    public GameObject infoPanel;
     public GameObject itemDeliveryPanel;
     public GameObject errorPanel;
 
@@ -51,6 +52,7 @@ public class MainController : MonoBehaviour
     ErrorPanelScript errorPanelScript;
     ItemDeliveryPanelScript itemDeliveryPanelScript;
     AchievementPanelScript achievementPanelScript;
+    InfoPanelScript infoPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -89,6 +91,7 @@ public class MainController : MonoBehaviour
         errorPanelScript = errorPanel.GetComponent<ErrorPanelScript>();
         itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
         achievementPanelScript = achievementPanel.GetComponent<AchievementPanelScript>();
+        infoPanelScript = infoPanel.GetComponent<InfoPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -336,6 +339,7 @@ public class MainController : MonoBehaviour
         errorPanel.SetActive(true);
         itemDeliveryPanel.SetActive(true);
         achievementPanel.SetActive(true);
+        infoPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -353,6 +357,7 @@ public class MainController : MonoBehaviour
         errorPanel.SetActive(false);
         itemDeliveryPanel.SetActive(false);
         achievementPanel.SetActive(false);
+        infoPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
     }
@@ -406,6 +411,18 @@ public class MainController : MonoBehaviour
     public void CloseQuestPanel()
     {
         questPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenInfoPanel()
+    {
+        infoPanelScript.OpenPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseInfoPanel()
+    {
+        infoPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
