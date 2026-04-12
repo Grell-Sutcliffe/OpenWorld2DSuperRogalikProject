@@ -66,7 +66,7 @@ public class WishPanelScript : MonoBehaviour
 
     public class WishParameters
     {
-        public float chance_to_get_5_star = 0.5f;  // 0,01
+        public float chance_to_get_5_star = 0.01f;  // 0,01
         public float chance_to_get_4_star = 0.05f;
         public float chance_to_get_3_star = 0.2f;
         public int get_5_star_wish_amount = 60;
@@ -77,7 +77,7 @@ public class WishPanelScript : MonoBehaviour
         public int next_time_get_4_star_wish_amount = 0;
         public int next_time_get_3_star_wish_amount = 0;
 
-        public WishParameters(float chance_to_get_5_star_ = 0.5f, float chance_to_get_4_star_ = 0.05f, float chance_to_get_3_star_ = 0.2f, int get_5_star_wish_amount_ = 60, int get_4_star_wish_amount_ = 10, int get_3_star_wish_amount_ = 5)
+        public WishParameters(float chance_to_get_5_star_ = 0.01f, float chance_to_get_4_star_ = 0.05f, float chance_to_get_3_star_ = 0.2f, int get_5_star_wish_amount_ = 60, int get_4_star_wish_amount_ = 10, int get_3_star_wish_amount_ = 5)
         {
             chance_to_get_5_star = chance_to_get_5_star_;
             chance_to_get_4_star = chance_to_get_4_star_;
