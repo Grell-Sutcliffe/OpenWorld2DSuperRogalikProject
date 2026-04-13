@@ -110,7 +110,7 @@ public class DialogPanelScript : MonoBehaviour
 
     void FinishLine()
     {
-        //Debug.Log($"DialogPanel   :   line finished");
+        Debug.Log($"DialogPanel   :   line finished");
 
         if (current_speachNode == null)
         {
@@ -134,7 +134,7 @@ public class DialogPanelScript : MonoBehaviour
         
         if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
         {
-            // Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
+            Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
             EventBus.Raise(new QuestAcceptedEvent(questAcceptingSpeachNode.quest_title));
         }
 
@@ -190,6 +190,7 @@ public class DialogPanelScript : MonoBehaviour
             CloseDialogPanel();
             return;
         }
+        Debug.Log($"DialogPanel   :   NextLine   ---   {current_speachNode.speach}");
 
         if (!is_line_finished)
         {
