@@ -40,7 +40,10 @@ public class MainController : MonoBehaviour
     public GameObject GrandsonEugene;
     public GameObject Dangeon;
     public GameObject Doggy;
+    public GameObject Woman;
+    /*
     public GameObject Book;
+    */
 
     public ScrollInteractionScript scrollInteractionScript;
     BackPackController backpackController;
@@ -116,7 +119,7 @@ public class MainController : MonoBehaviour
     {
         //backpackController.MakeDictionary();
 
-        SetDangeonScripts();
+        //SetDangeonScripts();
 
         is_keyboard_active = true;
 
@@ -402,6 +405,7 @@ public class MainController : MonoBehaviour
         TurnOnKeyboard();
     }
 
+    /*
     void SetDangeonScripts()
     {
         if (Dangeon == null) Dangeon = GameObject.Find("Dangeon");
@@ -410,6 +414,7 @@ public class MainController : MonoBehaviour
             dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
         }
     }
+    */
 
     public void OpenQuestPanel()
     {

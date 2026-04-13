@@ -55,5 +55,8 @@ public class MapController : MonoBehaviour
 
         dict_map_GOs[temp_index] = mainController.Doggy;
         temp_index++;
+
+        dict_map_GOs[temp_index] = mainController.Woman;
+        temp_index++;
     }
 }
