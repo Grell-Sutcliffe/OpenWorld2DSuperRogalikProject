@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class DamageText : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class DamageText : MonoBehaviour
     float t;
     Vector3 startPos;
     Vector3 endPos;
-    
+
 
     TextMeshPro text;
 
@@ -18,6 +19,30 @@ public class DamageText : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+    float setFrontSize(float d)
+    {
+        float result = 0; 
+        switch (d)
+        {
+            case < 15:
+                result = Mathf.Clamp(d / 15 * 2 + 1, 1, 2);
+                break;
+            case < 30:
+                result = Mathf.Clamp(d / 15 * 2, 2, 4);
+                break;
+            case < 60:
+                result = Mathf.Clamp(d / 15 * 2, 4, 6);
+                break;
+            case > 60:
+                float t = (d - 60f) / 140f;
+                result = Mathf.Lerp(6f, 10f, t);
+                break;
+
+
+        }
+
+        return result;
+    }
     public void InitPhysical(Damage dmg)
     {
         // я исправиа это всё конкретно под физ урон, надо будет добавить элементальный урон и красить его в соответствующий цвет
@@ -27,7 +52,7 @@ public class DamageText : MonoBehaviour
         text.color = dmg.isPhysicalCrit ? Color.red : Color.white;
 
         startPos = transform.position;
-        text.fontSize = dmg.isPhysicalCrit ? 4f : 3f; // ← ВОТ ЭТО
+        text.fontSize = setFrontSize(dmg.physical_dmg); // ← ВОТ ЭТО
 
         endPos = startPos + new Vector3(Random.Range(-0.5f, 0f), Random.Range(0.5f, 1f), 0) * 1.0f; // высота
         t = 0f;
@@ -57,7 +82,8 @@ public class DamageText : MonoBehaviour
         }
 
         startPos = transform.position;
-        text.fontSize = dmg.isElementalCrit ? 4f : 3f;
+
+        text.fontSize = setFrontSize(dmg.elemental_dmg);
 
         endPos = startPos + new Vector3(Random.Range(0f, 0.5f), Random.Range(0.5f, 1f), 0) * 1.0f; // высота
         t = 0f;

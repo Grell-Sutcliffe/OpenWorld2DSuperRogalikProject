@@ -73,8 +73,18 @@ public class MainController : MonoBehaviour
 
     public Dictionary<string, NPCController> dict_npc_name_to_npcController;
 
+
+
+    public static MainController Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         StuffSetActiveTrue();
 

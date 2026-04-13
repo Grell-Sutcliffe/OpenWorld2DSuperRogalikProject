@@ -18,8 +18,7 @@ public class Skeleton : EnemyRange
         offset = 45f;
         canStrafe = true;
         base.Start();
-
-
+        
     }
 
 

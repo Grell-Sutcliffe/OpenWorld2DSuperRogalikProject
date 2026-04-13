@@ -1,0 +1,494 @@
+fileFormatVersion: 2
+guid: 8cee74d85eb78144da9372496305784b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5441108102393175821
+    second: Effect_Wheel_1_025_0
+  - first:
+      213: -4216240301065645865
+    second: Effect_Wheel_1_025_1
+  - first:
+      213: 4622651352048035039
+    second: Effect_Wheel_1_025_2
+  - first:
+      213: 4814116525457526954
+    second: Effect_Wheel_1_025_3
+  - first:
+      213: 998454025166228322
+    second: Effect_Wheel_1_025_4
+  - first:
+      213: 2243623961973997302
+    second: Effect_Wheel_1_025_5
+  - first:
+      213: -3900219654826076065
+    second: Effect_Wheel_1_025_6
+  - first:
+      213: 3878555559100764141
+    second: Effect_Wheel_1_025_7
+  - first:
+      213: -6393635254184907928
+    second: Effect_Wheel_1_025_8
+  - first:
+      213: -5883702579595771607
+    second: Effect_Wheel_1_025_9
+  - first:
+      213: 8948797270371941973
+    second: Effect_Wheel_1_025_10
+  - first:
+      213: 5967932857355797540
+    second: Effect_Wheel_1_025_11
+  - first:
+      213: -6836277529729971243
+    second: Effect_Wheel_1_025_12
+  - first:
+      213: -3670968170810565843
+    second: Effect_Wheel_1_025_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 197
+        width: 98
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f15abadf2b28b40800000000000000
+      internalID: 5441108102393175821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_1
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 205
+        width: 104
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d0db47e8c7ec75c0800000000000000
+      internalID: -4216240301065645865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_2
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 197
+        width: 54
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd46d4fa9e4f62040800000000000000
+      internalID: 4622651352048035039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_3
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 149
+        width: 63
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa0db3f397d2fc240800000000000000
+      internalID: 4814116525457526954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_4
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 140
+        width: 40
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26b879655a83bdd00800000000000000
+      internalID: 998454025166228322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 85
+        width: 88
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6feb30f2b14f22f10800000000000000
+      internalID: 2243623961973997302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 53
+        width: 46
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f58581063e2afd9c0800000000000000
+      internalID: -3900219654826076065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_7
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 35
+        width: 24
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: def41d54bb563d530800000000000000
+      internalID: 3878555559100764141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_8
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 87
+        width: 79
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86be4ea7c9e3547a0800000000000000
+      internalID: -6393635254184907928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_9
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 117
+        width: 59
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92105235da3e85ea0800000000000000
+      internalID: -5883702579595771607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_10
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 14
+        width: 25
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55e318364b3803c70800000000000000
+      internalID: 8948797270371941973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_11
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 5
+        width: 143
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4240316705b52d250800000000000000
+      internalID: 5967932857355797540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_12
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 73
+        width: 80
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dbc57e8ec9a021a0800000000000000
+      internalID: -6836277529729971243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Wheel_1_025_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 52
+        width: 80
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2b1215f5e91e0dc0800000000000000
+      internalID: -3670968170810565843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Wheel_1_025_0: 5441108102393175821
+      Effect_Wheel_1_025_1: -4216240301065645865
+      Effect_Wheel_1_025_10: 8948797270371941973
+      Effect_Wheel_1_025_11: 5967932857355797540
+      Effect_Wheel_1_025_12: -6836277529729971243
+      Effect_Wheel_1_025_13: -3670968170810565843
+      Effect_Wheel_1_025_2: 4622651352048035039
+      Effect_Wheel_1_025_3: 4814116525457526954
+      Effect_Wheel_1_025_4: 998454025166228322
+      Effect_Wheel_1_025_5: 2243623961973997302
+      Effect_Wheel_1_025_6: -3900219654826076065
+      Effect_Wheel_1_025_7: 3878555559100764141
+      Effect_Wheel_1_025_8: -6393635254184907928
+      Effect_Wheel_1_025_9: -5883702579595771607
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

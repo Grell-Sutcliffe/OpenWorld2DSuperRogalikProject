@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: 3744291ad6155454dbba04a3220cd8e2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2011492118765297720
+    second: Effect_Charged_1_031_0
+  - first:
+      213: -1261142273885550875
+    second: Effect_Charged_1_031_1
+  - first:
+      213: -6521714269312338185
+    second: Effect_Charged_1_031_2
+  - first:
+      213: -5995415580637631250
+    second: Effect_Charged_1_031_3
+  - first:
+      213: -1878940520289786219
+    second: Effect_Charged_1_031_4
+  - first:
+      213: 2134855952365593594
+    second: Effect_Charged_1_031_5
+  - first:
+      213: 2977161422114344354
+    second: Effect_Charged_1_031_6
+  - first:
+      213: -8722669476494186965
+    second: Effect_Charged_1_031_7
+  - first:
+      213: 2125157876854547138
+    second: Effect_Charged_1_031_8
+  - first:
+      213: -1177679051881352007
+    second: Effect_Charged_1_031_9
+  - first:
+      213: 3748966539507325114
+    second: Effect_Charged_1_031_10
+  - first:
+      213: -1410534793401709091
+    second: Effect_Charged_1_031_11
+  - first:
+      213: -1992594125140920382
+    second: Effect_Charged_1_031_12
+  - first:
+      213: 2451455089542437214
+    second: Effect_Charged_1_031_13
+  - first:
+      213: 4862615761422477217
+    second: Effect_Charged_1_031_14
+  - first:
+      213: 3793081932875743061
+    second: Effect_Charged_1_031_15
+  - first:
+      213: 7453616039657946043
+    second: Effect_Charged_1_031_16
+  - first:
+      213: 1453935160579362610
+    second: Effect_Charged_1_031_17
+  - first:
+      213: -6209582686110901001
+    second: Effect_Charged_1_031_18
+  - first:
+      213: 7808737282178716112
+    second: Effect_Charged_1_031_19
+  - first:
+      213: -597435883830851748
+    second: Effect_Charged_1_031_20
+  - first:
+      213: 1241389646659268834
+    second: Effect_Charged_1_031_21
+  - first:
+      213: 8698021730021056214
+    second: Effect_Charged_1_031_22
+  - first:
+      213: 8317684515329131994
+    second: Effect_Charged_1_031_23
+  - first:
+      213: -963128631651388225
+    second: Effect_Charged_1_031_24
+  - first:
+      213: -7929145568385414076
+    second: Effect_Charged_1_031_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_0
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 274
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf1f78439eb514e0800000000000000
+      internalID: -2011492118765297720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_1
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 170
+        width: 26
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e6c2d1a8c58f7ee0800000000000000
+      internalID: -1261142273885550875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 243
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f6ba03fc673e75a0800000000000000
+      internalID: -6521714269312338185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_3
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 255
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec60436b410ccca0800000000000000
+      internalID: -5995415580637631250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_4
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 147
+        width: 82
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5962a064d89ace5e0800000000000000
+      internalID: -1878940520289786219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_5
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 218
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3216f7d2880ad10800000000000000
+      internalID: 2134855952365593594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 240
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad4f1c2a80015920800000000000000
+      internalID: 2977161422114344354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 224
+        width: 11
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b26eb68635ad2f680800000000000000
+      internalID: -8722669476494186965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_8
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 178
+        width: 13
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2e98554d31e7d10800000000000000
+      internalID: 2125157876854547138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_9
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 171
+        width: 23
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b47135542b08afe0800000000000000
+      internalID: -1177679051881352007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_10
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 205
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8d82e6431070430800000000000000
+      internalID: 3748966539507325114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_11
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 198
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd46f72416cc6ce0800000000000000
+      internalID: -1410534793401709091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_12
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 192
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7f17d4332e854e0800000000000000
+      internalID: -1992594125140920382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_13
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 140
+        width: 36
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5910036a61550220800000000000000
+      internalID: 2451455089542437214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_14
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 182
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a76dc2954b7b7340800000000000000
+      internalID: 4862615761422477217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_15
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 182
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fb20ddbebb3a430800000000000000
+      internalID: 3793081932875743061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 146
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb37ff0c40907760800000000000000
+      internalID: 7453616039657946043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_17
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 158
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f88c4435a6d2410800000000000000
+      internalID: 1453935160579362610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_18
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 152
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc91fe527123d9a0800000000000000
+      internalID: -6209582686110901001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_19
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 126
+        width: 37
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d19c988f253e5c60800000000000000
+      internalID: 7808737282178716112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_20
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 99
+        width: 61
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c57c030aa3b75b7f0800000000000000
+      internalID: -597435883830851748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_21
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 143
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e039f47e4d4a3110800000000000000
+      internalID: 1241389646659268834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_22
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 127
+        width: 42
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de988aeda495b870800000000000000
+      internalID: 8698021730021056214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_23
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 145
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5c5f96ff95e6370800000000000000
+      internalID: 8317684515329131994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_24
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 76
+        width: 28
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb43965cc9742a2f0800000000000000
+      internalID: -963128631651388225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Charged_1_031_25
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 89
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44c4600bd1406f190800000000000000
+      internalID: -7929145568385414076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Charged_1_031_0: -2011492118765297720
+      Effect_Charged_1_031_1: -1261142273885550875
+      Effect_Charged_1_031_10: 3748966539507325114
+      Effect_Charged_1_031_11: -1410534793401709091
+      Effect_Charged_1_031_12: -1992594125140920382
+      Effect_Charged_1_031_13: 2451455089542437214
+      Effect_Charged_1_031_14: 4862615761422477217
+      Effect_Charged_1_031_15: 3793081932875743061
+      Effect_Charged_1_031_16: 7453616039657946043
+      Effect_Charged_1_031_17: 1453935160579362610
+      Effect_Charged_1_031_18: -6209582686110901001
+      Effect_Charged_1_031_19: 7808737282178716112
+      Effect_Charged_1_031_2: -6521714269312338185
+      Effect_Charged_1_031_20: -597435883830851748
+      Effect_Charged_1_031_21: 1241389646659268834
+      Effect_Charged_1_031_22: 8698021730021056214
+      Effect_Charged_1_031_23: 8317684515329131994
+      Effect_Charged_1_031_24: -963128631651388225
+      Effect_Charged_1_031_25: -7929145568385414076
+      Effect_Charged_1_031_3: -5995415580637631250
+      Effect_Charged_1_031_4: -1878940520289786219
+      Effect_Charged_1_031_5: 2134855952365593594
+      Effect_Charged_1_031_6: 2977161422114344354
+      Effect_Charged_1_031_7: -8722669476494186965
+      Effect_Charged_1_031_8: 2125157876854547138
+      Effect_Charged_1_031_9: -1177679051881352007
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

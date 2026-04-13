@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: e0fe842b549024e4baad09288cf4a706
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5466432712493009496
+    second: Effect_DitheredFire_1_027_0
+  - first:
+      213: 8489939606692674271
+    second: Effect_DitheredFire_1_027_1
+  - first:
+      213: 8723460926100143707
+    second: Effect_DitheredFire_1_027_2
+  - first:
+      213: 5339317836037706053
+    second: Effect_DitheredFire_1_027_3
+  - first:
+      213: 2243752789592115599
+    second: Effect_DitheredFire_1_027_4
+  - first:
+      213: -3795094866107626137
+    second: Effect_DitheredFire_1_027_5
+  - first:
+      213: 3393334324641152980
+    second: Effect_DitheredFire_1_027_6
+  - first:
+      213: -281547658389270893
+    second: Effect_DitheredFire_1_027_7
+  - first:
+      213: 6207596077821836899
+    second: Effect_DitheredFire_1_027_8
+  - first:
+      213: 3568654072828944394
+    second: Effect_DitheredFire_1_027_9
+  - first:
+      213: 9145145896900008432
+    second: Effect_DitheredFire_1_027_10
+  - first:
+      213: 8642291159548057065
+    second: Effect_DitheredFire_1_027_11
+  - first:
+      213: -6953518099240296647
+    second: Effect_DitheredFire_1_027_12
+  - first:
+      213: -872280954652819602
+    second: Effect_DitheredFire_1_027_13
+  - first:
+      213: 7427454474749965642
+    second: Effect_DitheredFire_1_027_14
+  - first:
+      213: 2286778747680254798
+    second: Effect_DitheredFire_1_027_15
+  - first:
+      213: -1479613311165180933
+    second: Effect_DitheredFire_1_027_16
+  - first:
+      213: -5988377999724732062
+    second: Effect_DitheredFire_1_027_17
+  - first:
+      213: 544020646021816621
+    second: Effect_DitheredFire_1_027_18
+  - first:
+      213: 8476127387551617975
+    second: Effect_DitheredFire_1_027_19
+  - first:
+      213: -4861733766565835973
+    second: Effect_DitheredFire_1_027_20
+  - first:
+      213: -1606473944459028865
+    second: Effect_DitheredFire_1_027_21
+  - first:
+      213: 2329613515114255040
+    second: Effect_DitheredFire_1_027_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_0
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 230
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a5774f09645324b0800000000000000
+      internalID: -5466432712493009496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_1
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 210
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdabf65371352d570800000000000000
+      internalID: 8489939606692674271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_2
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 218
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ef2305e75ff0970800000000000000
+      internalID: 8723460926100143707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_3
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 214
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5415fef6841191a40800000000000000
+      internalID: 5339317836037706053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_4
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 218
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f890e633649632f10800000000000000
+      internalID: 2243752789592115599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 210
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d0fb8935d155bc0800000000000000
+      internalID: -3795094866107626137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_6
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 214
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df3060f69b871f20800000000000000
+      internalID: 3393334324641152980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_7
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 218
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39e4d5a75edb71cf0800000000000000
+      internalID: -281547658389270893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_8
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 214
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ebda75ebfc52650800000000000000
+      internalID: 6207596077821836899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_9
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 202
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a006831c8f7668130800000000000000
+      internalID: 3568654072828944394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_10
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 174
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f998db7db51aee70800000000000000
+      internalID: 9145145896900008432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_11
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 202
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e55c5255069fe770800000000000000
+      internalID: 8642291159548057065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_12
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 202
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f588b4124208f90800000000000000
+      internalID: -6953518099240296647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_13
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 202
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6f7491e71905e3f0800000000000000
+      internalID: -872280954652819602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_14
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 202
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a457bd01e7e931760800000000000000
+      internalID: 7427454474749965642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_15
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 194
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4be467b7254cbf10800000000000000
+      internalID: 2286778747680254798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 514
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf35f07688b577be0800000000000000
+      internalID: -1479613311165180933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 186
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 261a4a1efe105eca0800000000000000
+      internalID: -5988377999724732062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_18
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 186
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d21eb9c25efbc8700800000000000000
+      internalID: 544020646021816621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_19
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 150
+        width: 54
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b359f553f041a570800000000000000
+      internalID: 8476127387551617975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_20
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 190
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3b425bd5e6a78cb0800000000000000
+      internalID: -4861733766565835973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_21
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 186
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76599f7578a4b9e0800000000000000
+      internalID: -1606473944459028865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_DitheredFire_1_027_22
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 190
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c295503623745020800000000000000
+      internalID: 2329613515114255040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_DitheredFire_1_027_0: -5466432712493009496
+      Effect_DitheredFire_1_027_1: 8489939606692674271
+      Effect_DitheredFire_1_027_10: 9145145896900008432
+      Effect_DitheredFire_1_027_11: 8642291159548057065
+      Effect_DitheredFire_1_027_12: -6953518099240296647
+      Effect_DitheredFire_1_027_13: -872280954652819602
+      Effect_DitheredFire_1_027_14: 7427454474749965642
+      Effect_DitheredFire_1_027_15: 2286778747680254798
+      Effect_DitheredFire_1_027_16: -1479613311165180933
+      Effect_DitheredFire_1_027_17: -5988377999724732062
+      Effect_DitheredFire_1_027_18: 544020646021816621
+      Effect_DitheredFire_1_027_19: 8476127387551617975
+      Effect_DitheredFire_1_027_2: 8723460926100143707
+      Effect_DitheredFire_1_027_20: -4861733766565835973
+      Effect_DitheredFire_1_027_21: -1606473944459028865
+      Effect_DitheredFire_1_027_22: 2329613515114255040
+      Effect_DitheredFire_1_027_3: 5339317836037706053
+      Effect_DitheredFire_1_027_4: 2243752789592115599
+      Effect_DitheredFire_1_027_5: -3795094866107626137
+      Effect_DitheredFire_1_027_6: 3393334324641152980
+      Effect_DitheredFire_1_027_7: -281547658389270893
+      Effect_DitheredFire_1_027_8: 6207596077821836899
+      Effect_DitheredFire_1_027_9: 3568654072828944394
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

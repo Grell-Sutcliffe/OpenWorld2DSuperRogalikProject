@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: 6b61c5443b9648c4bbdd38750a0cdf1f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2828878903228293287
+    second: Effect_Hyperspeed_1_018_0
+  - first:
+      213: -4224591826762288732
+    second: Effect_Hyperspeed_1_018_1
+  - first:
+      213: -944537924636649671
+    second: Effect_Hyperspeed_1_018_2
+  - first:
+      213: -298515060283491305
+    second: Effect_Hyperspeed_1_018_3
+  - first:
+      213: -919235940829623930
+    second: Effect_Hyperspeed_1_018_4
+  - first:
+      213: -8850369452134828885
+    second: Effect_Hyperspeed_1_018_5
+  - first:
+      213: -106180731282004972
+    second: Effect_Hyperspeed_1_018_6
+  - first:
+      213: 8318148971524928410
+    second: Effect_Hyperspeed_1_018_7
+  - first:
+      213: 3938969699667806203
+    second: Effect_Hyperspeed_1_018_8
+  - first:
+      213: -1053120963632137251
+    second: Effect_Hyperspeed_1_018_9
+  - first:
+      213: 6534987184331378679
+    second: Effect_Hyperspeed_1_018_10
+  - first:
+      213: -1498974569646159402
+    second: Effect_Hyperspeed_1_018_11
+  - first:
+      213: 7676210196985115309
+    second: Effect_Hyperspeed_1_018_12
+  - first:
+      213: -2273950413994858699
+    second: Effect_Hyperspeed_1_018_13
+  - first:
+      213: 1117239469846332297
+    second: Effect_Hyperspeed_1_018_14
+  - first:
+      213: 7849976209971270386
+    second: Effect_Hyperspeed_1_018_15
+  - first:
+      213: -1702797379463020209
+    second: Effect_Hyperspeed_1_018_16
+  - first:
+      213: 757636010930711702
+    second: Effect_Hyperspeed_1_018_17
+  - first:
+      213: 6673272899666098773
+    second: Effect_Hyperspeed_1_018_18
+  - first:
+      213: -6177309428567527690
+    second: Effect_Hyperspeed_1_018_19
+  - first:
+      213: -7366299205177855076
+    second: Effect_Hyperspeed_1_018_20
+  - first:
+      213: 4306585980112142237
+    second: Effect_Hyperspeed_1_018_21
+  - first:
+      213: 8906016219562254714
+    second: Effect_Hyperspeed_1_018_22
+  - first:
+      213: -5696850933685498406
+    second: Effect_Hyperspeed_1_018_23
+  - first:
+      213: 6959036134727156937
+    second: Effect_Hyperspeed_1_018_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 489
+        width: 472
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f1b7420adcdb8d0800000000000000
+      internalID: -2828878903228293287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 474
+        width: 514
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1b0dccd1c3f55c0800000000000000
+      internalID: -4224591826762288732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 406
+        width: 514
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937d52d03c354e2f0800000000000000
+      internalID: -944537924636649671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_3
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 469
+        width: 155
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71cb2bf52267bdbf0800000000000000
+      internalID: -298515060283491305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_4
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 400
+        width: 49
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689041a38c73e33f0800000000000000
+      internalID: -919235940829623930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 361
+        width: 342
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba4f882efdb2d2580800000000000000
+      internalID: -8850369452134828885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_6
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 387
+        width: 178
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 414e1fdff25c68ef0800000000000000
+      internalID: -106180731282004972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_7
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 382
+        width: 61
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a93368c0b60007370800000000000000
+      internalID: 8318148971524928410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_8
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 356
+        width: 373
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf70ab182180aa630800000000000000
+      internalID: 3938969699667806203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_9
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 328
+        width: 200
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb703130109261f0800000000000000
+      internalID: -1053120963632137251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 341
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ff4dc56830f0ba50800000000000000
+      internalID: 6534987184331378679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_11
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 305
+        width: 116
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d985e02292923be0800000000000000
+      internalID: -1498974569646159402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 288
+        width: 375
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da2778cf080678a60800000000000000
+      internalID: 7676210196985115309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 264
+        width: 439
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 537ebf8752e4170e0800000000000000
+      internalID: -2273950413994858699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 240
+        width: 514
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9838c31e06b318f00800000000000000
+      internalID: 1117239469846332297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 225
+        width: 110
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2da92a5c7b0fc60800000000000000
+      internalID: 7849976209971270386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_16
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 198
+        width: 238
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4104a02ec27e58e0800000000000000
+      internalID: -1702797379463020209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 162
+        width: 514
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ca19410f9a38a00800000000000000
+      internalID: 757636010930711702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_18
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 161
+        width: 112
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ab6d1885a3c9c50800000000000000
+      internalID: 6673272899666098773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 123
+        width: 469
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6feaf82bdc9c54aa0800000000000000
+      internalID: -6177309428567527690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 104
+        width: 58
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c93b126b6e5a5c990800000000000000
+      internalID: -7366299205177855076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_21
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 76
+        width: 170
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9ff243b12114cb30800000000000000
+      internalID: 4306585980112142237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_22
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 85
+        width: 138
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7120eac096889b70800000000000000
+      internalID: 8906016219562254714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_23
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 22
+        width: 407
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: addc25f4248b0f0b0800000000000000
+      internalID: -5696850933685498406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Hyperspeed_1_018_24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 6
+        width: 277
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c405857e76739060800000000000000
+      internalID: 6959036134727156937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Hyperspeed_1_018_0: -2828878903228293287
+      Effect_Hyperspeed_1_018_1: -4224591826762288732
+      Effect_Hyperspeed_1_018_10: 6534987184331378679
+      Effect_Hyperspeed_1_018_11: -1498974569646159402
+      Effect_Hyperspeed_1_018_12: 7676210196985115309
+      Effect_Hyperspeed_1_018_13: -2273950413994858699
+      Effect_Hyperspeed_1_018_14: 1117239469846332297
+      Effect_Hyperspeed_1_018_15: 7849976209971270386
+      Effect_Hyperspeed_1_018_16: -1702797379463020209
+      Effect_Hyperspeed_1_018_17: 757636010930711702
+      Effect_Hyperspeed_1_018_18: 6673272899666098773
+      Effect_Hyperspeed_1_018_19: -6177309428567527690
+      Effect_Hyperspeed_1_018_2: -944537924636649671
+      Effect_Hyperspeed_1_018_20: -7366299205177855076
+      Effect_Hyperspeed_1_018_21: 4306585980112142237
+      Effect_Hyperspeed_1_018_22: 8906016219562254714
+      Effect_Hyperspeed_1_018_23: -5696850933685498406
+      Effect_Hyperspeed_1_018_24: 6959036134727156937
+      Effect_Hyperspeed_1_018_3: -298515060283491305
+      Effect_Hyperspeed_1_018_4: -919235940829623930
+      Effect_Hyperspeed_1_018_5: -8850369452134828885
+      Effect_Hyperspeed_1_018_6: -106180731282004972
+      Effect_Hyperspeed_1_018_7: 8318148971524928410
+      Effect_Hyperspeed_1_018_8: 3938969699667806203
+      Effect_Hyperspeed_1_018_9: -1053120963632137251
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
