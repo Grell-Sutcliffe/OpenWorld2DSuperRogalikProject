@@ -48,6 +48,8 @@ public class Task
 
     public string finish_function_name;
 
+    public bool is_finished;
+
     //public List<Reward> rewards;
 
     public Task next_task;
@@ -64,6 +66,8 @@ public class Task
         this.finish_function_name = finish_function_name;
         this.next_task = next_task;
 
+        this.is_finished = false;
+
         //rewards = new List<Reward>();
     }
 
@@ -73,6 +77,8 @@ public class Task
         this.description = description;
         this.finish_function_name = finish_function_name;
         this.next_task = new Task().NewTask(next_taskSO);
+
+        this.is_finished = false;
 
         //rewards = new List<Reward>();
     }
@@ -102,6 +108,7 @@ public class Task
         }
     }*/
 
+    /*
     public virtual Task FinishTaskAndGetNextTask()
     {
         //if (CheckIfTaskIsCompleted())
@@ -110,6 +117,7 @@ public class Task
         }
         return this;
     }
+    */
 }
 
 /*
@@ -379,6 +387,7 @@ public class QuestsController : MonoBehaviour
                 {
                     if (dialogFinishedEvent.dialog_title == dialogTask.dialog_title)
                     {
+                        dict_quest_name_to_quest[quest_title].current_task.is_finished = true;
                         NextTask(quest_title);
 
                         if (dict_quest_name_to_quest[quest_title].current_task == null)
@@ -409,6 +418,7 @@ public class QuestsController : MonoBehaviour
 
                     if (is_task_finished)
                     {
+                        dict_quest_name_to_quest[quest_title].current_task.is_finished = true;
                         NextTask(quest_title);
 
                         if (dict_quest_name_to_quest[quest_title].current_task == null)
@@ -444,19 +454,31 @@ public class QuestsController : MonoBehaviour
         temp_task = dict_quest_name_to_quest[new_quest].current_task.subtitle;
 
         UpdateNPCsQuestsIcons();
+
+        NextTask(new_quest);
     }
 
     public void NextTask(string quest_title)
     {
-        dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+        if (dict_quest_name_to_quest[quest_title].current_task == null) return;
 
-        if (dict_quest_name_to_quest[quest_title].current_task != null)
+        Debug.Log($"QUESTS   ---   {quest_title}  --  {dict_quest_name_to_quest[quest_title].current_task}  ->  {dict_quest_name_to_quest[quest_title].current_task.next_task}");
+
+        if (dict_quest_name_to_quest[quest_title].current_task.is_finished == true)
         {
-            ShowNewTask(dict_quest_name_to_quest[quest_title].current_task.subtitle);
+            dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+
+            NextTask(quest_title);
+
+            return;
         }
+
+        ShowNewTask(dict_quest_name_to_quest[quest_title].current_task.subtitle);
 
         if (dict_quest_name_to_quest[quest_title].current_task is CollectItemTask collectItemTask)
         {
+            Debug.Log($"QUESTS   ---   CollectItemTask");
+
             bool is_task_finished = true;
 
             foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
@@ -470,7 +492,12 @@ public class QuestsController : MonoBehaviour
 
             if (is_task_finished)
             {
+                Debug.Log($"QUESTS   ---   CollectItemTask finished");
+
+                dict_quest_name_to_quest[quest_title].current_task.is_finished = true;
                 NextTask(quest_title);
+
+                return;
             }
         }
 
@@ -534,13 +561,16 @@ public class QuestsController : MonoBehaviour
 
             questInfoScript.SetQuest(quest);
 
-            if (quest == tracking_quest_title)
+            if (dict_quest_name_to_quest[quest].current_task != null)
             {
-                questInfoScript.Track(true);
-            }
-            else
-            {
-                questInfoScript.Track(false);
+                if (quest == tracking_quest_title)
+                {
+                    questInfoScript.Track(true);
+                }
+                else
+                {
+                    questInfoScript.Track(false);
+                }
             }
         }
 
@@ -551,16 +581,22 @@ public class QuestsController : MonoBehaviour
 
     public void ShowNewTask()
     {
+        Debug.Log("ShowNewTask");
         if (temp_task != "" && temp_task != none_quest_name)
         {
             taskShowerScript.ShowNewTask(temp_task);
             temp_task = "";
+        }
+        else
+        {
+            SetTrackTask();
         }
     }
 
     public void ShowNewTask(string new_task)
     {
         taskShowerScript.ShowNewTask(new_task);
+        temp_task = "";
     }
 
     void MakeQuests()

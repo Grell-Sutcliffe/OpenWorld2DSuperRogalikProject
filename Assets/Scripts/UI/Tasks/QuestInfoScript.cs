@@ -66,6 +66,9 @@ public class QuestInfoScript : MonoBehaviour
         {
             questInfoGO.SetActive(false);
             claimRewardsButton.SetActive(true);
+
+            trackButton.SetActive(false);
+            dontTrackButton.SetActive(false);
         }
         else
         {
