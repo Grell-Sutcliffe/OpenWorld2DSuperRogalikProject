@@ -136,9 +136,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aae3ccd18253544383028a98eaa70e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryStalker: {fileID: 0}
+  backpackIcon: {fileID: 0}
   slot_image: {fileID: 1156984424547753469}
   slot_amount: {fileID: 4725147476325117832}
-  slot_item: {fileID: 0}
+  slot_item:
+    sprite: {fileID: 0}
+    item_name: 
+    description: 
+    amount: 0
+    item_type: 0
+    id: 0
+  slot_index: 0
+  longPressThreshold: 0.3
 --- !u!114 &2091994826790755037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 737204281563777065, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
       propertyPath: m_fontSize
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 737204281563777065, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
       propertyPath: m_fontStyle

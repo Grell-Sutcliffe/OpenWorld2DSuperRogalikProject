@@ -48,6 +48,13 @@ public class WishPanelScript : MonoBehaviour
     public Image blueWishMadeRewardWeaponElementImage;
     public TextMeshProUGUI blueWishMadeRewardStarsTMP;
 
+    public Image pinkWishMadeRewardImage;
+    public TextMeshProUGUI pinkWishMadeRewardTMP;
+
+    public GameObject pinkWishMadeRewardWeaponStatsGO;
+    public Image pinkWishMadeRewardWeaponElementImage;
+    public TextMeshProUGUI pinkWishMadeRewardStarsTMP;
+
     public GameObject pinkWishInteractPanel;
     public GameObject blueWishInteractPanel;
 
@@ -90,12 +97,28 @@ public class WishPanelScript : MonoBehaviour
             next_time_get_4_star_wish_amount = get_4_star_wish_amount_;
             next_time_get_3_star_wish_amount = get_3_star_wish_amount_;
         }
+
+        public WishParameters(WishParameters wishParameters)
+        {
+            this.chance_to_get_5_star = wishParameters.chance_to_get_5_star;
+            this.chance_to_get_4_star = wishParameters.chance_to_get_4_star;
+            this.chance_to_get_3_star = wishParameters.chance_to_get_3_star;
+            this.get_5_star_wish_amount = wishParameters.get_5_star_wish_amount;
+            this.get_4_star_wish_amount = wishParameters.get_4_star_wish_amount;
+            this.get_3_star_wish_amount = wishParameters.get_3_star_wish_amount;
+            this.current_wish_made_amount = wishParameters.current_wish_made_amount;
+            this.next_time_get_5_star_wish_amount = wishParameters.next_time_get_5_star_wish_amount;
+            this.next_time_get_4_star_wish_amount = wishParameters.next_time_get_4_star_wish_amount;
+            this.next_time_get_3_star_wish_amount = wishParameters.next_time_get_3_star_wish_amount;
+        }
     }
 
     WishParameters pink_wish_parameters;
     WishParameters blue_wish_parameters;
 
-    Dictionary<int, List<int>> dict_star_to_list_of_reward_id = new Dictionary<int, List<int>>();
+    List<int> list_of_material_reward_id;
+    Dictionary<int, List<int>> dict_star_to_list_of_sword_id = new Dictionary<int, List<int>>();
+    Dictionary<int, List<int>> dict_star_to_list_of_stick_id = new Dictionary<int, List<int>>();
 
     List<WishReward> rewards = new List<WishReward>();
 
@@ -141,25 +164,36 @@ public class WishPanelScript : MonoBehaviour
 
     void MakeDictionary()
     {
-        for (int i = 2; i <= 5; i++)
+        list_of_material_reward_id = new List<int>();
+
+        for (int i = 3; i <= 5; i++)
         {
-            dict_star_to_list_of_reward_id[i] = new List<int>();
+            dict_star_to_list_of_sword_id[i] = new List<int>();
+            dict_star_to_list_of_stick_id[i] = new List<int>();
         }
 
         foreach (int id in backpackController.dict_id_to_item.Keys)
         {
             if (backpackController.dict_id_to_item[id].item_type == ItemType.Weapon)
             {
-                if (backpackController.dict_id_to_item[id] is Weapon weapon) 
+                if (backpackController.dict_id_to_item[id] is Weapon weapon)
                 {
-                    dict_star_to_list_of_reward_id[weapon.stars].Add(id);
+                    // dict_star_to_list_of_reward_id[weapon.stars].Add(id);
+                    if (weapon.weapon_type == WeaponType.Sword)
+                    {
+                        dict_star_to_list_of_sword_id[weapon.stars].Add(id);
+                    }
+                    else if (weapon.weapon_type == WeaponType.Stick)
+                    {
+                        dict_star_to_list_of_stick_id[weapon.stars].Add(id);
+                    }
                 }
             }
             else if (backpackController.dict_id_to_item[id].item_type == ItemType.Materials)
             {
                 if (backpackController.dict_id_to_item[id] is ItemForSale item)
                 {
-                    dict_star_to_list_of_reward_id[2].Add(id);
+                    list_of_material_reward_id.Add(id);
                 }
             }
         }
@@ -243,51 +277,60 @@ public class WishPanelScript : MonoBehaviour
 
         System.Random rand = new System.Random();
 
+        WishParameters temp_wishParameters = new WishParameters(is_pink ? pink_wish_parameters : blue_wish_parameters);
+
         for (int i = 0; i < number; i++)
         {
             int chance = rand.Next(0, 101);
-            if (!is_pink)
+
+            temp_wishParameters.current_wish_made_amount++;
+
+            if (temp_wishParameters.current_wish_made_amount >= temp_wishParameters.next_time_get_5_star_wish_amount)
             {
-                blue_wish_parameters.current_wish_made_amount++;
-
-                if (blue_wish_parameters.current_wish_made_amount >= blue_wish_parameters.next_time_get_5_star_wish_amount)
-                {
-                    ObtainXStarReward(5);
-                    blue_wish_parameters.next_time_get_5_star_wish_amount += blue_wish_parameters.get_5_star_wish_amount;
-                    continue;
-                }
-                if (chance < blue_wish_parameters.chance_to_get_5_star * 100)
-                {
-                    ObtainXStarReward(5);
-                    continue;
-                }
-
-                if (blue_wish_parameters.current_wish_made_amount >= blue_wish_parameters.next_time_get_4_star_wish_amount)
-                {
-                    ObtainXStarReward(4);
-                    blue_wish_parameters.next_time_get_4_star_wish_amount += blue_wish_parameters.get_4_star_wish_amount;
-                    continue;
-                }
-                if (chance < blue_wish_parameters.chance_to_get_4_star * 100)
-                {
-                    ObtainXStarReward(4);
-                    continue;
-                }
-
-                if (blue_wish_parameters.current_wish_made_amount >= blue_wish_parameters.next_time_get_3_star_wish_amount)
-                {
-                    ObtainXStarReward(3);
-                    blue_wish_parameters.next_time_get_3_star_wish_amount += blue_wish_parameters.get_3_star_wish_amount;
-                    continue;
-                }
-                if (chance < blue_wish_parameters.chance_to_get_3_star * 100)
-                {
-                    ObtainXStarReward(3);
-                    continue;
-                }
-
-                ObtainXStarReward(2);
+                ObtainXStarReward(5);
+                temp_wishParameters.next_time_get_5_star_wish_amount += temp_wishParameters.get_5_star_wish_amount;
+                continue;
             }
+            if (chance < temp_wishParameters.chance_to_get_5_star * 100)
+            {
+                ObtainXStarReward(5);
+                continue;
+            }
+
+            if (temp_wishParameters.current_wish_made_amount >= temp_wishParameters.next_time_get_4_star_wish_amount)
+            {
+                ObtainXStarReward(4);
+                temp_wishParameters.next_time_get_4_star_wish_amount += temp_wishParameters.get_4_star_wish_amount;
+                continue;
+            }
+            if (chance < temp_wishParameters.chance_to_get_4_star * 100)
+            {
+                ObtainXStarReward(4);
+                continue;
+            }
+
+            if (temp_wishParameters.current_wish_made_amount >= temp_wishParameters.next_time_get_3_star_wish_amount)
+            {
+                ObtainXStarReward(3);
+                temp_wishParameters.next_time_get_3_star_wish_amount += temp_wishParameters.get_3_star_wish_amount;
+                continue;
+            }
+            if (chance < temp_wishParameters.chance_to_get_3_star * 100)
+            {
+                ObtainXStarReward(3);
+                continue;
+            }
+
+            ObtainXStarReward(2);
+        }
+
+        if (is_pink)
+        {
+            pink_wish_parameters = new WishParameters(temp_wishParameters);
+        }
+        else
+        {
+            blue_wish_parameters = new WishParameters(temp_wishParameters);
         }
 
         wish_animator.SetBool("is_wishing", true);
@@ -309,8 +352,27 @@ public class WishPanelScript : MonoBehaviour
         System.Random rand = new System.Random();
 
         Debug.Log($"GET {star}* REWARD");
-        int reward_index = rand.Next(0, dict_star_to_list_of_reward_id[star].Count);
-        int reward_id = dict_star_to_list_of_reward_id[star][reward_index];
+
+        int reward_id = 0;
+
+        if (star == 2)
+        {
+            int reward_index = rand.Next(0, list_of_material_reward_id.Count);
+            reward_id = list_of_material_reward_id[reward_index];
+        }
+        else
+        {
+            if (is_pink)
+            {
+                int reward_index = rand.Next(0, dict_star_to_list_of_stick_id[star].Count);
+                reward_id = dict_star_to_list_of_stick_id[star][reward_index];
+            }
+            else
+            {
+                int reward_index = rand.Next(0, dict_star_to_list_of_sword_id[star].Count);
+                reward_id = dict_star_to_list_of_sword_id[star][reward_index];
+            }
+        }
 
         Item new_item = backpackController.dict_id_to_item[reward_id];
 
@@ -388,6 +450,31 @@ public class WishPanelScript : MonoBehaviour
     void OpenPinkWishMade()
     {
         pinkWishMadePanel.SetActive(true);
+
+        pinkWishMadeRewardWeaponStatsGO.SetActive(false);
+
+        pinkWishMadePanel_gold.SetActive(false);
+        pinkWishMadePanel_purple.SetActive(false);
+        pinkWishMadePanel_blue.SetActive(false);
+
+        WishReward new_reward = rewards[current_reward_index];
+        //Item new_item = rewards[rewards.Count - 1];
+        //rewards.RemoveAt(rewards.Count - 1);
+        current_reward_index++;
+
+        if (new_reward.star == 5) pinkWishMadePanel_gold.SetActive(true);
+        if (new_reward.star == 4) pinkWishMadePanel_purple.SetActive(true);
+        if (new_reward.star <= 3) pinkWishMadePanel_blue.SetActive(true);
+
+        if (new_reward.item is Weapon weapon)
+        {
+            pinkWishMadeRewardWeaponStatsGO.SetActive(true);
+            pinkWishMadeRewardWeaponElementImage.sprite = characterPanelScript.dict_element_type_to_element[weapon.element_type].sprite;
+            pinkWishMadeRewardStarsTMP.text = new_reward.star.ToString();
+        }
+
+        pinkWishMadeRewardImage.sprite = new_reward.item.sprite;
+        pinkWishMadeRewardTMP.text = new_reward.item.item_name;
     }
 
     void OpenBlueWishMade()
@@ -425,7 +512,14 @@ public class WishPanelScript : MonoBehaviour
         //if (rewards.Count > 0)
         if (current_reward_index < rewards.Count)
         {
-            OpenBlueWishMade();
+            if (is_pink)
+            {
+                OpenPinkWishMade();
+            }
+            else
+            {
+                OpenBlueWishMade();
+            }
         }
         else
         {
