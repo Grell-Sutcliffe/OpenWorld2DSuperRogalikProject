@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class testing : MonoBehaviour
@@ -6,14 +7,21 @@ public class testing : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        StartCoroutine(SpawnBoomWithDelay(3f));
+       
+    }
+
+    private IEnumerator SpawnBoomWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         GameObject boomGO = Instantiate(
-            pref,         // тут нада от оружия брать
+            pref,
             transform.position,
-            Quaternion.Euler(0, 0, 0)
+            Quaternion.identity
         );
+
         var boom = boomGO.GetComponent<BOOM>();
         boom.Init(new Damage(23, 0, ElementType.Physical), 3);
     }
-
-    
 }
