@@ -13,6 +13,7 @@ public class EffectController : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SpawnBOOM(Transform transform, Damage dmg, float radius = 3)

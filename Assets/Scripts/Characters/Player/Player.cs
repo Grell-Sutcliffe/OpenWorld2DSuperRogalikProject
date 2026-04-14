@@ -77,10 +77,19 @@ public class Player : Creature, IDamagable, IAttacker
     float offset = 0;
     float usedOffset = 0;
     Vector3 localPivotPosSaved;
+    private static Player instance;
 
+   
     protected override void Awake()
     {
         base.Awake();
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
         DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
@@ -141,7 +150,7 @@ public class Player : Creature, IDamagable, IAttacker
         GivePlayerNewWeapon(weapon);
         SwitchWeapon(0);
     }
-
+    
     private void OnEnable()
     {
         controls.Enable();
@@ -149,7 +158,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     private void OnDisable()
     {
-        controls.Disable();
+        controls?.Disable(); 
     }
 
     public void SwitchWeapon(int index)
@@ -407,11 +416,11 @@ public class Player : Creature, IDamagable, IAttacker
             {
                 anim.SetBool("isRun", false);
             }
-            anim.SetFloat("dir", direction);  // вынести в отделную функцию
+            anim.SetFloat("dir", direction);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             anim.SetBool("isHit", isHit);
         }
         //Debug.Log($"{canHit} {Input.GetMouseButtonDown(0)} {overMenu}");
-        if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active) // ЛКМ
+        if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active) // пїЅпїЅпїЅ
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -503,7 +512,7 @@ public class Player : Creature, IDamagable, IAttacker
         Vector2 dir = ((Vector2)mousePos - (Vector2)pivot.transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        // 2) поворачиваем pivot меча
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
+        // 2) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ pivot пїЅпїЅпїЅпїЅ
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 }
