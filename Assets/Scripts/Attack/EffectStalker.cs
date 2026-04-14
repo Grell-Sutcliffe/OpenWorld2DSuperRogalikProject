@@ -74,7 +74,7 @@ public class EffectStalker : MonoBehaviour
             // УСИЛЕННЫЙ ДАМАГ Х2. после дамага все элементы должны сняться с сущности
 
             // НАКЛАДЫВАЕТСЯ dmg.element_type
-            Debug.LogError("двойная бебе");
+            //Debug.LogError("двойная бебе");
             // handledEffect = new_damage.element_type;
 
             new_damage.elemental_dmg *= 2;

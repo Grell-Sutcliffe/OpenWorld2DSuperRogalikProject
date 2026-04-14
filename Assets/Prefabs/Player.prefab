@@ -372,7 +372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365f9aebda13a3c4094a53c8d4354e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handledElement: {fileID: 0}
   elementType_of_creature: 0
+  isStopped: 0
   weapon_sprite_renderer: {fileID: 6110503480946176343}
   Data: {fileID: 11400000, guid: 81e4f7f2a9176e147823727df17144ab, type: 2}
   rb: {fileID: 6179167146417871810}

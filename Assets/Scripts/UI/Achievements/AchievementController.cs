@@ -72,6 +72,17 @@ public class AchievementController : MonoBehaviour
     private int amount_of_items_used = 0;
     private int amount_of_wishes_made = 0;
 
+    public static AchievementController Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
     private void Start()
     {
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();

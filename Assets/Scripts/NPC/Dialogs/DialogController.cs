@@ -253,9 +253,16 @@ public class DialogController : MonoBehaviour
     public Dictionary<string, Dialog> dict_dialog_title_to_dialog;
 
     public List<DialogSO> dialogs = new List<DialogSO>();
-
+    public static DialogController Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         dict_dialog_title_to_dialog = new Dictionary<string, Dialog>();
 
         foreach (DialogSO dialogSO in dialogs)

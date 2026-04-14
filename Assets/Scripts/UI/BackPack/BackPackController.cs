@@ -75,9 +75,17 @@ public class BackPackController : MonoBehaviour
     public Dictionary<UseType, List<BackpackIconScript>> dict_useType_to_list_of_BackpackIconScripts;
 
     public List<UseType> list_of_use_types;
-
+    public static BackPackController Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+        Instance = this;
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 

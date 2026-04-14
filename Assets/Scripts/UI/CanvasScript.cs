@@ -13,6 +13,8 @@ public class CanvasScript : MonoBehaviour
         }
 
         Instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

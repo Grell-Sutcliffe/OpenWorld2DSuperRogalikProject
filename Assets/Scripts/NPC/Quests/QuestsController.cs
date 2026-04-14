@@ -278,8 +278,17 @@ public class QuestsController : MonoBehaviour
 
     public string tracking_quest_title = none_quest_name;
 
+    public static QuestsController Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
