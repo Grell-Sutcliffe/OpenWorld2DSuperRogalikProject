@@ -90,6 +90,7 @@ public class EffectStalker : MonoBehaviour
             handle(new_damage.element_type);
             return;
         }
+        if (!new_damage.isCombinated) return;
         Debug.Log($"Наложение {new_damage.element_type} уже был {handledEffect}");
 
         switch (handledEffect, new_damage.element_type)
@@ -100,15 +101,15 @@ public class EffectStalker : MonoBehaviour
                 break;
 
             case (ElementType.Pyro, ElementType.Pyro):
-                // логика
+                SpawnBOOM(new_damage.elemental_dmg, ElementType.Pyro);
                 break;
 
             case (ElementType.Floro, ElementType.Floro):
                 // логика
                 break;
             case (ElementType.Energo, ElementType.Energo):
-                // логика
-                break;
+                SpawnBOOM(new_damage.elemental_dmg, ElementType.Energo);
+                break;  
 
             case (ElementType.Cryo, ElementType.Pyro):
                 PyroToCryo();
@@ -141,18 +142,25 @@ public class EffectStalker : MonoBehaviour
                 break;
 
             case (ElementType.Energo, ElementType.Cryo):
-                // логика
+                SpawnBOOM(new_damage.elemental_dmg, ElementType.Cryo);
                 break;
             case (ElementType.Energo, ElementType.Pyro):
-                // логика
+                SpawnBOOM(new_damage.elemental_dmg, ElementType.Pyro);
                 break;
             case (ElementType.Energo, ElementType.Floro):
-                // логика
+                SpawnBOOM(new_damage.elemental_dmg, ElementType.Floro);
                 break;
         }
         handle(ElementType.None);
 
     }
+    
+    void SpawnBOOM(float strength, ElementType elementType)
+    {
+        Damage boomDamage = new Damage(0, strength, elementType, false, false, false);
+        EffectController.Instance.SpawnBOOM(transform, boomDamage);
+    }
+
 
     public delegate void EffectDelegate(bool a);
     public void StartStopAnim(float duration, EffectDelegate del = null)

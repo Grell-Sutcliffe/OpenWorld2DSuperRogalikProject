@@ -7,14 +7,15 @@ public class Damage
     public ElementType element_type;
     public bool isPhysicalCrit;
     public bool isElementalCrit;
-
-    public Damage(float physical_dmg, float elemental_dmg, ElementType element_type, bool isPhysicalCrit = false, bool isElementalCrit = false)
+    public bool isCombinated;
+    public Damage(float physical_dmg, float elemental_dmg, ElementType element_type, bool isPhysicalCrit = false, bool isElementalCrit = false, bool isCombinated = true)
     {
         this.physical_dmg = physical_dmg;
         this.elemental_dmg = elemental_dmg;
         this.element_type = element_type;
         this.isPhysicalCrit = isPhysicalCrit;
         this.isElementalCrit = isElementalCrit;
+        this.isCombinated = isCombinated;
     }
 
     public Damage(Damage damage)
@@ -24,6 +25,7 @@ public class Damage
         this.element_type = damage.element_type;
         this.isPhysicalCrit = damage.isPhysicalCrit;
         this.isElementalCrit = damage.isElementalCrit;
+        this.isCombinated = damage.isCombinated;
     }
 }
 

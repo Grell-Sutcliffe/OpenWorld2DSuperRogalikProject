@@ -10,10 +10,15 @@ public class BOOM : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         damage = dmg;
+        damage.isCombinated = false;
         circleCollider.radius = radius;
-        Destroy(gameObject, 1f); // лучше под конец анимации
+        //Destroy(gameObject, 1f); // лучше под конец анимации
         Debug.Log($"BOOM");
 
+    }
+    public void Remove()
+    {
+        Destroy( gameObject );
     }
     private void OnTriggerEnter2D(Collider2D collision)  
     {
