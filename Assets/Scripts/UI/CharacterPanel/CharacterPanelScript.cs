@@ -39,6 +39,7 @@ public class CharacterPanelScript : MonoBehaviour
     CurrentWeaponPanelScript currentWeaponPanelScript;
     public ShopPanelScript shopPanelScript;
 
+    public TextMeshProUGUI level_TMP;
     public Image characterImage;
 
     [Header("Характеристики")]
@@ -117,6 +118,8 @@ public class CharacterPanelScript : MonoBehaviour
         if (currentWeaponPanelScript == null) currentWeaponPanelScript = weaponPanel.GetComponent<CurrentWeaponPanelScript>();
         if (playerScript == null) playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         //Debug.LogError($"playerScript.weapon = {playerScript.weapon}");
+
+        level_TMP.text = playerScript.current_level.ToString();
 
         Debug.Log($"weapon 1 = {playerScript.weapons[0].item_name}, weapon 2 = {playerScript.weapons[1].item_name}");
         weapon1Image.sprite = playerScript.weapons[0].sprite;

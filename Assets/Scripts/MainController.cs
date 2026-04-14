@@ -216,16 +216,19 @@ public class MainController : MonoBehaviour
     public void GetReward()
     {
         System.Random rand = new System.Random();
-        int new_reward_amount = rand.Next(1, 10);
+        int new_blue_reward_amount = rand.Next(1, 5);
+        int new_pink_reward_amount = rand.Next(1, 5);
 
-        rewardPanelScript.SetRewardAmount(new_reward_amount);
+        rewardPanelScript.SetRewardAmount(new_blue_reward_amount, new_pink_reward_amount);
     }
 
-    public void ClaimReward(int amount)
+    public void ClaimReward(int blue_amount, int pink_amount)
     {
-        string reward_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
+        string blue_reward_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
+        string pink_reward_name = shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name;
 
-        backpackController.IncreaceItemByName(reward_name, amount);
+        backpackController.IncreaceItemByName(blue_reward_name, blue_amount);
+        backpackController.IncreaceItemByName(pink_reward_name, pink_amount);
     }
 
     public void SetCharacterWeapon(int index, Weapon weapon)
