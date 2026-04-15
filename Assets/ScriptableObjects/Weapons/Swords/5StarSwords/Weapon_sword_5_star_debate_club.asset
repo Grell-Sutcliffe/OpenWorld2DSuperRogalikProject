@@ -23,9 +23,9 @@ MonoBehaviour:
   physical_attack: 10
   elemental_attack: 0
   element_type: 0
-  elemental_mastery: 0.3
-  crit_chance: 0.4
-  crit_dmg: 0.5
+  elemental_mastery: 0
+  crit_chance: 0.5
+  crit_dmg: 1.5
   max_level: 100
   current_level: 1
   projectilePrefab: {fileID: 0}

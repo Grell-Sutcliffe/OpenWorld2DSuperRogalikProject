@@ -34,12 +34,14 @@ public class MainController : MonoBehaviour
     public GameObject infoPanel;
     public GameObject itemDeliveryPanel;
     public GameObject errorPanel;
+    public GameObject loadingPanel;
+    public GameObject respawnPanel;
 
     //public GameObject taskShower;
 
     public GameObject Dedus;
     public GameObject GrandsonEugene;
-    public GameObject Dangeon;
+    // public GameObject Dangeon;
     public GameObject Doggy;
     public GameObject Woman;
     /*
@@ -115,7 +117,7 @@ public class MainController : MonoBehaviour
 
         Make_dict_npc_name_to_npcController();
 
-        SetIconThinkingNPC();
+        //SetIconThinkingNPC();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -128,11 +130,11 @@ public class MainController : MonoBehaviour
         GrandsonEugene = GameObject.Find("GrandsonEugene");
         Doggy = GameObject.Find("Doggy");
         Woman = GameObject.Find("Woman");
-        Dangeon = GameObject.Find("Dangeon");
+        // Dangeon = GameObject.Find("Dangeon");
 
-        SetDangeonScripts();
+        // SetDangeonScripts();
         Make_dict_npc_name_to_npcController();
-        SetIconThinkingNPC();
+        //SetIconThinkingNPC();
     }
     private void OnDestroy()
     {
@@ -143,7 +145,7 @@ public class MainController : MonoBehaviour
     {
         //backpackController.MakeDictionary();
 
-        SetDangeonScripts();
+        // SetDangeonScripts();
 
         is_keyboard_active = true;
 
@@ -151,7 +153,7 @@ public class MainController : MonoBehaviour
 
         ClearDictionary_useType_to_seconds_left();
 
-        MusicManager.Instance.PlayPhantomMusicByIndex(0);
+        //MusicManager.Instance.PlayPhantomMusicByIndex(0);
     }
 
     void Make_dict_npc_name_to_npcController()
@@ -171,6 +173,7 @@ public class MainController : MonoBehaviour
         }
     }
 
+    /*
     void SetIconThinkingNPC()
     {
         foreach (string npc_name in dict_npc_name_to_npcController.Keys)
@@ -178,6 +181,7 @@ public class MainController : MonoBehaviour
             dict_npc_name_to_npcController[npc_name].IconThinkingSetActiveTrue();
         }
     }
+    */
 
     public void StartCountdownCoroutine(UseType useType)
     {
@@ -355,11 +359,6 @@ public class MainController : MonoBehaviour
         healthBarScript.UpdateHealthBar(amount);
     }
 
-    public void InteractDangeon()
-    {
-        ShowEnterDangeonPanel();
-    }
-
     public void StartDialog(Dialog dialog)
     {
         if (dialog == null) return;
@@ -400,12 +399,34 @@ public class MainController : MonoBehaviour
         infoPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
+        loadingPanel.SetActive(false);
+        respawnPanel.SetActive(false);
+    }
+
+    public void InteractDangeon(DangeonInteractionScript new_dangeonInteractionScript)
+    {
+        dangeonInteractionScript = new_dangeonInteractionScript;
+
+        ShowEnterDangeonPanel();
     }
 
     public void EnterDangeon()
     {
+        ShowLoadingPanel();
         Debug.Log("ENTER DANGEON");
         dangeonInteractionScript.EnterDangeon(prefDung, GodFather);
+        HideEnterDangeonPanel();
+    }
+
+    public void ShowLoadingPanel()
+    {
+        loadingPanel.SetActive(true);
+        Invoke("HideLoadingPanel", 1.5f);
+    }
+
+    void HideLoadingPanel()
+    {
+        loadingPanel.SetActive(false);
     }
 
     public void ShowPlayerPanel()
@@ -433,7 +454,7 @@ public class MainController : MonoBehaviour
     }
 
     
-    void SetDangeonScripts()
+    /*void SetDangeonScripts()
     {
         if (Dangeon == null) Dangeon = GameObject.Find("Dangeon");
         if (Dangeon != null)
@@ -441,6 +462,7 @@ public class MainController : MonoBehaviour
             dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
         }
     }
+    */
     
 
     public void OpenQuestPanel()
@@ -539,6 +561,36 @@ public class MainController : MonoBehaviour
     {
         multiplayerPanel.SetActive(false);
         TurnOnKeyboard();
+    }
+
+    public void Die()
+    {
+        Pause();
+
+        respawnPanel.SetActive(true);
+    }
+
+    public void Respawn()
+    {
+        Pause();
+
+        respawnPanel.SetActive(false);
+
+        playerScript.Respawn();
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = (Time.timeScale + 1f) % 2;
+
+        if (Time.timeScale < 0.5f)
+        {
+            TurnOffKeyboard();
+        }
+        else
+        {
+            TurnOnKeyboard();
+        }
     }
 
     public void TurnOnKeyboard()

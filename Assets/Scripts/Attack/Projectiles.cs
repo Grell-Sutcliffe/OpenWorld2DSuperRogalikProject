@@ -39,8 +39,11 @@ public class Projectiles : MonoBehaviour
     {
         var damageable = FindDamageable(collision);
 
-        Debug.Log(collision, collision.gameObject);
-        Debug.Log(collision.gameObject.name);
-        damageable.TakeDamage(dmg);
+        //Debug.Log(collision, collision.gameObject);
+        //Debug.Log(collision.gameObject.name);
+        if (damageable != null)
+        {
+            damageable.TakeDamage(dmg);
+        }
     }
 }

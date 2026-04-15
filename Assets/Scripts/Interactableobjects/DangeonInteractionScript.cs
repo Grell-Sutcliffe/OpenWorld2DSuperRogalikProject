@@ -22,6 +22,6 @@ public class DangeonInteractionScript : InteractionController
 
     protected override void Interact()
     {
-        mainController.InteractDangeon();
+        mainController.InteractDangeon(this);
     }
 }

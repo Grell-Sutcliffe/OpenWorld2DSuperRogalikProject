@@ -5501,6 +5501,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4566888133336936993}
     m_Modifications:
+    - target: {fileID: 1341944560452811689, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341944560452811689, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -190582321
+      objectReference: {fileID: 0}
     - target: {fileID: 5315529509102738819, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
       propertyPath: m_Name
       value: Dangeon
@@ -5552,6 +5560,14 @@ PrefabInstance:
     - target: {fileID: 7084299739048034756, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572130041303655847, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572130041303655847, guid: 7f7cdb6ec70dd4543923b177ef8fa8a3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -190582321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

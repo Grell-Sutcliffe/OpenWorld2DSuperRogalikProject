@@ -314,6 +314,11 @@ public class QuestsController : MonoBehaviour
 
     public void UpdateNPCsQuestsIcons()
     {
+        foreach (string npc_name in mainController.dict_npc_name_to_npcController.Keys)
+        {
+            mainController.dict_npc_name_to_npcController[npc_name].IconThinkingSetActiveTrue();
+        }
+
         foreach (QuestSO questSO in quests)
         {
             if (accepted_quests.Contains(questSO.title))
@@ -321,12 +326,16 @@ public class QuestsController : MonoBehaviour
                 mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconHasAcceptedQuestSetActiveTrue();
                 continue;
             }
-            if (dict_quest_name_to_quest[questSO.title].current_task != null)
+            else if (dict_quest_name_to_quest[questSO.title].current_task != null)
             {
                 mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconHasUnacceptedQuestSetActiveTrue();
                 continue;
             }
-            mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconThinkingSetActiveTrue();
+            else
+            {
+                mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name].IconThinkingSetActiveTrue();
+                Debug.Log($"name = {mainController.dict_npc_name_to_npcController[dict_quest_name_to_quest[questSO.title].quest_accepting_NPC_name]}");
+            }
         }
     }
 
@@ -406,6 +415,8 @@ public class QuestsController : MonoBehaviour
                     }
                 }
             }
+
+            UpdateNPCsQuestsIcons();
         }
 
         if (e is ItemCollectedEvent itemCollectedEvent)

@@ -8,6 +8,8 @@ public class MapScript : MonoBehaviour
 
     public GameObject mapPoints_GO;
 
+    Transform GodFather;
+
     List<MapPointScript> list_of_map_point_scripts;
 
     public bool is_center = false;
@@ -26,6 +28,8 @@ public class MapScript : MonoBehaviour
     void Start()
     {
         mapController = GameObject.Find("MapController").GetComponent<MapController>();
+
+        GodFather = GameObject.Find("GODFATHER").GetComponent<Transform>();
 
         //SpawnMaps();
         width = gameObject.transform.localScale.x * 2;
@@ -89,56 +93,56 @@ public class MapScript : MonoBehaviour
         if (map_north == null)
         {
             position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
-            map_north = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_north = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // south
         if (map_south == null)
         {
             position = new Vector3(transform.position.x, transform.position.y - height, transform.position.z);
-            map_south = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_south = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // east
         if (map_east == null)
         {
             position = new Vector3(transform.position.x + width, transform.position.y, transform.position.z);
-            map_east = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_east = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // west
         if (map_west == null)
         {
             position = new Vector3(transform.position.x - width, transform.position.y, transform.position.z);
-            map_west = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_west = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // north east
         if (map_north_east == null)
         {
             position = new Vector3(transform.position.x + width, transform.position.y + height, transform.position.z);
-            map_north_east = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_north_east = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // north west
         if (map_north_west == null)
         {
             position = new Vector3(transform.position.x - width, transform.position.y + height, transform.position.z);
-            map_north_west = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_north_west = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // south east
         if (map_south_east == null)
         {
             position = new Vector3(transform.position.x + width, transform.position.y - height, transform.position.z);
-            map_south_east = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_south_east = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         // south west
         if (map_south_west == null)
         {
             position = new Vector3(transform.position.x - width, transform.position.y - height, transform.position.z);
-            map_south_west = Instantiate(mapController.mapPrefab, position, transform.rotation).GetComponent<MapScript>();
+            map_south_west = Instantiate(mapController.mapPrefab, position, transform.rotation, GodFather).GetComponent<MapScript>();
         }
 
         map_north.map_south = gameObject.GetComponent<MapScript>();

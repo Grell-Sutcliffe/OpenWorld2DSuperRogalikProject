@@ -12,6 +12,11 @@ public class MenuScript : MonoBehaviour
 
     string sceneToLoad = "GameScene";
 
+    private void Start()
+    {
+        MusicManager.Instance.PlayPhantomMusicByIndex(0);
+    }
+
     public void PlayButton()
     {
         loadingGO.SetActive(true);

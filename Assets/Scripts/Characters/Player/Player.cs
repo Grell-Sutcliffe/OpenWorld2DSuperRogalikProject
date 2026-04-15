@@ -220,15 +220,15 @@ public class Player : Creature, IDamagable, IAttacker
 
         if (CheckCritChance())
         {
-            int delta_physical_damage = RoundToMax(current_hit_stats.physical_attack * current_hit_stats.crit_dmg);
-            current_hit_stats.physical_dmg += delta_physical_damage;
+            int new_physical_damage = RoundToMax(current_hit_stats.physical_attack * current_hit_stats.crit_dmg);
+            current_hit_stats.physical_dmg = new_physical_damage;
             current_hit_stats.is_physical_crit = true;
 
         }
         if (CheckCritChance())
         {
-            int delta_elemental_damage = RoundToMax(current_hit_stats.elemental_attack * current_hit_stats.crit_dmg);
-            current_hit_stats.elemental_dmg += delta_elemental_damage;
+            int new_elemental_damage = RoundToMax(current_hit_stats.elemental_attack * current_hit_stats.crit_dmg);
+            current_hit_stats.elemental_dmg = new_elemental_damage;
             current_hit_stats.is_elemental_crit = true;
         }
     }
@@ -504,7 +504,21 @@ public class Player : Creature, IDamagable, IAttacker
 
     public void Die()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+
+        //gameObject.SetActive(false);
+
+        mainController.Die();
+    }
+
+    public void Respawn()
+    {
+        //gameObject.SetActive(true);
+
+        current_stats = new Stats(player_full_stats);
+        boost_stats = new Stats();
+
+        UpdateHealthBar();
     }
 
     protected virtual void RotatePivot(Vector2 mousePos, float offs = 0f)

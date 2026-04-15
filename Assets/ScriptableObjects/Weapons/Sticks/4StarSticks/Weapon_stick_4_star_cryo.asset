@@ -20,12 +20,12 @@ MonoBehaviour:
   range: 0
   cooldown: 0
   physical_attack: 0
-  elemental_attack: 5
+  elemental_attack: 6
   element_type: 1
-  elemental_mastery: 0.2
-  crit_chance: 0.2
-  crit_dmg: 0.3
-  max_level: 70
+  elemental_mastery: 0.3
+  crit_chance: 0.3
+  crit_dmg: 1.3
+  max_level: 90
   current_level: 0
   projectilePrefab: {fileID: 2871026007352307953, guid: bb3738cf07bb96f4396d840a151f96e8, type: 3}
   attackType: 0
