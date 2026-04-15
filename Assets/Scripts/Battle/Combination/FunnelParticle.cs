@@ -6,13 +6,13 @@ public class FunnelParticle : MonoBehaviour
     private float speed;
     private float destroyDistance = 0.2f;
 
-    public void Init(Transform target, float speed, float destDist)
+    public void Init(Transform target, float speed, float destDist, Color color)
     {
         this.target = target;
         this.speed = speed;
         this.destroyDistance = destDist;
         SpriteRenderer sr = GetComponent<SpriteRenderer>(); 
-        sr.color = Color.red;
+        sr.color = color;
     }
 
     private void Update()

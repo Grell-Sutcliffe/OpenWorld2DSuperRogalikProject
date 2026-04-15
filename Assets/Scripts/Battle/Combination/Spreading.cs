@@ -32,5 +32,8 @@ public class Spreading : MonoBehaviour
 
         damageable.TakeDamage(damage);
     }
-
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 }

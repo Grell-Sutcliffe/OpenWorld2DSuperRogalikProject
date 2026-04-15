@@ -115,7 +115,7 @@ public class EffectStalker : MonoBehaviour
                 PyroToCryo();
                 break;
             case (ElementType.Cryo, ElementType.Floro):
-                // логика
+                SpawnSpread(new_damage.elemental_dmg, ElementType.Cryo);
                 break;
             case (ElementType.Cryo, ElementType.Energo):
                 CryoToEnergo();
@@ -125,7 +125,7 @@ public class EffectStalker : MonoBehaviour
                 PyroToCryo();
                 break;
             case (ElementType.Pyro, ElementType.Floro):
-                // логика
+                SpawnSpread(new_damage.elemental_dmg, ElementType.Pyro);
                 break;
             case (ElementType.Pyro, ElementType.Energo):
                 PyroToEnergo();
@@ -161,7 +161,11 @@ public class EffectStalker : MonoBehaviour
         EffectController.Instance.SpawnBOOM(transform, boomDamage);
     }
 
-
+    void SpawnSpread(float strength, ElementType elementType)
+    {
+        Damage spreadDamage = new Damage(0, strength/3, elementType, false, false, false);
+        EffectController.Instance.SpawnSpread(transform, spreadDamage);
+    }
     public delegate void EffectDelegate(bool a);
     public void StartStopAnim(float duration, EffectDelegate del = null)
     {

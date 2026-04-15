@@ -79,6 +79,8 @@ public class MainController : MonoBehaviour
 
 
 
+    [SerializeField] GameObject prefDung;
+    public GameObject GodFather;
     public static MainController Instance { get; private set; }
     private void Awake()
     {
@@ -400,7 +402,7 @@ public class MainController : MonoBehaviour
     public void EnterDangeon()
     {
         Debug.Log("ENTER DANGEON");
-        dangeonInteractionScript.EnterDangeon();
+        dangeonInteractionScript.EnterDangeon(prefDung, GodFather);
     }
 
     public void ShowPlayerPanel()
