@@ -153,6 +153,7 @@ MonoBehaviour:
   speed: 8
   OffsetRad: 0
   dir: {x: 1, y: 0, z: 0}
+  isdestr: 1
 --- !u!50 &-6054001628461272511
 Rigidbody2D:
   serializedVersion: 5

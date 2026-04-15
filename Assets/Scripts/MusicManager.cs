@@ -22,6 +22,41 @@ public class MusicManager : MonoBehaviour
      * 
      * 
      */
+
+    [SerializeField] private float volume = 1f;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        volume = PlayerPrefs.GetFloat("volume", 1f);
+
+        musicSource.volume = volume;
+        source.volume = volume;
+    }
+
+    public void OnSliderChanged(float value)
+    {
+        MusicManager.Instance.SetVolume(value);
+    }
+
+    public void SetVolume(float value)
+    {
+        volume = value;
+
+        musicSource.volume = volume;
+        source.volume = volume;
+
+        PlayerPrefs.SetFloat("volume", volume);
+    }
+
     public void PlayPhantomMusicByIndex(int index)
     {
         if (index < 0 || index >= tracks.Count)
@@ -37,18 +72,7 @@ public class MusicManager : MonoBehaviour
         musicCoroutine = StartCoroutine(MusicPlaylistRoutine());
         
     }
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        //source = GetComponent<AudioSource>();
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        //Debug.Log(gameObject.name);
-    }
+
     private IEnumerator MusicPlaylistRoutine()
     {
         while (true)

@@ -39,8 +39,10 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     [SerializeField] protected string eName;
     [SerializeField] protected float reachDisttoRotatePivot; // чтобы 
 
+    /*
     float crit_chance = 0.7f;
     float crit_dmg = 2.5f;
+    */
 
     protected Animator anim;
     protected float offset;
@@ -324,6 +326,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 
     public void DealDamage()
     {
+        /*
         int delta_damage = 0;
 
         System.Random rand = new System.Random();
@@ -333,8 +336,9 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         {
             delta_damage += RoundToMax(weapon.stats.physical_attack * crit_dmg);
         }
+        */
 
-        this.current_dmg = weapon.stats.physical_attack + delta_damage;
+        this.current_dmg = weapon.stats.physical_attack;
 
         //LoggerName($"now have {this.currentDmg.damage} damage, delta_damage = {delta_damage}\ncrit_chance = {crit_chance}, crit_dmg = {crit_dmg}, chance = {chance}");
     }

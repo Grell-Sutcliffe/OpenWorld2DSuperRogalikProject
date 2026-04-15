@@ -127,8 +127,8 @@ public class Player : Creature, IDamagable, IAttacker
 
     void Start()
     {
-        //player_full_stats = new Stats(player_start_health, player_start_attack, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
-        player_full_stats = new Stats();
+        player_full_stats = new Stats(player_start_health, player_start_attack, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
+        // player_full_stats = new Stats();
 
         ApplyConfig();
 
@@ -164,7 +164,7 @@ public class Player : Creature, IDamagable, IAttacker
     public void SwitchWeapon(int index)
     {
         canHit = true;
-        Debug.Log("Switch to weapon " + index);
+        //Debug.Log("Switch to weapon " + index);
         if (index == 0){
             pivot = pivotFirst;
             pivotSecond.gameObject.SetActive(false);
@@ -194,7 +194,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         weapon_sprite_renderer.sprite = new_weapon.sprite;
 
-        current_stats = new Stats(player_full_stats, weapon.stats);
+        current_stats = new Stats(player_full_stats, weapon.stats, current_stats.health);
     }
 
     public void DealDamage()
@@ -209,7 +209,9 @@ public class Player : Creature, IDamagable, IAttacker
 
     void UpdateStats()
     {
-        current_stats = new Stats(player_full_stats, weapon.stats);
+        Debug.Log($"current_stats.health = {current_stats.health}, full_stats.health = {player_full_stats.health}");
+
+        current_stats = new Stats(player_full_stats, weapon.stats, current_stats.health);
         current_hit_stats = new Stats(current_stats, boost_stats);
 
         current_hit_stats.physical_dmg = current_hit_stats.physical_attack;
@@ -259,7 +261,7 @@ public class Player : Creature, IDamagable, IAttacker
         this.player_full_stats.health = RoundToMax(this.player_full_stats.health * upgrade_percent);
         this.player_full_stats.physical_attack = RoundToMax(this.player_full_stats.physical_attack * upgrade_percent);
         this.player_full_stats.crit_chance *= upgrade_percent;
-        player_full_stats.crit_dmg *= upgrade_percent;
+        this.player_full_stats.crit_dmg *= upgrade_percent;
         //this.defence *= upgrade_percent;
 
         current_stats = new Stats(player_full_stats, weapon.stats);
@@ -359,8 +361,10 @@ public class Player : Creature, IDamagable, IAttacker
         player_current_attack = Data.damage;
         */
 
+        /*
         player_full_stats.health = Data.maxHealth;
         player_full_stats.physical_attack = Data.damage;
+        */
 
         moveSpeed = Data.moveSpeed;
 
@@ -472,6 +476,8 @@ public class Player : Creature, IDamagable, IAttacker
     {
         //LoggerName($"took dmg = {dmg.damage}");
         current_stats.health -= (dmg.physical_dmg + dmg.elemental_dmg);
+        
+        if (current_stats.health < 0) current_stats.health = 0;
 
         UpdateHealthBar();
         MusicManager.Instance.PlayByIndex(1);
@@ -517,6 +523,8 @@ public class Player : Creature, IDamagable, IAttacker
 
         current_stats = new Stats(player_full_stats);
         boost_stats = new Stats();
+
+        UpdateStats();
 
         UpdateHealthBar();
     }

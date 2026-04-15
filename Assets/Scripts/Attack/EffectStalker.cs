@@ -91,7 +91,7 @@ public class EffectStalker : MonoBehaviour
             return;
         }
         if (!new_damage.isCombinated) return;
-        Debug.Log($"Наложение {new_damage.element_type} уже был {handledEffect}");
+        //Debug.Log($"Наложение {new_damage.element_type} уже был {handledEffect}");
 
         switch (handledEffect, new_damage.element_type)
         {
@@ -230,7 +230,7 @@ public class EffectStalker : MonoBehaviour
 
     void SetAnim(int react)
     {
-        Debug.Log($"Наложение на {creature.name} реакции {react}");
+        //Debug.Log($"Наложение на {creature.name} реакции {react}");
         anim.SetInteger("Reaction", react);
     }
     int concateElementTypes(ElementType elementType1, ElementType elementType2)

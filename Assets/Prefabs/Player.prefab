@@ -382,17 +382,17 @@ MonoBehaviour:
   spriteRender: {fileID: 3675455199803781339}
   max_level: 100
   current_level: 1
-  player_start_health: 0
-  player_start_attack: 0
+  player_start_health: 25
+  player_start_attack: 3
   player_start_crit_chance: 0
   player_start_crit_dmg: 0
-  player_start_defence: 0
+  player_start_defence: 0.3
   player_start_elementsl_mastery: 0
   attackCooldown: 0.5
   target: {fileID: 3401088822291997560}
   weaponSOs:
   - {fileID: 11400000, guid: 678aa6bb6a35cf64dab2160f9c38ed9d, type: 2}
-  - {fileID: 11400000, guid: 1a3361c6090526a41a2efff48745f832, type: 2}
+  - {fileID: 11400000, guid: 163da36a136866345b4527cb5fb08bab, type: 2}
   pivot: {fileID: 1867279333676066356}
   pivotSecond: {fileID: 2607351604561185569}
   pivotFirst: {fileID: 1867279333676066356}

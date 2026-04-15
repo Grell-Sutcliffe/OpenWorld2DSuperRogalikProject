@@ -13,9 +13,10 @@ public class Projectiles : MonoBehaviour
     [SerializeField] Vector3 dir;
     public Damage dmg;
     Rigidbody2D rb;
+    public bool isdestr;
 
     private void Awake()
-    {
+    {   
         //col = GetComponent<Collider2D>();
         Destroy(gameObject, lifeLong);
         rb = GetComponent<Rigidbody2D>();
@@ -44,6 +45,7 @@ public class Projectiles : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(dmg);
+            if (isdestr) Destroy(gameObject);
         }
     }
 }

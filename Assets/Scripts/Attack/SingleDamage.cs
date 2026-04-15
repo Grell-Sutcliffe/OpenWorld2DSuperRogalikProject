@@ -50,7 +50,7 @@ public class SingleDamage : MonoBehaviour
 
         var damageable = FindDamageable(collision);
 
-        Debug.Log(collision, collision.gameObject);
+        //Debug.Log(collision, collision.gameObject);
         damageable.TakeDamage(owner.currentDmg);
     }
 

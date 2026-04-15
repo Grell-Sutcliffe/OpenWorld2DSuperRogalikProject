@@ -56,6 +56,17 @@ public class Stats
         //this.defence = stats.defence;
     }
 
+    public Stats(Stats stats1, Stats stats2, float health)
+    {
+        this.health = health;
+        this.physical_attack = stats1.physical_attack + stats2.physical_attack;
+        this.elemental_attack = stats1.elemental_attack + stats2.elemental_attack;
+        this.crit_chance = stats1.crit_chance + stats2.crit_chance;
+        this.crit_dmg = stats1.crit_dmg + stats2.crit_dmg;
+        this.elemental_mastery = stats1.elemental_mastery + stats2.elemental_mastery;
+        //this.defence = stats1.defence + stats2.defence;
+    }
+
     public Stats(Stats stats1, Stats stats2)
     {
         this.health = stats1.health + stats2.health;
