@@ -105,7 +105,7 @@ public class EffectStalker : MonoBehaviour
                 break;
 
             case (ElementType.Floro, ElementType.Floro):
-                // логика
+                SpawnFunnel(new_damage.elemental_dmg, ElementType.Floro);
                 break;
             case (ElementType.Energo, ElementType.Energo):
                 SpawnBOOM(new_damage.elemental_dmg, ElementType.Energo);
@@ -132,13 +132,13 @@ public class EffectStalker : MonoBehaviour
                 break;
 
             case (ElementType.Floro, ElementType.Cryo):
-                // логика
+                SpawnFunnel(new_damage.elemental_dmg, ElementType.Cryo);
                 break;
             case (ElementType.Floro, ElementType.Pyro):
-                // логика
+                SpawnFunnel(new_damage.elemental_dmg, ElementType.Pyro);
                 break;
             case (ElementType.Floro, ElementType.Energo):
-                // логика
+                SpawnFunnel(new_damage.elemental_dmg, ElementType.Energo);
                 break;
 
             case (ElementType.Energo, ElementType.Cryo):
@@ -154,7 +154,11 @@ public class EffectStalker : MonoBehaviour
         handle(ElementType.None);
 
     }
-    
+    void SpawnFunnel(float strength, ElementType elementType)
+    {
+        Damage funnelDamage = new Damage(0, strength/3, elementType, false, false, false);
+        EffectController.Instance.SpawnFunnel(transform, funnelDamage);
+    }
     void SpawnBOOM(float strength, ElementType elementType)
     {
         Damage boomDamage = new Damage(0, strength, elementType, false, false, false);

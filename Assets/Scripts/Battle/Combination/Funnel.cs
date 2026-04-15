@@ -14,12 +14,12 @@ public class Funnel : MonoBehaviour
     [SerializeField] private GameObject particlePrefab; 
 
     CircleCollider2D circleCollider;
-
+    Color color;
     bool isDelay;
     private HashSet<IDamagable> damagedThisCycle = new HashSet<IDamagable>();
 
     Damage damage;
-    public void Init(Damage dmg, float forse = 3, float del = 3, float radius = 3, float PS = 3, float freq = 3, float time = 3)
+    public void Init(Damage dmg, float forse = 3, float del = 1f, float radius = 3, float PS = 5, float freq = 0.05f, float time = 5)
     {
         circleCollider = GetComponent<CircleCollider2D>();
         pullForce = forse;
@@ -29,6 +29,21 @@ public class Funnel : MonoBehaviour
         particleSpeed = PS;
         frequency = freq;
         timeLife = time;
+        switch (dmg.element_type)
+        {
+            case ElementType.Cryo:
+                color = Color.cyan;
+                break;
+            case ElementType.Pyro:
+                color = Color.yellow;
+                break;
+            case ElementType.Energo:
+                color = Color.magenta;
+                break;
+            case ElementType.Floro:
+                color = Color.green;
+                break;
+        }
     }
     private void Start()
     {
@@ -99,7 +114,7 @@ public class Funnel : MonoBehaviour
         );
 
         var fp = particle.GetComponent<FunnelParticle>();
-        fp.Init(transform, particleSpeed, destroyDist, Color.red);
+        fp.Init(transform, particleSpeed, destroyDist, color);
     }
     private IEnumerator DamageCycle()
     {
