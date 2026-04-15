@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static DialogController;
 using static DialogPanelScript;
-
+ 
 public class MainController : MonoBehaviour
 {
     QuestsController questsController;
@@ -76,8 +77,20 @@ public class MainController : MonoBehaviour
 
     public Dictionary<string, NPCController> dict_npc_name_to_npcController;
 
+
+
+    [SerializeField] GameObject prefDung;
+    public GameObject GodFather;
+    public static MainController Instance { get; private set; }
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
         StuffSetActiveTrue();
 
@@ -103,13 +116,34 @@ public class MainController : MonoBehaviour
         Make_dict_npc_name_to_npcController();
 
         SetIconThinkingNPC();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        list_of_interactable_SR.Clear();
+        list_of_interactable_objects_names.Clear();
+
+        Dedus = GameObject.Find("Dedus");
+        GrandsonEugene = GameObject.Find("GrandsonEugene");
+        Doggy = GameObject.Find("Doggy");
+        Woman = GameObject.Find("Woman");
+        Dangeon = GameObject.Find("Dangeon");
+
+        SetDangeonScripts();
+        Make_dict_npc_name_to_npcController();
+        SetIconThinkingNPC();
+    }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Start()
     {
         //backpackController.MakeDictionary();
 
-        //SetDangeonScripts();
+        SetDangeonScripts();
 
         is_keyboard_active = true;
 
@@ -371,7 +405,7 @@ public class MainController : MonoBehaviour
     public void EnterDangeon()
     {
         Debug.Log("ENTER DANGEON");
-        dangeonInteractionScript.EnterDangeon();
+        dangeonInteractionScript.EnterDangeon(prefDung, GodFather);
     }
 
     public void ShowPlayerPanel()
@@ -398,7 +432,7 @@ public class MainController : MonoBehaviour
         TurnOnKeyboard();
     }
 
-    /*
+    
     void SetDangeonScripts()
     {
         if (Dangeon == null) Dangeon = GameObject.Find("Dangeon");
@@ -407,7 +441,7 @@ public class MainController : MonoBehaviour
             dangeonInteractionScript = Dangeon.GetComponent<DangeonInteractionScript>();
         }
     }
-    */
+    
 
     public void OpenQuestPanel()
     {

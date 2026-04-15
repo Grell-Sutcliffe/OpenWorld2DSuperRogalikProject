@@ -5,7 +5,8 @@ public class Portal : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("PORTAAAAL");
-        SceneManager.LoadScene(0);
+        MainController.Instance.GodFather.SetActive(true);
+        GameObject grandParent = transform.parent.parent.gameObject;
+        Destroy(grandParent);
     }
 }

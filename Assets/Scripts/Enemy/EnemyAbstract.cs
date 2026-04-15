@@ -302,11 +302,14 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     }
     protected void PickNewTarget()
     {
-        Bounds b = walkZone.bounds;
-        moveTarget = new Vector2(
-            UnityEngine.Random.Range(b.min.x, b.max.x),
-            UnityEngine.Random.Range(b.min.y, b.max.y)
-        );
+        if (walkZone != null)
+        {
+            Bounds b = walkZone.bounds;
+            moveTarget = new Vector2(
+                UnityEngine.Random.Range(b.min.x, b.max.x),
+                UnityEngine.Random.Range(b.min.y, b.max.y)
+            );
+        }
     }
 
     public virtual void SetAggro(Transform target)  // ???

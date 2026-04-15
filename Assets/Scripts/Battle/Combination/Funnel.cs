@@ -19,7 +19,7 @@ public class Funnel : MonoBehaviour
     private HashSet<IDamagable> damagedThisCycle = new HashSet<IDamagable>();
 
     Damage damage;
-    public void Init(Damage dmg, float forse, float del, float radius, float PS, float freq, float time)
+    public void Init(Damage dmg, float forse = 3, float del = 3, float radius = 3, float PS = 3, float freq = 3, float time = 3)
     {
         circleCollider = GetComponent<CircleCollider2D>();
         pullForce = forse;
@@ -99,7 +99,7 @@ public class Funnel : MonoBehaviour
         );
 
         var fp = particle.GetComponent<FunnelParticle>();
-        fp.Init(transform, particleSpeed, destroyDist);
+        fp.Init(transform, particleSpeed, destroyDist, Color.red);
     }
     private IEnumerator DamageCycle()
     {

@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: f0ea77eb1fc9b0a48bc1dd0a06b52027
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8904209284976615433
+    second: Effect_Magma_1_005_0
+  - first:
+      213: 5290897303471225698
+    second: Effect_Magma_1_005_1
+  - first:
+      213: -3171900897339678786
+    second: Effect_Magma_1_005_2
+  - first:
+      213: -1326530878939657969
+    second: Effect_Magma_1_005_3
+  - first:
+      213: 4678248660830640257
+    second: Effect_Magma_1_005_4
+  - first:
+      213: 8627822970186128637
+    second: Effect_Magma_1_005_5
+  - first:
+      213: -8300219684058673396
+    second: Effect_Magma_1_005_6
+  - first:
+      213: 1442766208604540084
+    second: Effect_Magma_1_005_7
+  - first:
+      213: -4911803027004772052
+    second: Effect_Magma_1_005_8
+  - first:
+      213: 2055434214399516170
+    second: Effect_Magma_1_005_9
+  - first:
+      213: -1015911597110333783
+    second: Effect_Magma_1_005_10
+  - first:
+      213: 7378576425193486215
+    second: Effect_Magma_1_005_11
+  - first:
+      213: 3363305290574728973
+    second: Effect_Magma_1_005_12
+  - first:
+      213: 8385519178480394509
+    second: Effect_Magma_1_005_13
+  - first:
+      213: -9010326369691110525
+    second: Effect_Magma_1_005_14
+  - first:
+      213: 8182803667386507697
+    second: Effect_Magma_1_005_15
+  - first:
+      213: -3976852228193060752
+    second: Effect_Magma_1_005_16
+  - first:
+      213: -8854746267473303566
+    second: Effect_Magma_1_005_17
+  - first:
+      213: -7150919853663133462
+    second: Effect_Magma_1_005_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_0
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 86
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90024cc0b2b129b70800000000000000
+      internalID: 8904209284976615433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 94
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26b797ca01b0d6940800000000000000
+      internalID: 5290897303471225698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 94
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebf535770f42bf3d0800000000000000
+      internalID: -3171900897339678786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_3
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 86
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f090731a137379de0800000000000000
+      internalID: -1326530878939657969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_4
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 78
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 188d1cfde5a7ce040800000000000000
+      internalID: 4678248660830640257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 82
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfc56ea774f2cb770800000000000000
+      internalID: 8627822970186128637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_6
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 82
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f4afd7c22bfcc80800000000000000
+      internalID: -8300219684058673396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_7
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 78
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bc8fcdf83cb50410800000000000000
+      internalID: 1442766208604540084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 22
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2131b8bb25c5dbb0800000000000000
+      internalID: -4911803027004772052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 18
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e9770278e568c10800000000000000
+      internalID: 2055434214399516170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_10
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 2
+        width: 282
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aee903f8c1c6e1f0800000000000000
+      internalID: -1015911597110333783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_11
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 22
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 787bab35a28f56660800000000000000
+      internalID: 7378576425193486215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_12
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 18
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f06eb975cdcae20800000000000000
+      internalID: 3363305290574728973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_13
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 10
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d01ac82b3495f5470800000000000000
+      internalID: 8385519178480394509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_14
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 10
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383f930d7e3e4f280800000000000000
+      internalID: -9010326369691110525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_15
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b12655c4982f8170800000000000000
+      internalID: 8182803667386507697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_16
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 078f45ef7f16fc8c0800000000000000
+      internalID: -3976852228193060752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_17
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f7a9072f2f9d1580800000000000000
+      internalID: -8854746267473303566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Magma_1_005_18
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 2
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae0ee11c744d2cc90800000000000000
+      internalID: -7150919853663133462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Magma_1_005_0: 8904209284976615433
+      Effect_Magma_1_005_1: 5290897303471225698
+      Effect_Magma_1_005_10: -1015911597110333783
+      Effect_Magma_1_005_11: 7378576425193486215
+      Effect_Magma_1_005_12: 3363305290574728973
+      Effect_Magma_1_005_13: 8385519178480394509
+      Effect_Magma_1_005_14: -9010326369691110525
+      Effect_Magma_1_005_15: 8182803667386507697
+      Effect_Magma_1_005_16: -3976852228193060752
+      Effect_Magma_1_005_17: -8854746267473303566
+      Effect_Magma_1_005_18: -7150919853663133462
+      Effect_Magma_1_005_2: -3171900897339678786
+      Effect_Magma_1_005_3: -1326530878939657969
+      Effect_Magma_1_005_4: 4678248660830640257
+      Effect_Magma_1_005_5: 8627822970186128637
+      Effect_Magma_1_005_6: -8300219684058673396
+      Effect_Magma_1_005_7: 1442766208604540084
+      Effect_Magma_1_005_8: -4911803027004772052
+      Effect_Magma_1_005_9: 2055434214399516170
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
