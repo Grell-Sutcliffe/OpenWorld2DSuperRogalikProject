@@ -80,7 +80,175 @@ public class Player : Creature, IDamagable, IAttacker
     Vector3 localPivotPosSaved;
     private static Player instance;
 
-   
+    private const string PlayerSaveKey = "player_save";
+
+    [System.Serializable]
+    public class PlayerSaveData
+    {
+        public float posX;
+        public float posY;
+        public float posZ;
+
+        public int currentLevel;
+
+        public StatsSaveData playerFullStats;
+        public StatsSaveData currentStats;
+
+        public int currentWeaponIndex;
+        public List<string> weaponNames = new List<string>();
+    }
+
+    [System.Serializable]
+    public class StatsSaveData
+    {
+        public float health;
+        public float physical_attack;
+        public float elemental_attack;
+        public float crit_chance;
+        public float crit_dmg;
+        public float defence;
+        public float elemental_mastery;
+
+        public StatsSaveData() { }
+
+        public StatsSaveData(Stats stats)
+        {
+            health = stats.health;
+            physical_attack = stats.physical_attack;
+            elemental_attack = stats.elemental_attack;
+            crit_chance = stats.crit_chance;
+            crit_dmg = stats.crit_dmg;
+            //defence = stats.defence;
+            elemental_mastery = stats.elemental_mastery;
+        }
+
+        public void ApplyTo(Stats stats)
+        {
+            stats.health = health;
+            stats.physical_attack = physical_attack;
+            stats.elemental_attack = elemental_attack;
+            stats.crit_chance = crit_chance;
+            stats.crit_dmg = crit_dmg;
+            //stats.defence = defence;
+            stats.elemental_mastery = elemental_mastery;
+        }
+    }
+
+    public void SavePlayer()
+    {
+        PlayerSaveData saveData = new PlayerSaveData();
+
+        saveData.posX = transform.position.x;
+        saveData.posY = transform.position.y;
+        saveData.posZ = transform.position.z;
+
+        saveData.currentLevel = current_level;
+
+        saveData.playerFullStats = new StatsSaveData(player_full_stats);
+        saveData.currentStats = new StatsSaveData(current_stats);
+
+        saveData.currentWeaponIndex = current_weapon_index;
+
+        saveData.weaponNames.Clear();
+
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon != null)
+                saveData.weaponNames.Add(weapon.item_name);
+            else
+                saveData.weaponNames.Add("");
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(PlayerSaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Player saved: " + json);
+    }
+
+    public void LoadPlayer()
+    {
+        if (!PlayerPrefs.HasKey(PlayerSaveKey))
+        {
+            Debug.Log("No player save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(PlayerSaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Player save is empty");
+            return;
+        }
+
+        PlayerSaveData saveData = JsonUtility.FromJson<PlayerSaveData>(json);
+
+        if (saveData == null)
+        {
+            Debug.LogWarning("Player save is broken");
+            return;
+        }
+
+        transform.position = new Vector3(saveData.posX, saveData.posY, saveData.posZ);
+
+        current_level = saveData.currentLevel;
+
+        if (saveData.playerFullStats != null)
+            saveData.playerFullStats.ApplyTo(player_full_stats);
+
+        if (saveData.currentStats != null)
+            saveData.currentStats.ApplyTo(current_stats);
+
+        boost_stats = new Stats();
+
+        LoadWeaponsFromSave(saveData);
+
+        UpdateStats();
+        UpdateHealthBar();
+
+        Debug.Log("Player loaded: " + json);
+    }
+
+    private void LoadWeaponsFromSave(PlayerSaveData saveData)
+    {
+        if (saveData.weaponNames == null || saveData.weaponNames.Count == 0)
+            return;
+
+        for (int i = 0; i < saveData.weaponNames.Count && i < weapons.Count; i++)
+        {
+            string weaponName = saveData.weaponNames[i];
+
+            if (string.IsNullOrEmpty(weaponName))
+                continue;
+
+            Item item = mainController.GetItemByName(weaponName);
+
+            if (item is Weapon savedWeapon)
+            {
+                weapons[i] = savedWeapon;
+                mainController.SetCharacterWeapon(i, savedWeapon);
+            }
+            else
+            {
+                Debug.LogWarning("Saved weapon not found or not Weapon: " + weaponName);
+            }
+        }
+
+        int index = Mathf.Clamp(saveData.currentWeaponIndex, 0, weapons.Count - 1);
+
+        SetWeapon(index);
+    }
+
+    public void DeletePlayerSave()
+    {
+        PlayerPrefs.DeleteKey(PlayerSaveKey);
+        PlayerPrefs.Save();
+
+        Debug.Log("Player save deleted");
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -150,6 +318,8 @@ public class Player : Creature, IDamagable, IAttacker
 
         GivePlayerNewWeapon(weapon);
         SwitchWeapon(0);
+
+        LoadPlayer();
     }
     
     private void OnEnable()

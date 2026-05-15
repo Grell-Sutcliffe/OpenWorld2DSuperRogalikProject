@@ -12,8 +12,13 @@ public class MenuScript : MonoBehaviour
 
     string sceneToLoad = "GameScene";
 
+    [SerializeField] private Slider volumeSlider;
+
     private void Start()
     {
+        Time.timeScale = 1f;
+
+        MusicManager.Instance.SetSlider(volumeSlider);
         MusicManager.Instance.PlayPhantomMusicByIndex(0);
     }
 

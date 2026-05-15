@@ -583,7 +583,7 @@ public class MainController : MonoBehaviour
 
     public void Die()
     {
-        Pause();
+        Pause(false);
 
         respawnPanel.SetActive(true);
     }
@@ -599,17 +599,33 @@ public class MainController : MonoBehaviour
 
     public void GoToMenuScene()
     {
+        Save();
+
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("Menu");
     }
 
-    public void Pause()
+    public void Save()
+    {
+        backpackController.SaveInventory();
+        playerScript.SavePlayer();
+        wishPanelScript.SaveWishParameters();
+    }
+
+    public void ClearEverything()
+    {
+        backpackController.DeleteInventory();
+        playerScript.DeletePlayerSave();
+        wishPanelScript.DeleteWishParameters();
+    }
+
+    public void Pause(bool check = true)
     {
         Time.timeScale = (Time.timeScale + 1f) % 2;
 
         if (Time.timeScale < 0.5f)
         {
-            OpenPausePanel();
+            if (check) OpenPausePanel();
             TurnOffKeyboard();
             pauseTMP.text = "|>";
         }

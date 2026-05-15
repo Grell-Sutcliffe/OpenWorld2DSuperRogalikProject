@@ -76,6 +76,103 @@ public class BackPackController : MonoBehaviour
 
     public List<UseType> list_of_use_types;
     public static BackPackController Instance { get; private set; }
+
+    private const string InventorySaveKey = "inventory_save";
+
+    [System.Serializable]
+    public class InventorySaveData
+    {
+        public List<ItemSaveData> items = new List<ItemSaveData>();
+    }
+
+    [System.Serializable]
+    public class ItemSaveData
+    {
+        public string itemName;
+        public int amount;
+
+        public ItemSaveData(string itemName, int amount)
+        {
+            this.itemName = itemName;
+            this.amount = amount;
+        }
+    }
+
+    public void SaveInventory()
+    {
+        InventorySaveData saveData = new InventorySaveData();
+
+        foreach (var pair in dict_id_to_item)
+        {
+            Item item = pair.Value;
+
+            saveData.items.Add(new ItemSaveData(item.item_name, item.amount));
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(InventorySaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Inventory saved: " + json);
+    }
+
+    public void LoadInventory()
+    {
+        if (!PlayerPrefs.HasKey(InventorySaveKey))
+        {
+            Debug.Log("No inventory save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(InventorySaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Inventory save is empty");
+            return;
+        }
+
+        InventorySaveData saveData = JsonUtility.FromJson<InventorySaveData>(json);
+
+        if (saveData == null || saveData.items == null)
+        {
+            Debug.LogWarning("Inventory save is broken");
+            return;
+        }
+
+        foreach (ItemSaveData savedItem in saveData.items)
+        {
+            if (!dict_item_name_to_id.ContainsKey(savedItem.itemName))
+            {
+                Debug.LogWarning("Saved item not found: " + savedItem.itemName);
+                continue;
+            }
+
+            int itemId = dict_item_name_to_id[savedItem.itemName];
+
+            dict_id_to_item[itemId].amount = savedItem.amount;
+        }
+
+        Debug.Log("Inventory loaded: " + json);
+    }
+
+    public void DeleteInventory()
+    {
+        PlayerPrefs.DeleteKey(InventorySaveKey);
+        PlayerPrefs.Save();
+
+        dict_id_to_item.Clear();
+        dict_item_name_to_id.Clear();
+
+        MakeDictionary();
+
+        UpdateBackpack();
+        ClearShowerPanel();
+
+        Debug.Log("Inventory reset to default values");
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -101,6 +198,8 @@ public class BackPackController : MonoBehaviour
         // shopPanelScript = GameObject.Find("ShopPanel").GetComponent<ShopPanelScript>();
 
         content_rect_transform = content_GO.GetComponent<RectTransform>();
+
+        LoadInventory();
 
         UpdateBackpack();
         ClearShowerPanel();
@@ -258,6 +357,8 @@ public class BackPackController : MonoBehaviour
         {
             dict_id_to_item[item_id].amount -= number;
 
+            SaveInventory();
+
             return true;
         }
         else
@@ -271,6 +372,8 @@ public class BackPackController : MonoBehaviour
         int item_id = dict_item_name_to_id[item_name];
 
         dict_id_to_item[item_id].amount += number;
+
+        SaveInventory();
 
         EventBus.Raise(new ItemCollectedEvent(dict_item_name_to_id[item_name], number));
 
@@ -424,6 +527,8 @@ public class BackPackController : MonoBehaviour
 
                 dict_id_to_item[id].amount++;
                 Debug.Log(dict_id_to_item[id].amount);
+
+                SaveInventory();
 
                 break;
             }

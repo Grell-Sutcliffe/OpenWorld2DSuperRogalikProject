@@ -69,8 +69,77 @@ public class WishPanelScript : MonoBehaviour
 
     private Animator wish_animator;
 
+    private const string WishSaveKey = "wish_parameters_save";
+
     bool is_pink = true;
 
+    [System.Serializable]
+    public class WishSaveData
+    {
+        public WishParameters pinkWishParameters;
+        public WishParameters blueWishParameters;
+    }
+
+    public void SaveWishParameters()
+    {
+        WishSaveData saveData = new WishSaveData();
+
+        saveData.pinkWishParameters = pink_wish_parameters;
+        saveData.blueWishParameters = blue_wish_parameters;
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(WishSaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Wish parameters saved: " + json);
+    }
+
+    public void LoadWishParameters()
+    {
+        if (!PlayerPrefs.HasKey(WishSaveKey))
+        {
+            Debug.Log("No wish parameters save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(WishSaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Wish parameters save is empty");
+            return;
+        }
+
+        WishSaveData saveData = JsonUtility.FromJson<WishSaveData>(json);
+
+        if (saveData == null)
+        {
+            Debug.LogWarning("Wish parameters save is broken");
+            return;
+        }
+
+        if (saveData.pinkWishParameters != null)
+            pink_wish_parameters = new WishParameters(saveData.pinkWishParameters);
+
+        if (saveData.blueWishParameters != null)
+            blue_wish_parameters = new WishParameters(saveData.blueWishParameters);
+
+        Debug.Log("Wish parameters loaded: " + json);
+    }
+
+    public void DeleteWishParameters()
+    {
+        PlayerPrefs.DeleteKey(WishSaveKey);
+        PlayerPrefs.Save();
+
+        pink_wish_parameters = new WishParameters();
+        blue_wish_parameters = new WishParameters();
+
+        Debug.Log("Wish parameters reset to default");
+    }
+
+    [System.Serializable]
     public class WishParameters
     {
         public float chance_to_get_5_star = 0.01f;  // 0,01
@@ -158,6 +227,8 @@ public class WishPanelScript : MonoBehaviour
         {
             Debug.LogError("ERROR: Can't find wish_animator");
         }
+
+        LoadWishParameters();
 
         MakeDictionary();
     }
@@ -332,6 +403,8 @@ public class WishPanelScript : MonoBehaviour
         {
             blue_wish_parameters = new WishParameters(temp_wishParameters);
         }
+
+        SaveWishParameters();
 
         wish_animator.SetBool("is_wishing", true);
         wish_animator.SetBool("is_wish_pink", is_pink);

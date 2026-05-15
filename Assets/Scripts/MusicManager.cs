@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
+using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
-    int currentMusicIndex = 0;
-    [SerializeField] private List<AudioClip> tracksPhantom = new();
     [SerializeField] private AudioSource source;
-    [SerializeField] private List<AudioClip> tracks = new();
-    private Coroutine musicCoroutine;
-    /*
-     * 0 - poof (0) 
-     * 1 - playerdmg
-     * 2-4 - dmg enemies
-     * 5 - click
-     * 6 - sand (enemy die)
-     * 
-     * 
-     */
 
+    [Header("Tracks")]
+    [SerializeField] private List<AudioClip> tracksPhantom = new();
+    [SerializeField] private List<AudioClip> tracks = new();
+
+    [Header("Volume UI")]
+    [SerializeField] private Slider volumeSlider;
+
+    [Header("Volume")]
     [SerializeField] private float volume = 1f;
+
+    private const string VolumeKey = "volume";
+
+    private int currentMusicIndex = 0;
+    private Coroutine musicCoroutine;
 
     private void Awake()
     {
@@ -36,41 +37,80 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        volume = PlayerPrefs.GetFloat("volume", 1f);
-
-        musicSource.volume = volume;
-        source.volume = volume;
+        LoadVolume();
     }
 
-    public void OnSliderChanged(float value)
+    private void Start()
     {
-        MusicManager.Instance.SetVolume(value);
+        SetupSlider();
+    }
+
+    private void LoadVolume()
+    {
+        volume = PlayerPrefs.GetFloat(VolumeKey, 1f);
+        ApplyVolume();
+    }
+
+    private void ApplyVolume()
+    {
+        if (musicSource != null)
+            musicSource.volume = volume;
+
+        if (source != null)
+            source.volume = volume;
+    }
+
+    private void SetupSlider()
+    {
+        if (volumeSlider == null)
+            return;
+
+        volumeSlider.minValue = 0f;
+        volumeSlider.maxValue = 1f;
+        volumeSlider.wholeNumbers = false;
+
+        volumeSlider.onValueChanged.RemoveListener(SetVolume);
+
+        volumeSlider.SetValueWithoutNotify(volume);
+
+        volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
     public void SetVolume(float value)
     {
-        volume = value;
+        volume = Mathf.Clamp01(value);
 
-        musicSource.volume = volume;
-        source.volume = volume;
+        ApplyVolume();
 
-        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.SetFloat(VolumeKey, volume);
+        PlayerPrefs.Save();
+    }
+
+    public void OnSliderChanged(float value)
+    {
+        SetVolume(value);
     }
 
     public void PlayPhantomMusicByIndex(int index)
     {
-        if (index < 0 || index >= tracks.Count)
+        if (index < 0 || index >= tracksPhantom.Count)
         {
             Debug.LogWarning($"Music phantom index {index} out of range");
             return;
         }
+
         currentMusicIndex = index;
 
         if (musicCoroutine != null)
             StopCoroutine(musicCoroutine);
 
         musicCoroutine = StartCoroutine(MusicPlaylistRoutine());
-        
+    }
+
+    public void SetSlider(Slider slider)
+    {
+        volumeSlider = slider;
+        SetupSlider();
     }
 
     private IEnumerator MusicPlaylistRoutine()
@@ -83,7 +123,7 @@ public class MusicManager : MonoBehaviour
             musicSource.loop = false;
             musicSource.Play();
 
-            yield return new WaitForSeconds(clip.length);
+            yield return new WaitForSecondsRealtime(clip.length);
 
             currentMusicIndex++;
 
@@ -91,6 +131,7 @@ public class MusicManager : MonoBehaviour
                 currentMusicIndex = 0;
         }
     }
+
     public void PlayByIndex(int index, bool isLoop = false)
     {
         if (index < 0 || index >= tracks.Count)
@@ -99,11 +140,6 @@ public class MusicManager : MonoBehaviour
             return;
         }
 
-        //if (source.clip == tracks[index] && source.isPlaying)
-        //    return;
-        Debug.LogWarning("PPOOOOOF");
-        //source.clip = tracks[index];
-        //source.loop = isLoop;
         source.PlayOneShot(tracks[index]);
     }
 
