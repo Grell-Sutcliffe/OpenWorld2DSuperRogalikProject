@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -161,14 +162,21 @@ public class Player : Creature, IDamagable, IAttacker
         controls?.Disable(); 
     }
     public int current_weapon_index = 0;
+
     public void SwitchWeapon(int index)
     {   
         if (!mainController.is_keyboard_active){
             return;
         }
+        SetWeapon(index);
+    }
+
+    public void SetWeapon(int index)
+    {
         canHit = true;
         Debug.Log("Switch to weapon " + index);
-        if (index == 0){
+        if (index == 0)
+        {
             pivot = pivotFirst;
             pivotSecond.gameObject.SetActive(false);
 

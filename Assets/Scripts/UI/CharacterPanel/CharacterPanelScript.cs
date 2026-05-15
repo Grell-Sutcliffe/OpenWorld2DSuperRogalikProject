@@ -273,18 +273,19 @@ public class CharacterPanelScript : MonoBehaviour
 
     public void SwitchWeaponTo1()
     {
-        playerScript.SwitchWeapon(0);
+        //playerScript.SwitchWeapon(0);
         SwitchWeaponTo(0);
     }
 
     public void SwitchWeaponTo2()
     {
-        playerScript.SwitchWeapon(1);
+        //playerScript.SwitchWeapon(1);
         SwitchWeaponTo(1);
     }
 
     void SwitchWeaponTo(int index)
     {
+        playerScript.SetWeapon(index);
         current_weapon_index = index;
         SetNewWeapon(index, playerScript.weapons[index]);
         //current_weaponType = currentWeaponPanelScript.weapon.weapon_type;
