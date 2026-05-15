@@ -21,7 +21,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
     public int space_between_items = 50;
     public int item_in_row = 3;
 
-    List<Weapon> weapons;
+    //List<Weapon> weapons;
 
     private void Awake()
     {

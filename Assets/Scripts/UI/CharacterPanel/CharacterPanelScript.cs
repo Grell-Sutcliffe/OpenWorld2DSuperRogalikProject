@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -92,7 +93,7 @@ public class CharacterPanelScript : MonoBehaviour
     public string name_physical = "physical";
 
     public int current_weapon_index = 0;
-    //public WeaponType current_weaponType;
+    public WeaponType current_weaponType;
 
     void Awake()
     {
@@ -241,7 +242,7 @@ public class CharacterPanelScript : MonoBehaviour
     public void GivePlayerNewWeapon()
     {
         //playerScript.weapon = currentWeaponPanelScript.weapon;
-        playerScript.GivePlayerNewWeapon(currentWeaponPanelScript.weapon);
+        playerScript.SetNewWeaponOnIndex(current_weapon_index, currentWeaponPanelScript.weapon);
     }
 
     void MakeDictionary()
@@ -257,10 +258,13 @@ public class CharacterPanelScript : MonoBehaviour
 
     public void SetNewWeapon(int new_index, Weapon new_weapon)
     {
+        playerScript.SetWeapon(new_index);
         current_weapon_index = new_index;
+        current_weaponType = playerScript.weapons[new_index].weapon_type;
+
         currentWeaponPanelScript.SetNewWeapon(new_weapon);
         //GivePlayerNewWeapon();
-        //playerScript.SetNewWeaponOnIndex(current_weapon_index, new_weapon);
+        playerScript.SetNewWeaponOnIndex(current_weapon_index, new_weapon);
         UpdatePanel();
         mainController.UpdateButtlePanel();
     }
@@ -285,14 +289,16 @@ public class CharacterPanelScript : MonoBehaviour
 
     void SwitchWeaponTo(int index)
     {
-        playerScript.SetWeapon(index);
-        current_weapon_index = index;
         SetNewWeapon(index, playerScript.weapons[index]);
-        //current_weaponType = currentWeaponPanelScript.weapon.weapon_type;
     }
 
     public void OpenCharacterPanel()
     {
+        current_weapon_index = playerScript.current_weapon_index;
+        current_weaponType = playerScript.weapons[current_weapon_index].weapon_type;
+
+        SwitchWeaponTo(current_weapon_index);
+
         gameObject.SetActive(true);
         GoToCharacterPanel();
     }

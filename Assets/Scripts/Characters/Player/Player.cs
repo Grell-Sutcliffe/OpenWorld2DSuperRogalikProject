@@ -193,14 +193,21 @@ public class Player : Creature, IDamagable, IAttacker
         Debug.Log($"Gived {weapons[index].data}");
     }
 
-    public void SetNewWeaponOnIndex(int index, Weapon new_weapon) //bebe
+    public void SetNewWeaponOnIndex(int index, Weapon new_weapon)
     {
+        if (weapons[index].weapon_type != new_weapon.weapon_type)
+        {
+            Debug.LogError("ERROR: типы оружий не совпадают!!!");
+            //return;
+        }
+
+        current_weapon_index = index;
         weapons[index] = new_weapon;
 
         GivePlayerNewWeapon(new_weapon);
     }
 
-    public void GivePlayerNewWeapon(Weapon new_weapon)
+    void GivePlayerNewWeapon(Weapon new_weapon)
     {
         weapon = new_weapon;
 
