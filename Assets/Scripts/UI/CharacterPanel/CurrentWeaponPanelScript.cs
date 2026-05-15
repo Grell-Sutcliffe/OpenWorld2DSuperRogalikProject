@@ -138,9 +138,11 @@ public class CurrentWeaponPanelScript : MonoBehaviour
         return number * 100;
     }
 
-    public void OpenPanel()
+    public void OpenPanel(Weapon new_weapon)
     {
         gameObject.SetActive(true);
+        weapon = new_weapon;
+        //Debug.Log($"currentWeaponPanel --- current_selected_weapon.type = {weapon.weapon_type}");
         UpdatePanel();
     }
 

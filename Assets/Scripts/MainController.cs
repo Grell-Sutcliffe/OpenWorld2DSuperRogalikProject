@@ -510,6 +510,7 @@ public class MainController : MonoBehaviour
 
     public void CloseCharacterPanel()
     {
+        
         characterPanel.SetActive(false);
         TurnOnKeyboard();
     }

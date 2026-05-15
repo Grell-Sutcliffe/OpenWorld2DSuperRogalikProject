@@ -92,7 +92,7 @@ public class CharacterPanelScript : MonoBehaviour
     public string name_physical = "physical";
 
     public int current_weapon_index = 0;
-    public WeaponType current_weaponType;
+    //public WeaponType current_weaponType;
 
     void Awake()
     {
@@ -260,7 +260,7 @@ public class CharacterPanelScript : MonoBehaviour
         current_weapon_index = new_index;
         currentWeaponPanelScript.SetNewWeapon(new_weapon);
         //GivePlayerNewWeapon();
-        playerScript.SetNewWeaponOnIndex(current_weapon_index, new_weapon);
+        //playerScript.SetNewWeaponOnIndex(current_weapon_index, new_weapon);
         UpdatePanel();
         mainController.UpdateButtlePanel();
     }
@@ -287,7 +287,7 @@ public class CharacterPanelScript : MonoBehaviour
     {
         current_weapon_index = index;
         SetNewWeapon(index, playerScript.weapons[index]);
-        current_weaponType = currentWeaponPanelScript.weapon.weapon_type;
+        //current_weaponType = currentWeaponPanelScript.weapon.weapon_type;
     }
 
     public void OpenCharacterPanel()
@@ -307,7 +307,7 @@ public class CharacterPanelScript : MonoBehaviour
     {
         characterPanel.SetActive(false);
         //weaponPanel.SetActive(true);
-        currentWeaponPanelScript.OpenPanel();
+        currentWeaponPanelScript.OpenPanel(playerScript.weapons[playerScript.current_weapon_index]);
     }
 
     public int RoundToMax(float number)

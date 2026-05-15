@@ -49,7 +49,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
         gameObject.SetActive(true);
         current_selected_weapon = currentWeaponPanelScript.weapon;
 
-        Debug.Log($"switchWeaponPanel --- current_selected_weapon.name = {current_selected_weapon.item_name}");
+        //Debug.Log($"switchWeaponPanel --- current_selected_weapon.type = {current_selected_weapon.weapon_type}");
         
         UpdateContent();
     }
@@ -85,7 +85,7 @@ public class SwitchWeaponPanelScript : MonoBehaviour
             {
                 if (backpackController.dict_id_to_item[id] is Weapon weapon)
                 {
-                    if (weapon.weapon_type == characterPanelScript.current_weaponType)
+                    if (weapon.weapon_type == current_selected_weapon.weapon_type)
                     {
                         item_counter++;
                         SpawnIconPrefab(weapon);

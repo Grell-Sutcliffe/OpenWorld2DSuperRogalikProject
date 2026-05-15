@@ -160,11 +160,14 @@ public class Player : Creature, IDamagable, IAttacker
     {
         controls?.Disable(); 
     }
-
+    public int current_weapon_index = 0;
     public void SwitchWeapon(int index)
-    {
+    {   
+        if (!mainController.is_keyboard_active){
+            return;
+        }
         canHit = true;
-        //Debug.Log("Switch to weapon " + index);
+        Debug.Log("Switch to weapon " + index);
         if (index == 0){
             pivot = pivotFirst;
             pivotSecond.gameObject.SetActive(false);
@@ -175,6 +178,7 @@ public class Player : Creature, IDamagable, IAttacker
             pivot = pivotSecond;
             pivotFirst.gameObject.SetActive(false);
         }
+        current_weapon_index = index;
         SpriteRenderer sr = pivot.GetComponentInChildren<SpriteRenderer>();
         weapon_sprite_renderer = sr;
         GivePlayerNewWeapon(weapons[index]);
