@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ public class MainController : MonoBehaviour
 {
     QuestsController questsController;
     AchievementController achievementController;
+
+    public TextMeshProUGUI pauseTMP;
 
     public Player playerScript;
 
@@ -36,6 +39,7 @@ public class MainController : MonoBehaviour
     public GameObject errorPanel;
     public GameObject loadingPanel;
     public GameObject respawnPanel;
+    public GameObject pausePanel;
 
     //public GameObject taskShower;
 
@@ -93,7 +97,7 @@ public class MainController : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         StuffSetActiveTrue();
 
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
@@ -401,6 +405,7 @@ public class MainController : MonoBehaviour
         rewardPanel.SetActive(false);
         loadingPanel.SetActive(false);
         respawnPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 
     public void InteractDangeon(DangeonInteractionScript new_dangeonInteractionScript)
@@ -540,6 +545,18 @@ public class MainController : MonoBehaviour
         TurnOnKeyboard();
     }
 
+    public void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
+        TurnOffKeyboard();
+    }
+
+    public void ClosePausePanel()
+    {
+        pausePanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
     public void OpenAchievementPanel()
     {
         achievementController.OpenAchievementPanel();
@@ -580,17 +597,27 @@ public class MainController : MonoBehaviour
         playerScript.Respawn();
     }
 
+    public void GoToMenuScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadSceneAsync("Menu");
+    }
+
     public void Pause()
     {
         Time.timeScale = (Time.timeScale + 1f) % 2;
 
         if (Time.timeScale < 0.5f)
         {
+            OpenPausePanel();
             TurnOffKeyboard();
+            pauseTMP.text = "|>";
         }
         else
         {
+            ClosePausePanel();
             TurnOnKeyboard();
+            pauseTMP.text = "| |";
         }
     }
 

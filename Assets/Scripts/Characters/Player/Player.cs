@@ -91,7 +91,7 @@ public class Player : Creature, IDamagable, IAttacker
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
         GameObject mainControllerGO = GameObject.Find("MainController");

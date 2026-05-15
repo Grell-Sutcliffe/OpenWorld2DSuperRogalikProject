@@ -296,7 +296,7 @@ public class QuestsController : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();

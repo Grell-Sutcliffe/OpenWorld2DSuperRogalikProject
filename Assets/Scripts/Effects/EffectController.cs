@@ -14,7 +14,7 @@ public class EffectController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     public void SpawnFunnel(Transform transform, Damage dmg, float radius = 5)
     {

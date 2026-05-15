@@ -84,7 +84,7 @@ public class BackPackController : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         Instance = this;
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();

@@ -27,25 +27,35 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator LoadAsync()
     {
+        progressBar.value = 0f;
+        loadingText.text = "0%";
+
+        yield return new WaitForSeconds(0.5f);
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         operation.allowSceneActivation = false;
 
-        while (!operation.isDone)
+        while (operation.progress < 0.9f)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
             progressBar.value = progress;
-            loadingText.text = (progress * 100).ToString("F0") + "%";
+            loadingText.text = (progress * 100f).ToString("F0") + "%";
 
-            if (operation.progress >= 0.4f)
+            if (progress < 0.75f)
             {
-                // Можно добавить задержку или анимацию
                 yield return new WaitForSeconds(0.5f);
-                operation.allowSceneActivation = true;
             }
 
             yield return null;
         }
+
+        progressBar.value = 1f;
+        loadingText.text = "100%";
+
+        yield return new WaitForSeconds(0.5f);
+
+        operation.allowSceneActivation = true;
     }
 
     public void QuitButton()
