@@ -73,6 +73,149 @@ public class AchievementController : MonoBehaviour
     private int amount_of_wishes_made = 0;
 
     public static AchievementController Instance { get; private set; }
+
+    private const string AchievementsSaveKey = "achievements_save";
+
+    [System.Serializable]
+    public class AchievementsSaveData
+    {
+        public List<AchievementSaveData> achievements = new List<AchievementSaveData>();
+
+        public List<string> completedDialogTitles = new List<string>();
+        public List<string> npcNamesPlayerTalkedTo = new List<string>();
+        public List<string> completedQuestTitles = new List<string>();
+
+        public int amountOfItemsUsed;
+        public int amountOfWishesMade;
+    }
+
+    [System.Serializable]
+    public class AchievementSaveData
+    {
+        public string achievementTitle;
+        public bool isCompleted;
+        public bool isClaimed;
+
+        public AchievementSaveData(string achievementTitle, bool isCompleted, bool isClaimed)
+        {
+            this.achievementTitle = achievementTitle;
+            this.isCompleted = isCompleted;
+            this.isClaimed = isClaimed;
+        }
+    }
+
+    public void SaveAchievements()
+    {
+        AchievementsSaveData saveData = new AchievementsSaveData();
+
+        foreach (var pair in dict_achievement_title_to_achievement)
+        {
+            Achievement achievement = pair.Value;
+
+            saveData.achievements.Add(new AchievementSaveData(
+                pair.Key,
+                achievement.is_completed,
+                achievement.is_claimed
+            ));
+        }
+
+        saveData.completedDialogTitles = new List<string>(set_of_completed_dialog_titles);
+        saveData.npcNamesPlayerTalkedTo = new List<string>(set_of_npc_names_player_talked_to);
+        saveData.completedQuestTitles = new List<string>(set_of_completed_quest_titles);
+
+        saveData.amountOfItemsUsed = amount_of_items_used;
+        saveData.amountOfWishesMade = amount_of_wishes_made;
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(AchievementsSaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Achievements saved: " + json);
+    }
+
+    public void LoadAchievements()
+    {
+        if (!PlayerPrefs.HasKey(AchievementsSaveKey))
+        {
+            Debug.Log("No achievements save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(AchievementsSaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Achievements save is empty");
+            return;
+        }
+
+        AchievementsSaveData saveData = JsonUtility.FromJson<AchievementsSaveData>(json);
+
+        if (saveData == null)
+        {
+            Debug.LogWarning("Achievements save is broken");
+            return;
+        }
+
+        set_of_completed_dialog_titles = new HashSet<string>(
+            saveData.completedDialogTitles ?? new List<string>()
+        );
+
+        set_of_npc_names_player_talked_to = new HashSet<string>(
+            saveData.npcNamesPlayerTalkedTo ?? new List<string>()
+        );
+
+        set_of_completed_quest_titles = new HashSet<string>(
+            saveData.completedQuestTitles ?? new List<string>()
+        );
+
+        amount_of_items_used = saveData.amountOfItemsUsed;
+        amount_of_wishes_made = saveData.amountOfWishesMade;
+
+        if (saveData.achievements != null)
+        {
+            foreach (AchievementSaveData achievementSaveData in saveData.achievements)
+            {
+                if (!dict_achievement_title_to_achievement.ContainsKey(achievementSaveData.achievementTitle))
+                {
+                    Debug.LogWarning("Saved achievement not found: " + achievementSaveData.achievementTitle);
+                    continue;
+                }
+
+                Achievement achievement = dict_achievement_title_to_achievement[achievementSaveData.achievementTitle];
+
+                achievement.is_completed = achievementSaveData.isCompleted;
+                achievement.is_claimed = achievementSaveData.isClaimed;
+            }
+        }
+
+        Debug.Log("Achievements loaded: " + json);
+    }
+
+    public void DeleteAchievements()
+    {
+        PlayerPrefs.DeleteKey(AchievementsSaveKey);
+        PlayerPrefs.Save();
+
+        set_of_completed_dialog_titles.Clear();
+        set_of_npc_names_player_talked_to.Clear();
+        set_of_completed_quest_titles.Clear();
+
+        amount_of_items_used = 0;
+        amount_of_wishes_made = 0;
+
+        foreach (var pair in dict_achievement_title_to_achievement)
+        {
+            pair.Value.is_completed = false;
+            pair.Value.is_claimed = false;
+        }
+
+        SaveAchievements();
+
+        Debug.Log("Achievements reset to default");
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -83,6 +226,7 @@ public class AchievementController : MonoBehaviour
 
         Instance = this;
     }
+
     private void Start()
     {
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
@@ -92,6 +236,8 @@ public class AchievementController : MonoBehaviour
 
         MakeListOfAchievementTypes();
         FillDictionary();
+
+        LoadAchievements();
     }
 
     private void MakeListOfAchievementTypes()
@@ -135,6 +281,8 @@ public class AchievementController : MonoBehaviour
         {
             backpackController.IncreaceItemByName(reward.item_name, reward.amount);
         }
+
+        SaveAchievements();
     }
 
     public void OpenAchievementPanel()

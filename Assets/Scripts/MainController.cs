@@ -610,6 +610,8 @@ public class MainController : MonoBehaviour
         backpackController.SaveInventory();
         playerScript.SavePlayer();
         wishPanelScript.SaveWishParameters();
+        questsController.SaveQuests();
+        achievementController.SaveAchievements();
     }
 
     public void ClearEverything()
@@ -617,6 +619,10 @@ public class MainController : MonoBehaviour
         backpackController.DeleteInventory();
         playerScript.DeletePlayerSave();
         wishPanelScript.DeleteWishParameters();
+        questsController.DeleteQuests();
+        achievementController.DeleteAchievements();
+
+        GoToMenuScene();
     }
 
     public void Pause(bool check = true)

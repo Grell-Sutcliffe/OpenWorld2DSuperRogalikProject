@@ -287,6 +287,152 @@ public class QuestsController : MonoBehaviour
     public string tracking_quest_title = none_quest_name;
 
     public static QuestsController Instance { get; private set; }
+
+    private const string QuestsSaveKey = "quests_save";
+
+    [System.Serializable]
+    public class QuestsSaveData
+    {
+        public List<string> acceptedQuests = new List<string>();
+        public List<string> finishedQuests = new List<string>();
+        public string trackingQuestTitle;
+        public List<QuestTaskSaveData> questTasks = new List<QuestTaskSaveData>();
+    }
+
+    [System.Serializable]
+    public class QuestTaskSaveData
+    {
+        public string questTitle;
+        public string currentTaskSubtitle;
+
+        public QuestTaskSaveData(string questTitle, string currentTaskSubtitle)
+        {
+            this.questTitle = questTitle;
+            this.currentTaskSubtitle = currentTaskSubtitle;
+        }
+    }
+
+    public void SaveQuests()
+    {
+        QuestsSaveData saveData = new QuestsSaveData();
+
+        saveData.acceptedQuests = new List<string>(accepted_quests);
+        saveData.finishedQuests = new List<string>(finished_quests);
+        saveData.trackingQuestTitle = tracking_quest_title;
+
+        foreach (var pair in dict_quest_name_to_quest)
+        {
+            string questTitle = pair.Key;
+            Quest quest = pair.Value;
+
+            string taskSubtitle = "";
+
+            if (quest.current_task != null)
+                taskSubtitle = quest.current_task.subtitle;
+
+            saveData.questTasks.Add(new QuestTaskSaveData(questTitle, taskSubtitle));
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(QuestsSaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Quests saved: " + json);
+    }
+
+    public void LoadQuests()
+    {
+        if (!PlayerPrefs.HasKey(QuestsSaveKey))
+        {
+            Debug.Log("No quests save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(QuestsSaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Quests save is empty");
+            return;
+        }
+
+        QuestsSaveData saveData = JsonUtility.FromJson<QuestsSaveData>(json);
+
+        if (saveData == null)
+        {
+            Debug.LogWarning("Quests save is broken");
+            return;
+        }
+
+        accepted_quests = saveData.acceptedQuests ?? new List<string>();
+        finished_quests = saveData.finishedQuests ?? new List<string>();
+
+        tracking_quest_title = string.IsNullOrEmpty(saveData.trackingQuestTitle)
+            ? none_quest_name
+            : saveData.trackingQuestTitle;
+
+        foreach (QuestTaskSaveData questTaskData in saveData.questTasks)
+        {
+            if (!dict_quest_name_to_quest.ContainsKey(questTaskData.questTitle))
+            {
+                Debug.LogWarning("Saved quest not found: " + questTaskData.questTitle);
+                continue;
+            }
+
+            Quest quest = dict_quest_name_to_quest[questTaskData.questTitle];
+
+            if (string.IsNullOrEmpty(questTaskData.currentTaskSubtitle))
+            {
+                quest.current_task = null;
+            }
+            else
+            {
+                quest.current_task = FindTaskBySubtitle(quest.current_task, questTaskData.currentTaskSubtitle);
+            }
+        }
+
+        UpdateNPCsQuestsIcons();
+        SetTrackTask(tracking_quest_title);
+
+        Debug.Log("Quests loaded: " + json);
+    }
+
+    private Task FindTaskBySubtitle(Task startTask, string subtitle)
+    {
+        Task currentTask = startTask;
+
+        while (currentTask != null)
+        {
+            if (currentTask.subtitle == subtitle)
+                return currentTask;
+
+            currentTask = currentTask.next_task;
+        }
+
+        Debug.LogWarning("Task not found by subtitle: " + subtitle);
+        return startTask;
+    }
+
+    public void DeleteQuests()
+    {
+        PlayerPrefs.DeleteKey(QuestsSaveKey);
+        PlayerPrefs.Save();
+
+        accepted_quests.Clear();
+        finished_quests.Clear();
+        tracking_quest_title = none_quest_name;
+
+        dict_quest_name_to_quest.Clear();
+        MakeQuests();
+
+        SetTrackTask();
+        UpdateNPCsQuestsIcons();
+        UpdateQestPanel();
+
+        Debug.Log("Quests reset to default");
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -309,6 +455,7 @@ public class QuestsController : MonoBehaviour
         quest_panel_rect_transform = questPanelContent.GetComponent<RectTransform>();
 
         MakeQuests();
+        LoadQuests();
         UpdateNPCsQuestsIcons();
     }
 
@@ -476,6 +623,8 @@ public class QuestsController : MonoBehaviour
         UpdateNPCsQuestsIcons();
 
         NextTask(new_quest);
+
+        SaveQuests();
     }
 
     public void NextTask(string quest_title)
@@ -487,6 +636,8 @@ public class QuestsController : MonoBehaviour
         if (dict_quest_name_to_quest[quest_title].current_task.is_finished == true)
         {
             dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
+
+            SaveQuests();
 
             NextTask(quest_title);
 
@@ -522,6 +673,8 @@ public class QuestsController : MonoBehaviour
         }
 
         UpdateTrackTask(quest_title);
+
+        SaveQuests();
     }
 
     public void UpdateTrackTask(string quest_title)
@@ -535,9 +688,13 @@ public class QuestsController : MonoBehaviour
     public void CompleteQuest(string new_quest)
     {
         accepted_quests.Remove(new_quest);
-        finished_quests.Add(new_quest);
+
+        if (!finished_quests.Contains(new_quest))
+            finished_quests.Add(new_quest);
 
         UpdateNPCsQuestsIcons();
+
+        SaveQuests();
     }
 
     public void ClaimRewardsOnQuest(string quest_title)
@@ -548,6 +705,8 @@ public class QuestsController : MonoBehaviour
         }
 
         finished_quests.Remove(quest_title);
+
+        SaveQuests();
     }
 
     public void UpdateQestPanel()
