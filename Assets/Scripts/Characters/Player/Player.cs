@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static ShopPanelScript;
 
 public class Player : Creature, IDamagable, IAttacker
 {
+    bool is_player_loaded = false;
+
     MainController mainController;
     BackPackController backPackController;
 
@@ -91,7 +94,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         public int currentLevel;
 
-        public StatsSaveData playerFullStats;
+        //public StatsSaveData playerFullStats;
         public StatsSaveData currentStats;
 
         public int currentWeaponIndex;
@@ -144,7 +147,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         saveData.currentLevel = current_level;
 
-        saveData.playerFullStats = new StatsSaveData(player_full_stats);
+        //saveData.playerFullStats = new StatsSaveData(player_full_stats);
         saveData.currentStats = new StatsSaveData(current_stats);
 
         saveData.currentWeaponIndex = current_weapon_index;
@@ -169,6 +172,8 @@ public class Player : Creature, IDamagable, IAttacker
 
     public void LoadPlayer()
     {
+        is_player_loaded = false;
+
         if (!PlayerPrefs.HasKey(PlayerSaveKey))
         {
             Debug.Log("No player save found");
@@ -191,12 +196,14 @@ public class Player : Creature, IDamagable, IAttacker
             return;
         }
 
+        is_player_loaded = true;
+
         transform.position = new Vector3(saveData.posX, saveData.posY, saveData.posZ);
 
         current_level = saveData.currentLevel;
 
-        if (saveData.playerFullStats != null)
-            saveData.playerFullStats.ApplyTo(player_full_stats);
+        //if (saveData.playerFullStats != null)
+        //    saveData.playerFullStats.ApplyTo(player_full_stats);
 
         if (saveData.currentStats != null)
             saveData.currentStats.ApplyTo(current_stats);
@@ -244,6 +251,38 @@ public class Player : Creature, IDamagable, IAttacker
     public void DeletePlayerSave()
     {
         PlayerPrefs.DeleteKey(PlayerSaveKey);
+
+        transform.position = new Vector3(0, 0, 0);
+
+        current_level = 1;
+
+        current_stats = new Stats(player_full_stats);
+
+        weapons = new List<Weapon>();
+
+        foreach (WeaponSO weaponSO in weaponSOs)
+        {
+            Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
+            if (temp_item is Weapon temp_weapon)
+            {
+                weapons.Add(temp_weapon);
+                //mainController.SetCharacterWeapon(temp_weapon);
+            }
+        }
+        weapon = weapons[0];
+
+        for (int index = 0; index < weaponSOs.Count; index++)
+        {
+            Item temp_item = mainController.GetItemByName(weaponSOs[index].weapon_name);
+            if (temp_item is Weapon temp_weapon)
+            {
+                //weapons.Add(temp_weapon);
+                mainController.SetCharacterWeapon(index, temp_weapon, 1);
+            }
+        }
+
+        //backPackController.SaveInventory();
+
         PlayerPrefs.Save();
 
         Debug.Log("Player save deleted");
@@ -251,6 +290,8 @@ public class Player : Creature, IDamagable, IAttacker
 
     protected override void Awake()
     {
+        player_full_stats = new Stats(player_start_health, player_start_attack, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
+
         base.Awake();
         if (instance != null && instance != this)
         {
@@ -265,7 +306,6 @@ public class Player : Creature, IDamagable, IAttacker
         GameObject mainControllerGO = GameObject.Find("MainController");
         if (mainControllerGO != null)
         {
-
             mainController = mainControllerGO.GetComponent<MainController>();
         }
         rb = GetComponent<Rigidbody2D>();
@@ -280,8 +320,7 @@ public class Player : Creature, IDamagable, IAttacker
         {
             Item temp_item = mainController.GetItemByName(weaponSO.weapon_name);
             if (temp_item is Weapon temp_weapon)
-            {   
-
+            {
                 weapons.Add(temp_weapon);
                 //mainController.SetCharacterWeapon(temp_weapon);
             }
@@ -296,7 +335,6 @@ public class Player : Creature, IDamagable, IAttacker
 
     void Start()
     {
-        player_full_stats = new Stats(player_start_health, player_start_attack, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
         // player_full_stats = new Stats();
 
         ApplyConfig();
@@ -306,22 +344,25 @@ public class Player : Creature, IDamagable, IAttacker
 
         //current_weapon = null;
 
-        for (int index = 0; index < weaponSOs.Count; index++)
+        LoadPlayer();
+        
+        if (!is_player_loaded)
         {
-            Item temp_item = mainController.GetItemByName(weaponSOs[index].weapon_name);
-            if (temp_item is Weapon temp_weapon)
+            for (int index = 0; index < weaponSOs.Count; index++)
             {
-                //weapons.Add(temp_weapon);
-                mainController.SetCharacterWeapon(index, temp_weapon);
+                Item temp_item = mainController.GetItemByName(weaponSOs[index].weapon_name);
+                if (temp_item is Weapon temp_weapon)
+                {
+                    //weapons.Add(temp_weapon);
+                    mainController.SetCharacterWeapon(index, temp_weapon, 1);
+                }
             }
         }
 
         GivePlayerNewWeapon(weapon);
         SwitchWeapon(0);
-
-        LoadPlayer();
     }
-    
+
     private void OnEnable()
     {
         controls.Enable();
@@ -329,13 +370,14 @@ public class Player : Creature, IDamagable, IAttacker
 
     private void OnDisable()
     {
-        controls?.Disable(); 
+        controls?.Disable();
     }
     public int current_weapon_index = 0;
 
     public void SwitchWeapon(int index)
-    {   
-        if (!mainController.is_keyboard_active){
+    {
+        if (!mainController.is_keyboard_active)
+        {
             return;
         }
         SetWeapon(index);
@@ -665,7 +707,7 @@ public class Player : Creature, IDamagable, IAttacker
     {
         //LoggerName($"took dmg = {dmg.damage}");
         current_stats.health -= (dmg.physical_dmg + dmg.elemental_dmg);
-        
+
         if (current_stats.health < 0) current_stats.health = 0;
 
         UpdateHealthBar();

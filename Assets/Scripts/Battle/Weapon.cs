@@ -110,11 +110,14 @@ public class Weapon : Item
     public void WeaponUpgrade()
     {
         this.stats.physical_attack = RoundToMax(this.stats.physical_attack * upgrade_percent);
+        this.stats.elemental_attack = RoundToMax(this.stats.elemental_attack * upgrade_percent);
         this.stats.crit_chance *= upgrade_percent;
         this.stats.crit_dmg *= upgrade_percent;
         this.stats.elemental_mastery *= upgrade_percent;
 
         this.current_level++;
+
+        BackPackController.Instance.SaveInventory();
     }
 
     int RoundToMax(float number)

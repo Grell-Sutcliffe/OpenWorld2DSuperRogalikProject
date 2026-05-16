@@ -35,22 +35,45 @@ public class MenuScript : MonoBehaviour
         progressBar.value = 0f;
         loadingText.text = "0%";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.3f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         operation.allowSceneActivation = false;
 
+        float visualProgress = 0f;
+
+        while (visualProgress < 0.5f)
+        {
+            visualProgress += Time.unscaledDeltaTime * 0.35f;
+
+            if (visualProgress > 0.5f)
+                visualProgress = 0.5f;
+
+            progressBar.value = visualProgress;
+            loadingText.text = (visualProgress * 100f).ToString("F0") + "%";
+
+            yield return null;
+        }
+
+        progressBar.value = 0.5f;
+        loadingText.text = "50%";
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
         while (operation.progress < 0.9f)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            yield return null;
+        }
 
-            progressBar.value = progress;
-            loadingText.text = (progress * 100f).ToString("F0") + "%";
+        while (visualProgress < 1f)
+        {
+            visualProgress += Time.unscaledDeltaTime * 0.5f;
 
-            if (progress < 0.75f)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
+            if (visualProgress > 1f)
+                visualProgress = 1f;
+
+            progressBar.value = visualProgress;
+            loadingText.text = (visualProgress * 100f).ToString("F0") + "%";
 
             yield return null;
         }
@@ -58,7 +81,7 @@ public class MenuScript : MonoBehaviour
         progressBar.value = 1f;
         loadingText.text = "100%";
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         operation.allowSceneActivation = true;
     }
