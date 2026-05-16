@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 961b25555d816e1488658a97908ada54
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2372799133936159660
+    second: Effect_Constellation_1_007_0
+  - first:
+      213: -7016861288373288656
+    second: Effect_Constellation_1_007_1
+  - first:
+      213: -5549604329322230820
+    second: Effect_Constellation_1_007_2
+  - first:
+      213: -1405032497635903808
+    second: Effect_Constellation_1_007_3
+  - first:
+      213: 4336162682514934325
+    second: Effect_Constellation_1_007_4
+  - first:
+      213: -7255071661599907015
+    second: Effect_Constellation_1_007_5
+  - first:
+      213: -6580850533277565978
+    second: Effect_Constellation_1_007_6
+  - first:
+      213: 5819510283137548937
+    second: Effect_Constellation_1_007_7
+  - first:
+      213: -5320300546967608132
+    second: Effect_Constellation_1_007_8
+  - first:
+      213: 7819267014728816541
+    second: Effect_Constellation_1_007_9
+  - first:
+      213: 8541023598740373324
+    second: Effect_Constellation_1_007_10
+  - first:
+      213: 7687149922717031065
+    second: Effect_Constellation_1_007_11
+  - first:
+      213: 1580197715551170472
+    second: Effect_Constellation_1_007_12
+  - first:
+      213: 5930897847805001565
+    second: Effect_Constellation_1_007_13
+  - first:
+      213: 7218362431924779584
+    second: Effect_Constellation_1_007_14
+  - first:
+      213: 8468256191622679189
+    second: Effect_Constellation_1_007_15
+  - first:
+      213: 2330106896584720395
+    second: Effect_Constellation_1_007_16
+  - first:
+      213: 3453768664480300415
+    second: Effect_Constellation_1_007_17
+  - first:
+      213: 8497193325216551065
+    second: Effect_Constellation_1_007_18
+  - first:
+      213: 7044096502488087284
+    second: Effect_Constellation_1_007_19
+  - first:
+      213: 8170789850514849769
+    second: Effect_Constellation_1_007_20
+  - first:
+      213: 1962310266319372362
+    second: Effect_Constellation_1_007_21
+  - first:
+      213: -3772204565398226653
+    second: Effect_Constellation_1_007_22
+  - first:
+      213: 261083541500731929
+    second: Effect_Constellation_1_007_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 243
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 454716262cf121fd0800000000000000
+      internalID: -2372799133936159660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 289
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031025cc5d91f9e90800000000000000
+      internalID: -7016861288373288656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 278
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdb47caf348dbf2b0800000000000000
+      internalID: -5549604329322230820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 289
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c638883362508ce0800000000000000
+      internalID: -1405032497635903808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 98
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a8b9b5cf42d2c30800000000000000
+      internalID: 4336162682514934325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_5
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 271
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933a55643cec05b90800000000000000
+      internalID: -7255071661599907015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_6
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 230
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebfc0c8e4f1ca4a0800000000000000
+      internalID: -6580850533277565978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_7
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 165
+        width: 50
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9828529f4cd03c050800000000000000
+      internalID: 5819510283137548937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_8
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 189
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4eda737de7a26b0800000000000000
+      internalID: -5320300546967608132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 177
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9717d0fbed938c60800000000000000
+      internalID: 7819267014728816541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_10
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 158
+        width: 31
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4ff525f5bfc78670800000000000000
+      internalID: 8541023598740373324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_11
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 104
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a58be502e3eaa60800000000000000
+      internalID: 7687149922717031065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_12
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 115
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8afaf46337dfde510800000000000000
+      internalID: 1580197715551170472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 85
+        width: 67
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fbb895b28ce4250800000000000000
+      internalID: 5930897847805001565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_14
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 68
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ab6e62366cc2460800000000000000
+      internalID: 7218362431924779584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_15
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 81
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a0ca8b32a458570800000000000000
+      internalID: 8468256191622679189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_16
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 64
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b00ce9380e3365020800000000000000
+      internalID: 2330106896584720395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_17
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 62
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d39be2d404eef20800000000000000
+      internalID: 3453768664480300415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_18
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 69
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9905a592f481ce570800000000000000
+      internalID: 8497193325216551065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_19
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 48
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fabf52a278a1c160800000000000000
+      internalID: 7044096502488087284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_20
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 15
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9effd4e041a746170800000000000000
+      internalID: 8170789850514849769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_21
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 44
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a40811b5ac68b3b10800000000000000
+      internalID: 1962310266319372362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_22
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 37
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329f45b0fef66abc0800000000000000
+      internalID: -3772204565398226653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Constellation_1_007_23
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 38
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9122ad3091e8f9300800000000000000
+      internalID: 261083541500731929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Effect_Constellation_1_007_0: -2372799133936159660
+      Effect_Constellation_1_007_1: -7016861288373288656
+      Effect_Constellation_1_007_10: 8541023598740373324
+      Effect_Constellation_1_007_11: 7687149922717031065
+      Effect_Constellation_1_007_12: 1580197715551170472
+      Effect_Constellation_1_007_13: 5930897847805001565
+      Effect_Constellation_1_007_14: 7218362431924779584
+      Effect_Constellation_1_007_15: 8468256191622679189
+      Effect_Constellation_1_007_16: 2330106896584720395
+      Effect_Constellation_1_007_17: 3453768664480300415
+      Effect_Constellation_1_007_18: 8497193325216551065
+      Effect_Constellation_1_007_19: 7044096502488087284
+      Effect_Constellation_1_007_2: -5549604329322230820
+      Effect_Constellation_1_007_20: 8170789850514849769
+      Effect_Constellation_1_007_21: 1962310266319372362
+      Effect_Constellation_1_007_22: -3772204565398226653
+      Effect_Constellation_1_007_23: 261083541500731929
+      Effect_Constellation_1_007_3: -1405032497635903808
+      Effect_Constellation_1_007_4: 4336162682514934325
+      Effect_Constellation_1_007_5: -7255071661599907015
+      Effect_Constellation_1_007_6: -6580850533277565978
+      Effect_Constellation_1_007_7: 5819510283137548937
+      Effect_Constellation_1_007_8: -5320300546967608132
+      Effect_Constellation_1_007_9: 7819267014728816541
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

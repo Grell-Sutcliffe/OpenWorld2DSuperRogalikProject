@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using static DialogPanelScript;
+using static DialogController;
 
 public class AnswerOptionScript : MonoBehaviour
 {
@@ -14,14 +14,10 @@ public class AnswerOptionScript : MonoBehaviour
         dialogPanelScript = GameObject.Find("DialogPanel").GetComponent<DialogPanelScript>();
     }
 
-    public void MakeAnswerOption(SpeachNode new_node)
+    public void MakeAnswerOption(string answer_text, SpeachNode new_node)
     {
+        answerOptionText.text = answer_text;
         next_node = new_node;
-
-        if (next_node != null)
-        {
-            answerOptionText.text = next_node.answer_text;
-        }
     }
 
     public void SelectAnswerOption()

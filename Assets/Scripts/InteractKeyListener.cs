@@ -4,6 +4,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class InteractKeyListener : MonoBehaviour
 {
+    /*
     MainController mainController;
 
     private InputAction interact;
@@ -34,4 +35,5 @@ public class InteractKeyListener : MonoBehaviour
             mainController.PressF();
         }
     }
+    */
 }

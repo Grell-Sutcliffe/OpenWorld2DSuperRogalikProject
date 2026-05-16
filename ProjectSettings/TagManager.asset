@@ -6,6 +6,10 @@ TagManager:
   tags:
   - NPC
   - TextAndInfo
+  - Dangeon
+  - BackpackUI
+  - Interactable
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -14,15 +18,15 @@ TagManager:
   - Water
   - UI
   - TextAndInfo
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - NotDamagable
+  - DamageDealer
+  - Enemy
+  - AgrZone
+  - Weapon
+  - Player
+  - PlayerWeapon
+  - NPC
+  - Wall
   - 
   - 
   - 
@@ -48,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1445735355
+    locked: 0
+  - name: DamageText
+    uniqueID: 1507441029
     locked: 0
   - name: TextAndInfo
     uniqueID: 4104384975

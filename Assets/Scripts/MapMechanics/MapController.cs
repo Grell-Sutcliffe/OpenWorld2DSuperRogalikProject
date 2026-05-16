@@ -1,0 +1,62 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Location
+{
+    public string title;
+}
+
+public class EnemySpawn : Location
+{
+    List<EnemyOfAmountSO> list_enemy_of_amount;
+
+    EnemySpawnSO data;
+
+    public EnemySpawn(EnemySpawnSO enemySpawnSO)
+    {
+        this.data = enemySpawnSO;
+
+        list_enemy_of_amount = new List<EnemyOfAmountSO>();
+
+        foreach (EnemyOfAmountSO enemyOfAmountSO in enemySpawnSO.enemyOfAmountSOs)
+        {
+            list_enemy_of_amount.Add(enemyOfAmountSO);
+        }
+    }
+}
+
+public class MapController : MonoBehaviour
+{
+    MainController mainController;
+
+    public GameObject mapPrefab;
+
+    public Dictionary<int, GameObject> dict_map_GOs = new Dictionary<int, GameObject>();
+
+    //public int bebebe = 0;
+
+    void Start()
+    {
+        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+
+        FillDict();
+    }
+
+    void FillDict()
+    {
+        int temp_index = 1;
+
+        dict_map_GOs[temp_index] = mainController.Dedus;
+        temp_index++;
+
+        dict_map_GOs[temp_index] = mainController.GrandsonEugene;
+        temp_index++;
+
+        dict_map_GOs[temp_index] = mainController.Doggy;
+        temp_index++;
+
+        dict_map_GOs[temp_index] = mainController.Woman;
+        temp_index++;
+    }
+}

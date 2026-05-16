@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efe70d59af92e34ab7ab478c9dd299a, type: 3}
+  m_Name: Weapon_stick_5_star_energo
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 1b199901f9ace3d42a67f2eb85d4424d, type: 3}
+  weapon_name: "\u041E\u043A\u043E \u043C\u0438\u0440\u043E\u0437\u0434\u0430\u043D\u0438\u044F"
+  description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u0432\u044B\u0441\u0448\u0435\u0433\u043E
+    \u0440\u0430\u043D\u0433\u0430."
+  stars: 5
+  range: 0
+  cooldown: 0
+  physical_attack: 0
+  elemental_attack: 10
+  element_type: 3
+  elemental_mastery: 0.5
+  crit_chance: 0.5
+  crit_dmg: 1.5
+  max_level: 100
+  current_level: 0
+  projectilePrefab: {fileID: 4034992613464354166, guid: 74d9b555f9e82a54b9c764580241eb89, type: 3}
+  attackType: 0
+  weaponType: 2

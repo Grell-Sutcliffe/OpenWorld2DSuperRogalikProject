@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d3a66ade6185b4d80d1702f4fa05a6, type: 3}
+  m_Name: ConsumableItem_book
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: a8aae86170034da41aac0a51553aa47a, type: 3}
+  item_name: "\u041A\u043D\u0438\u0433\u0430"
+  description: "\u0412\u0430\u043B\u044E\u0442\u0430 \u0434\u043B\u044F \u0432\u043D\u0443\u0442\u0440\u0435\u0438\u0433\u0440\u043E\u0432\u044B\u0445
+    \u043F\u043E\u043A\u0443\u043F\u043E\u043A."
+  item_type: 5
+  amount: 0

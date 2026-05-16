@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bf8fb8d124ad849bd4365ff778bdac, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: 
-  <MovementData>k__BackingField:
-    <BaseSpeed>k__BackingField: 5
-    <RunSpeedModifier>k__BackingField: 1
+  playerName: Thief
+  maxHealth: 20
+  armour: 5
+  damage: 5
+  moveSpeed: 5
+  attackRange: 5
+  attackCooldown: 0

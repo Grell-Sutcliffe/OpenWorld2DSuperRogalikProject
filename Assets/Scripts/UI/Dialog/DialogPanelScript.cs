@@ -5,6 +5,7 @@ using System.Collections;
 using NUnit.Framework;
 using System.Collections.Generic;
 using static QuestsController;
+using static DialogController;
 
 public class DialogPanelScript : MonoBehaviour
 {
@@ -21,81 +22,7 @@ public class DialogPanelScript : MonoBehaviour
 
     RectTransform answer_panel_rect_transform;
 
-    public int no_answer_key_zero = 0;
-
-    public class SpeachNode
-    {
-        public string current_text;
-        public SpeachNode prev_node;
-        public bool is_answering;
-        public bool is_accepting_quest;
-        public Dictionary<int, SpeachNode> next_node;
-        public string answer_text;
-
-        public SpeachNode()
-        {
-            current_text = string.Empty;
-            prev_node = null;
-            next_node = null;
-            is_answering = false;
-            is_accepting_quest = false;
-        }
-
-        public SpeachNode(string text_)
-        {
-            current_text = text_;
-            prev_node = null;
-            next_node = null;
-            is_answering = false;
-            is_accepting_quest = false;
-        }
-
-        public void AddNextNode(SpeachNode new_node)
-        {
-            if (next_node == null) next_node = new Dictionary<int, SpeachNode>();
-
-            if (is_answering)
-            {
-                for (int i = 1; i < 100; i++)
-                {
-                    if (!next_node.ContainsKey(i))
-                    {
-                        next_node[i] = new_node;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                next_node[0] = new_node;
-            }
-        }
-    }
-
-    public class SpeachTree
-    {
-        public SpeachNode root;
-        public string npc_name;
-        public string quest_title;
-
-        public SpeachTree()
-        {
-            root = new SpeachNode();
-            quest_title = string.Empty;
-        }
-
-        public SpeachTree(SpeachNode root_)
-        {
-            root = root_;
-            quest_title = string.Empty;
-        }
-
-        public SpeachTree(string text_)
-        {
-            root = new SpeachNode(text_);
-            quest_title = string.Empty;
-        }
-    }
+    Coroutine coroutine;
 
     public float text_speed = 0.05f;
 
@@ -103,11 +30,10 @@ public class DialogPanelScript : MonoBehaviour
     public int space_between_answers = 25;
 
     bool is_line_finished;
-    bool is_quest_accepted;
 
-    SpeachTree speach_tree;
-    SpeachNode current_node;
-    SpeachNode next_node;
+    Dialog current_dialog;
+
+    SpeachNode current_speachNode;
 
     void Start()
     {
@@ -118,112 +44,200 @@ public class DialogPanelScript : MonoBehaviour
         answer_panel_rect_transform = answerPanel.GetComponent<RectTransform>();
     }
 
-    public void StartDialog(string speaker_text, SpeachTree new_speach_tree)
+    public void StartDialog(Dialog new_dialog)
     {
-        speach_tree = new_speach_tree;
-        if (speach_tree == null) return;
-        current_node = speach_tree.root;
+        current_dialog = new_dialog;
+        //current_speachNode = new_dialog.current_speachNode;
+        current_speachNode = new SpeachNode().NewSpeachNode(new_dialog.current_speachNodeSO);   // THIS !!!
+
+        if (current_speachNode == null) return;
 
         OpenDialogPanel();
-        ChangeDialogPanel(speaker_text, string.Empty);
+        //ChangeDialogPanel(current_speachNode.speaker_name);
 
-        StartCoroutine(TypeLine());
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TypeLine());
     }
 
-    public void StartDialog(string speaker_text, SpeachNode speach_node)
+    void ChangeSpeachTextAlignment()
     {
-        is_quest_accepted = false;
-        current_node = speach_node;
-
-        OpenDialogPanel();
-        ChangeDialogPanel(speaker_text, string.Empty);
-
-        StartCoroutine(TypeLine());
+        if (current_speachNode.speach_type == SpeachType.Speach)
+        {
+            speachText.alignment = TextAlignmentOptions.TopLeft;
+            speachText.fontStyle = FontStyles.Normal;
+        }
+        if (current_speachNode.speach_type == SpeachType.Action)
+        {
+            speachText.alignment = TextAlignmentOptions.Top;
+            speachText.fontStyle = FontStyles.Italic;
+        }
     }
 
     IEnumerator TypeLine()
     {
-        if (current_node.is_accepting_quest)
-        {
-            AcceptQuest();
-        }
+        //Debug.Log($"Dialog  :  TypeLine -- dialog = {current_dialog.title}, speach_node = {current_speachNode.speach}");
 
-        ClearAnswerPanel();
-        answerPanel.SetActive(false);
+        ChangeDialogPanel(current_speachNode.npcSO.npc_name);
+        ChangeSpeachTextAlignment();
+
+        ClearAndCloseAnswerPanel();
         iconNextLine.SetActive(false);
+
         is_line_finished = false;
 
-        foreach (char c in current_node.current_text.ToCharArray())
+        foreach (char c in current_speachNode.speach.ToCharArray())
         {
             speachText.text += c;
             yield return new WaitForSeconds(text_speed);
         }
 
+        FinishLine();
+    }
+
+    void PrintAllLine()
+    {
+        ClearAndCloseAnswerPanel();
+        iconNextLine.SetActive(false);
+        is_line_finished = false;
+
+        speachText.text = current_speachNode.speach;
+
+        FinishLine();
+    }
+
+    void FinishLine()
+    {
+        // Debug.Log($"DialogPanel   :   line finished");
+
+        if (current_speachNode == null)
+        {
+            CloseDialogPanel();
+            return;
+        }
+
+        if (current_speachNode.is_finishing)
+        {
+            current_dialog.is_finished = true;
+        }
+
         iconNextLine.SetActive(true);
 
-        if (current_node.is_answering)
+        if (current_speachNode is AnswerableSpeachNode _)
         {
             answerPanel.SetActive(true);
             ChangeAnswerPanelHeight();
+            return;
         }
-        else
+        
+        if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
         {
-            if (current_node.next_node != null)
+            // Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
+            EventBus.Raise(new QuestAcceptedEvent(questAcceptingSpeachNode.quest_title));
+        }
+
+        is_line_finished = true;
+    }
+
+    private void OnEnable()
+    {
+        EventBus.OnEvent += HandleEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnEvent -= HandleEvent;
+    }
+
+    private void HandleEvent(IEvent e)
+    {
+        if (e is ItemDeliveredEvent itemDeliveredEvent)
+        {
+            if (itemDeliveredEvent.is_success)
             {
-                next_node = current_node.next_node[no_answer_key_zero];
+                NextLine(false);
             }
             else
             {
-                next_node = null;
+                CloseDialogPanel();
             }
-            is_line_finished = true;
         }
-    }
-
-    void AcceptQuest()
-    {
-        if (speach_tree == null) return;
-
-        if (questsController == null) questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
-        //string temp_npc = speach_tree.npc_name;
-
-        string temp_quest = speach_tree.quest_title;
-        is_quest_accepted = true;
-
-        questsController.AcceptQuest(temp_quest);
     }
 
     public void SelectAnswer(SpeachNode new_next_node)
     {
         is_line_finished = true;
-        next_node = new_next_node;
-        NextLine();
+        current_speachNode = new_next_node;
+
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TypeLine());
     }
 
     public void NextLine()
     {
-        if (!is_line_finished) return;
+        NextLine(true);
+    }
 
-        if (current_node.next_node != null)
+    public void NextLine(bool need_nextNode)
+    {
+        if (current_speachNode == null)
         {
-            current_node = next_node;
-            next_node = null;
-            ChangeDialogPanel(string.Empty);
-            StartCoroutine(TypeLine());
+            CloseDialogPanel();
+            return;
+        }
+        // Debug.Log($"DialogPanel   :   NextLine   ---   {current_speachNode.speach}");
+
+        if (!is_line_finished)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+
+            PrintAllLine();
+            return;
+        }
+
+        if (current_speachNode is ItemDeliverySpeachNode itemDeliverySpeachNode)
+        {
+            mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
+            //current_speachNode = itemDeliverySpeachNode.next_speachNode;
+            current_speachNode = new SpeachNode().NewSpeachNode(itemDeliverySpeachNode.next_speachNodeSO);   // THIS !!!
+            return;
+        }
+
+        if (need_nextNode && current_speachNode is DefaultSpeachNode current_default_speachNode)
+        {
+            //current_speachNode = current_default_speachNode.n(ext_speachNode;
+            current_speachNode = new SpeachNode().NewSpeachNode(current_default_speachNode.next_speachNodeSO);
+        }
+
+        if (current_speachNode != null)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            coroutine = StartCoroutine(TypeLine());
         }
         else
         {
             CloseDialogPanel();
-
-            if (is_quest_accepted)
-            {
-                questsController.ShowNewTask(speach_tree.quest_title);
-            }
-
-            current_node = null;
-            next_node = null;
-            speach_tree = null;
+            // FinishDialog();
+            return;
         }
+    }
+
+    void ClearAndCloseAnswerPanel()
+    {
+        ClearAnswerPanel();
+        answerPanel.SetActive(false);
     }
 
     void ClearAnswerPanel()
@@ -241,52 +255,80 @@ public class DialogPanelScript : MonoBehaviour
 
     void ChangeAnswerPanelHeight()
     {
-        int amount_of_answers = current_node.next_node.Keys.Count;
+        AnswerableSpeachNode answerableSpeachNode = null;
+        if (current_speachNode is AnswerableSpeachNode temp_speachNode)
+        {
+            answerableSpeachNode = temp_speachNode;
+        }
+        if (answerableSpeachNode == null) return;
+
+        int amount_of_answers = answerableSpeachNode.answers.Count;
         int new_height = amount_of_answers * answer_height + (amount_of_answers + 1) * space_between_answers;
         answer_panel_rect_transform.sizeDelta = new Vector2(answer_panel_rect_transform.sizeDelta.x, new_height);
 
-        for (int i = 1; i <= amount_of_answers; i++)
+        foreach (Answer answer in answerableSpeachNode.answers)
         {
-            SpawnAnswerOptionPrefab(i);
+            SpawnAnswerOptionPrefab(answer);
         }
     }
 
-    void SpawnAnswerOptionPrefab(int index)
+    void SpawnAnswerOptionPrefab(Answer answer)
     {
         GameObject new_prefab = Instantiate(answerOptionPrefab, answerPanel.transform);
         AnswerOptionScript new_prefab_script = new_prefab.GetComponent<AnswerOptionScript>();
-        //new_prefab_script.next_node = current_node.next_node[index];
-        new_prefab_script.MakeAnswerOption(current_node.next_node[index]);
+
+        new_prefab_script.MakeAnswerOption(answer.answer_text, answer.next_speachNode);
     }
 
-    public void ChangeDialogPanel(string speaker_text, string speach_text)
+    public void ChangeDialogPanel(string speaker_text, string speach_text = "")
     {
         speakerText.text = speaker_text;
-        speachText.text = speach_text;
-    }
-
-    public void ChangeDialogPanel(string speach_text)
-    {
         speachText.text = speach_text;
     }
 
     public void OpenDialogPanel()
     {
         gameObject.SetActive(true);
-        mainController.TurnOffKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
+        mainController.TurnOffKeyboard();
         mainController.HidePlayerPanel();
     }
 
+    /*
+    public void FinishDialog()
+    {
+        if (current_dialog.is_finished)
+        {
+            current_dialog.is_finished = true;
+            EventBus.Raise(new DialogueFinishedEvent(current_dialog.title));
+        }
+
+        CloseDialogPanel();
+    }
+    */
+
     public void CloseDialogPanel()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        if (current_dialog.is_finished)
+        {
+            Debug.Log($"EventBus  ---  dialog finished = {current_dialog.title}");
+            EventBus.Raise(new DialogFinishedEvent(current_dialog.title));
+        }
+
         gameObject.SetActive(false);
-        mainController.TurnOnKeyboard();
 
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
 
+        mainController.TurnOnKeyboard();
         mainController.ShowPlayerPanel();
+
+        //questsController.ShowNewTask();
     }
 }

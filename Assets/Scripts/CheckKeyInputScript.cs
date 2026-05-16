@@ -28,7 +28,7 @@ public class CheckKeyInputScript : MonoBehaviour
 
         if (e.type == EventType.KeyDown)
         {
-            Debug.Log($"Pressed: {e.keyCode}");
+            //Debug.Log($"Pressed: {e.keyCode}");
 
             if (e.keyCode == KeyCode.W) w = true;
             if (e.keyCode == KeyCode.A) a = true;
@@ -38,7 +38,7 @@ public class CheckKeyInputScript : MonoBehaviour
 
         if (e.type == EventType.KeyUp)
         {
-            Debug.Log($"Released: {e.keyCode}");
+            //Debug.Log($"Released: {e.keyCode}");
 
             if (e.keyCode == KeyCode.W) w = false;
             if (e.keyCode == KeyCode.A) a = false;
