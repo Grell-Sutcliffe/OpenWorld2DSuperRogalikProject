@@ -91,10 +91,49 @@ public class BackPackController : MonoBehaviour
         public string itemName;
         public int amount;
 
+        public bool isWeapon;
+
+        public int weaponCurrentLevel;
+
+        public float physical_attack;
+        public float elemental_attack;
+        public float crit_chance;
+        public float crit_dmg;
+        public float elemental_mastery;
+
         public ItemSaveData(string itemName, int amount)
         {
             this.itemName = itemName;
             this.amount = amount;
+            this.isWeapon = false;
+        }
+
+        public ItemSaveData(Weapon weapon)
+        {
+            itemName = weapon.item_name;
+            amount = weapon.amount;
+
+            isWeapon = true;
+
+            weaponCurrentLevel = weapon.current_level;
+
+            physical_attack = weapon.stats.physical_attack;
+            elemental_attack = weapon.stats.elemental_attack;
+            crit_chance = weapon.stats.crit_chance;
+            crit_dmg = weapon.stats.crit_dmg;
+            elemental_mastery = weapon.stats.elemental_mastery;
+        }
+
+        public void ApplyToWeapon(Weapon weapon)
+        {
+            weapon.amount = amount;
+            weapon.current_level = weaponCurrentLevel;
+
+            weapon.stats.physical_attack = physical_attack;
+            weapon.stats.elemental_attack = elemental_attack;
+            weapon.stats.crit_chance = crit_chance;
+            weapon.stats.crit_dmg = crit_dmg;
+            weapon.stats.elemental_mastery = elemental_mastery;
         }
     }
 
@@ -106,7 +145,14 @@ public class BackPackController : MonoBehaviour
         {
             Item item = pair.Value;
 
-            saveData.items.Add(new ItemSaveData(item.item_name, item.amount));
+            if (item is Weapon weapon)
+            {
+                saveData.items.Add(new ItemSaveData(weapon));
+            }
+            else
+            {
+                saveData.items.Add(new ItemSaveData(item.item_name, item.amount));
+            }
         }
 
         string json = JsonUtility.ToJson(saveData);
@@ -151,7 +197,16 @@ public class BackPackController : MonoBehaviour
 
             int itemId = dict_item_name_to_id[savedItem.itemName];
 
-            dict_id_to_item[itemId].amount = savedItem.amount;
+            Item item = dict_id_to_item[itemId];
+
+            if (savedItem.isWeapon && item is Weapon weapon)
+            {
+                savedItem.ApplyToWeapon(weapon);
+            }
+            else
+            {
+                item.amount = savedItem.amount;
+            }
         }
 
         Debug.Log("Inventory loaded: " + json);
@@ -295,6 +350,7 @@ public class BackPackController : MonoBehaviour
         {
             ind++;
             Item temp_weapon = new Weapon(weapon_so, ind);
+            temp_weapon.amount = 0;
             dict_id_to_item[ind] = temp_weapon;
             dict_item_name_to_id[temp_weapon.item_name] = ind;
         }
@@ -303,6 +359,7 @@ public class BackPackController : MonoBehaviour
         {
             ind++;
             Item temp_weapon = new WeaponRange(weapon_so_range, ind, weapon_so_range.projectilePrefab, 1, 1);
+            temp_weapon.amount = 0;
             dict_id_to_item[ind] = temp_weapon;
             dict_item_name_to_id[temp_weapon.item_name] = ind;
         }

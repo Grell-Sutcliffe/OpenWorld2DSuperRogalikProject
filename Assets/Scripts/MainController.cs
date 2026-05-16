@@ -38,6 +38,7 @@ public class MainController : MonoBehaviour
     public GameObject itemDeliveryPanel;
     public GameObject errorPanel;
     public GameObject loadingPanel;
+    public GameObject beginningLoadingPanel;
     public GameObject respawnPanel;
     public GameObject pausePanel;
 
@@ -153,11 +154,11 @@ public class MainController : MonoBehaviour
 
         is_keyboard_active = true;
 
-        StuffSetActiveFalse();
-
         ClearDictionary_useType_to_seconds_left();
 
         //MusicManager.Instance.PlayPhantomMusicByIndex(0);
+
+        StuffSetActiveFalse();
     }
 
     void Make_dict_npc_name_to_npcController()
@@ -273,9 +274,9 @@ public class MainController : MonoBehaviour
         backpackController.IncreaceItemByName(pink_reward_name, pink_amount);
     }
 
-    public void SetCharacterWeapon(int index, Weapon weapon)
+    public void SetCharacterWeapon(int index, Weapon weapon, int amount = 0)
     {
-        backpackController.IncreaceItemByName(weapon.item_name, 1);
+        backpackController.IncreaceItemByName(weapon.item_name, amount);
         characterPanelScript.SetNewWeapon(index, weapon);
     }
 
@@ -371,6 +372,8 @@ public class MainController : MonoBehaviour
 
     void StuffSetActiveTrue()
     {
+        beginningLoadingPanel.SetActive(true);
+
         characterPanel.SetActive(true);
         dialogPanel.SetActive(true);
         questPanel.SetActive(true);
@@ -406,6 +409,13 @@ public class MainController : MonoBehaviour
         loadingPanel.SetActive(false);
         respawnPanel.SetActive(false);
         pausePanel.SetActive(false);
+
+        Invoke("CloseBeginningLoadingPanel", 0.5f);
+    }
+
+    void CloseBeginningLoadingPanel()
+    {
+        beginningLoadingPanel.SetActive(false);
     }
 
     public void InteractDangeon(DangeonInteractionScript new_dangeonInteractionScript)
@@ -607,8 +617,8 @@ public class MainController : MonoBehaviour
 
     public void Save()
     {
-        backpackController.SaveInventory();
         playerScript.SavePlayer();
+        backpackController.SaveInventory();
         wishPanelScript.SaveWishParameters();
         questsController.SaveQuests();
         achievementController.SaveAchievements();
@@ -617,12 +627,17 @@ public class MainController : MonoBehaviour
     public void ClearEverything()
     {
         backpackController.DeleteInventory();
-        playerScript.DeletePlayerSave();
         wishPanelScript.DeleteWishParameters();
         questsController.DeleteQuests();
         achievementController.DeleteAchievements();
+        playerScript.DeletePlayerSave();
 
         GoToMenuScene();
+    }
+
+    public void PauseButton()
+    {
+        Pause(true);
     }
 
     public void Pause(bool check = true)
