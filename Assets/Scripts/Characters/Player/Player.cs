@@ -19,7 +19,6 @@ public class Player : Creature, IDamagable, IAttacker
 
     public GameObject owner => gameObject;
 
-    // Player's Data
     [Header("References")]
     [field: SerializeField] public PlayerSO Data;
 
@@ -651,11 +650,11 @@ public class Player : Creature, IDamagable, IAttacker
             {
                 anim.SetBool("isRun", false);
             }
-            anim.SetFloat("dir", direction);  // ������� � �������� �������
+            anim.SetFloat("dir", direction);
             anim.SetBool("isHit", isHit);
         }
         //Debug.Log($"{canHit} {Input.GetMouseButtonDown(0)} {overMenu}");
-        if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active) // ���
+        if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active)
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -765,7 +764,6 @@ public class Player : Creature, IDamagable, IAttacker
         Vector2 dir = ((Vector2)mousePos - (Vector2)pivot.transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        // 2) ������������ pivot ����
-        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // ������ ��� ������
+        pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs);
     }
 }
