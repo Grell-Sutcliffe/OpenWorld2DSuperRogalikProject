@@ -59,6 +59,9 @@ public class HealthBarScript : MonoBehaviour
     {
         SetHealthBarClear();
 
+        if (percent > 1f) percent = 1f;
+        if (percent < 0f) percent = 0f;
+
         int max_x = (int)(width * percent) + (width * percent * 10 % 10 > 0 ? 1 : 0);
         //int max_y = (int)(height * percent) + (height * percent * 10 % 10 > 0 ? 1 : 0);
 

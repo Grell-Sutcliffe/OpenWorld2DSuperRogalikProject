@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4306a0a059be8ba4cbafb532d1081dea, type: 3}
+  m_Name: Achievement_ENEMY_2
+  m_EditorClassIdentifier: 
+  achievement_text: "\u041F\u043E\u0431\u0435\u0434\u0438\u0442\u0435 5 \u0432\u0440\u0430\u0433\u043E\u0432"
+  rewardSOs:
+  - {fileID: 11400000, guid: e3ee00ac2c905b74793cb44e82166ce1, type: 2}
+  - {fileID: 11400000, guid: f2ac4ba9099ba19449e813bdaadf3137, type: 2}
+  achievementType: 4
+  achievementTaskSO: {fileID: 11400000, guid: 006b0ce8b3ac73549a0b047542ec436b, type: 2}

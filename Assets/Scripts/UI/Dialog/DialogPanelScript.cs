@@ -131,7 +131,7 @@ public class DialogPanelScript : MonoBehaviour
             ChangeAnswerPanelHeight();
             return;
         }
-        
+
         if (current_speachNode is QuestAcceptingSpeachNode questAcceptingSpeachNode)
         {
             // Debug.Log($"DialogPanel   :   questAcceptingSpeachNode  ---  quest.title = {questAcceptingSpeachNode.quest_title}");
@@ -316,11 +316,11 @@ public class DialogPanelScript : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
-        if (current_dialog.is_finished)
-        {
-            Debug.Log($"EventBus  ---  dialog finished = {current_dialog.title}");
-            EventBus.Raise(new DialogFinishedEvent(current_dialog.title));
-        }
+        //if (current_dialog.is_finished)
+        //{
+        Debug.Log($"EventBus  ---  dialog finished = {current_dialog.title}");
+        EventBus.Raise(new DialogFinishedEvent(current_dialog.title));
+        //}
 
         gameObject.SetActive(false);
 

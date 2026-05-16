@@ -56,7 +56,7 @@ public class AchievementController : MonoBehaviour
     public GameObject achievementPanel;
 
     public GameObject rewardPrefab;
-    
+
     AchievementPanelScript achievementPanelScript;
 
     List<AchievementType> achievementTypes;
@@ -69,8 +69,13 @@ public class AchievementController : MonoBehaviour
     public HashSet<string> set_of_npc_names_player_talked_to = new HashSet<string>();
     public HashSet<string> set_of_completed_quest_titles = new HashSet<string>();
 
-    private int amount_of_items_used = 0;
-    private int amount_of_wishes_made = 0;
+    public int amount_of_items_used = 0;
+    public int amount_of_wishes_made = 0;
+    public int amount_of_enemy_killed = 0;
+    public int amount_of_quests_completed = 0;
+    public int amount_of_chests_opened = 0;
+    public int amount_of_5_star = 0;
+    public int amount_of_4_star = 0;
 
     public static AchievementController Instance { get; private set; }
 
@@ -87,6 +92,11 @@ public class AchievementController : MonoBehaviour
 
         public int amountOfItemsUsed;
         public int amountOfWishesMade;
+        public int amountOfEnemyKilled;
+        public int amountOfQuestsCompleted;
+        public int amountOfChestsOpened;
+        public int amountOf5Star;
+        public int amountOf4Star;
     }
 
     [System.Serializable]
@@ -125,6 +135,11 @@ public class AchievementController : MonoBehaviour
 
         saveData.amountOfItemsUsed = amount_of_items_used;
         saveData.amountOfWishesMade = amount_of_wishes_made;
+        saveData.amountOfEnemyKilled = amount_of_enemy_killed;
+        saveData.amountOfQuestsCompleted = amount_of_quests_completed;
+        saveData.amountOfChestsOpened = amount_of_chests_opened;
+        saveData.amountOf5Star = amount_of_5_star;
+        saveData.amountOf4Star = amount_of_4_star;
 
         string json = JsonUtility.ToJson(saveData);
 
@@ -172,6 +187,11 @@ public class AchievementController : MonoBehaviour
 
         amount_of_items_used = saveData.amountOfItemsUsed;
         amount_of_wishes_made = saveData.amountOfWishesMade;
+        amount_of_enemy_killed = saveData.amountOfEnemyKilled;
+        amount_of_quests_completed = saveData.amountOfQuestsCompleted;
+        amount_of_chests_opened = saveData.amountOfChestsOpened;
+        amount_of_5_star = saveData.amountOf5Star;
+        amount_of_4_star = saveData.amountOf4Star;
 
         if (saveData.achievements != null)
         {
@@ -204,6 +224,11 @@ public class AchievementController : MonoBehaviour
 
         amount_of_items_used = 0;
         amount_of_wishes_made = 0;
+        amount_of_enemy_killed = 0;
+        amount_of_quests_completed = 0;
+        amount_of_chests_opened = 0;
+        amount_of_5_star = 0;
+        amount_of_4_star = 0;
 
         foreach (var pair in dict_achievement_title_to_achievement)
         {
@@ -304,6 +329,8 @@ public class AchievementController : MonoBehaviour
     {
         if (e is DialogFinishedEvent dialogFinishedEvent)
         {
+            Debug.Log($"Dialog finished  ---  {dialogFinishedEvent.dialog_title}");
+
             set_of_completed_dialog_titles.Add(dialogFinishedEvent.dialog_title);
             set_of_npc_names_player_talked_to.Add(dialogController.dict_dialog_title_to_dialog[dialogFinishedEvent.dialog_title].dialog_starting_npc);
 
@@ -328,7 +355,7 @@ public class AchievementController : MonoBehaviour
                         dict_achievement_title_to_achievement[achievement_title].is_completed = true;
                     }
                 }
-                
+
                 if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_NPC_MakeAmountDialogs achievementTask_NPC_MakeAmountDialogs)
                 {
                     if (set_of_completed_dialog_titles.Count >= achievementTask_NPC_MakeAmountDialogs.amount)
@@ -341,6 +368,8 @@ public class AchievementController : MonoBehaviour
 
         if (e is QuestCompletedEvent questCompletedEvent)
         {
+            amount_of_quests_completed++;
+
             set_of_completed_quest_titles.Add(questCompletedEvent.quest_title);
 
             foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Quests])
@@ -359,7 +388,7 @@ public class AchievementController : MonoBehaviour
 
                 if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_QUEST_CompleteAmountQuest achievementTask_QUEST_CompleteAmountQuest)
                 {
-                    if (set_of_completed_quest_titles.Count >= achievementTask_QUEST_CompleteAmountQuest.amount)
+                    if (amount_of_quests_completed >= achievementTask_QUEST_CompleteAmountQuest.amount)
                     {
                         dict_achievement_title_to_achievement[achievement_title].is_completed = true;
                     }
@@ -399,6 +428,18 @@ public class AchievementController : MonoBehaviour
         {
             amount_of_wishes_made += wishMadeEvent.wish_amount;
 
+            foreach (WishReward wishReward in wishMadeEvent.rewards)
+            {
+                if (wishReward.star == 4)
+                {
+                    amount_of_4_star++;
+                }
+                else if (wishReward.star == 5)
+                {
+                    amount_of_5_star++;
+                }
+            }
+
             foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Wish])
             {
                 if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
@@ -408,6 +449,82 @@ public class AchievementController : MonoBehaviour
                 if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_WISH_UseAmountWishes achievementTask_WISH_UseAmountWishes)
                 {
                     if (amount_of_wishes_made >= achievementTask_WISH_UseAmountWishes.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_WISH_GetAmountOfLegendaryWeapon achievementTask_WISH_GetAmountOfLegendaryWeapon)
+                {
+                    if (achievementTask_WISH_GetAmountOfLegendaryWeapon.stars == 4)
+                    {
+                        if (amount_of_4_star >= achievementTask_WISH_GetAmountOfLegendaryWeapon.amount)
+                        {
+                            dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                        }
+                    }
+                    else if (achievementTask_WISH_GetAmountOfLegendaryWeapon.stars == 5)
+                    {
+                        if (amount_of_5_star >= achievementTask_WISH_GetAmountOfLegendaryWeapon.amount)
+                        {
+                            dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (e is EnemyKilledEvent enemyKilledEvent)
+        {
+            amount_of_enemy_killed++;
+
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Enemy])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_ENEMY_AmountOfEnemyKilled achievementTask_ENEMY_AmountOfEnemyKilled)
+                {
+                    if (amount_of_enemy_killed >= achievementTask_ENEMY_AmountOfEnemyKilled.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+            }
+        }
+
+        if (e is ChestOpenedEvent chestOpenedEvent)
+        {
+            amount_of_chests_opened++;
+
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Map])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_MAP_AmountOfChestsOpened achievementTask_MAP_AmountOfChestsOpened)
+                {
+                    if (amount_of_chests_opened >= achievementTask_MAP_AmountOfChestsOpened.amount)
+                    {
+                        dict_achievement_title_to_achievement[achievement_title].is_completed = true;
+                    }
+                }
+            }
+        }
+
+        if (e is CharacterUpgradeEvent characterUpgradeEvent)
+        {
+            foreach (string achievement_title in dict_achievementType_to_list_of_achievement_list[AchievementType.Upgrade])
+            {
+                if (dict_achievement_title_to_achievement[achievement_title].is_completed) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO == null) continue;
+
+                if (dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_UPGRADE_CurrentLevel achievementTask_UPGRADE_CurrentLevel)
+                {
+                    if (characterUpgradeEvent.level >= achievementTask_UPGRADE_CurrentLevel.level)
                     {
                         dict_achievement_title_to_achievement[achievement_title].is_completed = true;
                     }

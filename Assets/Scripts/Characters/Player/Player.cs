@@ -35,7 +35,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     [Header("Stats")]
     public int max_level = 100;
-    public int current_level = 1;
+    public int current_level;
 
     [SerializeField] float player_start_health;
     [SerializeField] float player_start_attack = 0f;
@@ -347,6 +347,8 @@ public class Player : Creature, IDamagable, IAttacker
         
         if (!is_player_loaded)
         {
+            current_level = 1;
+
             for (int index = 0; index < weaponSOs.Count; index++)
             {
                 Item temp_item = mainController.GetItemByName(weaponSOs[index].weapon_name);
@@ -497,6 +499,10 @@ public class Player : Creature, IDamagable, IAttacker
         current_stats = new Stats(player_full_stats, weapon.stats);
 
         this.current_level++;
+
+        EventBus.Raise(new CharacterUpgradeEvent(current_level));
+
+        SavePlayer();
     }
 
     public void BoostCharacter(UseEffect useEffect)

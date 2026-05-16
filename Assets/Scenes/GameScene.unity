@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 7
+  m_ScrollSensitivity: 8
   m_Viewport: {fileID: 1581962728}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1904601471}
@@ -40834,9 +40834,42 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76cf79f4d8e9635429c161c772125bd8, type: 2}
   - {fileID: 11400000, guid: 9a321407755e01a4b9e00725979e8945, type: 2}
   - {fileID: 11400000, guid: 36c124651a734eb469cc307012849d2c, type: 2}
+  - {fileID: 11400000, guid: e5e589b9245ab1d4fa5fc1a883a63569, type: 2}
+  - {fileID: 11400000, guid: 34033f68e18c7224cad1eae1ff31448e, type: 2}
+  - {fileID: 11400000, guid: 16e790efe8b6969429f6478a5a958ace, type: 2}
+  - {fileID: 11400000, guid: 64e1d5f19e59f96449518e05db8909c0, type: 2}
+  - {fileID: 11400000, guid: 8dde0581cf9ef4e40b922b68ee796a1e, type: 2}
+  - {fileID: 11400000, guid: 1f3999c7b557a0448b3082967ed791e9, type: 2}
+  - {fileID: 11400000, guid: 10dabe328bd92c441976846fe30162a7, type: 2}
   - {fileID: 11400000, guid: 9f4066cf4fb7f9540bfce5fa9adc2c53, type: 2}
   - {fileID: 11400000, guid: 73c101576f0fa914dbf0a5ecf04d002d, type: 2}
   - {fileID: 11400000, guid: b5fe28cd14cd62e4295d191330662e8e, type: 2}
+  - {fileID: 11400000, guid: bdeac6dc676e0304d805ddd7d17eea4c, type: 2}
+  - {fileID: 11400000, guid: a0a91e49749a2d14ab7017bbd1b5e672, type: 2}
+  - {fileID: 11400000, guid: 35d9dd850afce9541a4623228319b3ed, type: 2}
+  - {fileID: 11400000, guid: f8b128bb6c0ab214ea42e0ed5f220f65, type: 2}
+  - {fileID: 11400000, guid: 182dedf2cbf4ad54b8eb9dd3d2abf0b6, type: 2}
+  - {fileID: 11400000, guid: aada7a20217fa4d42938eb7057a45c23, type: 2}
+  - {fileID: 11400000, guid: 2f10a2b687864974ca6c1e399c3afcd3, type: 2}
+  - {fileID: 11400000, guid: f69f3f85454432140ad1174c34755808, type: 2}
+  - {fileID: 11400000, guid: 9ad973e98478a8f4eb5d746923b91b91, type: 2}
+  - {fileID: 11400000, guid: 93547d894a436f9449ba8ce8abb4f5a6, type: 2}
+  - {fileID: 11400000, guid: 4841e6e8a47248a46a2363cb3df5350d, type: 2}
+  - {fileID: 11400000, guid: 6e79c94ab5ab8714fb13209dd74f62a8, type: 2}
+  - {fileID: 11400000, guid: ef08d2a69d12645439b5ab4cc82000ae, type: 2}
+  - {fileID: 11400000, guid: b1eb64978bf83f647a79b1f23bbb4969, type: 2}
+  - {fileID: 11400000, guid: 8816bdc978bd3614cb3f1ef649167bd7, type: 2}
+  - {fileID: 11400000, guid: 8bf695ac13e1d6943ac4c597c533710c, type: 2}
+  - {fileID: 11400000, guid: 8d109fb5dd9bf9343bdeded924e6f211, type: 2}
+  - {fileID: 11400000, guid: 0d5b320c761ee1d47b33ab9215cfa50d, type: 2}
+  - {fileID: 11400000, guid: 74bb7f27405599d4b83bfe9f879a87ad, type: 2}
+  amount_of_items_used: 0
+  amount_of_wishes_made: 0
+  amount_of_enemy_killed: 0
+  amount_of_quests_completed: 0
+  amount_of_chests_opened: 0
+  amount_of_5_star: 0
+  amount_of_4_star: 0
 --- !u!4 &1025867215
 Transform:
   m_ObjectHideFlags: 0
@@ -55076,7 +55109,7 @@ MonoBehaviour:
   backpackIconPrefab: {fileID: 3388804503098730323, guid: a3c97d396cfa5a143a477fb02b965d3a, type: 3}
   useButton: {fileID: 107075066}
   crossUseButton: {fileID: 973163571}
-  gold_amount: 2500
+  gold_amount: 10000
   primogem_amount: 3400
   pink_wish_amount: 100
   blue_wish_amount: 100
@@ -64067,8 +64100,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1260664130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.2215569}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -75754,8 +75787,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1721871752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.2215569}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -80017,7 +80050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2061212886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -80154,7 +80187,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 7
+  m_ScrollSensitivity: 15
   m_Viewport: {fileID: 152671385}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1187614075}
@@ -83714,27 +83747,27 @@ PrefabInstance:
       objectReference: {fileID: 3931211604407905927, guid: 9293729e5219ca54ea6038a8ea902447, type: 2}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553778590565201433, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934256379184130772, guid: e49ae937c20d96f499b5366b47b27501, type: 3}
       propertyPath: m_Name

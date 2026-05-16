@@ -172,11 +172,14 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     {
         LoggerName($"{name} dead");
 
+        EventBus.Raise(new EnemyKilledEvent(name));
+
         Destroy(gameObject);
     }
     public void DieInAnimation()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        Die();
 
         SpawnZone sz = GetComponentInParent<SpawnZone>();
         if (sz != null) sz.Died();

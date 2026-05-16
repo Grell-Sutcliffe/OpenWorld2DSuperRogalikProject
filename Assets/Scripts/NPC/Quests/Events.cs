@@ -34,6 +34,36 @@ public readonly struct ItemCollectedEvent : IEvent
     }
 }
 
+public readonly struct EnemyKilledEvent : IEvent
+{
+    public readonly string enemy_name;
+
+    public EnemyKilledEvent(string enemy_name)
+    {
+        this.enemy_name = enemy_name;
+    }
+}
+
+public readonly struct CharacterUpgradeEvent : IEvent
+{
+    public readonly int level;
+
+    public CharacterUpgradeEvent(int level)
+    {
+        this.level = level;
+    }
+} 
+
+public readonly struct ChestOpenedEvent : IEvent
+{
+    //public readonly string enemy_name;
+
+    public ChestOpenedEvent(string chest_name = "")
+    {
+        //this.enemy_name = enemy_name;
+    }
+}
+
 public readonly struct LocationEnteredEvent : IEvent
 {
     public readonly string location_title;

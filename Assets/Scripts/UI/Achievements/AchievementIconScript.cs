@@ -51,6 +51,26 @@ public class AchievementIconScript : MonoBehaviour
         {
             achievementTMP.text += " " + achievementController.set_of_completed_dialog_titles.Count.ToString() + "/" + achievementTask_NPC_MakeAmountDialogs.amount;
         }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_ENEMY_AmountOfEnemyKilled achievementTask_ENEMY_AmountOfEnemyKilled)
+        {
+            achievementTMP.text += " " + achievementController.amount_of_enemy_killed.ToString() + "/" + achievementTask_ENEMY_AmountOfEnemyKilled.amount;
+        }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_INVENTORY_UseAmountItems achievementTask_INVENTORY_UseAmountItems)
+        {
+            achievementTMP.text += " " + achievementController.amount_of_items_used.ToString() + "/" + achievementTask_INVENTORY_UseAmountItems.amount;
+        }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_QUEST_CompleteAmountQuest achievementTask_QUEST_CompleteAmountQuest)
+        {
+            achievementTMP.text += " " + achievementController.amount_of_quests_completed.ToString() + "/" + achievementTask_QUEST_CompleteAmountQuest.amount;
+        }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_WISH_UseAmountWishes achievementTask_WISH_UseAmountWishes)
+        {
+            achievementTMP.text += " " + achievementController.amount_of_wishes_made.ToString() + "/" + achievementTask_WISH_UseAmountWishes.amount;
+        }
+        else if (achievementController.dict_achievement_title_to_achievement[achievement_title].achievementTaskSO is AchievementTask_MAP_AmountOfChestsOpened achievementTask_MAP_AmountOfChestsOpened)
+        {
+            achievementTMP.text += " " + achievementController.amount_of_chests_opened.ToString() + "/" + achievementTask_MAP_AmountOfChestsOpened.amount;
+        }
     }
 
     public void UpdateContent()

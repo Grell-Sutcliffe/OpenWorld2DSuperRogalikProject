@@ -34,8 +34,10 @@ public class SpawnZone : MonoBehaviour
     {
         enemyCount -= 1;
         if (enemyCount == 0) {Debug.LogWarning("ALL DEAD");
-            anim.SetTrigger("reward");
+            // —”Õƒ” 
+            EventBus.Raise(new ChestOpenedEvent());
 
+            anim.SetTrigger("reward");
         }
     }
 
