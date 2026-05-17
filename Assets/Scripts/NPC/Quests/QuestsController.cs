@@ -687,6 +687,8 @@ public class QuestsController : MonoBehaviour
 
     public void CompleteQuest(string new_quest)
     {
+        EventBus.Raise(new QuestCompletedEvent(new_quest));
+
         accepted_quests.Remove(new_quest);
 
         if (!finished_quests.Contains(new_quest))

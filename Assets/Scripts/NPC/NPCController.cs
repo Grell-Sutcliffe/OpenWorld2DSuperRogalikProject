@@ -28,6 +28,8 @@ public class NPCController : InteractionController
 
     public int disposition_to_player;
 
+    private Coroutine thinkingCoroutine;
+
     protected void Awake()
     {
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
@@ -91,17 +93,16 @@ public class NPCController : InteractionController
 
     protected IEnumerator IconThinkingActivate()
     {
+        System.Random rand = new System.Random();
+
         while (true)
         {
-            System.Random rand = new System.Random();
             int new_delay = rand.Next(45, 60);
-
             yield return new WaitForSeconds(new_delay);
 
             icon_thinking.SetActive(true);
 
             new_delay = rand.Next(5, 7);
-
             yield return new WaitForSeconds(new_delay);
 
             icon_thinking.SetActive(false);
@@ -112,7 +113,7 @@ public class NPCController : InteractionController
     {
         IconsSetActiveFalse();
 
-        StartCoroutine(IconThinkingActivate());
+        thinkingCoroutine = StartCoroutine(IconThinkingActivate());
     }
 
     public void IconHasAcceptedQuestSetActiveTrue()
@@ -131,7 +132,11 @@ public class NPCController : InteractionController
 
     protected void IconsSetActiveFalse()
     {
-        StopCoroutine(IconThinkingActivate());
+        if (thinkingCoroutine != null)
+        {
+            StopCoroutine(thinkingCoroutine);
+            thinkingCoroutine = null;
+        }
 
         icon_thinking.SetActive(false);
         icon_hasAcceptedQuest.SetActive(false);

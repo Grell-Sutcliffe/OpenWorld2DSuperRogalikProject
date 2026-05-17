@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Achievement_INVENTORY_2
   m_EditorClassIdentifier: 
   achievement_text: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435
-    10 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432 \u0438\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044F"
+    10 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432"
   rewardSOs:
-  - {fileID: 11400000, guid: ef13c8fbb6d4e4a428c13c5decaacffa, type: 2}
+  - {fileID: 11400000, guid: 65c7a1fd540e7ba4a84f0005c79194d0, type: 2}
+  - {fileID: 11400000, guid: 25479ef1f9d133e47a2b7fe49f85353a, type: 2}
   achievementType: 7
   achievementTaskSO: {fileID: 11400000, guid: f9dafb5d8d51bef4ea13e170275a1e8c, type: 2}

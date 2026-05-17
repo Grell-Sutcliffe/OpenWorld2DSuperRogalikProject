@@ -117,7 +117,7 @@ public abstract class InteractionController : MonoBehaviour
 
     protected void OffInteraction()
     {
-        if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        if (mainController == null) mainController = GameObject.Find("MainController")?.GetComponent<MainController>();
 
         interactIcon.SetActive(false);
 

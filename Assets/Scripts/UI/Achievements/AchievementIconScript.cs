@@ -8,6 +8,7 @@ public class AchievementIconScript : MonoBehaviour
 
     public TextMeshProUGUI achievementTMP;
     public GameObject claim_button;
+    public GameObject claimedTMP_GO;
 
     public GameObject rewards_content;
     RectTransform content_rect_transform;
@@ -21,6 +22,8 @@ public class AchievementIconScript : MonoBehaviour
         achievementController.ClaimRewardsOnAchievement(achievement_title);
 
         DeactivateClaimButton();
+
+        ActivateClaimedTMP();
     }
 
     public void SetAcievement(string achievement_title)
@@ -35,9 +38,15 @@ public class AchievementIconScript : MonoBehaviour
 
         UpdateContent();
         DeactivateClaimButton();
-        if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed)
+        DeactivateClaimedTMP();
+
+        if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed && achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == false)
         {
             ActivateClaimButton();
+        }
+        if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed)
+        {
+            ActivateClaimedTMP();
         }
     }
 
@@ -112,5 +121,15 @@ public class AchievementIconScript : MonoBehaviour
     void DeactivateClaimButton()
     {
         claim_button.SetActive(false);
+    }
+
+    void ActivateClaimedTMP()
+    {
+        claimedTMP_GO.SetActive(true);
+    }
+
+    void DeactivateClaimedTMP()
+    {
+        claimedTMP_GO.SetActive(false);
     }
 }

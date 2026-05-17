@@ -93,7 +93,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         public int currentLevel;
 
-        //public StatsSaveData playerFullStats;
+        public StatsSaveData playerFullStats;
         public StatsSaveData currentStats;
 
         public int currentWeaponIndex;
@@ -146,7 +146,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         saveData.currentLevel = current_level;
 
-        //saveData.playerFullStats = new StatsSaveData(player_full_stats);
+        saveData.playerFullStats = new StatsSaveData(player_full_stats);
         saveData.currentStats = new StatsSaveData(current_stats);
 
         saveData.currentWeaponIndex = current_weapon_index;
@@ -197,19 +197,31 @@ public class Player : Creature, IDamagable, IAttacker
 
         is_player_loaded = true;
 
-        transform.position = new Vector3(saveData.posX, saveData.posY, saveData.posZ);
+        float new_X = saveData.posX >= 0f ? saveData.posX : -saveData.posX;
+        int times_x = (int)(new_X / 30);
+        new_X %= 30;
+        new_X = times_x % 2 == 0 ? -new_X : new_X;
+
+        float new_Y = saveData.posY >= 0f ? saveData.posY : -saveData.posY;
+        int times_y = (int)(new_Y / 30);
+        new_Y %= 30;
+        new_Y = times_y % 2 == 0 ? -new_Y : new_Y;
+
+        transform.position = new Vector3(new_X, new_Y, saveData.posZ);
 
         current_level = saveData.currentLevel;
-
-        //if (saveData.playerFullStats != null)
-        //    saveData.playerFullStats.ApplyTo(player_full_stats);
-
+        
+        if (saveData.playerFullStats != null)
+            saveData.playerFullStats.ApplyTo(player_full_stats);
+        
         if (saveData.currentStats != null)
             saveData.currentStats.ApplyTo(current_stats);
 
         boost_stats = new Stats();
 
         LoadWeaponsFromSave(saveData);
+
+        //current_stats.health = player_full_stats.health;
 
         UpdateStats();
         UpdateHealthBar();
@@ -763,6 +775,8 @@ public class Player : Creature, IDamagable, IAttacker
         UpdateStats();
 
         UpdateHealthBar();
+
+        SavePlayer();
     }
 
     protected virtual void RotatePivot(Vector2 mousePos, float offs = 0f)

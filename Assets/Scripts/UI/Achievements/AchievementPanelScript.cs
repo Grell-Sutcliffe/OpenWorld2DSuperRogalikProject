@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class AchievementPanelScript : MonoBehaviour
 {
     AchievementController achievementController;
 
+    public ScrollRect scrollRect;
     public GameObject content_GO;
 
     RectTransform content_rect_transform;
@@ -29,7 +31,7 @@ public class AchievementPanelScript : MonoBehaviour
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
         gameObject.SetActive(true);
-        
+
         UpdateContent();
     }
 
@@ -46,10 +48,10 @@ public class AchievementPanelScript : MonoBehaviour
 
         foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
         {
-            if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == false)
-            {
-                item_counter++;
-            }
+            //if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == false)
+            //{
+            item_counter++;
+            //}
         }
     }
 
@@ -65,6 +67,9 @@ public class AchievementPanelScript : MonoBehaviour
 
     void ChangePanelHeight(AchievementType achievementType = AchievementType.All)
     {
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 1f;
+
         int new_height = item_counter * item_height + (item_counter - 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
 
@@ -79,6 +84,14 @@ public class AchievementPanelScript : MonoBehaviour
         foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
         {
             if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_completed == false)
+            {
+                SpawnPrefab(achievement_title);
+            }
+        }
+
+        foreach (string achievement_title in achievementController.dict_achievementType_to_list_of_achievement_list[achievementType])
+        {
+            if (achievementController.dict_achievement_title_to_achievement[achievement_title].is_claimed == true)
             {
                 SpawnPrefab(achievement_title);
             }

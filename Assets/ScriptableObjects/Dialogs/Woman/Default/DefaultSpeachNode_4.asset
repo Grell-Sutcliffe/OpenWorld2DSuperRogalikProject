@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aedf2ee02ddbbd44297c167b37d836f4, type: 3}
-  m_Name: DefaultSpeachNode_2
+  m_Name: DefaultSpeachNode_4
   m_EditorClassIdentifier: 
   npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
-  speach: "\u0423\u0440\u0430\u0430"
+  speach: "\u0421\u0435\u0439\u0447\u0430\u0441 \u0431\u044B \u043D\u0430 \u043F\u043B\u044F\u0436..."
   speach_type: 0
   is_finishing: 0
-  next_speachNode: {fileID: 0}
+  next_speachNodeSO: {fileID: 0}
