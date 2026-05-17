@@ -74,7 +74,7 @@ public class Player : Creature, IDamagable, IAttacker
     public GameObject pivotSecond;
     public GameObject pivotFirst;
 
-    public float upgrade_percent = 1.05f;
+    public float upgrade_percent = 1.01f;
     public Cost upgrate_cost;
 
     float offset = 0;
@@ -267,6 +267,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         current_level = 1;
 
+        player_full_stats = new Stats(player_start_health, player_start_attack, 0, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
         current_stats = new Stats(player_full_stats);
 
         weapons = new List<Weapon>();
@@ -301,7 +302,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     protected override void Awake()
     {
-        player_full_stats = new Stats(player_start_health, player_start_attack, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
+        player_full_stats = new Stats(player_start_health, player_start_attack, 0, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
 
         base.Awake();
         if (instance != null && instance != this)

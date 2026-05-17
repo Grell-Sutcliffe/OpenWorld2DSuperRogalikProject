@@ -8,7 +8,6 @@ public abstract class EnemyRange : EnemyAbstract
 
     protected override void HandleCombat(float distToPlayer)
     {
-        // —лишком близко Ч убегаем и стрел€ем
         if (distToPlayer < reachDistfromPlayer)
         {
             RunFrom(playerTrans);
@@ -16,7 +15,6 @@ public abstract class EnemyRange : EnemyAbstract
             return;
         }
 
-        // ¬ зоне комфорта Ч стоим/стрейфим и стрел€ем
         if (distToPlayer < reachDisttoPlayer)
         {
             StopMovement();
@@ -25,7 +23,6 @@ public abstract class EnemyRange : EnemyAbstract
             return;
         }
 
-        // ƒалеко Ч догон€ем
         if (canWalk) ChasePlayer();
     }
 

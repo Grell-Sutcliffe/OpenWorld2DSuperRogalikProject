@@ -10,8 +10,6 @@ public abstract class Creature : MonoBehaviour, IDamagable
 
     public ElementType elementType_of_creature;
 
-    // переменные для EffectController на создании
-    // не используется пока что в плеере
     public bool isStopped = false;
     abstract public void TakeDamage(Damage dmg);
     protected virtual void Awake()

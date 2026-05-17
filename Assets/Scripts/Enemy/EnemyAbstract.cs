@@ -21,7 +21,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     [SerializeField] protected float reachDisttoPlayer = 5f;
     [SerializeField] protected float reachDisttoPlayerWithWindow = 4f;
     public Rigidbody2D rb;
-    protected Transform playerTrans; //??
+    protected Transform playerTrans; 
 
     int strafeSign = 1; // рандомить вначале 1 и -1
     [SerializeField] protected float strafeTimeM = 2;
@@ -37,7 +37,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     [SerializeField] protected float hp = 10f;
 
     [SerializeField] protected string eName;
-    [SerializeField] protected float reachDisttoRotatePivot; // чтобы 
+    [SerializeField] protected float reachDisttoRotatePivot; 
 
     /*
     float crit_chance = 0.7f;
@@ -60,7 +60,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
 
 
     [SerializeField] private float deadZone = 0.02f; // чтобы не дрожало около 0
-    private bool facingRight = true; // “логическое” направление
+    private bool facingRight = true; 
     [SerializeField] private SpriteRenderer sr;
 
 
@@ -213,7 +213,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
     protected void StrafeAround(Transform playerTrans)
     {
         Vector2 toPlayer = ((Vector2)playerTrans.position - rb.position).normalized;
-        Vector2 perp = new Vector2(-toPlayer.y, toPlayer.x) * strafeSign; // 90° в сторону
+        Vector2 perp = new Vector2(-toPlayer.y, toPlayer.x) * strafeSign; 
 
         rb.MovePosition(rb.position + perp * strafeSpeed * Time.fixedDeltaTime);
     }
@@ -264,7 +264,6 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         Vector2 dir = ((Vector2)playerPos.position - (Vector2)pivot.transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        // 2) поворачиваем pivot меча
         pivot.transform.rotation = Quaternion.Euler(0, 0, angle - offs); // оффсет под спрайт
     }
     public void StopWalk()
@@ -317,7 +316,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         }
     }
 
-    public virtual void SetAggro(Transform target)  // ???
+    public virtual void SetAggro(Transform target)  
     {
         playerTrans = target;
         isTriggered = true;

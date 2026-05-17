@@ -68,7 +68,6 @@ public class Funnel : MonoBehaviour
             enemy.externalForce += direction.normalized * force;
         }
 
-        // Урон — каждый враг получает независимо
         var damageable = collision.GetComponent<IDamagable>();
         if (damageable == null)
             damageable = collision.GetComponentInParent<IDamagable>();
@@ -120,7 +119,7 @@ public class Funnel : MonoBehaviour
     {
         isCycleActive = true;
         yield return new WaitForSeconds(delay);
-        damagedThisCycle.Clear();  // все могут получить урон снова
+        damagedThisCycle.Clear(); 
         isCycleActive = false;
     }
 }

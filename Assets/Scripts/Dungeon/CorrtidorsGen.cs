@@ -14,10 +14,8 @@ public class CorrtidorsGen : SimpleWalkGenerator
 
     public bool is_rand_rooms = true;
 
-    // ������ ���� ������
     private List<RoomData> allRooms = new List<RoomData>();
 
-    // ������� ��� ������ ����� ������
     [SerializeField] private GameObject enemyRoomPrefab;
     [SerializeField] private GameObject chestRoomPrefab;
     [SerializeField] private GameObject startRoomPrefab;
@@ -55,7 +53,6 @@ public class CorrtidorsGen : SimpleWalkGenerator
         tilemapVis.PaintFloor(floorPos);
         WallGen.CreateWalls(floorPos, tilemapVis);
         Debug.LogWarning(potentialRoomPos.Count());
-        //Debug.LogWarning(s); ??????????
     }
     
     private void CreateRoomAtEnds(List<Vector2Int> deadEnd, HashSet<Vector2Int> roomPos)
@@ -115,7 +112,7 @@ public class CorrtidorsGen : SimpleWalkGenerator
             {
                 centerPosition = rp,
                 floorPositions = new HashSet<Vector2Int>(roomFloor),
-                roomType = DetermineRoomType(allRooms.Count) // ���������� ���
+                roomType = DetermineRoomType(allRooms.Count)
             };
 
             allRooms.Add(roomData);
@@ -126,17 +123,14 @@ public class CorrtidorsGen : SimpleWalkGenerator
 
     private RoomType DetermineRoomType(int roomIndex)
     {
-        // ������ ������� - ���������
         if (roomIndex == 0) return RoomType.Start;
 
-        // ��������� ������� - ����
         if (roomIndex == allRooms.Count - 1) return RoomType.Boss;
 
-        // ��������� ������������� ��������� ������
         float rand = UnityEngine.Random.value;
-        if (rand < 0.6f) return RoomType.Enemy;    // 60% ���������
-        if (rand < 0.8f) return RoomType.Chest;    // 20% ��������
-        return RoomType.Empty;                     // 20% ������
+        if (rand < 0.6f) return RoomType.Enemy;
+        if (rand < 0.8f) return RoomType.Chest;
+        return RoomType.Empty;
     }
 
     private void CreateCorr(HashSet<Vector2Int> floorPos, HashSet<Vector2Int> potentialRoomPos)

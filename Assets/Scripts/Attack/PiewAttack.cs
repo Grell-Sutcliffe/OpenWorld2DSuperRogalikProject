@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PiewAttack : MonoBehaviour
 {
-    //нужен ли риджитбоди...
     [SerializeField] GameObject ShootPoint;
     GameObject prefab;
     IAttacker owner;
@@ -53,7 +52,7 @@ public class PiewAttack : MonoBehaviour
     }
     public void Shoot()
     {
-        SearchPref();// ?
+        SearchPref();
         Vector2 dir = ShootPoint.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 

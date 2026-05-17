@@ -3,12 +3,11 @@ using UnityEngine;
 
 public abstract class EnemyMelee : EnemyAbstract
 {
-    protected float t;  // from 0 to 1    
+    protected float t; 
 
 
     protected override void HandleCombat(float distToPlayer)
     {
-        // Достаточно близко для атаки
         if (distToPlayer < reachDisttoPlayer)
         {
             StopMovement();
@@ -24,7 +23,6 @@ public abstract class EnemyMelee : EnemyAbstract
             return;
         }
 
-        // Далеко — догоняем
         if (canWalk) ChasePlayer();
     }
 

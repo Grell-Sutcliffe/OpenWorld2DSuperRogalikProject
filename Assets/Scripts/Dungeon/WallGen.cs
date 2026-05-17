@@ -8,7 +8,7 @@ public static class WallGen
 
     public static void CreateWalls(HashSet<Vector2Int> floorPos, TileMapVisualize tileMapVis)
     {
-        tileMapVis.wallTilemap.ClearAllTiles();// dobavili
+        tileMapVis.wallTilemap.ClearAllTiles();
         var basicWallPos = FindWallsInDir(floorPos, Direction2D.cardinalDirectList);
         var cornerWallPositions = FindWallsInDir(floorPos, Direction2D.diagonalDirectionsList);
         CreateBasicWalls(tileMapVis, basicWallPos, floorPos);

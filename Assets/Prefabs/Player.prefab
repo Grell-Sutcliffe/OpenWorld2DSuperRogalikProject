@@ -384,9 +384,9 @@ MonoBehaviour:
   current_level: 1
   player_start_health: 25
   player_start_attack: 3
-  player_start_crit_chance: 0
-  player_start_crit_dmg: 0
-  player_start_defence: 0.3
+  player_start_crit_chance: 0.1
+  player_start_crit_dmg: 0.1
+  player_start_defence: 0.2
   player_start_elementsl_mastery: 0
   attackCooldown: 0.5
   target: {fileID: 3401088822291997560}
@@ -396,7 +396,8 @@ MonoBehaviour:
   pivot: {fileID: 1867279333676066356}
   pivotSecond: {fileID: 2607351604561185569}
   pivotFirst: {fileID: 1867279333676066356}
-  upgrade_percent: 1.05
+  upgrade_percent: 1.01
+  current_weapon_index: 0
 --- !u!50 &6179167146417871810
 Rigidbody2D:
   serializedVersion: 5

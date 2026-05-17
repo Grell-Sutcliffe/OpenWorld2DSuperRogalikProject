@@ -32,11 +32,7 @@ public class EffectStalker : MonoBehaviour
         dict_elementType_to_opposite_elementType[ElementType.Floro] = ElementType.Energo;
     }
 
-    void flush()
-    {
-        handledEffect = ElementType.None;
-        creature.ChangeHandledElement(ElementType.None);
-    }
+    
     void handle(ElementType elementType)
     {
         handledEffect = elementType;
@@ -209,19 +205,13 @@ public class EffectStalker : MonoBehaviour
         canHandle = false;
         SetAnim(21);
     }
-    void DoDamage()
-    {
-        creature.TakeDamage(new Damage(2, 0, ElementType.Physical));
-    }
+    
     void PyroToEnergo()
     {
         SetAnim(23);
         StartStopAnim(1);
     }
-    void SlowDown(bool isSlowed)
-    {
-
-    }
+   
     void CryoToEnergo()
     {
         SetAnim(13);
@@ -233,15 +223,7 @@ public class EffectStalker : MonoBehaviour
         //Debug.Log($"Наложение на {creature.name} реакции {react}");
         anim.SetInteger("Reaction", react);
     }
-    int concateElementTypes(ElementType elementType1, ElementType elementType2)
-    {
-        int a = (int)elementType1;
-        int b = (int)elementType2;
-
-        string sumString = a.ToString() + b.ToString();
-        int result = int.Parse(sumString);
-        return result;
-    }
+    
 }
 
 

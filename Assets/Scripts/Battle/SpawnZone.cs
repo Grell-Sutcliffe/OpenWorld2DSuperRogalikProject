@@ -33,7 +33,8 @@ public class SpawnZone : MonoBehaviour
     public void Died()
     {
         enemyCount -= 1;
-        if (enemyCount == 0) {Debug.LogWarning("ALL DEAD");
+        if (enemyCount == 0) {
+            Debug.LogWarning("ALL DEAD");
             // —”Ќƒ” 
             EventBus.Raise(new ChestOpenedEvent());
 
@@ -84,7 +85,7 @@ public class SpawnZone : MonoBehaviour
 
     IEnumerator WaitAndDo(float t, Bounds b, int i)
     {
-        yield return new WaitForSeconds(t); // ждать 2 секунды
+        yield return new WaitForSeconds(t); 
         Spawn(b,i);
     }
 

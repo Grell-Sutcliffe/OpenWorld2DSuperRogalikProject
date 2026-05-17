@@ -54,7 +54,7 @@ public class DamageText : MonoBehaviour
         text.color = dmg.isPhysicalCrit ? Color.red : Color.white;
 
         startPos = transform.position;
-        text.fontSize = setFontSize(dmg.physical_dmg); // ← ВОТ ЭТО
+        text.fontSize = setFontSize(dmg.physical_dmg); 
 
         endPos = startPos + new Vector3(Random.Range(-0.5f, 0f), Random.Range(0.5f, 1f), 0) * 1.0f;
         t = 0f;

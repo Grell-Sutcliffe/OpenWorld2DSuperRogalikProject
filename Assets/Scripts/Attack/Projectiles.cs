@@ -28,7 +28,6 @@ public class Projectiles : MonoBehaviour
         rb.linearVelocity = dir * speed;
     }
 
-    // Update is called once per frame
     private IDamagable FindDamageable(Collider2D collision)
     {
         var result = collision.GetComponent<IDamagable>();

@@ -23,7 +23,6 @@ public class SingleDamage : MonoBehaviour
 
     private void Awake()
     {
-        // Если не назначили в Inspector — ищем вверх по иерархии
         if (ownerObject != null)
         {
             owner = ownerObject.GetComponent<IAttacker>();
@@ -38,7 +37,7 @@ public class SingleDamage : MonoBehaviour
             Debug.LogError($"SingleDamage: не найден IAttacker для {gameObject.name}!", this);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)  // add setitititititititititiititi
+    private void OnTriggerEnter2D(Collider2D collision)  
     {
         //Debug.Log($"Single Damage on {collision} and {collision.gameObject.name} {transform.parent.parent.name}");
         if (collision.gameObject == owner.owner) return;

@@ -4,7 +4,6 @@ using UnityEngine;
 public class testing : MonoBehaviour
 {
     [SerializeField] GameObject pref;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(SpawnBoomWithDelay(3f));
