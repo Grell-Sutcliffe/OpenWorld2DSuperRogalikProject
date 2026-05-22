@@ -502,7 +502,7 @@ public class Player : Creature, IDamagable, IAttacker
     public void CharacterUpgrade()
     {
         this.player_full_stats.health = RoundToMax(this.player_full_stats.health * upgrade_percent);
-        this.player_full_stats.physical_attack = RoundToMax(this.player_full_stats.physical_attack * upgrade_percent);
+        //this.player_full_stats.physical_attack = RoundToMax(this.player_full_stats.physical_attack * upgrade_percent);
         this.player_full_stats.crit_chance *= upgrade_percent;
         this.player_full_stats.crit_dmg *= upgrade_percent;
         //this.defence *= upgrade_percent;

@@ -15,7 +15,7 @@ public class AchievementIconScript : MonoBehaviour
 
     //List<Task>
 
-    string achievement_title;
+    public string achievement_title;
 
     public void ClaimRewardsButton()
     {

@@ -13,6 +13,8 @@ public class AchievementPanelScript : MonoBehaviour
 
     public GameObject achievementIconPrefab;
 
+    AchievementType current_achievementType;
+
     int item_counter = 0;
     public int item_height = 300;
     public int space_between_items = 10;
@@ -35,8 +37,24 @@ public class AchievementPanelScript : MonoBehaviour
         UpdateContent();
     }
 
+    public void ClaimAllRewards()
+    {
+        foreach (Transform child in content_GO.transform)
+        {
+            AchievementIconScript new_child_script = child.gameObject.GetComponent<AchievementIconScript>();
+
+            if (achievementController.dict_achievement_title_to_achievement[new_child_script.achievement_title].is_completed &&
+                !achievementController.dict_achievement_title_to_achievement[new_child_script.achievement_title].is_claimed)
+            {
+                new_child_script.ClaimRewardsButton();
+            }
+        }
+    }
+
     public void UpdateContent(AchievementType achievementType = AchievementType.All)
     {
+        current_achievementType = achievementType;
+
         CountItems(achievementType);
         ClearContent();
         ChangePanelHeight(achievementType);
