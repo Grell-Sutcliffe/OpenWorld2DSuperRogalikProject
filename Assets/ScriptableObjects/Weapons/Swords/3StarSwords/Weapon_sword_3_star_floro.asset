@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: Weapon_sword_3_star_floro
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 0bd23ccd710c2f04fb6e31eebbf29123, type: 3}
-  weapon_name: "\u0417\u043E\u0432 \u0430\u043D\u0433\u0435\u043B\u043E\u0432"
+  item_name: 
   description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u043D\u0438\u0437\u0448\u0435\u0433\u043E
     \u0440\u0430\u043D\u0433\u0430. \u041F\u043E\u0434\u0445\u043E\u0434\u0438\u0442
     \u043C\u0435\u0447\u043D\u0438\u043A\u0430\u043C."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: 98fc2955dd0138943862069adeb450ef, type: 2}
+  - {fileID: 11400000, guid: eddd8e9631991914caddd89da6509faf, type: 2}
+  - {fileID: 11400000, guid: 91eedb7ae70041f42a8fc1709dbe203f, type: 2}
+  item_amounts_for_craft: 030000000a00000005000000
+  item_type: 1
+  weapon_name: "\u0417\u043E\u0432 \u0430\u043D\u0433\u0435\u043B\u043E\u0432"
   stars: 3
   range: 1
   cooldown: 0.5

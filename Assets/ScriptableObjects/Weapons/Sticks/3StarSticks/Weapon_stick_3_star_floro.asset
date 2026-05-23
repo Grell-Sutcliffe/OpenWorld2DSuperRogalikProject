@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Weapon_stick_3_star_floro
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 03249600ca98f0d41bbaa546adb084fc, type: 3}
-  weapon_name: "\u0428\u0451\u043F\u043E\u0442 \u0432\u0435\u0442\u0440\u0430"
+  item_name: 
   description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u043D\u0438\u0437\u0448\u0435\u0433\u043E
     \u0440\u0430\u043D\u0433\u0430."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: 98fc2955dd0138943862069adeb450ef, type: 2}
+  - {fileID: 11400000, guid: eddd8e9631991914caddd89da6509faf, type: 2}
+  item_amounts_for_craft: 030000000f000000
+  item_type: 1
+  weapon_name: "\u0428\u0451\u043F\u043E\u0442 \u0432\u0435\u0442\u0440\u0430"
   stars: 3
   range: 0
   cooldown: 0

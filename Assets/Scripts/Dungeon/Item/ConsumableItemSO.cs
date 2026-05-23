@@ -4,4 +4,6 @@ using UnityEngine;
 public class ConsumableItemSO : ItemSO
 {
     public int amount = 0;
+
+    public int time_to_grow;
 }

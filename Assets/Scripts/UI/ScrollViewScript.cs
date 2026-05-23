@@ -7,6 +7,11 @@ public class ScrollViewScript : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateScrollView();
+    }
+
+    public void UpdateScrollView()
+    {
         scrollRect = GetComponent<ScrollRect>();
 
         Canvas.ForceUpdateCanvases();

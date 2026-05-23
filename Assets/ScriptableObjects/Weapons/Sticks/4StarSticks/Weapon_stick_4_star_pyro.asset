@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Weapon_stick_4_star_pyro
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8e2148bc7a28a5644b617d6e936cfe48, type: 3}
-  weapon_name: "\u041F\u043B\u0430\u043C\u044F \u043E\u0447\u0438\u0449\u0435\u043D\u0438\u044F"
+  item_name: 
   description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u0441\u0440\u0435\u0434\u043D\u0435\u0433\u043E
     \u0440\u0430\u043D\u0433\u0430."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: 98fc2955dd0138943862069adeb450ef, type: 2}
+  - {fileID: 11400000, guid: 56acba26db133d1438887a5d0d05f7ee, type: 2}
+  item_amounts_for_craft: 0400000032000000
+  item_type: 1
+  weapon_name: "\u041F\u043B\u0430\u043C\u044F \u043E\u0447\u0438\u0449\u0435\u043D\u0438\u044F"
   stars: 4
   range: 0
   cooldown: 0

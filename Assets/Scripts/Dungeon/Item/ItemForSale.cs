@@ -22,9 +22,9 @@ public class ItemForSale : ConsumableItem
         //this.cost = data.cost;
         this.cost = new Cost(data.cost_amount, data.cost_type);
 
-        /*
         this.amount = 0;
 
+        /*
         this.id = id;
         */
     }
@@ -44,9 +44,9 @@ public class ItemForSale : ConsumableItem
         //this.cost = data.cost;
         this.cost = new Cost(data.cost_amount, data.cost_type);
 
-        /*
         this.amount = amount;
 
+        /*
         this.id = id;
         */
     }

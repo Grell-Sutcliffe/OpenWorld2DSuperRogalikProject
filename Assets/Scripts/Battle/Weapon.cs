@@ -24,7 +24,7 @@ public class Weapon : Item
         
     }
 
-    public Weapon(WeaponSO data)
+    public Weapon(WeaponSO data) : base(data)
     {
         this.data = data;
 
@@ -52,7 +52,7 @@ public class Weapon : Item
         this.amount = 0;
     }
 
-    public Weapon(WeaponSO data, int id)
+    public Weapon(WeaponSO data, int id) : base(data)
     {
         this.data = data;
 
@@ -80,7 +80,7 @@ public class Weapon : Item
         this.amount = 0;
     }
 
-    public Weapon(WeaponSO data, int id, int amount)
+    public Weapon(WeaponSO data, int id, int amount) : base(data)
     {
         this.data = data;
 

@@ -24,9 +24,9 @@ public class BackPackController : MonoBehaviour
     RectTransform content_rect_transform;
 
     public int gold_amount = 2500;
-    public int primogem_amount = 3400;
-    public int pink_wish_amount = 12;
-    public int blue_wish_amount = 67;
+    public int primogem_amount = 1500;
+    public int pink_wish_amount = 10;
+    public int blue_wish_amount = 10;
 
     public int item_counter = 0;
     public int current_selected_id;  // !!!
@@ -225,8 +225,8 @@ public class BackPackController : MonoBehaviour
 
         MakeDictionary();
 
-        UpdateBackpack();
-        ClearShowerPanel();
+        //UpdateBackpack();
+        //ClearShowerPanel();
 
         Debug.Log("Inventory reset to default values");
     }
@@ -298,6 +298,9 @@ public class BackPackController : MonoBehaviour
 
     public void MakeDictionary()
     {
+        dict_id_to_item = new Dictionary<int, Item>();
+        dict_item_name_to_id = new Dictionary<string, int>();
+
         int ind = 0;
 
         ind++;
@@ -364,6 +367,8 @@ public class BackPackController : MonoBehaviour
             temp_weapon.amount = 0;
             dict_id_to_item[ind] = temp_weapon;
             dict_item_name_to_id[temp_weapon.item_name] = ind;
+
+            //Debug.LogError($"weapon {dict_id_to_item[ind].item_name}, item_type {dict_id_to_item[ind].item_type}");
         }
 
         foreach (WeaponSO weapon_so_range in list_weapon_so_range)
@@ -425,7 +430,7 @@ public class BackPackController : MonoBehaviour
         {
             dict_id_to_item[item_id].amount -= number;
 
-            SaveInventory();
+            //SaveInventory();
 
             return true;
         }
@@ -441,7 +446,7 @@ public class BackPackController : MonoBehaviour
 
         dict_id_to_item[item_id].amount += number;
 
-        SaveInventory();
+        //SaveInventory();
 
         EventBus.Raise(new ItemCollectedEvent(dict_item_name_to_id[item_name], number));
 
@@ -718,7 +723,7 @@ public class BackPackController : MonoBehaviour
 
         if (dict_id_to_item[id] is UsableItem usableItem)
         {
-            dict_useType_to_list_of_BackpackIconScripts[usableItem.useEffect.useType].Add(new_prefab_script);
+            (dict_useType_to_list_of_BackpackIconScripts[usableItem.useEffect.useType]).Add(new_prefab_script);
 
             if (mainController.dict_useType_to_seconds_left[usableItem.useEffect.useType] > 0)
             {

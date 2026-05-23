@@ -46,6 +46,27 @@ public class CraftPanelScript : MonoBehaviour
         craftingLeftPanel_GO.SetActive(false);
     }
 
+    public void CraftButton()
+    {
+        for (int i = 0; i < current_crafting_item.item_amounts_for_craft.Count; i++)
+        {
+            if (backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[current_crafting_item.item_names_for_craft[i]]].amount < current_crafting_item.item_amounts_for_craft[i])
+            {
+                mainController.OpenErrorPanel(ErrorType.NotEnoughMaterials);
+                return;
+            }
+        }
+
+        backpackController.IncreaceItemByName(current_crafting_item.item_name);  // current_item
+
+        for (int i = 0; i < current_crafting_item.item_amounts_for_craft.Count; i++)
+        {
+            backpackController.DecreaceItemByName(current_crafting_item.item_names_for_craft[i], current_crafting_item.item_amounts_for_craft[i]);  // craft material
+        }
+
+        ChangeCraftingLeftPanel(current_crafting_item.item_name);
+    }
+
     public void SetCraftType_Food()
     {
         UpdateCraftType(ItemType.Food);
@@ -86,10 +107,13 @@ public class CraftPanelScript : MonoBehaviour
         int new_height = item_counter * item_height + (item_counter - 1) * space_between_items;
         content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, new_height);
 
+        //Debug.LogError(itemType);
+
         foreach (int id in backpackController.dict_id_to_item.Keys)
         {
             if (backpackController.dict_id_to_item[id].item_type == itemType && backpackController.dict_id_to_item[id].is_craftable)
             {
+                //Debug.LogError(backpackController.dict_id_to_item[id].item_name);
                 SpawnCraftingIcon(backpackController.dict_id_to_item[id]);
             }
         }

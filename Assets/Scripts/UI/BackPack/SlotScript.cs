@@ -91,20 +91,18 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             longPressCoroutine = null;
         }
 
-        // Если не было долгого нажатия и не было перетаскивания — считаем кликом
         if (!longPressHandled && !isDragging)
         {
             ItemOnClick();
         }
 
-        // Если был drag
         if (longPressHandled || isDragging)
         {
             GameObject current_GO = eventData.pointerCurrentRaycast.gameObject;
-            Debug.Log($"mouse on {current_GO}");
+            //Debug.Log($"mouse on {current_GO}");
             if (current_GO != null)
             {
-                Debug.Log($"{current_GO.name} {current_GO.tag}");
+                //Debug.Log($"{current_GO.name} {current_GO.tag}");
                 if (current_GO.tag == "BackpackUI")
                 {
                     inventoryStalker.EmptySlotItem(slot_index);
@@ -129,7 +127,6 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Ушли курсором с иконки — можно отменять "долгое нажатие", если надо
         if (isPointerDown && !longPressHandled)
         {
             if (longPressCoroutine != null)
@@ -152,13 +149,11 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Если хочешь начинать drag не только по long press, можно отметить это тут
         isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // Тут можно обновлять позицию "сталкера" мыши, если нужно
     }
 
     private void ItemOnClick()
@@ -173,6 +168,5 @@ public class SlotScript : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     private void StartDrag()
     {
         isDragging = true;
-        // inventory_stalker.ChangeMouse(backpackController.dict_id_to_item[id]);
     }
 }

@@ -49,7 +49,7 @@ public class Item
         this.item_names_for_craft = new List<string>();
         foreach (ItemSO itemSO in data.itemSOs_for_craft)
         {
-            item_names_for_craft.Add(itemSO.name);
+            item_names_for_craft.Add(itemSO.item_name);
         }
 
         this.item_amounts_for_craft = new List<int>();

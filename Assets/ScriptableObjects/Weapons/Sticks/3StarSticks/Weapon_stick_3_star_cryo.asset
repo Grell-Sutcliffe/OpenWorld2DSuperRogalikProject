@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: Weapon_stick_3_star_cryo
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: c5bdbbaef01dfca4a9ba05f92ce21531, type: 3}
-  weapon_name: "\u041F\u043B\u0430\u0447 \u0432\u043E\u0434\u044B"
+  item_name: 
   description: "\u041E\u0440\u0443\u0436\u0438\u0435 \u043D\u0438\u0437\u0448\u0435\u0433\u043E
     \u0440\u0430\u043D\u0433\u0430."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: 98fc2955dd0138943862069adeb450ef, type: 2}
+  - {fileID: 11400000, guid: 84afb3bfb833baf48905cce33f8c8dd1, type: 2}
+  item_amounts_for_craft: 030000000f000000
+  item_type: 1
+  weapon_name: "\u041F\u043B\u0430\u0447 \u0432\u043E\u0434\u044B"
   stars: 3
   range: 0
   cooldown: 0

@@ -2,11 +2,11 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Weapon", menuName = "Item/Weapon")]
-public class WeaponSO : ScriptableObject
+public class WeaponSO : ItemSO
 {
-    public Sprite sprite;
+    //public Sprite sprite;
     public string weapon_name;
-    public string description;
+    //public string description;
     public int stars;
 
     public float range;

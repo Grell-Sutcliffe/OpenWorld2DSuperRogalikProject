@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public abstract class InteractionController : MonoBehaviour
 {
     protected MainController mainController;
+    protected BackPackController backpackController;
 
     public GameObject interactIcon;
     public SpriteRenderer interactIconSR;
@@ -24,6 +25,7 @@ public abstract class InteractionController : MonoBehaviour
     protected virtual void Awake()
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
     }
 
     protected virtual void Start()

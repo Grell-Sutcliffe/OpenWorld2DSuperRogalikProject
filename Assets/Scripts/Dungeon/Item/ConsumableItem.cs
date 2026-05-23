@@ -5,6 +5,8 @@ public class ConsumableItem : Item
 {
     ConsumableItemSO data;
 
+    public int time_to_grow;
+
     /*
     public ConsumableItem(ConsumableItemSO data) : base(data)
     {
@@ -14,6 +16,10 @@ public class ConsumableItem : Item
 
     public ConsumableItem(ConsumableItemSO data, int id) : base(data)
     {
+        this.amount = data.amount;
+
+        this.time_to_grow = data.time_to_grow;
+        
         /*
         this.data = data;
 
@@ -22,8 +28,6 @@ public class ConsumableItem : Item
         this.description = data.description;
 
         this.item_type = data.item_type;
-
-        this.amount = data.amount;
 
         this.id = id;
         */
@@ -31,6 +35,10 @@ public class ConsumableItem : Item
 
     public ConsumableItem(ConsumableItemSO data, int id, int amount) : base(data)
     {
+        this.amount = amount;
+
+        this.time_to_grow = data.time_to_grow;
+
         /*
         this.data = data;
 
@@ -39,8 +47,6 @@ public class ConsumableItem : Item
         this.description = data.description;
 
         this.item_type = data.item_type;
-
-        this.amount = amount;
 
         this.id = id;
         */
