@@ -18,6 +18,7 @@ public class Weapon : Item
     public WeaponSO data;
 
     public float upgrade_percent = 1.05f;
+
     public Weapon()
     {
         

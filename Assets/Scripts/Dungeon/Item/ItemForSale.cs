@@ -1,14 +1,15 @@
 using UnityEngine;
 using static ShopPanelScript;
 
-public class ItemForSale : Item
+public class ItemForSale : ConsumableItem
 {
     public Cost cost;
 
     ItemForSaleSO data;
 
-    public ItemForSale(ItemForSaleSO data, int id)
+    public ItemForSale(ItemForSaleSO data, int id) : base(data, id)
     {
+        /*
         this.data = data;
 
         this.item_name = data.item_name;
@@ -16,17 +17,21 @@ public class ItemForSale : Item
         this.sprite = data.sprite;
 
         this.item_type = data.item_type;
+        */
 
         //this.cost = data.cost;
         this.cost = new Cost(data.cost_amount, data.cost_type);
 
+        /*
         this.amount = 0;
 
         this.id = id;
+        */
     }
 
-    public ItemForSale(ItemForSaleSO data, int id, int amount)
+    public ItemForSale(ItemForSaleSO data, int id, int amount) : base(data, id)
     {
+        /*
         this.data = data;
 
         this.item_name = data.item_name;
@@ -34,12 +39,15 @@ public class ItemForSale : Item
         this.sprite = data.sprite;
 
         this.item_type = data.item_type;
+        */
 
         //this.cost = data.cost;
         this.cost = new Cost(data.cost_amount, data.cost_type);
 
+        /*
         this.amount = amount;
 
         this.id = id;
+        */
     }
 }

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using System.Threading;
-using UnityEngine.U2D;
+using System.Collections.Generic;
 
 [Serializable]
 public class Item
@@ -17,6 +16,16 @@ public class Item
     public ItemType item_type = ItemType.Everything;
 
     public int id;
+
+    public bool is_craftable;
+    public List<string> item_names_for_craft;
+    public List<int> item_amounts_for_craft;
+
+    /*
+    public bool is_breakable;
+    public Item broken_version;
+    public float time_to_break;
+    */
 
     ItemSO data;
 
@@ -34,6 +43,20 @@ public class Item
         this.description = data.description;
 
         this.item_type = data.item_type;
+
+        this.is_craftable = data.is_craftable;
+
+        this.item_names_for_craft = new List<string>();
+        foreach (ItemSO itemSO in data.itemSOs_for_craft)
+        {
+            item_names_for_craft.Add(itemSO.name);
+        }
+
+        this.item_amounts_for_craft = new List<int>();
+        foreach (int amount in data.item_amounts_for_craft)
+        {
+            item_amounts_for_craft.Add(amount);
+        }
     }
 }
 

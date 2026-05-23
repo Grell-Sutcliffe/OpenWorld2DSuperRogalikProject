@@ -5,8 +5,16 @@ public class ConsumableItem : Item
 {
     ConsumableItemSO data;
 
-    public ConsumableItem(ConsumableItemSO data, int id)
+    /*
+    public ConsumableItem(ConsumableItemSO data) : base(data)
     {
+        //this.data = data;
+    }
+    */
+
+    public ConsumableItem(ConsumableItemSO data, int id) : base(data)
+    {
+        /*
         this.data = data;
 
         this.sprite = data.sprite;
@@ -18,10 +26,12 @@ public class ConsumableItem : Item
         this.amount = data.amount;
 
         this.id = id;
+        */
     }
 
-    public ConsumableItem(ConsumableItemSO data, int id, int amount)
+    public ConsumableItem(ConsumableItemSO data, int id, int amount) : base(data)
     {
+        /*
         this.data = data;
 
         this.sprite = data.sprite;
@@ -33,6 +43,7 @@ public class ConsumableItem : Item
         this.amount = amount;
 
         this.id = id;
+        */
     }
 
     /*

@@ -35,6 +35,7 @@ public class MainController : MonoBehaviour
     public GameObject multiplayerPanel;
     public GameObject rewardPanel;
     public GameObject infoPanel;
+    public GameObject craftPanel;
     public GameObject itemDeliveryPanel;
     public GameObject errorPanel;
     public GameObject loadingPanel;
@@ -64,6 +65,7 @@ public class MainController : MonoBehaviour
     ItemDeliveryPanelScript itemDeliveryPanelScript;
     AchievementPanelScript achievementPanelScript;
     InfoPanelScript infoPanelScript;
+    CraftPanelScript craftPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -115,6 +117,7 @@ public class MainController : MonoBehaviour
         itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
         achievementPanelScript = achievementPanel.GetComponent<AchievementPanelScript>();
         infoPanelScript = infoPanel.GetComponent<InfoPanelScript>();
+        craftPanelScript = craftPanel.GetComponent<CraftPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -386,6 +389,7 @@ public class MainController : MonoBehaviour
         itemDeliveryPanel.SetActive(true);
         achievementPanel.SetActive(true);
         infoPanel.SetActive(true);
+        craftPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -404,6 +408,7 @@ public class MainController : MonoBehaviour
         itemDeliveryPanel.SetActive(false);
         achievementPanel.SetActive(false);
         infoPanel.SetActive(false);
+        craftPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
         loadingPanel.SetActive(false);
@@ -502,6 +507,18 @@ public class MainController : MonoBehaviour
     public void CloseInfoPanel()
     {
         infoPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+
+    public void OpenCraftPanel()
+    {
+        craftPanelScript.OpenPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseCraftPanel()
+    {
+        craftPanel.SetActive(false);
         TurnOnKeyboard();
     }
 

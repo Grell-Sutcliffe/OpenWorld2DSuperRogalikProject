@@ -17,6 +17,13 @@ MonoBehaviour:
   description: "\u041F\u043E\u0432\u044B\u0448\u0430\u0435\u0442 \u043C\u0430\u0441\u0442\u0435\u0440\u0441\u0442\u0432\u043E
     \u0441\u0442\u0438\u0445\u0438\u0439 \u043D\u0430 30%. \u042D\u0444\u0444\u0435\u043A\u0442
     \u0434\u043B\u0438\u0442\u0441\u044F 2 \u043C\u0438\u043D\u0443\u0442\u044B."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: a3375cca33434f647b18d1515d52c361, type: 2}
+  - {fileID: 11400000, guid: 932ba526464bc804b9b6c49cc8699629, type: 2}
+  - {fileID: 11400000, guid: ee5145948125c074cbaf086837c79fd0, type: 2}
+  - {fileID: 11400000, guid: 66d59655719cca746800f699f57231d1, type: 2}
+  item_amounts_for_craft: 01000000020000000300000002000000
   item_type: 2
   amount: 2
   useType: 5

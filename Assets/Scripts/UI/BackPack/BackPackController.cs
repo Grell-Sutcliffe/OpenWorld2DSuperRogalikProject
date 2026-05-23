@@ -60,6 +60,9 @@ public class BackPackController : MonoBehaviour
     [Header("Сonsumable Items")]
     public ConsumableItemSO[] list_consumableItem_so;
 
+    [Header("Сonsumable Items (продукты)")]
+    public ConsumableItemSO[] list_products_consumableItem_so;
+
     [Header("Usable Items")]
     public UsableItemSO[] list_usableItem_so;
 
@@ -339,6 +342,14 @@ public class BackPackController : MonoBehaviour
         }
 
         foreach (ConsumableItemSO consumableItem_so in list_consumableItem_so)
+        {
+            ind++;
+            Item temp_item = new ConsumableItem(consumableItem_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
+
+        foreach (ConsumableItemSO consumableItem_so in list_products_consumableItem_so)
         {
             ind++;
             Item temp_item = new ConsumableItem(consumableItem_so, ind);

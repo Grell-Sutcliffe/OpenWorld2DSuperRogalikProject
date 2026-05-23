@@ -2,7 +2,7 @@ using UnityEngine;
 using static ShopPanelScript;
 
 [CreateAssetMenu(fileName = "ItemForSale", menuName = "Item/ItemForSale")]
-public class ItemForSaleSO : ItemSO
+public class ItemForSaleSO : ConsumableItemSO
 {
     //public Cost cost;
     public int cost_amount;
