@@ -227,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIcon: {fileID: 8476373932337435502}
   interactIconSR: {fileID: 0}
+  interactKey: 102
 --- !u!50 &655264860897693932
 Rigidbody2D:
   serializedVersion: 5
@@ -521,8 +522,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1445735355
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 90beebfbe07c3424faaddb8bfb8e1f9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
