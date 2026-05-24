@@ -1,49 +1,19 @@
 fileFormatVersion: 2
-guid: f5130f2bf8143e54682b95519a2a7f58
+guid: 8c352c4c74572894ba319446eaccf3b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4640327591210267248
-    second: daddy_mommy_cows_60x50_0
+      213: -6043416981284610355
+    second: roads_0
   - first:
-      213: -8323382584338489297
-    second: daddy_mommy_cows_60x50_1
+      213: 1281697204898358490
+    second: roads_1
   - first:
-      213: -3575702349713453117
-    second: daddy_mommy_cows_60x50_2
+      213: -8960007918963773294
+    second: roads_2
   - first:
-      213: -5485767145752258100
-    second: daddy_mommy_cows_60x50_3
-  - first:
-      213: -157831304025888013
-    second: daddy_mommy_cows_60x50_4
-  - first:
-      213: -8203678873537581258
-    second: daddy_mommy_cows_60x50_5
-  - first:
-      213: -7934758523074183915
-    second: daddy_mommy_cows_60x50_6
-  - first:
-      213: -5536795270918097885
-    second: daddy_mommy_cows_60x50_7
-  - first:
-      213: 4887610081873583331
-    second: daddy_mommy_cows_60x50_8
-  - first:
-      213: -5629355897560030911
-    second: daddy_mommy_cows_60x50_9
-  - first:
-      213: 2616385410527375512
-    second: daddy_mommy_cows_60x50_10
-  - first:
-      213: 7991157900205665719
-    second: daddy_mommy_cows_60x50_11
-  - first:
-      213: 4909907519387998712
-    second: daddy_mommy_cows_60x50_12
-  - first:
-      213: 7710079421872879744
-    second: daddy_mommy_cows_60x50_13
+      213: -7130687603060568676
+    second: roads_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,309 +122,397 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_0
+      name: roads_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 100
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09dc77c24ae3a9fb0800000000000000
-      internalID: -4640327591210267248
+      spriteID: dce97f06648712ca0800000000000000
+      internalID: -6043416981284610355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_1
+      name: roads_1
       rect:
         serializedVersion: 2
-        x: 60
-        y: 100
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f20e4d283a76d7c80800000000000000
-      internalID: -8323382584338489297
+      spriteID: ad4e39f21d089c110800000000000000
+      internalID: 1281697204898358490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_2
+      name: roads_2
       rect:
         serializedVersion: 2
-        x: 120
-        y: 100
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3cfccc668ad806ec0800000000000000
-      internalID: -3575702349713453117
+      spriteID: 2903a751548a7a380800000000000000
+      internalID: -8960007918963773294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_3
+      name: roads_3
       rect:
         serializedVersion: 2
-        x: 180
-        y: 100
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc99de488d3aed3b0800000000000000
-      internalID: -5485767145752258100
+      spriteID: c9d0b4fa765ba0d90800000000000000
+      internalID: -7130687603060568676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_4
+      name: roads_4
       rect:
         serializedVersion: 2
-        x: 240
-        y: 100
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3faa915e3454fcdf0800000000000000
-      internalID: -157831304025888013
+      spriteID: a2fef9a4ab378394fb81a17ff8c6a09b
+      internalID: -82727852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_5
+      name: roads_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 50
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63f6a6b878da62e80800000000000000
-      internalID: -8203678873537581258
+      spriteID: ee643cb954e45ac4396e528211a66f6a
+      internalID: 1400536261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_6
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 50
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51df8a5d92312e190800000000000000
-      internalID: -7934758523074183915
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_7
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 50
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3243dda490a5923b0800000000000000
-      internalID: -5536795270918097885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_8
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 50
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ec51ba497744d340800000000000000
-      internalID: 4887610081873583331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_9
+      name: roads_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1412fa303a280e1b0800000000000000
-      internalID: -5629355897560030911
+      spriteID: ad9a5b6b3755b334fa600d60632d0d80
+      internalID: -1110587156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_10
+      name: roads_7
       rect:
         serializedVersion: 2
-        x: 60
-        y: 0
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 890bffd2ba44f4420800000000000000
-      internalID: 2616385410527375512
+      spriteID: c63eebaacb7441e42891871f0e0d1f8c
+      internalID: 741208506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_11
+      name: roads_8
       rect:
         serializedVersion: 2
-        x: 120
-        y: 0
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 7bda0d175cb46ee60800000000000000
-      internalID: 7991157900205665719
+      spriteID: 82dffcbbf5a53984f8364b9f186aec50
+      internalID: -1557950059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_12
+      name: roads_9
       rect:
         serializedVersion: 2
-        x: 180
-        y: 0
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8f9142500ee732440800000000000000
-      internalID: 4909907519387998712
+      spriteID: 86e09ca4077a50140804d9aae40418eb
+      internalID: -46148042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: daddy_mommy_cows_60x50_13
+      name: roads_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
-        width: 60
-        height: 50
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 08838ca6264bffa60800000000000000
-      internalID: 7710079421872879744
+      spriteID: 6eb25ec8512a7aa43bf82d49c99ad886
+      internalID: -884966592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58683b1ed4dfd4749bb708dbc0c255ed
+      internalID: 1619738989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc4a660b9d1ab74aa6df6f11fbf969e
+      internalID: 1920802626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c1a1d221144454e87a1d6ff81fafdf
+      internalID: 1915077082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d241a5401d97c394bb46582d8ebab7dd
+      internalID: 1729045455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b59f83c461618ea44bfc677c6d674f1a
+      internalID: -243250149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 914b2cdcb3b9529408b7a23b0950d8db
+      internalID: 806572734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roads_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7039521208bed5148a49a73aed36bf66
+      internalID: 2079340821
       vertices: []
       indices: 
       edges: []
@@ -463,7 +521,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 97d0675ab74d7864e8190b7c4d847d6b
+    spriteID: a8de1874f7cf0714e9e75fe1a39318f2
     internalID: 0
     vertices: []
     indices: 
@@ -473,20 +531,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      daddy_mommy_cows_60x50_0: -4640327591210267248
-      daddy_mommy_cows_60x50_1: -8323382584338489297
-      daddy_mommy_cows_60x50_10: 2616385410527375512
-      daddy_mommy_cows_60x50_11: 7991157900205665719
-      daddy_mommy_cows_60x50_12: 4909907519387998712
-      daddy_mommy_cows_60x50_13: 7710079421872879744
-      daddy_mommy_cows_60x50_2: -3575702349713453117
-      daddy_mommy_cows_60x50_3: -5485767145752258100
-      daddy_mommy_cows_60x50_4: -157831304025888013
-      daddy_mommy_cows_60x50_5: -8203678873537581258
-      daddy_mommy_cows_60x50_6: -7934758523074183915
-      daddy_mommy_cows_60x50_7: -5536795270918097885
-      daddy_mommy_cows_60x50_8: 4887610081873583331
-      daddy_mommy_cows_60x50_9: -5629355897560030911
+      roads_0: -6043416981284610355
+      roads_1: 1281697204898358490
+      roads_10: -884966592
+      roads_11: 1619738989
+      roads_12: 1920802626
+      roads_13: 1915077082
+      roads_14: 1729045455
+      roads_15: -243250149
+      roads_16: 806572734
+      roads_17: 2079340821
+      roads_2: -8960007918963773294
+      roads_3: -7130687603060568676
+      roads_4: -82727852
+      roads_5: 1400536261
+      roads_6: -1110587156
+      roads_7: 741208506
+      roads_8: -1557950059
+      roads_9: -46148042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
