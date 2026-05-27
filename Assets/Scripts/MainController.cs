@@ -47,6 +47,8 @@ public class MainController : MonoBehaviour
     public GameObject Woman;
     public GameObject Cows;
     public GameObject Chickens;
+    public GameObject Gardens;
+    public GameObject Melnica;
     /*
     public GameObject Book;
     */

@@ -262,7 +262,10 @@ public class WishPanelScript : MonoBehaviour
             }
             else if (backpackController.dict_id_to_item[id].item_type == ItemType.Materials)
             {
-                if (backpackController.dict_id_to_item[id] is ItemForSale item)
+                if (backpackController.dict_id_to_item[id] is ItemForSale item &&
+                    !(backpackController.dict_id_to_item[id].item_name == backpackController.blueWishSO.item_name ||
+                      backpackController.dict_id_to_item[id].item_name == backpackController.pinkWishSO.item_name)
+                   )
                 {
                     list_of_material_reward_id.Add(id);
                 }
@@ -404,7 +407,7 @@ public class WishPanelScript : MonoBehaviour
             blue_wish_parameters = new WishParameters(temp_wishParameters);
         }
 
-        SaveWishParameters();
+        //SaveWishParameters();
 
         wish_animator.SetBool("is_wishing", true);
         wish_animator.SetBool("is_wish_pink", is_pink);

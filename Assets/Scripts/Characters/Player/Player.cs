@@ -553,7 +553,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         EventBus.Raise(new CharacterUpgradeEvent(current_level));
 
-        SavePlayer();
+        //SavePlayer();
     }
 
     public void BoostCharacter(UseEffect useEffect)
@@ -815,7 +815,7 @@ public class Player : Creature, IDamagable, IAttacker
 
         UpdateHealthBar();
 
-        SavePlayer();
+        //SavePlayer();
     }
 
     protected virtual void RotatePivot(Vector2 mousePos, float offs = 0f)

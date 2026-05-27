@@ -16,6 +16,11 @@ public class RewardPanelScript : MonoBehaviour
     private Reward reward_1;
     private Reward reward_2;
 
+    private void Awake()
+    {
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
+    }
+
     void Start()
     {
         //mainController = GameObject.Find("MainController").GetComponent<MainController>();
@@ -25,6 +30,9 @@ public class RewardPanelScript : MonoBehaviour
     public void SetRewards(Reward reward_1, Reward reward_2)
     {
         gameObject.SetActive(true);
+
+        this.reward_1 = reward_1;
+        this.reward_2 = reward_2;
 
         reward_1_image.sprite = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[reward_1.item_name]].sprite;
         reward_2_image.sprite = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[reward_2.item_name]].sprite;

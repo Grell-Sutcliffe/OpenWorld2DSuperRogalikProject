@@ -599,7 +599,7 @@ public class BackPackController : MonoBehaviour
                 dict_id_to_item[id].amount++;
                 Debug.Log(dict_id_to_item[id].amount);
 
-                SaveInventory();
+                //SaveInventory();
 
                 break;
             }

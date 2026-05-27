@@ -236,7 +236,7 @@ public class AchievementController : MonoBehaviour
             pair.Value.is_claimed = false;
         }
 
-        SaveAchievements();
+        //SaveAchievements();
 
         Debug.Log("Achievements reset to default");
     }
@@ -307,7 +307,7 @@ public class AchievementController : MonoBehaviour
             backpackController.IncreaceItemByName(reward.item_name, reward.amount);
         }
 
-        SaveAchievements();
+        //SaveAchievements();
     }
 
     public void OpenAchievementPanel()

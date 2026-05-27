@@ -636,7 +636,7 @@ public class QuestsController : MonoBehaviour
 
         NextTask(new_quest);
 
-        SaveQuests();
+        //SaveQuests();
     }
 
     public void NextTask(string quest_title)
@@ -649,7 +649,7 @@ public class QuestsController : MonoBehaviour
         {
             dict_quest_name_to_quest[quest_title].current_task = dict_quest_name_to_quest[quest_title].current_task.next_task;
 
-            SaveQuests();
+            //SaveQuests();
 
             NextTask(quest_title);
 
@@ -686,7 +686,7 @@ public class QuestsController : MonoBehaviour
 
         UpdateTrackTask(quest_title);
 
-        SaveQuests();
+        //SaveQuests();
     }
 
     public void UpdateTrackTask(string quest_title)
@@ -708,7 +708,7 @@ public class QuestsController : MonoBehaviour
 
         UpdateNPCsQuestsIcons();
 
-        SaveQuests();
+        //SaveQuests();
     }
 
     public void ClaimRewardsOnQuest(string quest_title)
@@ -720,7 +720,7 @@ public class QuestsController : MonoBehaviour
 
         finished_quests.Remove(quest_title);
 
-        SaveQuests();
+        //SaveQuests();
     }
 
     public void UpdateQestPanel()
