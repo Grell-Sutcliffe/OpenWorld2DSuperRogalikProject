@@ -85,7 +85,7 @@ public abstract class InteractionController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("OnTriggerEnter2D");
+        //Debug.Log($"ENTER {gameObject.name} with {other.name}, tag={other.tag}");
         if (other.CompareTag("Player"))
         {
             is_player_in_range = true;
@@ -95,6 +95,7 @@ public abstract class InteractionController : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D other)
     {
+        //Debug.Log($"EXIT {gameObject.name} with {other.name}, tag={other.tag}");
         if (other.CompareTag("Player"))
         {
             is_player_in_range = false;

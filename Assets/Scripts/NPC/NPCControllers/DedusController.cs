@@ -6,7 +6,7 @@ public class DedusController : NPCController
     public GameObject iconTask_7;
     public GameObject iconDialog;
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
 

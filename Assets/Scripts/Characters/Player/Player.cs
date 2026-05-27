@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static ShopPanelScript;
@@ -10,6 +11,10 @@ public class Player : Creature, IDamagable, IAttacker
 
     MainController mainController;
     BackPackController backPackController;
+
+    public GameObject collectionInfo;
+    public TextMeshPro collectedTextTMP;
+    public SpriteRenderer collectedSpriteRenderer;
 
     private PlayerInputControls controls;
 
@@ -298,6 +303,26 @@ public class Player : Creature, IDamagable, IAttacker
         Debug.Log("Player save deleted");
     }
 
+    private void HandleEvent(IEvent e)
+    {
+        if (e is ItemCollectedEvent itemCollectedEvent)
+        {
+            if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_type is ItemType.Weapon) return;
+
+            collectionInfo.SetActive(true);
+
+            collectedTextTMP.text = "+" + itemCollectedEvent.amount.ToString();
+            collectedSpriteRenderer.sprite = backPackController.dict_id_to_item[itemCollectedEvent.item_id].sprite;
+
+            Invoke("CloseCollectionInfo", 2f);
+        }
+    }
+
+    void CloseCollectionInfo()
+    {
+        collectionInfo.SetActive(false);
+    }
+
     protected override void Awake()
     {
         player_full_stats = new Stats(player_start_health, player_start_attack, 0, player_start_crit_chance, player_start_crit_dmg, player_start_defence, player_start_elementsl_mastery);
@@ -313,11 +338,14 @@ public class Player : Creature, IDamagable, IAttacker
         //DontDestroyOnLoad(gameObject);
         localPivotPosSaved = pivot.transform.localPosition;
         usedOffset = offset;
+
         GameObject mainControllerGO = GameObject.Find("MainController");
         if (mainControllerGO != null)
         {
             mainController = mainControllerGO.GetComponent<MainController>();
         }
+        backPackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
+
         rb = GetComponent<Rigidbody2D>();
 
         upgrate_cost = new Cost(750, CostType.Gold);
@@ -345,6 +373,8 @@ public class Player : Creature, IDamagable, IAttacker
 
     void Start()
     {
+        CloseCollectionInfo();
+
         // player_full_stats = new Stats();
 
         ApplyConfig();
@@ -378,12 +408,15 @@ public class Player : Creature, IDamagable, IAttacker
     private void OnEnable()
     {
         controls.Enable();
+        EventBus.OnEvent += HandleEvent;
     }
 
     private void OnDisable()
     {
         controls?.Disable();
+        EventBus.OnEvent -= HandleEvent;
     }
+
     public int current_weapon_index = 0;
 
     public void SwitchWeapon(int index)

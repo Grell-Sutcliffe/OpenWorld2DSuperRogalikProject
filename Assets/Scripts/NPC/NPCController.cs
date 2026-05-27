@@ -30,7 +30,7 @@ public class NPCController : InteractionController
 
     private Coroutine thinkingCoroutine;
 
-    protected void Awake()
+    protected override void Awake()
     {
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
@@ -38,7 +38,7 @@ public class NPCController : InteractionController
         npc_name = data.npc_name;
     }
 
-    protected void Start()
+    protected override void Start()
     {
         base.Start();
 

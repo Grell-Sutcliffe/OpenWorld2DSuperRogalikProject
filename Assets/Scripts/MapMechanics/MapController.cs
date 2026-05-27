@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ public class MapController : MonoBehaviour
 
     public GameObject mapPrefab;
 
-    public Dictionary<int, GameObject> dict_map_GOs = new Dictionary<int, GameObject>();
+    public Dictionary<MapPointType, GameObject> dict_map_GOs = new Dictionary<MapPointType, GameObject>();
 
     //public int bebebe = 0;
 
@@ -45,18 +44,27 @@ public class MapController : MonoBehaviour
 
     void FillDict()
     {
-        int temp_index = 1;
+        dict_map_GOs[MapPointType.Dedus] = mainController.Dedus;
 
-        dict_map_GOs[temp_index] = mainController.Dedus;
-        temp_index++;
+        dict_map_GOs[MapPointType.Eugene] = mainController.GrandsonEugene;
 
-        dict_map_GOs[temp_index] = mainController.GrandsonEugene;
-        temp_index++;
+        dict_map_GOs[MapPointType.Doggy] = mainController.Doggy;
 
-        dict_map_GOs[temp_index] = mainController.Doggy;
-        temp_index++;
+        dict_map_GOs[MapPointType.Woman] = mainController.Woman;
 
-        dict_map_GOs[temp_index] = mainController.Woman;
-        temp_index++;
+        dict_map_GOs[MapPointType.Cows] = mainController.Cows;
+
+        dict_map_GOs[MapPointType.Chickens] = mainController.Chickens;
     }
+}
+
+public enum MapPointType
+{
+    Dedus = 1,
+    Eugene = 2,
+    Doggy = 3,
+    Woman = 4,
+    Cows = 5,
+    Chickens = 6,
+    //Gardens = 7,
 }

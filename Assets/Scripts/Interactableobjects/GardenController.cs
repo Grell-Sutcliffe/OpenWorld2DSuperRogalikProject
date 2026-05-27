@@ -11,7 +11,7 @@ public class GardenController : InteractionController
 
     Coroutine coroutine;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
 
@@ -20,7 +20,7 @@ public class GardenController : InteractionController
         SetImageEmpty();
     }
 
-    private void Start()
+    protected override void Start()
     {
         base.Start();
 

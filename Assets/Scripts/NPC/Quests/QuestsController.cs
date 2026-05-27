@@ -17,6 +17,18 @@ public class Reward
         this.item_name = data.itemSO.item_name;
         this.amount = data.amount;
     }
+
+    public Reward(Item item, int amount)
+    {
+        this.item_name = item.item_name;
+        this.amount = amount;
+    }
+
+    public Reward(string item_name, int amount)
+    {
+        this.item_name = item_name;
+        this.amount = amount;
+    }
 }
 
 public class CollectableItem

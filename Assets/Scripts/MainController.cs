@@ -1,13 +1,8 @@
-using NUnit.Framework;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static DialogController;
-using static DialogPanelScript;
  
 public class MainController : MonoBehaviour
 {
@@ -50,6 +45,8 @@ public class MainController : MonoBehaviour
     // public GameObject Dangeon;
     public GameObject Doggy;
     public GameObject Woman;
+    public GameObject Cows;
+    public GameObject Chickens;
     /*
     public GameObject Book;
     */
@@ -86,11 +83,11 @@ public class MainController : MonoBehaviour
 
     public Dictionary<string, NPCController> dict_npc_name_to_npcController;
 
-
-
     [SerializeField] GameObject prefDung;
     public GameObject GodFather;
+
     public static MainController Instance { get; private set; }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -261,20 +258,34 @@ public class MainController : MonoBehaviour
 
     public void GetReward()
     {
+        Reward reward_1;
+        Reward reward_2;
+        int amount;
+
         System.Random rand = new System.Random();
-        int new_blue_reward_amount = rand.Next(1, 5);
-        int new_pink_reward_amount = rand.Next(1, 5);
+        int chance = rand.Next(0, 100);
+        if (chance > 90)
+        {
+            rand = new System.Random();
+            amount = rand.Next(1, 5);
+            reward_1 = new Reward(backpackController.blueWishSO.item_name, amount);
 
-        rewardPanelScript.SetRewardAmount(new_blue_reward_amount, new_pink_reward_amount);
-    }
+            rand = new System.Random();
+            amount = rand.Next(1, 5);
+            reward_2 = new Reward(backpackController.pinkWishSO.item_name, amount);
+        }
+        else
+        {
+            rand = new System.Random();
+            amount = rand.Next(5, 30);
+            reward_1 = new Reward(backpackController.primogemSO.item_name, amount);
 
-    public void ClaimReward(int blue_amount, int pink_amount)
-    {
-        string blue_reward_name = shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name;
-        string pink_reward_name = shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name;
+            rand = new System.Random();
+            amount = rand.Next(50, 300);
+            reward_2 = new Reward(backpackController.goldSO.item_name, amount);
+        }
 
-        backpackController.IncreaceItemByName(blue_reward_name, blue_amount);
-        backpackController.IncreaceItemByName(pink_reward_name, pink_amount);
+        rewardPanelScript.SetRewards(reward_1, reward_2);
     }
 
     public void SetCharacterWeapon(int index, Weapon weapon, int amount = 0)

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d3a66ade6185b4d80d1702f4fa05a6, type: 3}
   m_Name: ConsumableItem_raw_chicken
   m_EditorClassIdentifier: 
-  sprite: {fileID: -3969773929491941908, guid: 7538d7bee3a03544bb2357aa775bcd71, type: 3}
-  item_name: "\u0421\u044B\u0440\u043E\u0435 \u043C\u044F\u0441\u043E"
+  sprite: {fileID: 6488818166840931410, guid: 7538d7bee3a03544bb2357aa775bcd71, type: 3}
+  item_name: "\u0421\u044B\u0440\u0430\u044F \u043A\u0443\u0440\u0438\u0446\u0430"
   description: "\u041F\u0440\u043E\u0434\u0443\u043A\u0442. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F
     \u0434\u043B\u044F \u043F\u0440\u0438\u0433\u043E\u0442\u043E\u0432\u043B\u0435\u043D\u0438\u044F
     \u0431\u043B\u044E\u0434."
@@ -22,3 +22,4 @@ MonoBehaviour:
   item_amounts_for_craft: 
   item_type: 4
   amount: 0
+  time_to_grow: 0

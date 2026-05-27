@@ -1,34 +1,42 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewardPanelScript : MonoBehaviour
 {
-    MainController mainController;
+    //MainController mainController;
+    BackPackController backpackController;
 
-    int blue_reward_amount;
-    int pink_reward_amount;
-    public TextMeshProUGUI blue_reward_amountTMP;
-    public TextMeshProUGUI pink_reward_amountTMP;
+    public Image reward_1_image;
+    public Image reward_2_image;
+
+    public TextMeshProUGUI reward_1_amountTMP;
+    public TextMeshProUGUI reward_2_amountTMP;
+
+    private Reward reward_1;
+    private Reward reward_2;
 
     void Start()
     {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        //mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
     }
 
-    public void SetRewardAmount(int blue_number, int pink_number)
+    public void SetRewards(Reward reward_1, Reward reward_2)
     {
         gameObject.SetActive(true);
 
-        blue_reward_amount = blue_number;
-        blue_reward_amountTMP.text = blue_number.ToString();
+        reward_1_image.sprite = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[reward_1.item_name]].sprite;
+        reward_2_image.sprite = backpackController.dict_id_to_item[backpackController.dict_item_name_to_id[reward_2.item_name]].sprite;
 
-        pink_reward_amount = blue_number;
-        pink_reward_amountTMP.text = blue_number.ToString();
+        reward_1_amountTMP.text = reward_1.amount.ToString();
+        reward_2_amountTMP.text = reward_2.amount.ToString();
     }
 
     public void ClaimRewards()
     {
-        mainController.ClaimReward(blue_reward_amount, pink_reward_amount);
+        backpackController.IncreaceItemByName(reward_1.item_name, reward_1.amount);
+        backpackController.IncreaceItemByName(reward_2.item_name, reward_2.amount);
 
         gameObject.SetActive(false);
     }
