@@ -312,7 +312,10 @@ public class Player : Creature, IDamagable, IAttacker
             if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_type is ItemType.Materials)
             {
                 if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.blueWishSO.item_name ||
-                    backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.pinkWishSO.item_name)
+                    backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.pinkWishSO.item_name ||
+                    backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.goldSO.item_name ||
+                    backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.primogemSO.item_name
+                   )
                     return;
             }
 
@@ -321,6 +324,7 @@ public class Player : Creature, IDamagable, IAttacker
             collectedTextTMP.text = "+" + itemCollectedEvent.amount.ToString();
             collectedSpriteRenderer.sprite = backPackController.dict_id_to_item[itemCollectedEvent.item_id].sprite;
 
+            CancelInvoke("CloseCollectionInfo");
             Invoke("CloseCollectionInfo", 2f);
         }
     }

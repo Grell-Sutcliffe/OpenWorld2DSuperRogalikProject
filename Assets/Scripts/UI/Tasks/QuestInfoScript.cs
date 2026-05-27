@@ -12,6 +12,7 @@ public class QuestInfoScript : MonoBehaviour
     public GameObject rewardsGO;
     public GameObject questInfoGO;
     public GameObject claimRewardsButton;
+    public GameObject claimRewardsText;
 
     public GameObject trackButton;
     public GameObject dontTrackButton;
@@ -62,6 +63,8 @@ public class QuestInfoScript : MonoBehaviour
 
     void UpdateQuestIcon()
     {
+        claimRewardsText.SetActive(false);
+
         if (quest.current_task == null)
         {
             questInfoGO.SetActive(false);
@@ -98,5 +101,6 @@ public class QuestInfoScript : MonoBehaviour
         questsController.ClaimRewardsOnQuest(quest.title);
         
         claimRewardsButton.SetActive(false);
+        claimRewardsText.SetActive(true);
     }
 }
