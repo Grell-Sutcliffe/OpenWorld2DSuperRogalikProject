@@ -67609,10 +67609,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d75ec40c4c34448a9883d4abf470be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward_1_image: {fileID: 0}
-  reward_2_image: {fileID: 0}
-  reward_1_amountTMP: {fileID: 0}
-  reward_2_amountTMP: {fileID: 0}
+  reward_1_image: {fileID: 1785002154}
+  reward_2_image: {fileID: 507066225}
+  reward_1_amountTMP: {fileID: 1672270279}
+  reward_2_amountTMP: {fileID: 1695119992}
 --- !u!114 &1659168148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68149,6 +68149,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5447364660783971142, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
   m_PrefabInstance: {fileID: 892109226}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672270279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 737204281563777065, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
+  m_PrefabInstance: {fileID: 892109226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1674778309
 GameObject:
   m_ObjectHideFlags: 0
@@ -69021,6 +69032,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5447364660783971142, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
   m_PrefabInstance: {fileID: 1695119989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695119992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 737204281563777065, guid: 63107bf31873e6a43a945daa5448cb7c, type: 3}
+  m_PrefabInstance: {fileID: 1695119989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1695901443
 GameObject:
   m_ObjectHideFlags: 0

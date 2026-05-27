@@ -309,6 +309,13 @@ public class Player : Creature, IDamagable, IAttacker
         {
             if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_type is ItemType.Weapon) return;
 
+            if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_type is ItemType.Materials)
+            {
+                if (backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.blueWishSO.item_name ||
+                    backPackController.dict_id_to_item[itemCollectedEvent.item_id].item_name == backPackController.pinkWishSO.item_name)
+                    return;
+            }
+
             collectionInfo.SetActive(true);
 
             collectedTextTMP.text = "+" + itemCollectedEvent.amount.ToString();
