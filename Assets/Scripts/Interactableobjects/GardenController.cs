@@ -24,18 +24,19 @@ public class GardenController : InteractionController
     {
         base.Start();
 
-        SetTimeToGrow();
-
         StartNewGrowthCoroutine();
     }
 
     private void SetTimeToGrow()
     {
-        time_to_grow = consumableItemSO.time_to_grow + Random.Range(-30, 31);
+        int delta = consumableItemSO.time_to_grow / 2;
+        time_to_grow = consumableItemSO.time_to_grow + Random.Range(-delta, delta);
     }
 
     private void SetImageEmpty()
     {
+        if (backpackController == null) backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
+
         spriteRenderer.sprite = backpackController.empty_sprite;
     }
     
@@ -49,11 +50,11 @@ public class GardenController : InteractionController
     {
         if (time_to_grow <= 0)
         {
+            //Debug.LogError("Item took");
+
             backpackController.IncreaceItemByName(consumableItemSO.item_name);
 
             SetImageEmpty();
-
-            SetTimeToGrow();
 
             StartNewGrowthCoroutine();
         }
@@ -61,6 +62,8 @@ public class GardenController : InteractionController
 
     private void StartNewGrowthCoroutine()
     {
+        SetTimeToGrow();
+
         SetImageEmpty();
 
         if (coroutine != null) StopCoroutine(coroutine);

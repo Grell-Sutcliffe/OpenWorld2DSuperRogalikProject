@@ -714,6 +714,10 @@ public class Player : Creature, IDamagable, IAttacker
             anim.SetFloat("dir", direction);
             anim.SetBool("isHit", isHit);
         }
+        else
+        {
+            anim.SetBool("isRun", false);
+        }
         //Debug.Log($"{canHit} {Input.GetMouseButtonDown(0)} {overMenu}");
         if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active)
         {

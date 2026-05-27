@@ -9,7 +9,7 @@ public class MaterialsGivingController : InteractionController
     public ConsumableItemSO consumableItemSO;
     public int time_to_wait;
 
-    private bool is_ready_to_give = false;
+    private bool is_ready_to_give;
 
     private Coroutine coroutine;
 
@@ -47,7 +47,9 @@ public class MaterialsGivingController : InteractionController
 
         if (coroutine != null) StopCoroutine(coroutine);
         coroutine = null;
-        coroutine = StartCoroutine(WaitingCoroutine(time_to_wait));
+
+        int delta = time_to_wait / 2;
+        coroutine = StartCoroutine(WaitingCoroutine(time_to_wait + Random.Range(-delta, delta)));
     }
 
     private IEnumerator WaitingCoroutine(int time_left)
@@ -55,7 +57,7 @@ public class MaterialsGivingController : InteractionController
         while (time_left > 0)
         {
             time_left--;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1f);
         }
 
         ReadyToGive();
