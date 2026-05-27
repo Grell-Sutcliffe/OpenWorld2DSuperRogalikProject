@@ -20710,6 +20710,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 92250418214571120, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5180831081686797067, guid: f61aceb93b6619e4287acdc1b05342b0, type: 3}
     - target: {fileID: 1577247464722385364, guid: 1c952a78f25ce814c8fe75e84986e47c, type: 3}
       propertyPath: crit_dmg
       value: 1.1
