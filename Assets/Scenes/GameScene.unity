@@ -28288,8 +28288,8 @@ MonoBehaviour:
   Woman: {fileID: 164144655}
   Cows: {fileID: 1721097239}
   Chickens: {fileID: 946965601}
-  Gardens: {fileID: 0}
-  Melnica: {fileID: 0}
+  Gardens: {fileID: 262350955}
+  Melnica: {fileID: 750361949}
   scrollInteractionScript: {fileID: 688393785}
   is_keyboard_active: 1
   list_of_interactable_SR: []
@@ -31217,6 +31217,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749374810}
   m_CullTransparentMesh: 1
+--- !u!1 &750361949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2506343375783424524, guid: 169e4c31b48ce0f44acee5bc73ce5b7d, type: 3}
+  m_PrefabInstance: {fileID: 609156412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &751942603
 GameObject:
   m_ObjectHideFlags: 0
