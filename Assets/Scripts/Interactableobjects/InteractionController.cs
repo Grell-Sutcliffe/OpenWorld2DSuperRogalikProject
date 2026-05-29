@@ -131,14 +131,25 @@ public abstract class InteractionController : MonoBehaviour
 
         if (mainController == null) mainController = GameObject.Find("MainController")?.GetComponent<MainController>();
 
+        for (int i = 0; i < mainController.list_of_interactable_objects_names.Count; i++)
+        {
+            if (mainController.list_of_interactable_objects_names[i] == gameObject.name)
+            {
+                mainController.list_of_interactable_SR.RemoveAt(i);
+                mainController.list_of_interactable_objects_names.RemoveAt(i);
+            }
+        }
+        
+        mainController.ShowInteraction();
+
+        /*
         if (mainController.list_of_interactable_objects_names.Contains(gameObject.name))
         {
-
             mainController.list_of_interactable_SR.Remove(interactIconSR);
             mainController.list_of_interactable_objects_names.Remove(gameObject.name);
 
-            mainController.ShowInteraction();
         }
+        */
     }
 
     protected void InteractIconActivate()

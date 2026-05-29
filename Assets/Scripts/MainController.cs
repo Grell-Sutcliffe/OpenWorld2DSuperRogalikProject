@@ -343,11 +343,6 @@ public class MainController : MonoBehaviour
     {
         //Debug.Log("SHOW INTERACTION");
 
-        foreach (string c in list_of_interactable_objects_names)
-        {
-            //Debug.Log($"{c}");
-        }
-
         //current_interaction_SR = null;
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();

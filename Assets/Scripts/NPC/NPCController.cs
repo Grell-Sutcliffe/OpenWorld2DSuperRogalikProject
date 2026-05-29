@@ -32,6 +32,8 @@ public class NPCController : InteractionController
 
     protected override void Awake()
     {
+        is_interactable = true;
+
         dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
 

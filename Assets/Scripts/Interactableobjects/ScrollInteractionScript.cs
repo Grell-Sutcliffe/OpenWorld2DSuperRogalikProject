@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +14,6 @@ public class ScrollInteractionScript : MonoBehaviour
     private InputAction scrollY = new InputAction(type: InputActionType.Value, binding: "<Mouse>/scroll/y");
 
     public int current_index = 0;
-
-    private void Start()
-    {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
-    }
 
     void Awake()
     {
@@ -68,12 +64,65 @@ public class ScrollInteractionScript : MonoBehaviour
 
     public void ApplyAllColors()
     {
+        if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
+        if (mainController.list_of_interactable_objects_names == null || mainController.list_of_interactable_SR == null) return;
+
+        Debug.Log($"current_index = {current_index},    list_of_interactable_SR.Count = {mainController.list_of_interactable_SR.Count},    list_of_interactable_objects_names.Count = {mainController.list_of_interactable_objects_names.Count}\n" +
+            $"{string.Join(", ", mainController.list_of_interactable_objects_names)}");
+
+        int check_amount_of_iterations = 100;
+        bool is_everything_OK = false;
+        bool need_to_delete = false;
+
+        while (!is_everything_OK)
+        {
+            for (int i = 0; i < mainController.list_of_interactable_SR.Count; i++)
+            {
+                if (mainController.list_of_interactable_objects_names[i] == string.Empty)
+                {
+                    need_to_delete = true;
+
+                    mainController.list_of_interactable_objects_names.RemoveAt(i);
+                    mainController.list_of_interactable_SR.RemoveAt(i);
+
+                    break;
+                }
+            }
+
+            if (!need_to_delete)
+            {
+                is_everything_OK = true;
+            }
+
+            check_amount_of_iterations--;
+            if (check_amount_of_iterations < 0)
+            {
+                Debug.LogError("ERROR : Too much iterations of trying to remove unused name!!!");
+                break;
+            }
+        }
+
+        bool active_was_found = false;
+
         for (int i = 0; i < mainController.list_of_interactable_SR.Count; i++)
         {
-            var r = mainController.list_of_interactable_SR[i];
-            if (!r) continue;
-            SetRendererColor(r, i == current_index ? active : deactive);
+            SpriteRenderer r = mainController.list_of_interactable_SR[i];
+            if (!r) Debug.LogError("ERROR : SpriteRenderer was not found!!!");
+
+            if (i == current_index)
+            {
+                SetRendererColor(r, active);
+                active_was_found = true;
+            }
+            else
+            {
+                SetRendererColor(r, deactive);
+            }
+
+            //SetRendererColor(r, i == current_index ? active : deactive);
         }
+
+        if (mainController.list_of_interactable_SR.Count > 0 && !active_was_found) Debug.LogError("ERROR : Active interaction was not found!!!");
     }
 
     void SetRendererColor(SpriteRenderer r, Color c)
