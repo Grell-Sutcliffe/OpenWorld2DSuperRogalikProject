@@ -140,7 +140,7 @@ public abstract class EnemyAbstract : Creature, IDamagable, IAttacker
         {
             rb.linearVelocity = Vector2.zero;
             isDead = true;
-            anim.SetTrigger("die");
+            anim.SetBool("die", true);
             hp = 0;
             MusicManager.Instance.PlayByIndex(6);
         }
