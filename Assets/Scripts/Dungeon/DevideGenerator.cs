@@ -12,8 +12,8 @@ public class DevideGenerator : SimpleWalkGenerator
     [SerializeField]
     [Range(0, 10)]
     private int offset = 1;
-    [SerializeField]
-    private bool randWalkRoom = false;
+    //[SerializeField]
+    //private bool randWalkRoom = false;
 
 
     protected override void RunProcGen()

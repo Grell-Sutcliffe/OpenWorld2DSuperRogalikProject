@@ -35,15 +35,23 @@ public class GardenController : InteractionController
 
     private void SetImageEmpty()
     {
+        is_interactable = false;
+
         if (backpackController == null) backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
 
         spriteRenderer.sprite = backpackController.empty_sprite;
+
+        OffInteraction();
     }
     
 
     private void SetImage()
     {
+        is_interactable = true;
+
         spriteRenderer.sprite = consumableItemSO.sprite;
+
+        OnInteraction();
     }
 
     protected override void Interact()

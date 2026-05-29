@@ -9,10 +9,10 @@ public class CheckKeyInputScript : MonoBehaviour
 
     // public GameObject playerArrow;
 
-    char W = 'W';
-    char A = 'A';
-    char S = 'S';
-    char D = 'D';
+    //char W = 'W';
+    //char A = 'A';
+    //char S = 'S';
+    //char D = 'D';
 
     bool w;
     bool a;

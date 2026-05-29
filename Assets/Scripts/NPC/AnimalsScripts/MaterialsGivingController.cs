@@ -34,13 +34,17 @@ public class MaterialsGivingController : InteractionController
 
     private void ReadyToGive()
     {
+        is_interactable = true;
         is_ready_to_give = true;
 
         readyIconGO.SetActive(true);
+
+        OnInteraction();
     }
 
     private void NotReadyToGive()
     {
+        is_interactable = false;
         is_ready_to_give = false;
 
         readyIconGO.SetActive(false);
@@ -50,6 +54,8 @@ public class MaterialsGivingController : InteractionController
 
         int delta = time_to_wait / 2;
         coroutine = StartCoroutine(WaitingCoroutine(time_to_wait + Random.Range(-delta, delta)));
+
+        OffInteraction();
     }
 
     private IEnumerator WaitingCoroutine(int time_left)

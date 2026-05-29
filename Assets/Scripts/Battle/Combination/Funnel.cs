@@ -5,7 +5,7 @@ using UnityEngine;
 public class Funnel : MonoBehaviour
 {
     [SerializeField] private float pullForce = 2f;
-    [SerializeField] private float damagePerDelay = 2f;
+    //[SerializeField] private float damagePerDelay = 2f;
     [SerializeField] private float delay = 1.0f;
     [SerializeField] private float particleSpeed = 1.0f;
     [SerializeField] private float frequency = 0.1f;
@@ -15,7 +15,7 @@ public class Funnel : MonoBehaviour
 
     CircleCollider2D circleCollider;
     Color color;
-    bool isDelay;
+    //bool isDelay;
     private HashSet<IDamagable> damagedThisCycle = new HashSet<IDamagable>();
 
     Damage damage;

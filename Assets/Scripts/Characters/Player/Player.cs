@@ -32,7 +32,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     private Vector2 moveVector;
 
-    float direction = 0;
+    public float direction = 0;
     float moveSpeed;
     //float attackRange;
 
@@ -375,7 +375,7 @@ public class Player : Creature, IDamagable, IAttacker
             }
         }
         weapon = weapons[0];
-        Debug.Log(weapon.data);
+        //Debug.Log(weapon.data);
         controls = new PlayerInputControls();
 
         controls.PlayerKeyboardInput.SwitchWeapon_1.performed += _ => SwitchWeapon(0);
@@ -442,7 +442,7 @@ public class Player : Creature, IDamagable, IAttacker
     public void SetWeapon(int index)
     {
         canHit = true;
-        Debug.Log("Switch to weapon " + index);
+        //Debug.Log("Switch to weapon " + index);
         if (index == 0)
         {
             pivot = pivotFirst;
@@ -458,7 +458,7 @@ public class Player : Creature, IDamagable, IAttacker
         SpriteRenderer sr = pivot.GetComponentInChildren<SpriteRenderer>();
         weapon_sprite_renderer = sr;
         GivePlayerNewWeapon(weapons[index]);
-        Debug.Log($"Gived {weapons[index].data}");
+        //Debug.Log($"Gived {weapons[index].data}");
     }
 
     public void SetNewWeaponOnIndex(int index, Weapon new_weapon)
@@ -496,7 +496,7 @@ public class Player : Creature, IDamagable, IAttacker
 
     void UpdateStats()
     {
-        Debug.Log($"current_stats.health = {current_stats.health}, full_stats.health = {player_full_stats.health}");
+        //Debug.Log($"current_stats.health = {current_stats.health}, full_stats.health = {player_full_stats.health}");
 
         current_stats = new Stats(player_full_stats, weapon.stats, current_stats.health);
         current_hit_stats = new Stats(current_stats, boost_stats);
@@ -663,11 +663,11 @@ public class Player : Creature, IDamagable, IAttacker
         attackCooldown = Data.attackCooldown;
     }
 
-    bool isRun = false;
+    //bool isRun = false;
     bool isHit = false;
     bool overMenu = false;
 
-    bool isFasingRight = true;
+    //bool isFasingRight = true;
     private void Update()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -689,7 +689,7 @@ public class Player : Creature, IDamagable, IAttacker
 
             if (input.sqrMagnitude > 0.01f)
             {
-                isRun = true;
+                //isRun = true;
                 anim.SetBool("isRun", true);
                 float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
                 //Debug.Log($"angle = {angle} {((angle + 90) % 360) / 45}");
@@ -718,7 +718,6 @@ public class Player : Creature, IDamagable, IAttacker
         {
             anim.SetBool("isRun", false);
         }
-        //Debug.Log($"{canHit} {Input.GetMouseButtonDown(0)} {overMenu}");
         if (canHit && Input.GetMouseButtonDown(0) && !overMenu && mainController.is_keyboard_active)
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -734,6 +733,8 @@ public class Player : Creature, IDamagable, IAttacker
             RotatePivot(mouseWorldPos, usedOffset);
             Hit();
         }
+
+        //Debug.Log($"direction = {direction}");
     }
     private void FlipPivotRight()
     {

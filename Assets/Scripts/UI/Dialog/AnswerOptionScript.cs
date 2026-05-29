@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static DialogController;
 
 public class AnswerOptionScript : MonoBehaviour
 {

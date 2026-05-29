@@ -29,7 +29,7 @@ public class InfoPanelScript : MonoBehaviour
     public int space_between_items = 50;
     public int item_in_row = 2;
 
-    private bool was_loaded = false;
+    //private bool was_loaded = false;
 
     void Awake()
     {
@@ -53,7 +53,7 @@ public class InfoPanelScript : MonoBehaviour
             dict_infoType_to_list_of_infoSO[infoSO.infoType].Add(infoSO);
         }
 
-        was_loaded = true;
+        //was_loaded = true;
     }
 
     public void OpenPanel()

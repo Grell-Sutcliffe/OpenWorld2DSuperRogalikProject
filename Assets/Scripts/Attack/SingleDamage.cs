@@ -8,7 +8,7 @@ public class SingleDamage : MonoBehaviour
     [SerializeField] IAttacker owner;
     [SerializeField] private GameObject ownerObject;
     HashSet<int> hitIds = new HashSet<int>();
-    bool wasHitted = false;
+    //bool wasHitted = false;
 
     void OnEnable()
     {

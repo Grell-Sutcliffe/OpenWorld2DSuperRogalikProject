@@ -422,6 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8543522866138125519}
+  - component: {fileID: 6782426488251935251}
   - component: {fileID: 1577247464722385364}
   - component: {fileID: 6179167146417871810}
   - component: {fileID: 1119036041583285371}
@@ -456,6 +457,23 @@ Transform:
   - {fileID: 6882964850432078635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6782426488251935251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101229763699107761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9865fd9b81b37a3469d6a3bac53ab469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSorting
+  baseOrder: 0
+  mul: 100
+  player_GO: {fileID: 6829957008776860961}
+  pivot_1_GO: {fileID: 3767451866815315000}
+  pivot_2_GO: {fileID: 4568670644234226288}
 --- !u!114 &1577247464722385364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1121,6 @@ GameObject:
   - component: {fileID: 3675455199803781339}
   - component: {fileID: 3083177607012765267}
   - component: {fileID: 5764917881911440013}
-  - component: {fileID: 6662507430385609658}
   m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
@@ -1253,20 +1270,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6662507430385609658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6829957008776860961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseOrder: 0
-  mul: 100
 --- !u!1 &7803476828256546253
 GameObject:
   m_ObjectHideFlags: 0

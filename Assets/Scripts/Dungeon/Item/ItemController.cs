@@ -1,19 +1,16 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-
 public class ItemController : InteractionController
 {
     public ConsumableItemSO data;
     private Item item;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
 
         string item_name = data.item_name;
         item = mainController.GetItemByName(item_name);
+
+        is_interactable = true;
     }
 
     protected override void Interact()

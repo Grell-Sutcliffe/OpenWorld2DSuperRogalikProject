@@ -76,7 +76,7 @@ public class MainController : MonoBehaviour
 
     public bool is_keyboard_active = true;
 
-    SpriteRenderer current_interaction_SR;
+    //SpriteRenderer current_interaction_SR;
 
     public List<SpriteRenderer> list_of_interactable_SR = new List<SpriteRenderer>();
     public List<string> list_of_interactable_objects_names = new List<string>();
@@ -348,7 +348,7 @@ public class MainController : MonoBehaviour
             //Debug.Log($"{c}");
         }
 
-        current_interaction_SR = null;
+        //current_interaction_SR = null;
 
         if (scrollInteractionScript == null) scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
 

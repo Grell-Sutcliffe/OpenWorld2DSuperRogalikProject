@@ -13,6 +13,8 @@ public abstract class InteractionController : MonoBehaviour
     Color active = new Color(0.1f, 1.0f, 0.1f, 0.5f);
     Color deactive = new Color(0.0f, 0.0f, 0.0f, 0.5f);
 
+    protected bool is_interactable;
+
     public KeyCode interactKey = KeyCode.F;
 
     protected bool is_player_in_range = false;
@@ -107,6 +109,11 @@ public abstract class InteractionController : MonoBehaviour
 
     protected void OnInteraction()
     {
+        //Debug.Log($"is_player_in_range = {is_player_in_range}, is_interactable = {is_interactable}");
+
+        if (!is_player_in_range) return;
+        if (!is_interactable) return;
+
         if (!mainController.list_of_interactable_objects_names.Contains(gameObject.name))
         {
             interactIcon.SetActive(true);
@@ -120,14 +127,18 @@ public abstract class InteractionController : MonoBehaviour
 
     protected void OffInteraction()
     {
-        if (mainController == null) mainController = GameObject.Find("MainController")?.GetComponent<MainController>();
-
         interactIcon.SetActive(false);
 
-        mainController.list_of_interactable_SR.Remove(interactIconSR);
-        mainController.list_of_interactable_objects_names.Remove(gameObject.name);
+        if (mainController == null) mainController = GameObject.Find("MainController")?.GetComponent<MainController>();
 
-        mainController.ShowInteraction();
+        if (mainController.list_of_interactable_objects_names.Contains(gameObject.name))
+        {
+
+            mainController.list_of_interactable_SR.Remove(interactIconSR);
+            mainController.list_of_interactable_objects_names.Remove(gameObject.name);
+
+            mainController.ShowInteraction();
+        }
     }
 
     protected void InteractIconActivate()
