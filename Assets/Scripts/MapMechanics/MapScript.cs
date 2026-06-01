@@ -52,34 +52,17 @@ public class MapScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //if (mapController.bebebe < 50) // remove !!!
-            //{
             is_center = true;
             SpawnMaps();
-            //DeleteMaps();
-            //}
         }
     }
-
-    /*
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            SpawnMaps();
-            DeleteMaps();
-            is_center = true;
-        }
-    }
-    */
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             is_center = false;
-            Invoke("DeleteMaps", 0.1f);
-            //DeleteMaps();
+            Invoke(nameof(DeleteMaps), 0.1f);
         }
     }
 

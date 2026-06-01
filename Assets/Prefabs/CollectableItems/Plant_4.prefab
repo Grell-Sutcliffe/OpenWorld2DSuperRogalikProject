@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9156104010098622486}
   - component: {fileID: 7122404851368845632}
   - component: {fileID: 2278111031329488892}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: InteractText
   m_TagString: TextAndInfo
   m_Icon: {fileID: 0}
@@ -81,9 +81,9 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -190582321
+  m_SortingLayer: 5
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2278111031329488892
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 5867616320092860752}
   - component: {fileID: 7868198738308962421}
   - component: {fileID: 2119396308918110394}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: InteractIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,8 +366,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -190582321
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
