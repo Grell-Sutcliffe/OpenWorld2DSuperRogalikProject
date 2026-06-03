@@ -67,8 +67,8 @@ public class ScrollInteractionScript : MonoBehaviour
         if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
         if (mainController.list_of_interactable_objects_names == null || mainController.list_of_interactable_SR == null) return;
 
-        Debug.Log($"current_index = {current_index},    list_of_interactable_SR.Count = {mainController.list_of_interactable_SR.Count},    list_of_interactable_objects_names.Count = {mainController.list_of_interactable_objects_names.Count}\n" +
-            $"{string.Join(", ", mainController.list_of_interactable_objects_names)}");
+        //Debug.Log($"current_index = {current_index},    list_of_interactable_SR.Count = {mainController.list_of_interactable_SR.Count},    list_of_interactable_objects_names.Count = {mainController.list_of_interactable_objects_names.Count}\n" +
+        //    $"{string.Join(", ", mainController.list_of_interactable_objects_names)}");
 
         int check_amount_of_iterations = 100;
         bool is_everything_OK = false;

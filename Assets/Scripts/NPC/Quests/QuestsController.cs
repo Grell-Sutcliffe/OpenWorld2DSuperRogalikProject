@@ -405,7 +405,7 @@ public class QuestsController : MonoBehaviour
         }
 
         UpdateNPCsQuestsIcons();
-        SetTrackTask(tracking_quest_title);
+        //SetTrackTask(tracking_quest_title);
 
         Debug.Log("Quests loaded: " + json);
     }
