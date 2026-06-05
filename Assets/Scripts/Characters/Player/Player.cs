@@ -200,15 +200,20 @@ public class Player : Creature, IDamagable, IAttacker
 
         is_player_loaded = true;
 
-        float new_X = saveData.posX >= 0f ? saveData.posX : -saveData.posX;
-        int times_x = (int)(new_X / 30);
-        new_X %= 30;
-        new_X = times_x % 2 == 0 ? -new_X : new_X;
+        int map_full_size = 60;
+        int map_half_size = 30;
 
+        int mul_x = saveData.posX >= 0f ? 1 : -1;
+        float new_X = saveData.posX >= 0f ? saveData.posX : -saveData.posX;
+        int times_x = (int)(new_X / map_half_size) + (new_X % map_half_size > 0.0001 ? 1 : 0);
+        new_X %= map_full_size;
+        new_X = (times_x % 2 == 0 ? -new_X : new_X) * mul_x;
+
+        int mul_y = saveData.posY >= 0f ? 1 : -1;
         float new_Y = saveData.posY >= 0f ? saveData.posY : -saveData.posY;
-        int times_y = (int)(new_Y / 30);
-        new_Y %= 30;
-        new_Y = times_y % 2 == 0 ? -new_Y : new_Y;
+        int times_y = (int)(new_Y / map_half_size) + (new_Y % map_half_size > 0.0001 ? 1 : 0);
+        new_Y %= map_full_size;
+        new_Y = (times_y % 2 == 0 ? -new_Y : new_Y) * mul_y;
 
         transform.position = new Vector3(new_X, new_Y, saveData.posZ);
 
@@ -778,7 +783,7 @@ public class Player : Creature, IDamagable, IAttacker
         UpdateHealthBar();
         MusicManager.Instance.PlayByIndex(1);
 
-        Debug.LogWarning($"Player have taken a dmg {dmg.physical_dmg} {dmg.elemental_dmg} and now he has {current_stats.health}");
+        //Debug.LogWarning($"Player have taken a dmg {dmg.physical_dmg} {dmg.elemental_dmg} and now he has {current_stats.health}");
         if (current_stats.health <= 0)
         {
             Die();
