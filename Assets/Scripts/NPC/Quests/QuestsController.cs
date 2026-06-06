@@ -531,7 +531,7 @@ public class QuestsController : MonoBehaviour
 
                 foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
                 {
-                    trackTaskDescriptionTMP.text += collectableItem.item_name + " " + backpackController.GetItemCounterByName(collectableItem.item_name).ToString() + "/" + collectableItem.amount.ToString() + "\n";
+                    trackTaskDescriptionTMP.text += collectableItem.item_name + " " + backpackController.GetItemAmountByName(collectableItem.item_name).ToString() + "/" + collectableItem.amount.ToString() + "\n";
                 }
             }
         }
@@ -588,7 +588,7 @@ public class QuestsController : MonoBehaviour
 
                     foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
                     {
-                        if (backpackController.GetItemCounterByName(collectableItem.item_name) < collectableItem.amount)
+                        if (backpackController.GetItemAmountByName(collectableItem.item_name) < collectableItem.amount)
                         {
                             is_task_finished = false;
                             break;
@@ -666,7 +666,7 @@ public class QuestsController : MonoBehaviour
 
             foreach (CollectableItem collectableItem in collectItemTask.collectable_items)
             {
-                if (backpackController.GetItemCounterByName(collectableItem.item_name) < collectableItem.amount)
+                if (backpackController.GetItemAmountByName(collectableItem.item_name) < collectableItem.amount)
                 {
                     is_task_finished = false;
                     break;

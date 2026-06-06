@@ -457,16 +457,16 @@ public class BackPackController : MonoBehaviour
         */
     }
 
-    public int GetItemCounterByName(string name)
+    public int GetItemAmountByName(string cur_name)
     {
         foreach (int id in dict_id_to_item.Keys)
         {
-            if (dict_id_to_item[id].item_name == name)
+            if (dict_id_to_item[id].item_name == cur_name)
             {
                 return dict_id_to_item[id].amount;
             }
         }
-        Debug.LogError("ERROR: !!! NOT COUNTABLE !!!");
+        Debug.LogError($"ERROR: !!! NOT COUNTABLE !!! name = {cur_name}");
         return -1;
     }
 

@@ -37,6 +37,7 @@ public class MainController : MonoBehaviour
     public GameObject beginningLoadingPanel;
     public GameObject respawnPanel;
     public GameObject pausePanel;
+    public GameObject miniShopPanel;
 
     //public GameObject taskShower;
 
@@ -65,6 +66,7 @@ public class MainController : MonoBehaviour
     AchievementPanelScript achievementPanelScript;
     InfoPanelScript infoPanelScript;
     CraftPanelScript craftPanelScript;
+    MiniShopPanelScript miniShopPanelScript;
 
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
@@ -117,6 +119,7 @@ public class MainController : MonoBehaviour
         achievementPanelScript = achievementPanel.GetComponent<AchievementPanelScript>();
         infoPanelScript = infoPanel.GetComponent<InfoPanelScript>();
         craftPanelScript = craftPanel.GetComponent<CraftPanelScript>();
+        miniShopPanelScript = miniShopPanel.GetComponent<MiniShopPanelScript>();
 
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
@@ -324,13 +327,13 @@ public class MainController : MonoBehaviour
 
     public void UpdateWishPanelInfo()
     {
-        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name));
-        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemCounterByName(shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name));
+        wishPanelScript.UpdatePinkWishInfo(backpackController.GetItemAmountByName(shopPanelScript.dict_costType_to_Item[CostType.PinkWish].item_name));
+        wishPanelScript.UpdateBlueWishInfo(backpackController.GetItemAmountByName(shopPanelScript.dict_costType_to_Item[CostType.BlueWish].item_name));
     }
 
     public int GetItemCounterByName(string name)
     {
-        return backpackController.GetItemCounterByName(name);
+        return backpackController.GetItemAmountByName(name);
     }
 
     public Item GetItemByName(string name)
@@ -398,6 +401,7 @@ public class MainController : MonoBehaviour
         achievementPanel.SetActive(true);
         infoPanel.SetActive(true);
         craftPanel.SetActive(true);
+        miniShopPanel.SetActive(true);
         //multiplayerPanel.SetActive(true);
     }
 
@@ -417,6 +421,7 @@ public class MainController : MonoBehaviour
         achievementPanel.SetActive(false);
         infoPanel.SetActive(false);
         craftPanel.SetActive(false);
+        miniShopPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
         loadingPanel.SetActive(false);
@@ -503,6 +508,18 @@ public class MainController : MonoBehaviour
     public void CloseQuestPanel()
     {
         questPanel.SetActive(false);
+        TurnOnKeyboard();
+    }
+    
+    public void OpenMiniShopPanel()
+    {
+        miniShopPanelScript.OpenPanel();
+        TurnOffKeyboard();
+    }
+
+    public void CloseMiniShopPanel()
+    {
+        miniShopPanel.SetActive(false);
         TurnOnKeyboard();
     }
 
