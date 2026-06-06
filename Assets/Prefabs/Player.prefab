@@ -242,7 +242,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -190582321
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7751798573189697779, guid: f61aceb93b6619e4287acdc1b05342b0, type: 3}
@@ -497,6 +497,7 @@ MonoBehaviour:
   rb: {fileID: 6179167146417871810}
   anim: {fileID: 5764917881911440013}
   spriteRender: {fileID: 3675455199803781339}
+  direction: 0
   max_level: 100
   current_level: 1
   player_start_health: 20
@@ -882,7 +883,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -190582321
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
@@ -1053,7 +1054,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 65544
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: e0bcc1a5636add64c86875fd579a2454, type: 2}
   m_TargetDisplay: 0

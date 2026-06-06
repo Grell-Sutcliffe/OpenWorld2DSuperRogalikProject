@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 7641203739093782323}
   - component: {fileID: 4368283674146720459}
   - component: {fileID: 7421749965439677870}
-  m_Layer: 12
+  m_Layer: 3
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4833890303702470929}
   - component: {fileID: 4364210004647659141}
   - component: {fileID: 6941180054559700978}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Wohoo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,9 +361,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1445735355
-  m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingLayerID: -190582321
+  m_SortingLayer: 6
+  m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: fe4e5898d30755f4f9d9befb0496211e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -478,7 +478,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 74404219968523608, guid: 4ae2f03af71a1cb4b8e5ef7f2c6345a7, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 329842264338402028, guid: 4ae2f03af71a1cb4b8e5ef7f2c6345a7, type: 3}
       propertyPath: m_Layer
@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 1682792097449908573, guid: f61aceb93b6619e4287acdc1b05342b0, type: 3}
     - target: {fileID: 4911488285447603241, guid: 4ae2f03af71a1cb4b8e5ef7f2c6345a7, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
