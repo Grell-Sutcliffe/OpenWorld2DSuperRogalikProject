@@ -30,20 +30,20 @@ public class CheckKeyInputScript : MonoBehaviour
         {
             //Debug.Log($"Pressed: {e.keyCode}");
 
-            if (e.keyCode == KeyCode.W) w = true;
-            if (e.keyCode == KeyCode.A) a = true;
-            if (e.keyCode == KeyCode.S) s = true;
-            if (e.keyCode == KeyCode.D) d = true;
+            if (e.keyCode == KeyCode.W || e.keyCode == KeyCode.UpArrow) w = true;
+            if (e.keyCode == KeyCode.A || e.keyCode == KeyCode.LeftArrow) a = true;
+            if (e.keyCode == KeyCode.S || e.keyCode == KeyCode.DownArrow) s = true;
+            if (e.keyCode == KeyCode.D || e.keyCode == KeyCode.RightArrow) d = true;
         }
 
         if (e.type == EventType.KeyUp)
         {
             //Debug.Log($"Released: {e.keyCode}");
 
-            if (e.keyCode == KeyCode.W) w = false;
-            if (e.keyCode == KeyCode.A) a = false;
-            if (e.keyCode == KeyCode.S) s = false;
-            if (e.keyCode == KeyCode.D) d = false;
+            if (e.keyCode == KeyCode.W || e.keyCode == KeyCode.UpArrow) w = false;
+            if (e.keyCode == KeyCode.A || e.keyCode == KeyCode.LeftArrow) a = false;
+            if (e.keyCode == KeyCode.S || e.keyCode == KeyCode.DownArrow) s = false;
+            if (e.keyCode == KeyCode.D || e.keyCode == KeyCode.RightArrow) d = false;
         }
 
         RotateArrow();
