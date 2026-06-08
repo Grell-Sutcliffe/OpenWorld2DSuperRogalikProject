@@ -510,13 +510,15 @@ public class QuestsController : MonoBehaviour
 
     public void SetTrackTask(string quest_title = none_quest_name)
     {
-        SetAllQuestInfoScriptsDontTrackTask();
+        // if (tracking_quest_title == quest_title)
+
+        if (quest_title == none_quest_name) return;
+
+        if (!dict_quest_name_to_quest.ContainsKey(quest_title)) return;
 
         tracking_quest_title = quest_title;
 
-        if (tracking_quest_title == none_quest_name) return;
-
-        if (!dict_quest_name_to_quest.ContainsKey(quest_title)) return;
+        SetAllQuestInfoScriptsDontTrackTask();
 
         if (dict_quest_name_to_quest[quest_title].current_task != null)
         {
@@ -630,7 +632,7 @@ public class QuestsController : MonoBehaviour
 
         accepted_quests.Add(new_quest);
 
-        temp_task = dict_quest_name_to_quest[new_quest].current_task.subtitle;
+        // temp_task = dict_quest_name_to_quest[new_quest].current_task.subtitle;
 
         UpdateNPCsQuestsIcons();
 
@@ -775,6 +777,7 @@ public class QuestsController : MonoBehaviour
     public void ShowNewTask()
     {
         Debug.Log("ShowNewTask");
+        
         if (temp_task != "" && temp_task != none_quest_name)
         {
             taskShowerScript.ShowNewTask(temp_task);

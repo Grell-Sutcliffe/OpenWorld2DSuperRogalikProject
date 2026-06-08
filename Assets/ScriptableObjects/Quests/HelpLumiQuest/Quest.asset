@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9fe6971994e9e42b7f1496696410a1, type: 3}
   m_Name: Quest
   m_EditorClassIdentifier: Assembly-CSharp::QuestSO
-  title: 
-  description: 
-  start_taskSO: {fileID: 0}
-  quest_accepting_NPCSO: {fileID: 0}
-  rewardSOs: []
+  title: "\u0421\u043B\u0435\u0434 \u043F\u043E\u0442\u0435\u0440\u044F\u043D\u043D\u043E\u0433\u043E
+    \u0441\u043E\u0437\u0432\u0435\u0437\u0434\u0438\u044F"
+  description: "\u041F\u043E\u043C\u043E\u0433\u0438\u0442\u0435 \u0410\u0440\u0445\u0438\u0432\u0430\u0440\u0438\u0443\u0441\u0443
+    \u041B\u0443\u043C\u0438 \u0441\u043E\u0431\u0440\u0430\u0442\u044C \u0432\u0441\u0435
+    \u043F\u043E\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435 \u0444\u0440\u0430\u0433\u043C\u0435\u043D\u0442\u044B
+    \u043A\u0430\u0440\u0442\u044B."
+  start_taskSO: {fileID: 11400000, guid: 050228647ae6b064198c7f40d9d6767e, type: 2}
+  quest_accepting_NPCSO: {fileID: 11400000, guid: edcd9a8bf4976df479f19c1ae0d3ff3f, type: 2}
+  rewardSOs:
+  - {fileID: 11400000, guid: e3ee00ac2c905b74793cb44e82166ce1, type: 2}
+  - {fileID: 11400000, guid: f2ac4ba9099ba19449e813bdaadf3137, type: 2}
+  - {fileID: 11400000, guid: 25479ef1f9d133e47a2b7fe49f85353a, type: 2}

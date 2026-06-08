@@ -75,6 +75,10 @@ public class SpeachNode
         {
             return new FunctionSpeachNode(functionSpeachNodeSO);
         }
+        if (speachNodeSO is ItemAcceptSpeachNodeSO itemAcceptSpeachNodeSO)
+        {
+            return new ItemAcceptSpeachNode(itemAcceptSpeachNodeSO);
+        }
         if (speachNodeSO is ItemDeliverySpeachNodeSO itemDeliverySpeachNodeSO)
         {
             return new ItemDeliverySpeachNode(itemDeliverySpeachNodeSO);

@@ -418,7 +418,6 @@ public class MainController : MonoBehaviour
 
     void StuffSetActiveFalse()
     {
-        dialogPanel.SetActive(false);
         questPanel.SetActive(false);
         wishPanel.SetActive(false);
         shopPanel.SetActive(false);
@@ -434,6 +433,7 @@ public class MainController : MonoBehaviour
         infoPanel.SetActive(false);
         craftPanel.SetActive(false);
         miniShopPanel.SetActive(false);
+        dialogPanel.SetActive(false);
 
         rewardPanel.SetActive(false);
         loadingPanel.SetActive(false);

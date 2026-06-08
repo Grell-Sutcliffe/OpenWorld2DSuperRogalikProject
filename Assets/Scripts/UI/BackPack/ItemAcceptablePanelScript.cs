@@ -5,13 +5,12 @@ public class ItemAcceptablePanelScript : MonoBehaviour
 {
     MainController mainController;
     BackPackController backpackController;
-    DialogPanelScript dialogPanelScript;
 
     public GameObject content_GO;
 
     public GameObject item_delivery_icon_prefab;
 
-    RectTransform content_rect_transform;
+    // RectTransform content_rect_transform;
 
     List<CollectableItem> deliverable_items;
 
@@ -19,9 +18,8 @@ public class ItemAcceptablePanelScript : MonoBehaviour
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
-        dialogPanelScript = GameObject.Find("DialogPanel").GetComponent<DialogPanelScript>();
 
-        content_rect_transform = content_GO.GetComponent<RectTransform>();
+        // content_rect_transform = content_GO.GetComponent<RectTransform>();
     }
 
     public void AcceptItemsButton()
@@ -32,6 +30,8 @@ public class ItemAcceptablePanelScript : MonoBehaviour
         }
 
         EventBus.Raise(new ItemAcceptedEvent(deliverable_items));
+
+        gameObject.SetActive(false);
     }
 
     public void OpenPanel(List<CollectableItem> list)
@@ -42,13 +42,6 @@ public class ItemAcceptablePanelScript : MonoBehaviour
         gameObject.SetActive(true);
 
         UpdatePanel();
-    }
-
-    public void ClosePanel()
-    {
-        dialogPanelScript.CloseDialogPanel();
-
-        gameObject.SetActive(false);
     }
 
     public void UpdatePanel()
@@ -67,14 +60,14 @@ public class ItemAcceptablePanelScript : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
+        // content_rect_transform.sizeDelta = new Vector2(content_rect_transform.sizeDelta.x, 0);
     }
 
     void SpawnIconPrefab(CollectableItem collectableItem)
     {
         GameObject new_prefab = Instantiate(item_delivery_icon_prefab, content_GO.transform);
 
-        Icon_ItemDelivery_Script temp_script = new_prefab.GetComponent<Icon_ItemDelivery_Script>();
+        Icon_ItemAccept_Script temp_script = new_prefab.GetComponent<Icon_ItemAccept_Script>();
 
         temp_script.SetItem(collectableItem, backpackController.GetItemByName(collectableItem.item_name));
     }
