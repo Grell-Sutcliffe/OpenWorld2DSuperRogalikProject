@@ -25,11 +25,13 @@ public interface IEvent { }
 public readonly struct ItemCollectedEvent : IEvent
 {
     public readonly int item_id;
+    public readonly string item_name;
     public readonly int amount;
 
-    public ItemCollectedEvent(int item_id, int amount)
+    public ItemCollectedEvent(int item_id, string item_name, int amount)
     {
         this.item_id = item_id;
+        this.item_name = item_name;
         this.amount = amount;
     }
 }

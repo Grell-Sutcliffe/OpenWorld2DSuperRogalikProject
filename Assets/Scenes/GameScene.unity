@@ -52541,6 +52541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 7743257630960042894, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
+  consumableItems_names: []
+  list_is_consumableItem_collected: 
 --- !u!4 &1148866744
 Transform:
   m_ObjectHideFlags: 0
@@ -64093,6 +64095,9 @@ MonoBehaviour:
   list_consumableItem_so:
   - {fileID: 11400000, guid: 04c0a5187a0fdc748bd14983e9c80f17, type: 2}
   - {fileID: 11400000, guid: e4a24d14b1c111b47a4e57ecaaf969a2, type: 2}
+  - {fileID: 11400000, guid: e739bfc73013108449cc5532eefddef6, type: 2}
+  - {fileID: 11400000, guid: 3114ab2331fcf4242ba2e3da8788e78b, type: 2}
+  - {fileID: 11400000, guid: 549db1eb54bff0a4792c0b153df9df33, type: 2}
   - {fileID: 11400000, guid: a909d93a4d372ae4fbc1202c7fd49527, type: 2}
   - {fileID: 11400000, guid: 24f7120a790788149a3a1b2e9d1a7988, type: 2}
   - {fileID: 11400000, guid: 7b31b436742e68742b9efe9047c02731, type: 2}
@@ -86596,6 +86601,15 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3447495896481199536, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2574745945073413849, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6956832363668096420, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1304292781884399638, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 1797195621425448481, guid: b37bd14218b15714da0bc5aa1532c6cc, type: 3}

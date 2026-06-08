@@ -172,6 +172,20 @@ public class Player : Creature, IDamagable, IAttacker
         Debug.Log("Player saved: " + json);
     }
 
+    float CountNewCoordinate(float old_x)
+    {
+        int map_full_size = 60;
+        int map_half_size = 30;
+
+        int mul = old_x >= 0.00000001 ? 1 : -1;
+
+        float new_x = old_x >= 0 ? old_x : -old_x;
+        float ostatok = new_x % map_full_size;
+        new_x = ostatok <= map_half_size ? ostatok * mul : (-1) * mul * (map_half_size - new_x % map_half_size);
+
+        return new_x;
+    }
+
     public void LoadPlayer()
     {
         is_player_loaded = false;
@@ -200,20 +214,8 @@ public class Player : Creature, IDamagable, IAttacker
 
         is_player_loaded = true;
 
-        int map_full_size = 60;
-        int map_half_size = 30;
-
-        int mul_x = saveData.posX >= 0f ? 1 : -1;
-        float new_X = saveData.posX >= 0f ? saveData.posX : -saveData.posX;
-        int times_x = (int)(new_X / map_half_size) + (new_X % map_half_size > 0.0001 ? 1 : 0);
-        new_X %= map_full_size;
-        new_X = (times_x % 2 == 0 ? -new_X : new_X) * mul_x;
-
-        int mul_y = saveData.posY >= 0f ? 1 : -1;
-        float new_Y = saveData.posY >= 0f ? saveData.posY : -saveData.posY;
-        int times_y = (int)(new_Y / map_half_size) + (new_Y % map_half_size > 0.0001 ? 1 : 0);
-        new_Y %= map_full_size;
-        new_Y = (times_y % 2 == 0 ? -new_Y : new_Y) * mul_y;
+        float new_X = CountNewCoordinate(saveData.posX);
+        float new_Y = CountNewCoordinate(saveData.posY);
 
         transform.position = new Vector3(new_X, new_Y, saveData.posZ);
 

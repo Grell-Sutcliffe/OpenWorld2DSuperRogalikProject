@@ -446,7 +446,7 @@ public class BackPackController : MonoBehaviour
 
         //SaveInventory();
 
-        EventBus.Raise(new ItemCollectedEvent(dict_item_name_to_id[item_name], number));
+        EventBus.Raise(new ItemCollectedEvent(dict_item_name_to_id[item_name], item_name, number));
 
         //Debug.Log($"[INC] this={name} id={GetInstanceID()} dictHash={dict_id_to_item.GetHashCode()}");
         /*
@@ -479,7 +479,7 @@ public class BackPackController : MonoBehaviour
                 return dict_id_to_item[id];
             }
         }
-        Debug.LogError("ERROR: !!! NOT FOUND !!!");
+        Debug.LogError($"ERROR: !!! NOT FOUND !!! item_name = {name}");
         return null;
     }
 

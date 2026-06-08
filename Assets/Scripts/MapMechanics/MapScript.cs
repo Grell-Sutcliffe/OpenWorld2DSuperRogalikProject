@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapScript : MonoBehaviour
@@ -25,10 +24,19 @@ public class MapScript : MonoBehaviour
     MapScript map_south_east;
     MapScript map_south_west;
 
-    void Start()
+    public List<ConsumableItemSO> quest_consumableItemSOs;
+
+    public List<GameObject> quest_GOs;
+
+    private void Awake()
     {
         mapController = GameObject.Find("MapController").GetComponent<MapController>();
 
+        mapController.ApplyQuestGOsState(this);
+    }
+
+    void Start()
+    {
         GodFather = GameObject.Find("GODFATHER").GetComponent<Transform>();
 
         //SpawnMaps();
@@ -36,6 +44,23 @@ public class MapScript : MonoBehaviour
         height = gameObject.transform.localScale.y * 2;
 
         FindMapPoints();
+
+        //mapController.ApplyQuestGOsState(this);
+    }
+
+    public void DeleteItemByName(string item_name)
+    {
+        for (int i = 0; i < quest_GOs.Count; i++)
+        {
+            if (item_name == quest_consumableItemSOs[i].item_name)
+            {
+                if (quest_GOs[i] != null)
+                {
+                    Destroy(quest_GOs[i]);
+                    quest_GOs[i] = null;
+                }
+            }
+        }
     }
 
     void FindMapPoints()
@@ -167,6 +192,15 @@ public class MapScript : MonoBehaviour
         map_south_east.map_north_west = gameObject.GetComponent<MapScript>();
         map_south_east.map_north = map_east;
         map_south_east.map_west = map_south;
+
+        mapController.ApplyQuestGOsState(map_east);
+        mapController.ApplyQuestGOsState(map_west);
+        mapController.ApplyQuestGOsState(map_south);
+        mapController.ApplyQuestGOsState(map_north);
+        mapController.ApplyQuestGOsState(map_south_west);
+        mapController.ApplyQuestGOsState(map_south_east);
+        mapController.ApplyQuestGOsState(map_north_west);
+        mapController.ApplyQuestGOsState(map_north_east);
     }
 
     void DeleteMaps()

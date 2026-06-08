@@ -8,6 +8,7 @@ public class MainController : MonoBehaviour
 {
     QuestsController questsController;
     AchievementController achievementController;
+    MapController mapController;
 
     public TextMeshProUGUI pauseTMP;
 
@@ -107,6 +108,7 @@ public class MainController : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
         StuffSetActiveTrue();
 
+        mapController = GameObject.Find("MapController").GetComponent<MapController>();
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
         achievementController = GameObject.Find("AchievementController").GetComponent<AchievementController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -676,10 +678,12 @@ public class MainController : MonoBehaviour
         wishPanelScript.SaveWishParameters();
         questsController.SaveQuests();
         achievementController.SaveAchievements();
+        mapController.SaveCollected();
     }
 
     public void ClearEverything()
     {
+        mapController.DeleteCollectedProgress();
         backpackController.DeleteInventory();
         wishPanelScript.DeleteWishParameters();
         questsController.DeleteQuests();
