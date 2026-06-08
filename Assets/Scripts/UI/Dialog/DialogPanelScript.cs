@@ -173,6 +173,11 @@ public class DialogPanelScript : MonoBehaviour
                 CloseDialogPanel();
             }
         }
+
+        if (e is ItemAcceptedEvent itemAcceptedEvent)
+        {
+            NextLine(false);
+        }
     }
 
     public void SelectAnswer(SpeachNode new_next_node)
@@ -218,6 +223,13 @@ public class DialogPanelScript : MonoBehaviour
             mainController.OpenItemDeliveryPanel(itemDeliverySpeachNode.list_of_CollectableItems);
             //current_speachNode = itemDeliverySpeachNode.next_speachNode;
             current_speachNode = new SpeachNode().NewSpeachNode(itemDeliverySpeachNode.next_speachNodeSO);   // THIS !!!
+            return;
+        }
+
+        if (current_speachNode is ItemAcceptSpeachNode itemAcceptSpeachNode)
+        {
+            mainController.OpenItemAcceptPanel(itemAcceptSpeachNode.list_of_CollectableItems);
+            current_speachNode = new SpeachNode().NewSpeachNode(itemAcceptSpeachNode.next_speachNodeSO);   // THIS !!!
             return;
         }
 

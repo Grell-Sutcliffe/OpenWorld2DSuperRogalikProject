@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a857e4607fdf1c4ba6131d88165e9df, type: 3}
+  m_Name: Answer_48
+  m_EditorClassIdentifier: Assembly-CSharp::AnswerSO
+  answer_text: "\u042F \u043F\u043E\u043A\u0430 \u043D\u0435 \u043C\u043E\u0433\u0443
+    \u043F\u043E\u043C\u043E\u0447\u044C."
+  next_speachNode: {fileID: 11400000, guid: 73ecf2b08467fc04c8f8bfd7d26782ca, type: 2}
+  delta_disposition_to_player: 0

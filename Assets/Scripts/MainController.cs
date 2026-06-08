@@ -32,6 +32,7 @@ public class MainController : MonoBehaviour
     public GameObject infoPanel;
     public GameObject craftPanel;
     public GameObject itemDeliveryPanel;
+    public GameObject itemAcceptPanel;
     public GameObject errorPanel;
     public GameObject loadingPanel;
     public GameObject beginningLoadingPanel;
@@ -64,6 +65,7 @@ public class MainController : MonoBehaviour
     ButtlePanelScript buttlePanelScript;
     ErrorPanelScript errorPanelScript;
     ItemDeliveryPanelScript itemDeliveryPanelScript;
+    ItemAcceptablePanelScript itemAcceptPanelScript;
     AchievementPanelScript achievementPanelScript;
     InfoPanelScript infoPanelScript;
     CraftPanelScript craftPanelScript;
@@ -117,6 +119,7 @@ public class MainController : MonoBehaviour
         buttlePanelScript = buttlePanel.GetComponent<ButtlePanelScript>();
         errorPanelScript = errorPanel.GetComponent<ErrorPanelScript>();
         itemDeliveryPanelScript = itemDeliveryPanel.GetComponent<ItemDeliveryPanelScript>();
+        itemAcceptPanelScript = itemAcceptPanel.GetComponent<ItemAcceptablePanelScript>();
         achievementPanelScript = achievementPanel.GetComponent<AchievementPanelScript>();
         infoPanelScript = infoPanel.GetComponent<InfoPanelScript>();
         craftPanelScript = craftPanel.GetComponent<CraftPanelScript>();
@@ -369,6 +372,12 @@ public class MainController : MonoBehaviour
         itemDeliveryPanelScript.OpenPanel(list);
     }
 
+    public void OpenItemAcceptPanel(List<CollectableItem> list)
+    {
+        //Debug.Log("MainController  :  Open DeliveryPanel");
+        itemAcceptPanelScript.OpenPanel(list);
+    }
+
     public void UpdateHealthBar(int amount)
     {
         healthBarScript.UpdateHealthBar(amount);
@@ -399,6 +408,7 @@ public class MainController : MonoBehaviour
         enterDangeonPanel.SetActive(true);
         errorPanel.SetActive(true);
         itemDeliveryPanel.SetActive(true);
+        itemAcceptPanel.SetActive(true);
         achievementPanel.SetActive(true);
         infoPanel.SetActive(true);
         craftPanel.SetActive(true);
@@ -419,6 +429,7 @@ public class MainController : MonoBehaviour
         multiplayerPanel.SetActive(false);
         errorPanel.SetActive(false);
         itemDeliveryPanel.SetActive(false);
+        itemAcceptPanel.SetActive(false);
         achievementPanel.SetActive(false);
         infoPanel.SetActive(false);
         craftPanel.SetActive(false);

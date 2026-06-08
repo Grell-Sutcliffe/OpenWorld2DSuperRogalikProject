@@ -191,7 +191,8 @@ MonoBehaviour:
   icon_hasAcceptedQuest: {fileID: 335133948768148690}
   npc_name: 
   default_dialogSO: {fileID: 11400000, guid: 94f36c020ec811242b3e59844cac741c, type: 2}
-  list_of_dialogs_to_quests: []
+  list_of_dialogs_to_quests:
+  - {fileID: 11400000, guid: 415be4c13e12d66479469bab2aca0437, type: 2}
   default_dialog_title: 
   disposition_to_player: 0
 --- !u!50 &1567889287352085155

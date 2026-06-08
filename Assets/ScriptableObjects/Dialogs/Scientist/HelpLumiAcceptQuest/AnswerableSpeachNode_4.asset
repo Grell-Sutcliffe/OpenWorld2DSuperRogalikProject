@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0119fefdf70c1164ea311c627aff01c8, type: 3}
+  m_Name: AnswerableSpeachNode_4
+  m_EditorClassIdentifier: Assembly-CSharp::AnswerableSpeachNodeSO
+  npcSO: {fileID: 11400000, guid: edcd9a8bf4976df479f19c1ae0d3ff3f, type: 2}
+  speach: "\u041E\u0434\u0438\u043D \u0444\u0440\u0430\u0433\u043C\u0435\u043D\u0442,
+    \u043A\u0430\u0436\u0435\u0442\u0441\u044F, \u0443\u043F\u0430\u043B \u0433\u0434\u0435-\u0442\u043E
+    \u043D\u0435\u043F\u043E\u0434\u0430\u043B\u0451\u043A\u0443. \u0412\u0442\u043E\u0440\u043E\u0439
+    \u043C\u043E\u0433 \u043E\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F \u0433\u043B\u0443\u0431\u0436\u0435
+    \u2014 \u0442\u0430\u043C, \u0433\u0434\u0435 \u0432\u043E\u0437\u0434\u0443\u0445
+    \u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0441\u044F \u0445\u043E\u043B\u043E\u0434\u043D\u0435\u0435,
+    \u0430 \u0441\u0442\u0435\u043D\u044B \u0441\u043B\u0438\u0448\u043A\u043E\u043C
+    \u0432\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u044C\u043D\u043E \u0441\u043B\u0443\u0448\u0430\u044E\u0442.
+    \u0410 \u0442\u0440\u0435\u0442\u0438\u0439\u2026 \u0442\u0440\u0435\u0442\u0438\u0439,
+    \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E, \u043F\u0440\u0438\u0434\u0451\u0442\u0441\u044F
+    \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0432\u0440\u0443\u0447\u043D\u0443\u044E."
+  speach_type: 0
+  is_finishing: 0
+  answerSOs:
+  - {fileID: 11400000, guid: 61b16dbf7ec23ea47baecfcddf5740ae, type: 2}
+  - {fileID: 11400000, guid: 575adf2e9c2d97e439a1927a269f14ca, type: 2}
+  - {fileID: 11400000, guid: ffd770a51357ab5418f1c5a14aaba820, type: 2}

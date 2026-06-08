@@ -141,6 +141,32 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
     }
 }
 
+public class ItemAcceptSpeachNode : DefaultSpeachNode
+{
+    //public List<int> list_of_item_id;
+    public List<CollectableItem> list_of_CollectableItems;
+
+    ItemAcceptSpeachNodeSO data;
+
+    public ItemAcceptSpeachNode(ItemAcceptSpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    {
+        this.data = data;
+
+        //this.list_of_item_id = new List<int>();
+        this.list_of_CollectableItems = new List<CollectableItem>();
+        for (int i = 0; i < data.list_of_item_amounts.Count; i++)
+        {
+            //this.list_of_item_id.Add(new Item(itemSO));
+            this.list_of_CollectableItems.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
+        }
+    }
+
+    public ItemAcceptSpeachNode(List<CollectableItem> list_of_CollectableItems, ItemAcceptSpeachNodeSO data) : base(data.next_speachNodeSO, data.npcSO, data.speach, data.speach_type, data.is_finishing)
+    {
+        this.list_of_CollectableItems = list_of_CollectableItems;
+    }
+}
+
 public class DefaultSpeachNode : SpeachNode
 {
     //public SpeachNode next_speachNode;

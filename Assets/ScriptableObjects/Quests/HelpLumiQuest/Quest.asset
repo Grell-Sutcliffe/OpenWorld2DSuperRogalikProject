@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189dadbdc29f66e498d7c2d02bb9c175, type: 3}
-  m_Name: Reward2
-  m_EditorClassIdentifier: 
-  itemSO: {fileID: 11400000, guid: 00b5609eb0358f74c8e1e6a4162a3809, type: 2}
-  amount: 2
+  m_Script: {fileID: 11500000, guid: 7d9fe6971994e9e42b7f1496696410a1, type: 3}
+  m_Name: Quest
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSO
+  title: 
+  description: 
+  start_taskSO: {fileID: 0}
+  quest_accepting_NPCSO: {fileID: 0}
+  rewardSOs: []

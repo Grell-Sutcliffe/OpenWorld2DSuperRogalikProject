@@ -110,6 +110,17 @@ public readonly struct ItemDeliveredEvent : IEvent
     }
 }
 
+
+public readonly struct ItemAcceptedEvent : IEvent
+{
+    public readonly List<CollectableItem> collectableItems;
+
+    public ItemAcceptedEvent(List<CollectableItem> collectableItems)
+    {
+        this.collectableItems = collectableItems;
+    }
+}
+
 public readonly struct DialogFinishedEvent : IEvent
 {
     public readonly string dialog_title;
