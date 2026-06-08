@@ -50,6 +50,7 @@ public class MainController : MonoBehaviour
     public GameObject Chickens;
     public GameObject Gardens;
     public GameObject Melnica;
+    public GameObject Scientist;
     /*
     public GameObject Book;
     */
@@ -378,10 +379,10 @@ public class MainController : MonoBehaviour
         healthBarScript.UpdateHealthBar(amount);
     }
 
-    public void StartDialog(Dialog dialog)
+    public void StartDialog(Dialog dialog, Animator animator = null)
     {
         if (dialog == null) return;
-        dialogPanelScript.StartDialog(dialog);
+        dialogPanelScript.StartDialog(dialog, animator);
     }
 
     void StuffSetActiveTrue()

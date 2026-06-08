@@ -59,6 +59,8 @@ public class MapController : MonoBehaviour
         dict_map_GOs[MapPointType.Gardens] = mainController.Gardens;
 
         dict_map_GOs[MapPointType.Melnica] = mainController.Melnica;
+
+        dict_map_GOs[MapPointType.Scientist] = mainController.Scientist;
     }
 }
 
@@ -72,4 +74,5 @@ public enum MapPointType
     Chickens = 6,
     Gardens = 7,
     Melnica = 8,
+    Scientist = 9,
 }

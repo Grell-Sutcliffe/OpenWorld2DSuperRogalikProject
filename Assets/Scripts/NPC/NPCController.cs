@@ -8,6 +8,8 @@ public class NPCController : InteractionController
 {
     public NPCSO data;
 
+    public Animator animator;
+
     protected QuestsController questsController;
     protected DialogController dialogController;
 
@@ -70,7 +72,7 @@ public class NPCController : InteractionController
             {
                 if (dialogController.dict_dialog_title_to_dialog[dialogTask.dialog_title].dialog_starting_npc == this.npc_name)
                 {
-                    mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[dialogTask.dialog_title]);
+                    mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[dialogTask.dialog_title], animator);
                     return;
                 }
             }
@@ -80,12 +82,12 @@ public class NPCController : InteractionController
         {
             if (dialogController.dict_dialog_title_to_dialog[dialogSO.title].is_finished == false)
             {
-                mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[dialogSO.title]);
+                mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[dialogSO.title], animator);
                 return;
             }
         }
 
-        mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[default_dialog_title]);
+        mainController.StartDialog(dialogController.dict_dialog_title_to_dialog[default_dialog_title], animator);
     }
 
     public void ChangeDispositionToPlayer(int delta_disposition_to_player)

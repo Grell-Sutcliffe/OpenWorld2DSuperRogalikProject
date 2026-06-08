@@ -33,6 +33,10 @@ public class DialogPanelScript : MonoBehaviour
 
     Dialog current_dialog;
 
+    Animator current_animator;
+
+    string parameter_is_talking = "is_talking";
+
     SpeachNode current_speachNode;
 
     void Start()
@@ -44,8 +48,9 @@ public class DialogPanelScript : MonoBehaviour
         answer_panel_rect_transform = answerPanel.GetComponent<RectTransform>();
     }
 
-    public void StartDialog(Dialog new_dialog)
+    public void StartDialog(Dialog new_dialog, Animator new_animator = null)
     {
+        current_animator = new_animator;
         current_dialog = new_dialog;
         //current_speachNode = new_dialog.current_speachNode;
         current_speachNode = new SpeachNode().NewSpeachNode(new_dialog.current_speachNodeSO);   // THIS !!!
@@ -78,6 +83,8 @@ public class DialogPanelScript : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        if (current_animator != null && current_speachNode.speach_type == SpeachType.Speach) current_animator.SetBool(parameter_is_talking, true);
+
         //Debug.Log($"Dialog  :  TypeLine -- dialog = {current_dialog.title}, speach_node = {current_speachNode.speach}");
 
         ChangeDialogPanel(current_speachNode.npcSO.npc_name);
@@ -110,6 +117,8 @@ public class DialogPanelScript : MonoBehaviour
 
     void FinishLine()
     {
+        if (current_animator != null) current_animator.SetBool(parameter_is_talking, false);
+
         // Debug.Log($"DialogPanel   :   line finished");
 
         if (current_speachNode == null)

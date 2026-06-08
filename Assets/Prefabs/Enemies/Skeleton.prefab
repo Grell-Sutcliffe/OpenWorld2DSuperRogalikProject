@@ -259,11 +259,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 175684227192611397}
+  - component: {fileID: 1581543280108189600}
   - component: {fileID: 8736383894707455395}
   - component: {fileID: 7653543814149306565}
   - component: {fileID: 7826423026952965163}
   - component: {fileID: 242724825996264335}
-  - component: {fileID: -6475522996527876612}
   - component: {fileID: 7813002818888907359}
   m_Layer: 9
   m_Name: Skeleton
@@ -293,6 +293,21 @@ Transform:
   - {fileID: 6410820361660245785}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581543280108189600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738165583852734987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56e153fbe4499d449af5ee02779c2f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmenyYSorting
+  baseOrder: 0
+  mul: 100
+  effectController: {fileID: 3853305679722545172}
 --- !u!212 &8736383894707455395
 SpriteRenderer:
   serializedVersion: 2
@@ -338,8 +353,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1445735355
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9213184063717799337, guid: d6710a7171c6a924f8537d6f2ee761c6, type: 3}
@@ -445,20 +460,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-6475522996527876612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4738165583852734987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5480c0f53284564e9a6ccef9a528e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseOrder: 0
-  mul: 100
 --- !u!61 &7813002818888907359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2639170671601987148, guid: 6e5927a24f29afc4093e498b9c714f18, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6074394392682749393, guid: 6e5927a24f29afc4093e498b9c714f18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -630,6 +631,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e5927a24f29afc4093e498b9c714f18, type: 3}
+--- !u!212 &3853305679722545172 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2639170671601987148, guid: 6e5927a24f29afc4093e498b9c714f18, type: 3}
+  m_PrefabInstance: {fileID: 1286207223439863384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5013934805316170633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6074394392682749393, guid: 6e5927a24f29afc4093e498b9c714f18, type: 3}
