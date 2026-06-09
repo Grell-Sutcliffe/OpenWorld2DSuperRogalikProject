@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d3a66ade6185b4d80d1702f4fa05a6, type: 3}
+  m_Name: ConsumableItem_starry_map
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 7c53468ae5fe72d4491e3137b5cac805, type: 3}
+  item_name: "\u0417\u0432\u0451\u0437\u0434\u043D\u0430\u044F \u043A\u0430\u0440\u0442\u0430"
+  description: "\u041D\u0435\u0447\u0442\u043E \u043A\u0440\u0430\u0441\u0438\u0432\u043E\u0435,
+    \u043D\u043E \u043D\u0435\u043F\u043E\u043D\u044F\u0442\u043D\u043E\u0435. \u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E,
+    \u0434\u0430\u0436\u0435 \u0410\u0440\u0445\u0438\u0432\u0430\u0440\u0438\u0443\u0441
+    \u041B\u0443\u043C\u0438 \u043D\u0435 \u0434\u043E \u043A\u043E\u043D\u0446\u0430
+    \u043F\u043E\u043D\u0438\u043C\u0430\u0435\u0442, \u0447\u0442\u043E \u044D\u0442\u043E..."
+  is_craftable: 1
+  itemSOs_for_craft:
+  - {fileID: 11400000, guid: e739bfc73013108449cc5532eefddef6, type: 2}
+  - {fileID: 11400000, guid: 3114ab2331fcf4242ba2e3da8788e78b, type: 2}
+  - {fileID: 11400000, guid: 549db1eb54bff0a4792c0b153df9df33, type: 2}
+  item_amounts_for_craft: 010000000100000001000000
+  item_type: 5
+  amount: 0
+  time_to_grow: 0

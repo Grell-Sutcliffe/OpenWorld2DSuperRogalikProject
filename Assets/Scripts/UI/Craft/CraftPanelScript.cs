@@ -87,6 +87,11 @@ public class CraftPanelScript : MonoBehaviour
         UpdateCraftType(ItemType.Materials);
     }
 
+    public void SetCraftType_Quest()
+    {
+        UpdateCraftType(ItemType.Quest);
+    }
+
     public void UpdateCraftType(ItemType itemType)
     {
         foreach (Transform child in content_of_craftingIcons_GO.transform)

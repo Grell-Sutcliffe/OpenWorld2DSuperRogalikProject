@@ -64,7 +64,7 @@ public class MiniSlotScript : MonoBehaviour
 
         if (slot_item is UsableItem usable_item)
         {
-            if (mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] > 0)
+            if (backpackController.dict_useType_to_seconds_left[usable_item.useEffect.useType] > 0)
             {
                 cross_image.SetActive(true);
                 is_clickable = false;

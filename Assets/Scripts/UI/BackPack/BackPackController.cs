@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,13 +12,16 @@ public class BackPackController : MonoBehaviour
 
     public ShopPanelScript shopPanelScript;
     public CharacterPanelScript characterPanelScript;
-    public ItemDeliveryPanelScript itemDeliveryPanelScript;
+    //public ItemDeliveryPanelScript itemDeliveryPanelScript;
 
     public GameObject content_GO;
     public GameObject backpackIconPrefab;
 
     public GameObject useButton;
+    public GameObject dontUseButton;
     public GameObject crossUseButton;
+
+    List<string> list_of_items_in_use = new List<string>();
 
     RectTransform content_rect_transform;
 
@@ -55,6 +59,9 @@ public class BackPackController : MonoBehaviour
     public ItemForSaleSO pinkWishSO;
     public ItemForSaleSO blueWishSO;
 
+    [Header("Сonsumable Items (Quest)")]
+    public ConsumableItemSO[] list_quest_consumableItem_so;
+
     [Header("Сonsumable Items")]
     public ConsumableItemSO[] list_consumableItem_so;
 
@@ -77,6 +84,8 @@ public class BackPackController : MonoBehaviour
 
     public List<UseType> list_of_use_types;
     public static BackPackController Instance { get; private set; }
+
+    public Dictionary<UseType, int> dict_useType_to_seconds_left;
 
     private const string InventorySaveKey = "inventory_save";
 
@@ -242,8 +251,8 @@ public class BackPackController : MonoBehaviour
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-        MakeListOfUseTypes();
         ClearDictionary_useType_to_list_of_BackpackIconScripts();
+        MakeListOfUseTypes();
 
         MakeDictionary();
     }
@@ -257,8 +266,10 @@ public class BackPackController : MonoBehaviour
 
         LoadInventory();
 
-        UpdateBackpack();
-        ClearShowerPanel();
+        //UpdateBackpack();
+        //ClearShowerPanel();
+
+        ClearDictionary_useType_to_seconds_left();
     }
 
     void MakeListOfUseTypes()
@@ -338,6 +349,14 @@ public class BackPackController : MonoBehaviour
         {
             ind++;
             Item temp_item = new UsableItem(usableItem_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
+
+        foreach (ConsumableItemSO consumableItem_so in list_quest_consumableItem_so)
+        {
+            ind++;
+            Item temp_item = new ConsumableItem(consumableItem_so, ind);
             dict_id_to_item[ind] = temp_item;
             dict_item_name_to_id[temp_item.item_name] = ind;
         }
@@ -495,6 +514,7 @@ public class BackPackController : MonoBehaviour
     {
         weaponIconGO.SetActive(false);
         useButton.SetActive(false);
+        dontUseButton.SetActive(false);
 
         current_selected_id = new_id;  // !!!
 
@@ -520,6 +540,45 @@ public class BackPackController : MonoBehaviour
                 DeactivateUseButton();
             }
         }
+
+        if (CheckIfCurrentSelectedItemIsQuestUsable())
+        {
+            foreach (string item_name in list_of_items_in_use)
+            {
+                if (dict_id_to_item[current_selected_id].item_name == item_name)
+                {
+                    dontUseButton.SetActive(true);
+                    return;
+                }
+            }
+
+            useButton.SetActive(true);
+
+            ActivateUseButton();
+        }
+    }
+
+    public void DontUseButton()
+    {
+        EventBus.Raise(new QuestItemDontUseEvent(dict_id_to_item[current_selected_id].item_name));
+
+        dontUseButton.SetActive(false);
+        useButton.SetActive(true);
+    }
+
+    bool CheckIfCurrentSelectedItemIsQuestUsable()
+    {
+        if (dict_id_to_item[current_selected_id].item_type == ItemType.Quest)
+        {
+            foreach (ConsumableItemSO consumableItemSO in list_quest_consumableItem_so)
+            {
+                if (consumableItemSO.item_name == dict_id_to_item[current_selected_id].item_name)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     void ActivateUseButton()
@@ -534,11 +593,73 @@ public class BackPackController : MonoBehaviour
 
     bool IsUseTypeUsable(UseType useType)
     {
-        return mainController.dict_useType_to_seconds_left[useType] <= 0;
+        return dict_useType_to_seconds_left[useType] <= 0;
+    }
+
+    public void StartCountdownCoroutine(UseType useType)
+    {
+        StartCoroutine(CountdownCoroutine(useType));
+    }
+
+    private IEnumerator CountdownCoroutine(UseType useType)
+    {
+        while (dict_useType_to_seconds_left[useType] > 0)
+        {
+            foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
+            {
+                backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
+            }
+            foreach (MiniSlotScript miniSlotScript in mainController.inventoryStalker.slotScripts_playerPanel)
+            {
+                if (miniSlotScript.slot_item is UsableItem usable_item)
+                {
+                    if (usable_item.useEffect.useType == useType)
+                    {
+                        miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
+            dict_useType_to_seconds_left[useType]--;
+        }
+
+        foreach (BackpackIconScript backpackIconScript in dict_useType_to_list_of_BackpackIconScripts[useType])
+        {
+            backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
+        }
+        foreach (MiniSlotScript miniSlotScript in mainController.inventoryStalker.slotScripts_playerPanel)
+        {
+            if (miniSlotScript.slot_item is UsableItem usable_item)
+            {
+                if (usable_item.useEffect.useType == useType)
+                {
+                    miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
+                }
+            }
+        }
+    }
+
+    void ClearDictionary_useType_to_seconds_left()
+    {
+        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
+
+        foreach (UseType useType in list_of_use_types)
+        {
+            dict_useType_to_seconds_left[useType] = 0;
+        }
     }
 
     public void UseItem()
     {
+        if (CheckIfCurrentSelectedItemIsQuestUsable())
+        {
+            EventBus.Raise(new QuestItemUsedEvent(dict_id_to_item[current_selected_id].item_name));
+            dontUseButton.SetActive(true);
+            //CloseBackpackPanel();
+            return;
+        }
+
         if (dict_id_to_item[current_selected_id] is UsableItem usable_item)
         {
             if (IsUseTypeUsable(usable_item.useEffect.useType))
@@ -553,9 +674,9 @@ public class BackPackController : MonoBehaviour
                     current_selected_backpackIcon.UpdateAmount();
 
                     playerScript.BoostCharacter(usable_item.useEffect);
-                    mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+                    dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
 
-                    mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
+                    StartCountdownCoroutine(usable_item.useEffect.useType);
                 }
             }
         }
@@ -569,10 +690,10 @@ public class BackPackController : MonoBehaviour
         DecreaceItemByName(usable_item.item_name);
 
         playerScript.BoostCharacter(usable_item.useEffect);
-        mainController.dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
+        dict_useType_to_seconds_left[usable_item.useEffect.useType] = usable_item.useEffect.time_for_close;
 
         //StartCoroutine(CountdownCoroutine(usable_item.useEffect.useType));
-        mainController.StartCountdownCoroutine(usable_item.useEffect.useType);
+        StartCountdownCoroutine(usable_item.useEffect.useType);
 
         inventory_stalker.UpdateSlots();
     }
@@ -588,16 +709,16 @@ public class BackPackController : MonoBehaviour
     {
         foreach (int id in dict_id_to_item.Keys)
         {
-            Debug.Log("Take by name");
+            //Debug.Log("Take by name");
 
-            Debug.Log(dict_id_to_item[id].item_name);
-            Debug.Log(name);
+            //Debug.Log(dict_id_to_item[id].item_name);
+            //Debug.Log(name);
             if (dict_id_to_item[id].item_name == name)
             {
-                Debug.Log("Book found");
+                //Debug.Log("Book found");
 
                 dict_id_to_item[id].amount++;
-                Debug.Log(dict_id_to_item[id].amount);
+                //Debug.Log(dict_id_to_item[id].amount);
 
                 //SaveInventory();
 
@@ -640,6 +761,7 @@ public class BackPackController : MonoBehaviour
     {
         weaponIconGO.SetActive(false);
         useButton.SetActive(false);
+        dontUseButton.SetActive(false);
 
         if (content_rect_transform == null) content_rect_transform = content_GO.GetComponent<RectTransform>();
 
@@ -713,6 +835,8 @@ public class BackPackController : MonoBehaviour
 
     void SpawnBackpackIconPrefab(int id)
     {
+        //Debug.Log($"SpawnBackpackIconPrefab --- id = {id}, item_name = {dict_id_to_item[id].item_name}");
+
         GameObject new_prefab = Instantiate(backpackIconPrefab, content_GO.transform);
         BackpackIconScript new_prefab_script = new_prefab.GetComponent<BackpackIconScript>();
 
@@ -723,9 +847,11 @@ public class BackPackController : MonoBehaviour
         {
             (dict_useType_to_list_of_BackpackIconScripts[usableItem.useEffect.useType]).Add(new_prefab_script);
 
-            if (mainController.dict_useType_to_seconds_left[usableItem.useEffect.useType] > 0)
+            //Debug.Log($"dict_useType_to_seconds_left == null = {dict_useType_to_seconds_left == null}");
+
+            if (dict_useType_to_seconds_left[usableItem.useEffect.useType] > 0)
             {
-                new_prefab_script.CloseIconForTime(mainController.dict_useType_to_seconds_left[usableItem.useEffect.useType]);
+                new_prefab_script.CloseIconForTime(dict_useType_to_seconds_left[usableItem.useEffect.useType]);
             }
         }
     }
@@ -738,7 +864,7 @@ public class BackPackController : MonoBehaviour
 
     public void CloseBackpackPanel()
     {
-        gameObject.SetActive(false);
+        mainController.CloseBackpackPanel();
     }
 
     public Element GetElementByElementType(ElementType element_type)

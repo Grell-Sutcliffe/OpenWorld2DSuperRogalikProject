@@ -15,5 +15,10 @@ public class CraftingSlotScript : MonoBehaviour
 
         image.sprite = item.sprite;
         textTMP.text = item.amount + "/" + amount.ToString();
+
+        if (item.amount < amount)
+        {
+            textTMP.color = Color.red;
+        }
     }
 }

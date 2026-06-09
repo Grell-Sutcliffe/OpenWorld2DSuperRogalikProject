@@ -1,16 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using NUnit.Framework;
-using System.Collections.Generic;
-using static QuestsController;
-using static DialogController;
 
 public class DialogPanelScript : MonoBehaviour
 {
     MainController mainController;
     QuestsController questsController;
+    DialogController dialogController;
 
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI speachText;
@@ -43,6 +39,7 @@ public class DialogPanelScript : MonoBehaviour
     {
         mainController = GameObject.Find("MainController").GetComponent<MainController>();
         questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+        dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
 
         if (answerPanel == null) answerPanel = GameObject.Find("AnswerPanel");
         answer_panel_rect_transform = answerPanel.GetComponent<RectTransform>();
@@ -129,7 +126,8 @@ public class DialogPanelScript : MonoBehaviour
 
         if (current_speachNode.is_finishing)
         {
-            current_dialog.is_finished = true;
+            //current_dialog.is_finished = true;
+            dialogController.SetDialogFinished(current_dialog.title, true);
         }
 
         iconNextLine.SetActive(true);

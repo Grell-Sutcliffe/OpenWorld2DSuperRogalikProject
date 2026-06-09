@@ -1,8 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using static DialogPanelScript;
-using static QuestsController;
 
 public class Answer
 {
@@ -17,8 +14,7 @@ public class Answer
         this.data = data;
 
         this.answer_text = data.answer_text;
-        //this.next_speachNode = new SpeachNode(data.next_speachNode);  // так нельзя, тк класс SpeachNode - абстрактный
-
+        
         this.next_speachNode = new SpeachNode().NewSpeachNode(data.next_speachNode);
         this.delta_disposition_to_player = data.delta_disposition_to_player;
     }
@@ -121,7 +117,6 @@ public class AnswerableSpeachNode : SpeachNode
 
 public class ItemDeliverySpeachNode : DefaultSpeachNode
 {
-    //public List<int> list_of_item_id;
     public List<CollectableItem> list_of_CollectableItems;
 
     ItemDeliverySpeachNodeSO data;
@@ -130,11 +125,9 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
     {
         this.data = data;
 
-        //this.list_of_item_id = new List<int>();
         this.list_of_CollectableItems = new List<CollectableItem>();
         for (int i = 0; i < data.list_of_item_amounts.Count; i++)
         {
-            //this.list_of_item_id.Add(new Item(itemSO));
             this.list_of_CollectableItems.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
         }
     }
@@ -147,7 +140,6 @@ public class ItemDeliverySpeachNode : DefaultSpeachNode
 
 public class ItemAcceptSpeachNode : DefaultSpeachNode
 {
-    //public List<int> list_of_item_id;
     public List<CollectableItem> list_of_CollectableItems;
 
     ItemAcceptSpeachNodeSO data;
@@ -156,11 +148,9 @@ public class ItemAcceptSpeachNode : DefaultSpeachNode
     {
         this.data = data;
 
-        //this.list_of_item_id = new List<int>();
         this.list_of_CollectableItems = new List<CollectableItem>();
         for (int i = 0; i < data.list_of_item_amounts.Count; i++)
         {
-            //this.list_of_item_id.Add(new Item(itemSO));
             this.list_of_CollectableItems.Add(new CollectableItem(new Item(data.list_of_itemSOs[i]).item_name, data.list_of_item_amounts[i]));
         }
     }
@@ -173,7 +163,6 @@ public class ItemAcceptSpeachNode : DefaultSpeachNode
 
 public class DefaultSpeachNode : SpeachNode
 {
-    //public SpeachNode next_speachNode;
     public SpeachNodeSO next_speachNodeSO;
 
     DefaultSpeachNodeSO data;
@@ -182,24 +171,13 @@ public class DefaultSpeachNode : SpeachNode
     {
         this.data = data;
 
-        //this.next_speachNode = NewSpeachNode(data.next_speachNodeSO);
         this.next_speachNodeSO = data.next_speachNodeSO;
     }
 
-    //public DefaultSpeachNode(SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
     public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
     {
-        //this.next_speachNode = next_speachNode;
         this.next_speachNodeSO = next_speachNodeSO;
     }
-
-    /*
-    public DefaultSpeachNode(SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(npcSO, speach, speach_type, is_finishing)
-    {
-        //this.next_speachNode = NewSpeachNode(next_speachNodeSO);
-        this.next_speachNode = NewSpeachNode(next_speachNodeSO);
-    }
-    */
 }
 
 public class QuestAcceptingSpeachNode : DefaultSpeachNode
@@ -230,7 +208,6 @@ public class FunctionSpeachNode : DefaultSpeachNode
         this.function_name = data.function_name;
     }
 
-    //public FunctionSpeachNode(string function_name, SpeachNode next_speachNode, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(next_speachNode, npcSO, speach, speach_type, is_finishing)
     public FunctionSpeachNode(string function_name, SpeachNodeSO next_speachNodeSO, NPCSO npcSO, string speach, SpeachType speach_type = SpeachType.Speach, bool is_finishing = false) : base(next_speachNodeSO, npcSO, speach, speach_type, is_finishing)
     {
         this.function_name = function_name;
@@ -240,7 +217,6 @@ public class FunctionSpeachNode : DefaultSpeachNode
 public class Dialog
 {
     public string title;
-    //public SpeachNode current_speachNode;
     public SpeachNodeSO current_speachNodeSO;
     public bool is_finished = false;
 
@@ -255,23 +231,10 @@ public class Dialog
         this.data = data;
 
         this.title = data.title;
-        //this.current_speachNode = new SpeachNode().NewSpeachNode(data.first_speachNode);
         this.current_speachNodeSO = data.first_speachNode;
 
         this.dialog_starting_npc = data.dialog_starting_npcSO.npc_name;
     }
-
-    /*
-    public Dialog(SpeachNodeSO current_speachNodeSO)
-    {
-        this.current_speachNode = new SpeachNode().NewSpeachNode(current_speachNodeSO);
-    }
-
-    public Dialog(SpeachNode current_speachNode)
-    {
-        this.current_speachNode = current_speachNode;
-    }
-    */
 }
 
 public class DialogController : MonoBehaviour
@@ -283,7 +246,32 @@ public class DialogController : MonoBehaviour
     public Dictionary<string, Dialog> dict_dialog_title_to_dialog;
 
     public List<DialogSO> dialogs = new List<DialogSO>();
+    
     public static DialogController Instance { get; private set; }
+
+    private const string DialogsSaveKey = "dialogs_save";
+
+    private Dictionary<string, bool> dict_dialog_title_to_is_finished = new Dictionary<string, bool>();
+
+    [System.Serializable]
+    public class DialogsSaveData
+    {
+        public List<DialogFinishedSaveData> dialogs = new List<DialogFinishedSaveData>();
+    }
+
+    [System.Serializable]
+    public class DialogFinishedSaveData
+    {
+        public string dialogTitle;
+        public bool isFinished;
+
+        public DialogFinishedSaveData(string dialogTitle, bool isFinished)
+        {
+            this.dialogTitle = dialogTitle;
+            this.isFinished = isFinished;
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -293,7 +281,11 @@ public class DialogController : MonoBehaviour
         }
 
         Instance = this;
+        
         dict_dialog_title_to_dialog = new Dictionary<string, Dialog>();
+        dict_dialog_title_to_is_finished = new Dictionary<string, bool>();
+
+        LoadDialogs();
 
         foreach (DialogSO dialogSO in dialogs)
         {
@@ -303,35 +295,123 @@ public class DialogController : MonoBehaviour
 
     public void AddNewDialog(DialogSO dialogSO)
     {
-        dict_dialog_title_to_dialog[dialogSO.title] = new Dialog(dialogSO);
+        if (dialogSO == null) return;
+
+        Dialog dialog = new Dialog(dialogSO);
+
+        if (dict_dialog_title_to_is_finished.ContainsKey(dialog.title))
+        {
+            dialog.is_finished = dict_dialog_title_to_is_finished[dialog.title];
+        }
+
+        dict_dialog_title_to_dialog[dialog.title] = dialog;
+
+        if (!dict_dialog_title_to_is_finished.ContainsKey(dialog.title))
+        {
+            dict_dialog_title_to_is_finished[dialog.title] = dialog.is_finished;
+        }
     }
 
-    /*
-    protected void Awake()
+    public void SetDialogFinished(string dialogTitle, bool isFinished = true)
     {
-        mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        questsController = GameObject.Find("QuestsController").GetComponent<QuestsController>();
+        if (string.IsNullOrEmpty(dialogTitle)) return;
+
+        dict_dialog_title_to_is_finished[dialogTitle] = isFinished;
+
+        if (dict_dialog_title_to_dialog.ContainsKey(dialogTitle))
+        {
+            dict_dialog_title_to_dialog[dialogTitle].is_finished = isFinished;
+        }
     }
 
-    protected void Start()
+    public bool IsDialogFinished(string dialogTitle)
     {
-        CreateSpeach();
+        if (string.IsNullOrEmpty(dialogTitle)) return false;
+
+        if (dict_dialog_title_to_is_finished.ContainsKey(dialogTitle))
+        {
+            return dict_dialog_title_to_is_finished[dialogTitle];
+        }
+
+        if (dict_dialog_title_to_dialog.ContainsKey(dialogTitle))
+        {
+            return dict_dialog_title_to_dialog[dialogTitle].is_finished;
+        }
+
+        return false;
     }
 
-    public void StartDialog()
+    public void SaveDialogs()
     {
-        if (mainController == null) mainController = GameObject.Find("MainController").GetComponent<MainController>();
-        //mainController.StartDialog(npc_name, text_hello.root);
+        DialogsSaveData saveData = new DialogsSaveData();
 
-        //mainController.StartDialog(npc_name, TheLostGrandson_ask_for_search_grandson_1);
-        //mainController.StartDialog(npc_name, grandsonEugineQuestScript.GetCurrentSpeachTree());
+        foreach (var pair in dict_dialog_title_to_dialog)
+        {
+            string dialogTitle = pair.Key;
+            bool isFinished = pair.Value.is_finished;
+
+            dict_dialog_title_to_is_finished[dialogTitle] = isFinished;
+
+            saveData.dialogs.Add(new DialogFinishedSaveData(dialogTitle, isFinished));
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+
+        PlayerPrefs.SetString(DialogsSaveKey, json);
+        PlayerPrefs.Save();
+
+        Debug.Log("Dialogs saved: " + json);
     }
 
-    protected void CreateSpeach()
+    public void LoadDialogs()
     {
+        dict_dialog_title_to_is_finished.Clear();
 
+        if (!PlayerPrefs.HasKey(DialogsSaveKey))
+        {
+            Debug.Log("No dialogs save found");
+            return;
+        }
+
+        string json = PlayerPrefs.GetString(DialogsSaveKey);
+
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("Dialogs save is empty");
+            return;
+        }
+
+        DialogsSaveData saveData = JsonUtility.FromJson<DialogsSaveData>(json);
+
+        if (saveData == null || saveData.dialogs == null)
+        {
+            Debug.LogWarning("Dialogs save is broken");
+            return;
+        }
+
+        foreach (DialogFinishedSaveData dialogData in saveData.dialogs)
+        {
+            dict_dialog_title_to_is_finished[dialogData.dialogTitle] = dialogData.isFinished;
+        }
+
+        Debug.Log("Dialogs loaded: " + json);
     }
-    */
+
+    public void DeleteDialogs()
+    {
+        PlayerPrefs.DeleteKey(DialogsSaveKey);
+        PlayerPrefs.Save();
+
+        dict_dialog_title_to_is_finished.Clear();
+
+        foreach (var pair in dict_dialog_title_to_dialog)
+        {
+            pair.Value.is_finished = false;
+            dict_dialog_title_to_is_finished[pair.Key] = false;
+        }
+
+        Debug.Log("Dialogs reset to default");
+    }
 }
 
 public enum SpeachType

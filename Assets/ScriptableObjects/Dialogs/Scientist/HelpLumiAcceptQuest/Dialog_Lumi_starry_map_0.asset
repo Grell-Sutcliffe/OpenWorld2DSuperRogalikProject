@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d575c7c8d034c4d9d8784421980b2b, type: 3}
+  m_Name: Dialog_Lumi_starry_map_0
+  m_EditorClassIdentifier: Assembly-CSharp::DialogSO
+  title: help lumi accepting quest
+  first_speachNode: {fileID: 11400000, guid: ba9d84734bec4214d81cfbcd76b2cae2, type: 2}
+  dialog_starting_npcSO: {fileID: 11400000, guid: edcd9a8bf4976df479f19c1ae0d3ff3f, type: 2}

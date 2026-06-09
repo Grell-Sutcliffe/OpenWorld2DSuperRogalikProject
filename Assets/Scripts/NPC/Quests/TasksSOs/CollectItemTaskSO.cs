@@ -5,4 +5,5 @@ using UnityEngine;
 public class CollectItemTaskSO : TaskSO
 {
     public List<CollectableItemSO> collectableItemSOs = new List<CollectableItemSO>();
+    public string collect_title;
 }

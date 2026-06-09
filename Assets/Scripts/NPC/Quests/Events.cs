@@ -100,6 +100,26 @@ public readonly struct ItemUsedEvent : IEvent
     }
 }
 
+public readonly struct QuestItemUsedEvent : IEvent
+{
+    public readonly string item_name;
+
+    public QuestItemUsedEvent(string item_name)
+    {
+        this.item_name = item_name;
+    }
+}
+
+public readonly struct QuestItemDontUseEvent : IEvent
+{
+    public readonly string item_name;
+
+    public QuestItemDontUseEvent(string item_name)
+    {
+        this.item_name = item_name;
+    }
+}
+
 public readonly struct ItemDeliveredEvent : IEvent
 {
     public readonly List<CollectableItem> collectableItems;

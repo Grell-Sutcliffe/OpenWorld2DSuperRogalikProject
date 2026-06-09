@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
  
 public class MainController : MonoBehaviour
 {
+    DialogController dialogController;
     QuestsController questsController;
     AchievementController achievementController;
     MapController mapController;
@@ -18,6 +19,7 @@ public class MainController : MonoBehaviour
     public HealthBarScript healthBarScript;
 
     public GameObject playerPanel;
+    public GameObject compasGO;
     public GameObject dialogPanel;
     public GameObject questPanel;
     public GameObject wishPanel;
@@ -75,6 +77,8 @@ public class MainController : MonoBehaviour
     InteractKeyListener keyListener;
     DialogPanelScript dialogPanelScript;
 
+    CompasScript compasScript;
+
     DedusController dedusController;
     GrandsonEugeneController grandsonEugeneController;
 
@@ -86,8 +90,6 @@ public class MainController : MonoBehaviour
 
     public List<SpriteRenderer> list_of_interactable_SR = new List<SpriteRenderer>();
     public List<string> list_of_interactable_objects_names = new List<string>();
-
-    public Dictionary<UseType, int> dict_useType_to_seconds_left;
 
     public Dictionary<string, NPCController> dict_npc_name_to_npcController;
 
@@ -113,6 +115,7 @@ public class MainController : MonoBehaviour
         achievementController = GameObject.Find("AchievementController").GetComponent<AchievementController>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         backpackController = GameObject.Find("BackpackController").GetComponent<BackPackController>();
+        dialogController = GameObject.Find("DialogController").GetComponent<DialogController>();
 
         scrollInteractionScript = gameObject.GetComponent<ScrollInteractionScript>();
         wishPanelScript = wishPanel.GetComponent<WishPanelScript>();
@@ -130,6 +133,8 @@ public class MainController : MonoBehaviour
         keyListener = gameObject.GetComponent<InteractKeyListener>();
         dialogPanelScript = dialogPanel.GetComponent<DialogPanelScript>();
         rewardPanelScript = rewardPanel.GetComponent<RewardPanelScript>();
+
+        compasScript = compasGO.GetComponent<CompasScript>();
 
         Make_dict_npc_name_to_npcController();
 
@@ -165,8 +170,6 @@ public class MainController : MonoBehaviour
 
         is_keyboard_active = true;
 
-        ClearDictionary_useType_to_seconds_left();
-
         //MusicManager.Instance.PlayPhantomMusicByIndex(0);
 
         StuffSetActiveFalse();
@@ -199,57 +202,32 @@ public class MainController : MonoBehaviour
     }
     */
 
-    public void StartCountdownCoroutine(UseType useType)
+    private void OnEnable()
     {
-        StartCoroutine(CountdownCoroutine(useType));
+        EventBus.OnEvent += HandleEvent;
     }
 
-    private IEnumerator CountdownCoroutine(UseType useType)
+    private void OnDisable()
     {
-        while (dict_useType_to_seconds_left[useType] > 0)
-        {
-            foreach (BackpackIconScript backpackIconScript in backpackController.dict_useType_to_list_of_BackpackIconScripts[useType])
-            {
-                backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
-            }
-            foreach (MiniSlotScript miniSlotScript in inventoryStalker.slotScripts_playerPanel)
-            {
-                if (miniSlotScript.slot_item is UsableItem usable_item)
-                {
-                    if (usable_item.useEffect.useType == useType)
-                    {
-                        miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
-                    }
-                }
-            }
-
-            yield return new WaitForSeconds(1f);
-            dict_useType_to_seconds_left[useType]--;
-        }
-
-        foreach (BackpackIconScript backpackIconScript in backpackController.dict_useType_to_list_of_BackpackIconScripts[useType])
-        {
-            backpackIconScript.CloseIconForTime(dict_useType_to_seconds_left[useType]);
-        }
-        foreach (MiniSlotScript miniSlotScript in inventoryStalker.slotScripts_playerPanel)
-        {
-            if (miniSlotScript.slot_item is UsableItem usable_item)
-            {
-                if (usable_item.useEffect.useType == useType)
-                {
-                    miniSlotScript.CloseSlotForTime(dict_useType_to_seconds_left[useType]);
-                }
-            }
-        }
+        EventBus.OnEvent -= HandleEvent;
     }
 
-    void ClearDictionary_useType_to_seconds_left()
+    private void HandleEvent(IEvent e)
     {
-        dict_useType_to_seconds_left = new Dictionary<UseType, int>();
-
-        foreach (UseType useType in backpackController.list_of_use_types)
+        if (e is QuestItemUsedEvent questItemUsed)
         {
-            dict_useType_to_seconds_left[useType] = 0;
+            if (compasScript.consumableItemSO.item_name == questItemUsed.item_name)
+            {
+                compasScript.Activate();
+            }
+        }
+
+        if (e is QuestItemDontUseEvent questItemDontUse)
+        {
+            if (compasScript.consumableItemSO.item_name == questItemDontUse.item_name)
+            {
+                compasScript.Deactivate();
+            }
         }
     }
 
@@ -441,6 +419,8 @@ public class MainController : MonoBehaviour
         loadingPanel.SetActive(false);
         respawnPanel.SetActive(false);
         pausePanel.SetActive(false);
+
+        compasScript.Deactivate();
 
         Invoke("CloseBeginningLoadingPanel", 0.5f);
     }
@@ -665,6 +645,7 @@ public class MainController : MonoBehaviour
 
     public void GoToMenuScene()
     {
+        ShowLoadingPanel();
         Save();
 
         Time.timeScale = 1f;
@@ -679,16 +660,23 @@ public class MainController : MonoBehaviour
         questsController.SaveQuests();
         achievementController.SaveAchievements();
         mapController.SaveCollected();
+        dialogController.SaveDialogs();
     }
 
     public void ClearEverything()
     {
+        ShowLoadingPanel();
+        ClosePausePanel();
+
+        Time.timeScale = 1f;
+
         mapController.DeleteCollectedProgress();
         backpackController.DeleteInventory();
         wishPanelScript.DeleteWishParameters();
         questsController.DeleteQuests();
         achievementController.DeleteAchievements();
         playerScript.DeletePlayerSave();
+        dialogController.DeleteDialogs();
 
         GoToMenuScene();
     }
