@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0119fefdf70c1164ea311c627aff01c8, type: 3}
+  m_Name: AnswerableSpeachNode_5
+  m_EditorClassIdentifier: 
+  npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
+  speach: "\u041D\u0435\u0442. \u041D\u0435 \u043C\u043E\u0433\u0443."
+  speach_type: 0
+  is_finishing: 0
+  answerSOs:
+  - {fileID: 11400000, guid: c62afaaa618f67048b8c6998b7a53def, type: 2}
+  - {fileID: 11400000, guid: f097a7052c990b94bbe579b51d931adf, type: 2}
+  - {fileID: 11400000, guid: d6974091eb782f04ebc85459a2515307, type: 2}

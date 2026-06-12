@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 361f615aafd8bec4f8d7b88d9fbcbbc6, type: 3}
-  m_Name: QuestAcceptingSpeachNode_2
+  m_Name: QuestAcceptingSpeachNode_6
   m_EditorClassIdentifier: 
   npcSO: {fileID: 11400000, guid: f6af511b525857845b56fba2cecf70a2, type: 2}
-  speach: "\u0423\u0440\u0430-\u0430, \u0441\u043F\u0430\u0441\u0438\u0431\u043E
-    \u0442\u0435\u0431\u0435!"
+  speach: "\u041F\u0440\u0430\u0432\u0434\u0430? \u0421\u043F\u0430\u0441\u0438\u0431\u043E."
   speach_type: 0
   is_finishing: 1
-  next_speachNodeSO: {fileID: 0}
+  next_speachNodeSO: {fileID: 11400000, guid: 31c237c56c2dc7b46b3841769b08e264, type: 2}
   questSO: {fileID: 11400000, guid: 4d7a93029eafc564199e3b4591a24120, type: 2}
