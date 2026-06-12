@@ -59,6 +59,9 @@ public class BackPackController : MonoBehaviour
     public ItemForSaleSO pinkWishSO;
     public ItemForSaleSO blueWishSO;
 
+    [Header("Сonsumable Items (Quest usable)")]
+    public ConsumableItemSO[] list_quest_usable_consumableItem_so;
+
     [Header("Сonsumable Items (Quest)")]
     public ConsumableItemSO[] list_quest_consumableItem_so;
 
@@ -353,6 +356,14 @@ public class BackPackController : MonoBehaviour
             dict_item_name_to_id[temp_item.item_name] = ind;
         }
 
+        foreach (ConsumableItemSO consumableItem_so in list_quest_usable_consumableItem_so)
+        {
+            ind++;
+            Item temp_item = new ConsumableItem(consumableItem_so, ind);
+            dict_id_to_item[ind] = temp_item;
+            dict_item_name_to_id[temp_item.item_name] = ind;
+        }
+
         foreach (ConsumableItemSO consumableItem_so in list_quest_consumableItem_so)
         {
             ind++;
@@ -570,7 +581,7 @@ public class BackPackController : MonoBehaviour
     {
         if (dict_id_to_item[current_selected_id].item_type == ItemType.Quest)
         {
-            foreach (ConsumableItemSO consumableItemSO in list_quest_consumableItem_so)
+            foreach (ConsumableItemSO consumableItemSO in list_quest_usable_consumableItem_so)
             {
                 if (consumableItemSO.item_name == dict_id_to_item[current_selected_id].item_name)
                 {
